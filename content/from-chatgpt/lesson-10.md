@@ -1,20 +1,8 @@
-Excellent. You're no longer just learning how to **build** applications—you'll now learn how to **operate** them.
-
-One of the biggest differences between junior and senior cloud engineers is this:
-
-> Juniors ask, "How do I deploy it?"
->
-> Seniors ask, "How do I know it's healthy? How do I debug it at 2 AM?"
-
-That's what this lesson is about.
-
----
-
 # Lesson 10: Amazon CloudWatch & AWS CloudTrail
 
-## Goal
+Building is not enough—you must operate systems. Juniors ask how to deploy; seniors ask how to know it's healthy and how to debug at 2 AM. That is CloudWatch and CloudTrail.
 
-By the end of this lesson, you'll understand:
+By the end of this lesson, you will understand:
 
 - Monitoring vs Logging vs Auditing
 - Amazon CloudWatch
@@ -27,7 +15,6 @@ By the end of this lesson, you'll understand:
 - Troubleshooting production systems
 
 ---
-
 # Imagine You're Running Netflix
 
 Suppose your website suddenly becomes slow.

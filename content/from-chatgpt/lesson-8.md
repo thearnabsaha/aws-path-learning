@@ -1,14 +1,8 @@
-Excellent. You're now moving from **server-based computing** to **serverless computing**.
-
-This is one of the biggest mindset shifts in cloud computing.
-
----
-
 # Lesson 8: AWS Lambda (Serverless Computing)
 
-## Goal
+This lesson shifts from always-on servers to serverless compute. Lambda is a major mindset change: run code in response to events without managing the underlying machines.
 
-By the end of this lesson, you'll understand:
+By the end of this lesson, you will understand:
 
 - What serverless means
 - What Lambda is
@@ -22,7 +16,6 @@ By the end of this lesson, you'll understand:
 - When to use Lambda vs EC2
 
 ---
-
 # The Old Way
 
 Suppose someone visits your website.

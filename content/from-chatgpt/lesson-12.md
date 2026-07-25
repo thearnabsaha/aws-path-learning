@@ -1,14 +1,8 @@
-Excellent. This lesson is one of the biggest differentiators between someone who **uses AWS** and someone who **engineers AWS infrastructure**.
-
-Professional cloud engineers rarely create infrastructure manually through the AWS Console. Instead, they define it as code.
-
----
-
 # Lesson 12: Infrastructure as Code (IaC) – AWS CloudFormation & Terraform
 
-## Goal
+This skill separates people who click in the console from people who engineer infrastructure. Professionals define AWS environments as code—repeatable, reviewable, and ready for CI/CD—with CloudFormation and Terraform.
 
-By the end of this lesson, you'll understand:
+By the end of this lesson, you will understand:
 
 - What Infrastructure as Code (IaC) is
 - Why manual deployments are a problem
@@ -22,7 +16,6 @@ By the end of this lesson, you'll understand:
 - Which tool to choose
 
 ---
-
 # The Problem with Manual Infrastructure
 
 Suppose your manager says:

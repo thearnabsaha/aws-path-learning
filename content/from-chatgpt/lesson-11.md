@@ -1,16 +1,8 @@
-Excellent. This is one of the biggest leaps in your cloud journey.
-
-Today, most modern companies don't deploy applications directly onto EC2. They package applications into **containers** and deploy them using services like **Amazon ECS**, **EKS (Kubernetes)**, or **AWS Fargate**.
-
-If you master Docker, you'll understand how applications are deployed at companies like Amazon, Netflix, and many startups.
-
----
-
 # Lesson 11: Docker, Amazon ECR & Amazon ECS
 
-## Goal
+Most modern teams do not ship apps by hand onto raw EC2 alone. They package software in containers and run them with ECS, EKS, or Fargate. Docker is the standard packaging model behind that shift.
 
-By the end of this lesson, you'll understand:
+By the end of this lesson, you will understand:
 
 - What containers are
 - Virtual Machines vs Containers
@@ -24,7 +16,6 @@ By the end of this lesson, you'll understand:
 - Production deployments
 
 ---
-
 # The Old Way
 
 Suppose your application needs:

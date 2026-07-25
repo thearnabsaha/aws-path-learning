@@ -1,14 +1,8 @@
-Excellent. This lesson is where you transition from running **one server** to building systems that can survive failures and handle large traffic spikes.
-
-This is one of the most frequently asked topics in AWS interviews.
-
----
-
 # Lesson 7: Elastic Load Balancer (ELB) & Auto Scaling
 
-## Goal
+Here you move from a single server to systems that survive failures and traffic spikes. Load balancing and auto scaling are among the most common AWS interview topics—and production essentials.
 
-By the end of this lesson, you'll understand:
+By the end of this lesson, you will understand:
 
 - Why one server isn't enough
 - What a Load Balancer does
@@ -21,7 +15,6 @@ By the end of this lesson, you'll understand:
 - Production architecture
 
 ---
-
 # The Problem with One Server
 
 Suppose your website runs on one EC2 instance.

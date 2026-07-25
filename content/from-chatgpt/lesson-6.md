@@ -1,12 +1,8 @@
-Great! You're now entering the **data layer** of cloud architecture. Almost every real-world application—banking apps, e-commerce sites, HR systems, social media—stores data in a database.
-
----
-
 # Lesson 6: Amazon RDS (Relational Database Service)
 
-## Goal
+You are entering the data layer of cloud architecture. Banking, e-commerce, HR, and social apps all need structured storage—this lesson is Amazon RDS, managed relational databases on AWS.
 
-By the end of this lesson, you'll understand:
+By the end of this lesson, you will understand:
 
 - What a database is
 - Why RDS exists
@@ -21,7 +17,6 @@ By the end of this lesson, you'll understand:
 - Real-world architectures
 
 ---
-
 # What is a Database?
 
 A database stores **structured data**.

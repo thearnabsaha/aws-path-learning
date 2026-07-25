@@ -26,17 +26,9 @@ export function splitLessonHtml(html: string): LessonPart[] {
     ];
   }
 
-  const firstIdx = matches[0].index ?? 0;
-  if (firstIdx > 0) {
-    const intro = trimmed.slice(0, firstIdx).trim();
-    if (intro && stripTags(intro).length > 0) {
-      parts.push({
-        id: "intro",
-        title: "Introduction",
-        html: intro,
-      });
-    }
-  }
+  // Do not create a separate "Introduction" accordion for prose before the
+  // first <h2>. That material is written into the Lesson N section instead.
+  // If orphan leading HTML remains, it is discarded so the outline stays clean.
 
   matches.forEach((match, i) => {
     const title = stripTags(match[1]).trim() || `Part ${i + 1}`;

@@ -1,14 +1,8 @@
-Awesome. You've learned **RDS (SQL databases)**. Now let's learn its NoSQL counterpart.
-
-This is one of the most common AWS interview topics because many modern applications (Amazon shopping carts, gaming, IoT, mobile apps, user sessions) use **DynamoDB**.
-
----
-
 # Lesson 9: Amazon DynamoDB (NoSQL Database)
 
-## Goal
+You already know RDS for SQL. DynamoDB is the NoSQL counterpart—used heavily for shopping carts, gaming, IoT, sessions, and other high-scale, low-latency workloads.
 
-By the end of this lesson, you'll understand:
+By the end of this lesson, you will understand:
 
 - What NoSQL is
 - SQL vs NoSQL
@@ -24,7 +18,6 @@ By the end of this lesson, you'll understand:
 - Real-world architecture
 
 ---
-
 # Why Do We Need Another Database?
 
 Suppose you have a social media app with:

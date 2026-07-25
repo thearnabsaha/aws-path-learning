@@ -1,14 +1,8 @@
-Excellent. This is the lesson where AWS starts to "click."
-
-Networking is one of the most important topics in AWS interviews. Once you understand it, you'll understand how almost every AWS application is built.
-
----
-
 # Lesson 5: Amazon VPC (Virtual Private Cloud)
 
-## Goal
+This is where AWS networking often “clicks.” Once you understand VPC, subnets, gateways, and security layers, most application architectures become much easier to design and interview for.
 
-By the end of this lesson, you'll understand:
+By the end of this lesson, you will understand:
 
 - What a VPC is
 - Public vs Private Subnets
@@ -21,7 +15,6 @@ By the end of this lesson, you'll understand:
 - How everything connects together
 
 ---
-
 # What is a VPC?
 
 A **VPC (Virtual Private Cloud)** is your own private network inside AWS.

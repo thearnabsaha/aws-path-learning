@@ -1,8 +1,8 @@
-Excellent. We'll treat this like a real AWS bootcamp.
-
 # Lesson 2: AWS Account, Console & IAM
 
-By the end of this lesson, you'll know:
+This lesson is the start of a hands-on AWS bootcamp: how an account is organized, how you use the console, and how IAM controls access. Get this wrong and every later service becomes insecure.
+
+By the end of this lesson, you will understand:
 
 - How AWS is organized
 - What the AWS Console is
@@ -12,7 +12,6 @@ By the end of this lesson, you'll know:
 - Best security practices
 
 ---
-
 # 1. What happens when you create an AWS account?
 
 Imagine you've rented an office building.

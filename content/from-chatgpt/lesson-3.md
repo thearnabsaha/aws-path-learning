@@ -1,8 +1,8 @@
-Perfect! Now we get to the fun part—launching your first cloud server.
-
 # Lesson 3: Amazon EC2 (Elastic Compute Cloud)
 
-By the end of this lesson, you'll understand:
+Now you launch compute: your first cloud server. EC2 is the foundation for understanding virtual machines, networking to a host, and running software in AWS.
+
+By the end of this lesson, you will understand:
 
 - What EC2 is
 - How virtual machines work
@@ -15,7 +15,6 @@ By the end of this lesson, you'll understand:
 - How to SSH into your server
 
 ---
-
 # What is EC2?
 
 **EC2 (Elastic Compute Cloud)** is a virtual computer running inside an AWS data center.

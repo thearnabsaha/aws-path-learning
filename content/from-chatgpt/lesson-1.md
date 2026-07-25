@@ -1,5 +1,3 @@
-Absolutely. Since you want to build a strong career and eventually land a high-paying remote tech job, I'd teach AWS the way it's actually used in the industry—not just enough to pass a certification. 
-
 # AWS Roadmap (Beginner → Advanced)
 
 | Phase | Topics | Time |
@@ -16,6 +14,10 @@ Absolutely. Since you want to build a strong career and eventually land a high-p
 ---
 
 # Lesson 1: What is Cloud Computing?
+
+This path teaches AWS the way it's used in real jobs—not only enough to pass a certification. The goal is practical skill for cloud and remote tech roles.
+
+Below is the core idea of cloud computing. Use the roadmap section above as your long-term map, then work through each topic in order.
 
 Imagine you own a startup.
 
