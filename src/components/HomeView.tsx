@@ -6,9 +6,10 @@ import type { LessonSummary } from "@/types/lesson";
 import { SearchBox } from "./SearchBox";
 import { ArchitectureMap } from "./ArchitectureMap";
 import { ProgressTools } from "./ProgressTools";
-import { ReviewPractice } from "./ReviewPractice";
 import { PathPicker } from "./PathPicker";
 import { CoachMarks } from "./CoachMarks";
+import { DueToday } from "./DueToday";
+import { Certificate } from "./Certificate";
 import { dueReviews } from "@/lib/quizUtils";
 import { getPath } from "@/lib/paths";
 
@@ -152,13 +153,16 @@ export function HomeView({ lessons }: { lessons: LessonSummary[] }) {
       <div className="landing-body">
         <PathPicker />
 
+        <DueToday />
+        <Certificate />
+
         {path.interviewMode && (
           <section className="path-interview-cta landing-panel">
             <div>
               <h2>Interview path active</h2>
               <p>
-                Read the core lessons below, then run scenario MCQ drills and
-                open prompts on the interview page.
+                Read lessons below, then use scenario drills on the interview
+                page after each quiz.
               </p>
             </div>
             <Link className="btn btn-primary" href="/interview">
@@ -167,16 +171,17 @@ export function HomeView({ lessons }: { lessons: LessonSummary[] }) {
           </section>
         )}
 
-        <ReviewPractice embedded />
-
-        <ArchitectureMap />
+        <details className="arch-details">
+          <summary>Architecture so far (progress map)</summary>
+          <ArchitectureMap />
+        </details>
 
         <div className="curriculum-head">
           <h2 className="section-title">
             {path.id === "fast"
               ? "Fast path lessons"
               : path.id === "all"
-                ? "Core path"
+                ? "Core path (1–12)"
                 : path.label}
           </h2>
           <p className="curriculum-sub">{path.description}</p>

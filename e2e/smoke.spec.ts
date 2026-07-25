@@ -42,6 +42,7 @@ test.describe("AWS Path smoke", () => {
 
     const complete = page.getByRole("button", { name: /Mark complete/i });
     if (await complete.isVisible()) {
+      page.once("dialog", (d) => d.accept());
       await complete.click();
       await expect(
         page.getByRole("button", { name: /Undo complete/i })

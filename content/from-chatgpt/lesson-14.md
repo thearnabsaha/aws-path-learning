@@ -8,7 +8,7 @@ This is one of the most common interview topics because almost every production 
 
 # Learning Objectives
 
-After this lesson, you should be able to answer:
+After this lesson, you should be able to:
 
 - What is encryption?
 - What is symmetric vs asymmetric encryption?

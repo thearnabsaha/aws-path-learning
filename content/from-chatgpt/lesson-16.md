@@ -10,7 +10,7 @@ On AWS, that CDN is **Amazon CloudFront**.
 
 # Learning Objectives
 
-After this lesson, you'll understand:
+After this lesson, you should understand:
 
 - Why CDNs exist
 - What latency is

@@ -20,8 +20,15 @@ export function LessonView({
   prev: LessonSummary | null;
   next: LessonSummary | null;
 }) {
-  const { isDone, setDone, sectionProgress, lastSection } = useProgress();
+  const { isDone, setDone, sectionProgress, lastSection, quizScores } =
+    useProgress();
   const done = isDone(lesson.id);
+  const quizResult = quizScores[lesson.id];
+  const quizMastered =
+    !!quizResult &&
+    quizResult.total > 0 &&
+    quizResult.score / quizResult.total >= 0.7;
+  const quizAttempted = !!quizResult && quizResult.total > 0;
 
   useEffect(() => {
     trackEvent("lesson_open", {
@@ -88,20 +95,46 @@ export function LessonView({
       <footer className="lesson-footer">
         <div className={`complete-row${done ? " done" : ""}`}>
           <div className="complete-status">
-            {done
-              ? "✓ Marked complete — nice work."
-              : "Finished reading? Mark this lesson complete."}
+            {done ? (
+              "✓ Marked complete — nice work."
+            ) : lesson.quiz?.length ? (
+              quizMastered ? (
+                "Quiz mastered (≥70%). You can mark this lesson complete."
+              ) : quizAttempted ? (
+                <>
+                  Quiz score {quizResult!.score}/{quizResult!.total} — aim for
+                  ≥70% (recommended mastery). You can still mark complete.
+                </>
+              ) : (
+                "Take the quiz first for best results, then mark complete."
+              )
+            ) : (
+              "Finished reading? Mark this lesson complete."
+            )}
           </div>
           <button
             type="button"
             className={`btn ${done ? "btn-secondary" : "btn-primary"}`}
             onClick={() => {
               const nextDone = !done;
+              if (
+                nextDone &&
+                lesson.quiz?.length &&
+                !quizMastered &&
+                !window.confirm(
+                  quizAttempted
+                    ? "Quiz is under 70%. Mark complete anyway?"
+                    : "You have not submitted the quiz yet. Mark complete anyway?"
+                )
+              ) {
+                return;
+              }
               setDone(lesson.id, nextDone);
               if (nextDone) {
                 trackEvent("lesson_complete", {
                   lessonId: lesson.id,
                   number: lesson.number,
+                  quizMastered: quizMastered || false,
                 });
               }
             }}

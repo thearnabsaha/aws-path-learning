@@ -23,7 +23,11 @@ import type {
   QuizQuestion,
   ReviewItem,
 } from "@/types/lesson";
-import { upsertMisses } from "@/lib/quizUtils";
+import {
+  scheduleAfterFail,
+  scheduleAfterSuccess,
+  upsertMisses,
+} from "@/lib/quizUtils";
 
 type ProgressContextValue = {
   ready: boolean;
@@ -224,10 +228,17 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
 
   const markReviewCorrect = useCallback(
     (id: string) => {
-      persist({
-        ...state,
-        reviewQueue: state.reviewQueue.filter((r) => r.id !== id),
-      });
+      const now = Date.now();
+      const nextQueue: typeof state.reviewQueue = [];
+      for (const r of state.reviewQueue) {
+        if (r.id !== id) {
+          nextQueue.push(r);
+          continue;
+        }
+        const scheduled = scheduleAfterSuccess(r, now);
+        if (scheduled) nextQueue.push(scheduled);
+      }
+      persist({ ...state, reviewQueue: nextQueue });
     },
     [persist, state]
   );
@@ -239,13 +250,7 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
         ...state,
         reviewQueue: state.reviewQueue.map((r) => {
           if (r.id !== id) return r;
-          const timesWrong = r.timesWrong + 1;
-          return {
-            ...r,
-            timesWrong,
-            wrongAt: now,
-            dueAt: now + Math.min(14, timesWrong) * 86400000,
-          };
+          return { ...r, ...scheduleAfterFail(r, now) };
         }),
       });
     },

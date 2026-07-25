@@ -43,136 +43,112 @@
     },
     {
       "id": "part-4",
-      "title": "AWS Pricing Philosophy"
-    },
-    {
-      "id": "part-5",
       "title": "Chapter 2 — What Does AWS Charge For?"
     },
     {
-      "id": "part-6",
-      "title": "Example EC2 Billing"
-    },
-    {
-      "id": "part-7",
+      "id": "part-5",
       "title": "Chapter 3 — The AWS Free Tier"
     },
     {
-      "id": "part-8",
-      "title": "Common Beginner Mistake"
-    },
-    {
-      "id": "part-9",
+      "id": "part-6",
       "title": "Chapter 4 — Cost Explorer"
     },
     {
-      "id": "part-10",
-      "title": "Filtering Costs"
-    },
-    {
-      "id": "part-11",
-      "title": "Forecasting"
-    },
-    {
-      "id": "part-12",
+      "id": "part-7",
       "title": "Chapter 5 — AWS Budgets"
     },
     {
-      "id": "part-13",
+      "id": "part-8",
       "title": "Chapter 6 — Cost Anomaly Detection"
     },
     {
-      "id": "part-14",
+      "id": "part-9",
       "title": "Chapter 7 — Cost Allocation Tags"
     },
     {
-      "id": "part-15",
+      "id": "part-10",
       "title": "Chapter 8 — On-Demand Instances"
     },
     {
-      "id": "part-16",
+      "id": "part-11",
       "title": "Chapter 9 — Reserved Instances (RI)"
     },
     {
-      "id": "part-17",
+      "id": "part-12",
       "title": "Chapter 10 — Savings Plans"
     },
     {
-      "id": "part-18",
+      "id": "part-13",
       "title": "Chapter 11 — Spot Instances"
     },
     {
-      "id": "part-19",
+      "id": "part-14",
       "title": "Chapter 12 — Storage Optimisation"
     },
     {
-      "id": "part-20",
+      "id": "part-15",
       "title": "Chapter 13 — Rightsizing"
     },
     {
-      "id": "part-21",
+      "id": "part-16",
       "title": "Chapter 14 — Auto Scaling Saves Money"
     },
     {
-      "id": "part-22",
+      "id": "part-17",
       "title": "Chapter 15 — Lambda vs EC2 Costs"
     },
     {
-      "id": "part-23",
+      "id": "part-18",
       "title": "Chapter 16 — Data Transfer Costs"
     },
     {
-      "id": "part-24",
+      "id": "part-19",
       "title": "Chapter 17 — NAT Gateway Costs"
     },
     {
-      "id": "part-25",
+      "id": "part-20",
       "title": "Chapter 18 — CloudFront Saves Money"
     },
     {
-      "id": "part-26",
+      "id": "part-21",
       "title": "Chapter 19 — Cost Optimisation Pillar"
     },
     {
-      "id": "part-27",
+      "id": "part-22",
       "title": "Chapter 20 — Trusted Advisor"
     },
     {
-      "id": "part-28",
+      "id": "part-23",
       "title": "Chapter 21 — Real Production Example"
     },
     {
-      "id": "part-29",
+      "id": "part-24",
       "title": "Chapter 22 — Common Cost Mistakes"
     },
     {
-      "id": "part-30",
+      "id": "part-25",
       "title": "Chapter 23 — Best Practices"
     },
     {
-      "id": "part-31",
+      "id": "part-26",
       "title": "Chapter 24 — Interview Questions"
     },
     {
-      "id": "part-32",
+      "id": "part-27",
       "title": "Hands-on Lab"
-    },
-    {
-      "id": "part-33",
-      "title": "Final Mental Model"
     }
   ],
-  "content": "<h2>Lesson 18 — AWS Cost Explorer, AWS Budgets &amp; Cost Optimization (Complete Deep Dive)</h2>\n<blockquote class=\"callout tip\"><p><strong>Goal:</strong> By the end of this lesson, you'll understand exactly how AWS charges you, how enterprises monitor cloud spending, how Cost Explorer works, how AWS Budgets prevent bill surprises, what Savings Plans and Reserved Instances are, how cost allocation works, and how experienced cloud engineers optimise AWS bills.</p></blockquote>\n<p>One of the biggest misconceptions beginners have is:</p>\n<blockquote class=\"callout tip\"><p><strong>\"Cloud is cheaper.\"</strong></p></blockquote>\n<p>That's not true.</p>\n<p>The correct statement is:</p>\n<blockquote class=\"callout tip\"><p><strong>\"Cloud lets you pay only for what you use—but if you design poorly, it can become very expensive.\"</strong></p></blockquote>\n<p>Many startups have accidentally spent <strong>thousands or even millions of pounds/dollars</strong> because of poor cloud cost management.</p>\n<p>Understanding AWS pricing is a critical skill for Cloud Engineers, DevOps Engineers, and Solutions Architects.</p>\n<hr class=\"divider\" />\n<h2>Learning Objectives</h2>\n<p>After this lesson, you'll understand:</p>\n<ul>\n<li>AWS pricing philosophy</li>\n<li>Pay-as-you-go</li>\n<li>Free Tier</li>\n<li>Cost Explorer</li>\n<li>AWS Budgets</li>\n<li>Cost Anomaly Detection</li>\n<li>Cost Allocation Tags</li>\n<li>Savings Plans</li>\n<li>Reserved Instances</li>\n<li>Spot Instances</li>\n<li>On-Demand pricing</li>\n<li>Rightsizing</li>\n<li>Storage optimisation</li>\n<li>Network cost optimisation</li>\n<li>Real production cost strategies</li>\n</ul>\n<hr class=\"divider\" />\n<h2>Chapter 1 — Why Cloud Pricing Exists</h2>\n<p>Imagine you're building a data centre.</p>\n<p>You buy:</p>\n<ul>\n<li>Servers</li>\n<li>Switches</li>\n<li>Storage</li>\n<li>Cooling</li>\n<li>UPS</li>\n<li>Power generators</li>\n<li>Internet connections</li>\n</ul>\n<p>Even if no customers use your application...</p>\n<p>You still pay.</p>\n<p>Cloud changes that.</p>\n<p>Instead of buying hardware:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Need Compute\n\n↓\n\nRent Compute\n\n↓\n\nStop Using\n\n↓\n\nStop Paying</code></pre></div>\n<hr class=\"divider\" />\n<h2>AWS Pricing Philosophy</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>AWS follows:</p>\n<blockquote class=\"callout tip\"><p><strong>Pay for what you use.</strong></p></blockquote>\n<p>Not:</p>\n<blockquote class=\"callout tip\"><p>Pay for what you might use.</p></blockquote>\n<p>Example:</p>\n<p>Traditional Data Centre</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Buy 20 Servers\n\n↓\n\nUse 5\n\n↓\n\nStill Pay for 20</code></pre></div>\n<p>AWS</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Launch 5 EC2\n\n↓\n\nNeed 10?\n\n↓\n\nLaunch 5 More\n\n↓\n\nNeed 2?\n\n↓\n\nTerminate 8</code></pre></div>\n<p>Billing changes automatically.</p>\n<hr class=\"divider\" />\n</div><h2>Chapter 2 — What Does AWS Charge For?</h2>\n<p>Almost every AWS service follows one or more pricing models:</p>\n<ul>\n<li>Compute time</li>\n<li>Storage</li>\n<li>Requests</li>\n<li>Data transfer</li>\n<li>Provisioned capacity</li>\n<li>Network usage</li>\n</ul>\n<p>Examples:</p>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Service</th><th>Charged For</th></tr></thead><tbody>\n<tr><td>EC2</td><td>Running time</td></tr>\n<tr><td>S3</td><td>GB stored + requests</td></tr>\n<tr><td>Lambda</td><td>Invocations + execution duration</td></tr>\n<tr><td>DynamoDB</td><td>Read/write capacity or on-demand requests</td></tr>\n<tr><td>CloudFront</td><td>Data transfer + requests</td></tr>\n<tr><td>Route 53</td><td>Hosted zones + DNS queries</td></tr>\n<tr><td>RDS</td><td>Instance hours + storage + backups</td></tr>\n</tbody></table></div>\n<hr class=\"divider\" />\n<h2>Example EC2 Billing</h2>\n<p>Suppose:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>t3.micro\n\nRuns\n\n10 Hours</code></pre></div>\n<p>You pay only for those 10 hours.</p>\n<p>If you terminate it:</p>\n<p>Billing stops for the compute instance (though attached resources like EBS volumes may continue to incur charges if retained).</p>\n<hr class=\"divider\" />\n<h2>Chapter 3 — The AWS Free Tier</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>AWS offers a Free Tier to help you learn.</p>\n<p>Examples include eligible usage such as:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Limited EC2 usage</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">S3 storage</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">Lambda invocations</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">DynamoDB capacity</span></li>\n</ul>\n<p>Important:</p>\n<p>Free Tier has limits.</p>\n<p>If you exceed them:</p>\n<p>Billing starts.</p>\n<hr class=\"divider\" />\n</div><h2>Common Beginner Mistake</h2>\n<p>Launch:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Large EC2\n\n↓\n\nForget It\n\n↓\n\nGo On Holiday\n\n↓\n\nHuge Bill</code></pre></div>\n<p>Always stop or terminate resources you no longer need.</p>\n<hr class=\"divider\" />\n<h2>Chapter 4 — Cost Explorer</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Imagine your company spends:</p>\n<p>£12,000 per month.</p>\n<p>Your manager asks:</p>\n<blockquote class=\"callout tip\"><p>\"Where is the money going?\"</p></blockquote>\n<p>Cost Explorer answers that.</p>\n<p>It provides visual reports showing spending over time.</p>\n<hr class=\"divider\" />\n<p>Example view:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Monthly Cost\n\nEC2\n\nS3\n\nRDS\n\nCloudFront\n\nLambda</code></pre></div>\n<p>You can identify the largest contributors.</p>\n<hr class=\"divider\" />\n</div><h2>Filtering Costs</h2>\n<p>You can filter by:</p>\n<ul>\n<li>Service</li>\n<li>Linked account</li>\n<li>Region</li>\n<li>Usage type</li>\n<li>Tags</li>\n<li>Time range</li>\n</ul>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Only\n\nLondon Region\n\nLast 30 Days</code></pre></div>\n<hr class=\"divider\" />\n<h2>Forecasting</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Cost Explorer can estimate future spending based on historical usage.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Current Spend\n\n↓\n\nProjected Month-End Spend</code></pre></div>\n<p>This helps finance teams plan budgets.</p>\n<hr class=\"divider\" />\n</div><h2>Chapter 5 — AWS Budgets</h2>\n<p>Cost Explorer tells you:</p>\n<blockquote class=\"callout tip\"><p>What happened.</p></blockquote>\n<p>Budgets tell you:</p>\n<blockquote class=\"callout tip\"><p>What is happening.</p></blockquote>\n<p>Suppose you create:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Monthly Budget\n\n£500</code></pre></div>\n<p>If spending reaches:</p>\n<p>80%</p>\n<p>AWS sends an alert.</p>\n<p>If it reaches:</p>\n<p>100%</p>\n<p>Another alert.</p>\n<hr class=\"divider\" />\n<p>Budgets can monitor:</p>\n<ul>\n<li>Cost</li>\n<li>Usage</li>\n<li>Savings Plans utilisation</li>\n<li>Reserved Instance utilisation</li>\n</ul>\n<hr class=\"divider\" />\n<h2>Chapter 6 — Cost Anomaly Detection</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Imagine:</p>\n<p>Normal daily spend:</p>\n<p>£50</p>\n<p>Today:</p>\n<p>£2,000</p>\n<p>AWS notices the unusual spike.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Normal Pattern\n\n↓\n\nUnexpected Increase\n\n↓\n\nAlert</code></pre></div>\n<p>This helps catch:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Accidental resource creation</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Misconfigured workloads</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">Potential abuse</span></li>\n</ul>\n<hr class=\"divider\" />\n</div><h2>Chapter 7 — Cost Allocation Tags</h2>\n<p>Large companies ask:</p>\n<blockquote class=\"callout tip\"><p>Which department spent this money?</p></blockquote>\n<p>Instead of guessing:</p>\n<p>Tag resources.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Project=Website\n\nTeam=Engineering\n\nEnvironment=Production</code></pre></div>\n<p>Cost Explorer can group costs by these tags.</p>\n<hr class=\"divider\" />\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Engineering\n\n£30,000\n\nMarketing\n\n£8,000\n\nFinance\n\n£2,000</code></pre></div>\n<p>Without tags:</p>\n<p>Everything is mixed together.</p>\n<hr class=\"divider\" />\n<h2>Chapter 8 — On-Demand Instances</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Default pricing.</p>\n<p>Launch:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>EC2\n\n↓\n\nRun\n\n↓\n\nPay</code></pre></div>\n<p>No commitment.</p>\n<p>Advantages:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Flexible</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">No long-term contract</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">Good for unpredictable workloads</span></li>\n</ul>\n<p>Disadvantage:</p>\n<p>Most expensive option per unit of compute.</p>\n<hr class=\"divider\" />\n</div><h2>Chapter 9 — Reserved Instances (RI)</h2>\n<p>Suppose you know:</p>\n<p>Your database will run for three years.</p>\n<p>Instead of paying On-Demand:</p>\n<p>Commit to a term.</p>\n<p>AWS gives a discount.</p>\n<p>Think of it like:</p>\n<p>Hotel</p>\n<p>One night:</p>\n<p>Expensive.</p>\n<p>Book for a year:</p>\n<p>Cheaper per night.</p>\n<hr class=\"divider\" />\n<p>Reserved Instances are best suited to predictable, long-running workloads and primarily apply to certain services like EC2 and RDS.</p>\n<hr class=\"divider\" />\n<h2>Chapter 10 — Savings Plans</h2>\n<p>Savings Plans are the modern evolution of Reserved pricing for many compute services.</p>\n<p>Instead of reserving a specific instance in many cases, you commit to a consistent amount of compute spend (for example, a certain amount per hour) over a one- or three-year term.</p>\n<p>Benefits:</p>\n<ul>\n<li>More flexibility than many Reserved Instances</li>\n<li>Discounts for committed usage</li>\n<li>Can apply across eligible compute services and instance families (depending on plan type)</li>\n</ul>\n<p>For most new workloads, many organisations evaluate Savings Plans before Reserved Instances.</p>\n<hr class=\"divider\" />\n<h2>Chapter 11 — Spot Instances</h2>\n<p>AWS has unused capacity.</p>\n<p>Instead of leaving servers idle:</p>\n<p>AWS sells spare capacity at deep discounts.</p>\n<p>Example:</p>\n<p>On-Demand:</p>\n<p>£1/hour</p>\n<p>Spot:</p>\n<p>£0.20/hour</p>\n<p>Huge savings.</p>\n<hr class=\"divider\" />\n<p>But...</p>\n<p>AWS can reclaim Spot capacity with short notice if it needs it.</p>\n<p>Good for:</p>\n<ul>\n<li>Batch jobs</li>\n<li>Machine learning training</li>\n<li>Rendering</li>\n<li>Big data processing</li>\n</ul>\n<p>Bad for:</p>\n<p>Critical databases.</p>\n<hr class=\"divider\" />\n<h2>Chapter 12 — Storage Optimisation</h2>\n<p>Many companies waste money.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>100 TB\n\nOld Logs\n\nNever Accessed</code></pre></div>\n<p>Still paying.</p>\n<p>Instead:</p>\n<p>Move data to cheaper storage classes.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>S3 Standard\n\n↓\n\nS3 Intelligent-Tiering\n\n↓\n\nS3 Glacier\n\n↓\n\nS3 Glacier Deep Archive</code></pre></div>\n<p>Lifecycle policies automate this movement.</p>\n<hr class=\"divider\" />\n<h2>Chapter 13 — Rightsizing</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Imagine:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>m7i.8xlarge</code></pre></div>\n<p>CPU usage:</p>\n<p>5%</p>\n<p>Memory:</p>\n<p>10%</p>\n<p>You're wasting money.</p>\n<p>Instead:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>t3.medium</code></pre></div>\n<p>Same workload.</p>\n<p>Much lower cost.</p>\n<p>Rightsizing means selecting resources that match actual usage.</p>\n<hr class=\"divider\" />\n</div><h2>Chapter 14 — Auto Scaling Saves Money</h2>\n<p>Without Auto Scaling:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>10 EC2\n\nRunning All Night\n\nNo Traffic</code></pre></div>\n<p>Still paying.</p>\n<p>With Auto Scaling:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Night\n\n↓\n\n2 EC2\n\nMorning\n\n↓\n\n10 EC2</code></pre></div>\n<p>Lower cost while maintaining performance.</p>\n<hr class=\"divider\" />\n<h2>Chapter 15 — Lambda vs EC2 Costs</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Suppose:</p>\n<p>Application receives:</p>\n<p>10 requests/day.</p>\n<p>Running an EC2 instance 24/7 is likely wasteful.</p>\n<p>Lambda:</p>\n<p>Runs only when invoked.</p>\n<p>Often much cheaper for intermittent workloads.</p>\n<p>But:</p>\n<p>Millions of invocations may make EC2, ECS, or EKS more economical depending on the workload.</p>\n<p>Always evaluate total cost based on usage.</p>\n<hr class=\"divider\" />\n</div><h2>Chapter 16 — Data Transfer Costs</h2>\n<p>Many beginners ignore networking.</p>\n<p>But data transfer can become one of the largest costs.</p>\n<p>Examples:</p>\n<ul>\n<li>CloudFront traffic</li>\n<li>Internet egress</li>\n<li>Cross-region transfers</li>\n<li>NAT Gateway traffic</li>\n</ul>\n<p>Inbound data transfer is often free, while outbound transfer typically incurs charges depending on the service and destination.</p>\n<p>Designing architectures to minimise unnecessary data movement can significantly reduce costs.</p>\n<hr class=\"divider\" />\n<h2>Chapter 17 — NAT Gateway Costs</h2>\n<p>One of the biggest surprises for beginners.</p>\n<p>Private EC2:</p>\n<p>Needs Internet.</p>\n<p>Uses:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Private EC2\n\n↓\n\nNAT Gateway\n\n↓\n\nInternet</code></pre></div>\n<p>NAT Gateway charges for:</p>\n<ul>\n<li>Running time</li>\n<li>Data processed</li>\n</ul>\n<p>High traffic through NAT Gateways can become expensive.</p>\n<p>Sometimes using VPC Endpoints for AWS services like S3 or DynamoDB can reduce those costs.</p>\n<hr class=\"divider\" />\n<h2>Chapter 18 — CloudFront Saves Money</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Without CloudFront:</p>\n<p>Every user downloads from S3.</p>\n<p>With CloudFront:</p>\n<p>Most requests are served from edge caches.</p>\n<p>Benefits:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Lower origin load</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Improved performance</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">Potential reduction in origin data transfer costs</span></li>\n</ul>\n<hr class=\"divider\" />\n</div><h2>Chapter 19 — Cost Optimisation Pillar</h2>\n<p>The AWS Well-Architected Framework includes:</p>\n<p><strong>Cost Optimisation</strong></p>\n<p>Key principles:</p>\n<ul>\n<li>Measure usage</li>\n<li>Eliminate waste</li>\n<li>Choose the right pricing model</li>\n<li>Match supply with demand</li>\n<li>Continuously optimise</li>\n</ul>\n<p>Cost optimisation is an ongoing process, not a one-time task.</p>\n<hr class=\"divider\" />\n<h2>Chapter 20 — Trusted Advisor</h2>\n<p>Trusted Advisor reviews your AWS environment and recommends improvements.</p>\n<p>Examples:</p>\n<ul>\n<li>Underutilised EC2 instances</li>\n<li>Idle load balancers</li>\n<li>Unused Elastic IPs</li>\n<li>Security improvements</li>\n<li>Service limit checks</li>\n</ul>\n<p>Some checks depend on your AWS support plan.</p>\n<hr class=\"divider\" />\n<h2>Chapter 21 — Real Production Example</h2>\n<p>Imagine:</p>\n<p>Company:</p>\n<p>500 EC2</p>\n<p>100 RDS</p>\n<p>200 S3 Buckets</p>\n<p>Every month:</p>\n<p>Cloud team reviews:</p>\n<ul>\n<li>Cost Explorer</li>\n<li>Budgets</li>\n<li>Rightsizing reports</li>\n<li>Savings Plans coverage</li>\n<li>RI utilisation</li>\n<li>Trusted Advisor findings</li>\n</ul>\n<p>Optimisation becomes part of the operational routine.</p>\n<hr class=\"divider\" />\n<h2>Chapter 22 — Common Cost Mistakes</h2>\n<p>❌ Leaving EC2 running after testing.</p>\n<p>❌ Forgetting unattached EBS volumes.</p>\n<p>❌ Not deleting old EBS snapshots.</p>\n<p>❌ Public S3 bucket storing unnecessary large files.</p>\n<p>❌ Choosing oversized instances.</p>\n<p>❌ Not using lifecycle policies.</p>\n<p>❌ Ignoring idle load balancers.</p>\n<p>❌ Sending large volumes of traffic through unnecessary NAT Gateways.</p>\n<p>❌ Forgetting to clean up development resources.</p>\n<hr class=\"divider\" />\n<h2>Chapter 23 — Best Practices</h2>\n<ul>\n<li>Enable AWS Budgets on every account.</li>\n<li>Review Cost Explorer regularly.</li>\n<li>Tag resources consistently.</li>\n<li>Use Auto Scaling where appropriate.</li>\n<li>Use Savings Plans or Reserved pricing for predictable workloads.</li>\n<li>Use Spot Instances for interruptible jobs.</li>\n<li>Delete unused resources.</li>\n<li>Move old data to cheaper storage classes.</li>\n<li>Continuously rightsize infrastructure.</li>\n<li>Monitor data transfer costs.</li>\n</ul>\n<hr class=\"divider\" />\n<h2>Chapter 24 — Interview Questions</h2>\n<h3>Q1. What is Cost Explorer?</h3>\n<p>A tool that analyses and visualises AWS spending and usage trends.</p>\n<hr class=\"divider\" />\n<h3>Q2. What is AWS Budgets?</h3>\n<p>A service that monitors spending or usage against thresholds and sends alerts when limits are approached or exceeded.</p>\n<hr class=\"divider\" />\n<h3>Q3. Difference between Cost Explorer and Budgets?</h3>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Cost Explorer</th><th>AWS Budgets</th></tr></thead><tbody>\n<tr><td>Analyses historical and forecast costs</td><td>Monitors thresholds and sends alerts</td></tr>\n<tr><td>Reporting and visualisation</td><td>Monitoring and notifications</td></tr>\n</tbody></table></div>\n<hr class=\"divider\" />\n<h3>Q4. What are Savings Plans?</h3>\n<p>Pricing models that provide discounted rates in exchange for a commitment to a consistent amount of compute usage over one or three years.</p>\n<hr class=\"divider\" />\n<h3>Q5. When should you use Spot Instances?</h3>\n<p>For workloads that can tolerate interruptions, such as batch processing, rendering, and some machine learning jobs.</p>\n<hr class=\"divider\" />\n<h3>Q6. What is rightsizing?</h3>\n<p>Selecting resource sizes that match actual workload requirements to avoid overprovisioning.</p>\n<hr class=\"divider\" />\n<h3>Q7. Why are cost allocation tags important?</h3>\n<p>They allow organisations to attribute cloud spending to projects, departments, or environments for reporting and chargeback.</p>\n<hr class=\"divider\" />\n<h3>Q8. What is Cost Anomaly Detection?</h3>\n<p>A service that identifies unusual spending patterns and alerts you to unexpected cost increases.</p>\n<hr class=\"divider\" />\n<h3>Q9. Why is Auto Scaling considered a cost optimisation technique?</h3>\n<p>Because it automatically adjusts capacity to demand, reducing payment for idle resources while maintaining application performance.</p>\n<hr class=\"divider\" />\n<h3>Q10. Why should engineers understand AWS pricing?</h3>\n<p>Because designing technically correct architectures that are unnecessarily expensive is poor engineering. A good cloud architect balances performance, reliability, security, and cost.</p>\n<hr class=\"divider\" />\n<h2>Hands-on Lab</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<aside class=\"cost-safety callout warn\" role=\"note\"><p class=\"callout-title\">Cost safety</p><ul><li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Prefer <strong>Free Tier</strong> / small instance sizes while learning.</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Create a <strong>billing alarm</strong> (CloudWatch or Budgets) on day one.</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\"><strong>Tear down</strong> lab resources when finished (instances, load balancers, NAT gateways).</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">Never put long-lived access keys in code or public repos.</span></li></ul><p class=\"workshop-links\"><strong>Official practice:</strong> <a href=\"https://explore.skillbuilder.aws/\" rel=\"noopener noreferrer\" target=\"_blank\">AWS Skill Builder</a> · <a href=\"https://wellarchitectedlabs.com/\" rel=\"noopener noreferrer\" target=\"_blank\">Well-Architected Labs</a> · <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/free-tier.html\" rel=\"noopener noreferrer\" target=\"_blank\">Free Tier docs</a></p></aside>\n<ol>\n<li class=\"lab-step\" data-lab-id=\"lab-step-5\"><span class=\"lab-step-text\">Open <strong>AWS Cost Explorer</strong> and review your spending by service for the past month.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-6\"><span class=\"lab-step-text\">Create an <strong>AWS Budget</strong> with a monthly threshold (for example, a learning budget).</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-7\"><span class=\"lab-step-text\">Configure email notifications for 80% and 100% of the budget.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-8\"><span class=\"lab-step-text\">Apply consistent tags (<code>Environment</code>, <code>Project</code>, <code>Owner</code>) to a few test resources.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-9\"><span class=\"lab-step-text\">Use Cost Explorer to group spending by tags.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-10\"><span class=\"lab-step-text\">Launch a small EC2 instance, observe its cost trend, then terminate it.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-11\"><span class=\"lab-step-text\">Create an S3 Lifecycle Rule that transitions older objects to a cheaper storage class.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-12\"><span class=\"lab-step-text\">Review <strong>Trusted Advisor</strong> recommendations available in your account.</span></li>\n</ol>\n<hr class=\"divider\" />\n</div><h2>Final Mental Model</h2>\n<p>If you remember only one diagram from this lesson, remember this:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>                  AWS Resources\n                        │\n     ┌──────────────────┼──────────────────┐\n     ▼                  ▼                  ▼\n    EC2                S3                 RDS\n     │                  │                  │\n     └──────────────────┼──────────────────┘\n                        ▼\n                 AWS Billing Data\n                        │\n        ┌───────────────┼────────────────┐\n        ▼               ▼                ▼\n  Cost Explorer     AWS Budgets   Cost Anomaly Detection\n        │               │                │\n        ▼               ▼                ▼\n Analyse Spend     Alerts &amp; Limits   Detect Unusual Costs\n                        │\n                        ▼\n                Optimise Infrastructure\n          (Rightsizing, Savings Plans,\n          Spot, Lifecycle Policies, Tags)</code></pre></div>\n<p>The key ideas are:</p>\n<ul>\n<li><strong>Cost Explorer helps you understand where your money goes.</strong></li>\n<li><strong>AWS Budgets helps you avoid unexpected bills.</strong></li>\n<li><strong>Savings Plans, Spot Instances, and rightsizing reduce costs.</strong></li>\n<li><strong>Good cloud architecture is not just secure and scalable—it is also cost-efficient.</strong></li>\n</ul>\n<aside class=\"accuracy-note\" role=\"note\"><p><strong>Content review:</strong> 2026-07. Curriculum text is adapted from a shared learning roadmap; verify critical details in official AWS docs before production use.</p><p class=\"accuracy-note-label\">References</p><ul><li><a href=\"https://docs.aws.amazon.com/cost-management/latest/userguide/ce-what-is.html\" rel=\"noopener noreferrer\" target=\"_blank\">docs.aws.amazon.com/cost-management/latest/userguide/ce-what…</a></li><li><a href=\"https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-managing-costs.html\" rel=\"noopener noreferrer\" target=\"_blank\">docs.aws.amazon.com/cost-management/latest/userguide/budgets…</a></li></ul></aside>",
+  "content": "<h2>Lesson 18 — AWS Cost Explorer, AWS Budgets &amp; Cost Optimization (Complete Deep Dive)</h2>\n<blockquote class=\"callout tip\"><p><strong>Goal:</strong> By the end of this lesson, you'll understand exactly how AWS charges you, how enterprises monitor cloud spending, how Cost Explorer works, how AWS Budgets prevent bill surprises, what Savings Plans and Reserved Instances are, how cost allocation works, and how experienced cloud engineers optimise AWS bills.</p></blockquote>\n<p>One of the biggest misconceptions beginners have is:</p>\n<blockquote class=\"callout tip\"><p><strong>\"Cloud is cheaper.\"</strong></p></blockquote>\n<p>That's not true.</p>\n<p>The correct statement is:</p>\n<blockquote class=\"callout tip\"><p><strong>\"Cloud lets you pay only for what you use—but if you design poorly, it can become very expensive.\"</strong></p></blockquote>\n<p>Many startups have accidentally spent <strong>thousands or even millions of pounds/dollars</strong> because of poor cloud cost management.</p>\n<p>Understanding AWS pricing is a critical skill for Cloud Engineers, DevOps Engineers, and Solutions Architects.</p>\n<hr class=\"divider\" />\n<h2>Learning Objectives</h2>\n<p>After this lesson, you should understand:</p>\n<ul>\n<li>AWS pricing philosophy</li>\n<li>Pay-as-you-go</li>\n<li>Free Tier</li>\n<li>Cost Explorer</li>\n<li>AWS Budgets</li>\n<li>Cost Anomaly Detection</li>\n<li>Cost Allocation Tags</li>\n<li>Savings Plans</li>\n<li>Reserved Instances</li>\n<li>Spot Instances</li>\n<li>On-Demand pricing</li>\n<li>Rightsizing</li>\n<li>Storage optimisation</li>\n<li>Network cost optimisation</li>\n<li>Real production cost strategies</li>\n</ul>\n<hr class=\"divider\" />\n<h2>Chapter 1 — Why Cloud Pricing Exists</h2>\n<p>Imagine you're building a data centre.</p>\n<p>You buy:</p>\n<ul>\n<li>Servers</li>\n<li>Switches</li>\n<li>Storage</li>\n<li>Cooling</li>\n<li>UPS</li>\n<li>Power generators</li>\n<li>Internet connections</li>\n</ul>\n<p>Even if no customers use your application...</p>\n<p>You still pay.</p>\n<p>Cloud changes that.</p>\n<p>Instead of buying hardware:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Need Compute\n\n↓\n\nRent Compute\n\n↓\n\nStop Using\n\n↓\n\nStop Paying</code></pre></div>\n<hr class=\"divider\" />\n<h3>AWS Pricing Philosophy</h3>\n<p>AWS follows:</p>\n<blockquote class=\"callout tip\"><p><strong>Pay for what you use.</strong></p></blockquote>\n<p>Not:</p>\n<blockquote class=\"callout tip\"><p>Pay for what you might use.</p></blockquote>\n<p>Example:</p>\n<p>Traditional Data Centre</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Buy 20 Servers\n\n↓\n\nUse 5\n\n↓\n\nStill Pay for 20</code></pre></div>\n<p>AWS</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Launch 5 EC2\n\n↓\n\nNeed 10?\n\n↓\n\nLaunch 5 More\n\n↓\n\nNeed 2?\n\n↓\n\nTerminate 8</code></pre></div>\n<p>Billing changes automatically.</p>\n<hr class=\"divider\" />\n<h2>Chapter 2 — What Does AWS Charge For?</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Almost every AWS service follows one or more pricing models:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Compute time</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Storage</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">Requests</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">Data transfer</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-5\"><span class=\"lab-step-text\">Provisioned capacity</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-6\"><span class=\"lab-step-text\">Network usage</span></li>\n</ul>\n<p>Examples:</p>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Service</th><th>Charged For</th></tr></thead><tbody>\n<tr><td>EC2</td><td>Running time</td></tr>\n<tr><td>S3</td><td>GB stored + requests</td></tr>\n<tr><td>Lambda</td><td>Invocations + execution duration</td></tr>\n<tr><td>DynamoDB</td><td>Read/write capacity or on-demand requests</td></tr>\n<tr><td>CloudFront</td><td>Data transfer + requests</td></tr>\n<tr><td>Route 53</td><td>Hosted zones + DNS queries</td></tr>\n<tr><td>RDS</td><td>Instance hours + storage + backups</td></tr>\n</tbody></table></div>\n<hr class=\"divider\" />\n<h3>Example EC2 Billing</h3>\n<p>Suppose:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>t3.micro\n\nRuns\n\n10 Hours</code></pre></div>\n<p>You pay only for those 10 hours.</p>\n<p>If you terminate it:</p>\n<p>Billing stops for the compute instance (though attached resources like EBS volumes may continue to incur charges if retained).</p>\n<hr class=\"divider\" />\n</div><h2>Chapter 3 — The AWS Free Tier</h2>\n<p>AWS offers a Free Tier to help you learn.</p>\n<p>Examples include eligible usage such as:</p>\n<ul>\n<li>Limited EC2 usage</li>\n<li>S3 storage</li>\n<li>Lambda invocations</li>\n<li>DynamoDB capacity</li>\n</ul>\n<p>Important:</p>\n<p>Free Tier has limits.</p>\n<p>If you exceed them:</p>\n<p>Billing starts.</p>\n<hr class=\"divider\" />\n<h3>Common Beginner Mistake</h3>\n<p>Launch:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Large EC2\n\n↓\n\nForget It\n\n↓\n\nGo On Holiday\n\n↓\n\nHuge Bill</code></pre></div>\n<p>Always stop or terminate resources you no longer need.</p>\n<hr class=\"divider\" />\n<h2>Chapter 4 — Cost Explorer</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Imagine your company spends:</p>\n<p>£12,000 per month.</p>\n<p>Your manager asks:</p>\n<blockquote class=\"callout tip\"><p>\"Where is the money going?\"</p></blockquote>\n<p>Cost Explorer answers that.</p>\n<p>It provides visual reports showing spending over time.</p>\n<hr class=\"divider\" />\n<p>Example view:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Monthly Cost\n\nEC2\n\nS3\n\nRDS\n\nCloudFront\n\nLambda</code></pre></div>\n<p>You can identify the largest contributors.</p>\n<hr class=\"divider\" />\n<h3>Filtering Costs</h3>\n<p>You can filter by:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Service</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Linked account</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">Region</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">Usage type</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-5\"><span class=\"lab-step-text\">Tags</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-6\"><span class=\"lab-step-text\">Time range</span></li>\n</ul>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Only\n\nLondon Region\n\nLast 30 Days</code></pre></div>\n<hr class=\"divider\" />\n<h3>Forecasting</h3>\n<p>Cost Explorer can estimate future spending based on historical usage.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Current Spend\n\n↓\n\nProjected Month-End Spend</code></pre></div>\n<p>This helps finance teams plan budgets.</p>\n<hr class=\"divider\" />\n</div><h2>Chapter 5 — AWS Budgets</h2>\n<p>Cost Explorer tells you:</p>\n<blockquote class=\"callout tip\"><p>What happened.</p></blockquote>\n<p>Budgets tell you:</p>\n<blockquote class=\"callout tip\"><p>What is happening.</p></blockquote>\n<p>Suppose you create:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Monthly Budget\n\n£500</code></pre></div>\n<p>If spending reaches:</p>\n<p>80%</p>\n<p>AWS sends an alert.</p>\n<p>If it reaches:</p>\n<p>100%</p>\n<p>Another alert.</p>\n<hr class=\"divider\" />\n<p>Budgets can monitor:</p>\n<ul>\n<li>Cost</li>\n<li>Usage</li>\n<li>Savings Plans utilisation</li>\n<li>Reserved Instance utilisation</li>\n</ul>\n<hr class=\"divider\" />\n<h2>Chapter 6 — Cost Anomaly Detection</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Imagine:</p>\n<p>Normal daily spend:</p>\n<p>£50</p>\n<p>Today:</p>\n<p>£2,000</p>\n<p>AWS notices the unusual spike.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Normal Pattern\n\n↓\n\nUnexpected Increase\n\n↓\n\nAlert</code></pre></div>\n<p>This helps catch:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Accidental resource creation</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Misconfigured workloads</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">Potential abuse</span></li>\n</ul>\n<hr class=\"divider\" />\n</div><h2>Chapter 7 — Cost Allocation Tags</h2>\n<p>Large companies ask:</p>\n<blockquote class=\"callout tip\"><p>Which department spent this money?</p></blockquote>\n<p>Instead of guessing:</p>\n<p>Tag resources.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Project=Website\n\nTeam=Engineering\n\nEnvironment=Production</code></pre></div>\n<p>Cost Explorer can group costs by these tags.</p>\n<hr class=\"divider\" />\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Engineering\n\n£30,000\n\nMarketing\n\n£8,000\n\nFinance\n\n£2,000</code></pre></div>\n<p>Without tags:</p>\n<p>Everything is mixed together.</p>\n<hr class=\"divider\" />\n<h2>Chapter 8 — On-Demand Instances</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Default pricing.</p>\n<p>Launch:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>EC2\n\n↓\n\nRun\n\n↓\n\nPay</code></pre></div>\n<p>No commitment.</p>\n<p>Advantages:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Flexible</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">No long-term contract</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">Good for unpredictable workloads</span></li>\n</ul>\n<p>Disadvantage:</p>\n<p>Most expensive option per unit of compute.</p>\n<hr class=\"divider\" />\n</div><h2>Chapter 9 — Reserved Instances (RI)</h2>\n<p>Suppose you know:</p>\n<p>Your database will run for three years.</p>\n<p>Instead of paying On-Demand:</p>\n<p>Commit to a term.</p>\n<p>AWS gives a discount.</p>\n<p>Think of it like:</p>\n<p>Hotel</p>\n<p>One night:</p>\n<p>Expensive.</p>\n<p>Book for a year:</p>\n<p>Cheaper per night.</p>\n<hr class=\"divider\" />\n<p>Reserved Instances are best suited to predictable, long-running workloads and primarily apply to certain services like EC2 and RDS.</p>\n<hr class=\"divider\" />\n<h2>Chapter 10 — Savings Plans</h2>\n<p>Savings Plans are the modern evolution of Reserved pricing for many compute services.</p>\n<p>Instead of reserving a specific instance in many cases, you commit to a consistent amount of compute spend (for example, a certain amount per hour) over a one- or three-year term.</p>\n<p>Benefits:</p>\n<ul>\n<li>More flexibility than many Reserved Instances</li>\n<li>Discounts for committed usage</li>\n<li>Can apply across eligible compute services and instance families (depending on plan type)</li>\n</ul>\n<p>For most new workloads, many organisations evaluate Savings Plans before Reserved Instances.</p>\n<hr class=\"divider\" />\n<h2>Chapter 11 — Spot Instances</h2>\n<p>AWS has unused capacity.</p>\n<p>Instead of leaving servers idle:</p>\n<p>AWS sells spare capacity at deep discounts.</p>\n<p>Example:</p>\n<p>On-Demand:</p>\n<p>£1/hour</p>\n<p>Spot:</p>\n<p>£0.20/hour</p>\n<p>Huge savings.</p>\n<hr class=\"divider\" />\n<p>But...</p>\n<p>AWS can reclaim Spot capacity with short notice if it needs it.</p>\n<p>Good for:</p>\n<ul>\n<li>Batch jobs</li>\n<li>Machine learning training</li>\n<li>Rendering</li>\n<li>Big data processing</li>\n</ul>\n<p>Bad for:</p>\n<p>Critical databases.</p>\n<hr class=\"divider\" />\n<h2>Chapter 12 — Storage Optimisation</h2>\n<p>Many companies waste money.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>100 TB\n\nOld Logs\n\nNever Accessed</code></pre></div>\n<p>Still paying.</p>\n<p>Instead:</p>\n<p>Move data to cheaper storage classes.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>S3 Standard\n\n↓\n\nS3 Intelligent-Tiering\n\n↓\n\nS3 Glacier\n\n↓\n\nS3 Glacier Deep Archive</code></pre></div>\n<p>Lifecycle policies automate this movement.</p>\n<hr class=\"divider\" />\n<h2>Chapter 13 — Rightsizing</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Imagine:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>m7i.8xlarge</code></pre></div>\n<p>CPU usage:</p>\n<p>5%</p>\n<p>Memory:</p>\n<p>10%</p>\n<p>You're wasting money.</p>\n<p>Instead:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>t3.medium</code></pre></div>\n<p>Same workload.</p>\n<p>Much lower cost.</p>\n<p>Rightsizing means selecting resources that match actual usage.</p>\n<hr class=\"divider\" />\n</div><h2>Chapter 14 — Auto Scaling Saves Money</h2>\n<p>Without Auto Scaling:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>10 EC2\n\nRunning All Night\n\nNo Traffic</code></pre></div>\n<p>Still paying.</p>\n<p>With Auto Scaling:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Night\n\n↓\n\n2 EC2\n\nMorning\n\n↓\n\n10 EC2</code></pre></div>\n<p>Lower cost while maintaining performance.</p>\n<hr class=\"divider\" />\n<h2>Chapter 15 — Lambda vs EC2 Costs</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Suppose:</p>\n<p>Application receives:</p>\n<p>10 requests/day.</p>\n<p>Running an EC2 instance 24/7 is likely wasteful.</p>\n<p>Lambda:</p>\n<p>Runs only when invoked.</p>\n<p>Often much cheaper for intermittent workloads.</p>\n<p>But:</p>\n<p>Millions of invocations may make EC2, ECS, or EKS more economical depending on the workload.</p>\n<p>Always evaluate total cost based on usage.</p>\n<hr class=\"divider\" />\n</div><h2>Chapter 16 — Data Transfer Costs</h2>\n<p>Many beginners ignore networking.</p>\n<p>But data transfer can become one of the largest costs.</p>\n<p>Examples:</p>\n<ul>\n<li>CloudFront traffic</li>\n<li>Internet egress</li>\n<li>Cross-region transfers</li>\n<li>NAT Gateway traffic</li>\n</ul>\n<p>Inbound data transfer is often free, while outbound transfer typically incurs charges depending on the service and destination.</p>\n<p>Designing architectures to minimise unnecessary data movement can significantly reduce costs.</p>\n<hr class=\"divider\" />\n<h2>Chapter 17 — NAT Gateway Costs</h2>\n<p>One of the biggest surprises for beginners.</p>\n<p>Private EC2:</p>\n<p>Needs Internet.</p>\n<p>Uses:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Private EC2\n\n↓\n\nNAT Gateway\n\n↓\n\nInternet</code></pre></div>\n<p>NAT Gateway charges for:</p>\n<ul>\n<li>Running time</li>\n<li>Data processed</li>\n</ul>\n<p>High traffic through NAT Gateways can become expensive.</p>\n<p>Sometimes using VPC Endpoints for AWS services like S3 or DynamoDB can reduce those costs.</p>\n<hr class=\"divider\" />\n<h2>Chapter 18 — CloudFront Saves Money</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Without CloudFront:</p>\n<p>Every user downloads from S3.</p>\n<p>With CloudFront:</p>\n<p>Most requests are served from edge caches.</p>\n<p>Benefits:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Lower origin load</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Improved performance</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">Potential reduction in origin data transfer costs</span></li>\n</ul>\n<hr class=\"divider\" />\n</div><h2>Chapter 19 — Cost Optimisation Pillar</h2>\n<p>The AWS Well-Architected Framework includes:</p>\n<p><strong>Cost Optimisation</strong></p>\n<p>Key principles:</p>\n<ul>\n<li>Measure usage</li>\n<li>Eliminate waste</li>\n<li>Choose the right pricing model</li>\n<li>Match supply with demand</li>\n<li>Continuously optimise</li>\n</ul>\n<p>Cost optimisation is an ongoing process, not a one-time task.</p>\n<hr class=\"divider\" />\n<h2>Chapter 20 — Trusted Advisor</h2>\n<p>Trusted Advisor reviews your AWS environment and recommends improvements.</p>\n<p>Examples:</p>\n<ul>\n<li>Underutilised EC2 instances</li>\n<li>Idle load balancers</li>\n<li>Unused Elastic IPs</li>\n<li>Security improvements</li>\n<li>Service limit checks</li>\n</ul>\n<p>Some checks depend on your AWS support plan.</p>\n<hr class=\"divider\" />\n<h2>Chapter 21 — Real Production Example</h2>\n<p>Imagine:</p>\n<p>Company:</p>\n<p>500 EC2</p>\n<p>100 RDS</p>\n<p>200 S3 Buckets</p>\n<p>Every month:</p>\n<p>Cloud team reviews:</p>\n<ul>\n<li>Cost Explorer</li>\n<li>Budgets</li>\n<li>Rightsizing reports</li>\n<li>Savings Plans coverage</li>\n<li>RI utilisation</li>\n<li>Trusted Advisor findings</li>\n</ul>\n<p>Optimisation becomes part of the operational routine.</p>\n<hr class=\"divider\" />\n<h2>Chapter 22 — Common Cost Mistakes</h2>\n<p>❌ Leaving EC2 running after testing.</p>\n<p>❌ Forgetting unattached EBS volumes.</p>\n<p>❌ Not deleting old EBS snapshots.</p>\n<p>❌ Public S3 bucket storing unnecessary large files.</p>\n<p>❌ Choosing oversized instances.</p>\n<p>❌ Not using lifecycle policies.</p>\n<p>❌ Ignoring idle load balancers.</p>\n<p>❌ Sending large volumes of traffic through unnecessary NAT Gateways.</p>\n<p>❌ Forgetting to clean up development resources.</p>\n<hr class=\"divider\" />\n<h2>Chapter 23 — Best Practices</h2>\n<ul>\n<li>Enable AWS Budgets on every account.</li>\n<li>Review Cost Explorer regularly.</li>\n<li>Tag resources consistently.</li>\n<li>Use Auto Scaling where appropriate.</li>\n<li>Use Savings Plans or Reserved pricing for predictable workloads.</li>\n<li>Use Spot Instances for interruptible jobs.</li>\n<li>Delete unused resources.</li>\n<li>Move old data to cheaper storage classes.</li>\n<li>Continuously rightsize infrastructure.</li>\n<li>Monitor data transfer costs.</li>\n</ul>\n<hr class=\"divider\" />\n<h2>Chapter 24 — Interview Questions</h2>\n<h4>Q1. What is Cost Explorer?</h4>\n<p>A tool that analyses and visualises AWS spending and usage trends.</p>\n<hr class=\"divider\" />\n<h4>Q2. What is AWS Budgets?</h4>\n<p>A service that monitors spending or usage against thresholds and sends alerts when limits are approached or exceeded.</p>\n<hr class=\"divider\" />\n<h4>Q3. Difference between Cost Explorer and Budgets?</h4>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Cost Explorer</th><th>AWS Budgets</th></tr></thead><tbody>\n<tr><td>Analyses historical and forecast costs</td><td>Monitors thresholds and sends alerts</td></tr>\n<tr><td>Reporting and visualisation</td><td>Monitoring and notifications</td></tr>\n</tbody></table></div>\n<hr class=\"divider\" />\n<h4>Q4. What are Savings Plans?</h4>\n<p>Pricing models that provide discounted rates in exchange for a commitment to a consistent amount of compute usage over one or three years.</p>\n<hr class=\"divider\" />\n<h4>Q5. When should you use Spot Instances?</h4>\n<p>For workloads that can tolerate interruptions, such as batch processing, rendering, and some machine learning jobs.</p>\n<hr class=\"divider\" />\n<h4>Q6. What is rightsizing?</h4>\n<p>Selecting resource sizes that match actual workload requirements to avoid overprovisioning.</p>\n<hr class=\"divider\" />\n<h4>Q7. Why are cost allocation tags important?</h4>\n<p>They allow organisations to attribute cloud spending to projects, departments, or environments for reporting and chargeback.</p>\n<hr class=\"divider\" />\n<h4>Q8. What is Cost Anomaly Detection?</h4>\n<p>A service that identifies unusual spending patterns and alerts you to unexpected cost increases.</p>\n<hr class=\"divider\" />\n<h4>Q9. Why is Auto Scaling considered a cost optimisation technique?</h4>\n<p>Because it automatically adjusts capacity to demand, reducing payment for idle resources while maintaining application performance.</p>\n<hr class=\"divider\" />\n<h4>Q10. Why should engineers understand AWS pricing?</h4>\n<p>Because designing technically correct architectures that are unnecessarily expensive is poor engineering. A good cloud architect balances performance, reliability, security, and cost.</p>\n<hr class=\"divider\" />\n<h2>Hands-on Lab</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<aside class=\"cost-safety callout warn\" role=\"note\"><p class=\"callout-title\">Cost safety</p><ul><li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Prefer <strong>Free Tier</strong> / small instance sizes while learning.</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Create a <strong>billing alarm</strong> (CloudWatch or Budgets) on day one.</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\"><strong>Tear down</strong> lab resources when finished (instances, load balancers, NAT gateways).</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">Never put long-lived access keys in code or public repos.</span></li></ul><p class=\"workshop-links\"><strong>Official practice:</strong> <a href=\"https://explore.skillbuilder.aws/\" rel=\"noopener noreferrer\" target=\"_blank\">AWS Skill Builder</a> · <a href=\"https://wellarchitectedlabs.com/\" rel=\"noopener noreferrer\" target=\"_blank\">Well-Architected Labs</a> · <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/free-tier.html\" rel=\"noopener noreferrer\" target=\"_blank\">Free Tier docs</a></p></aside>\n<ol>\n<li class=\"lab-step\" data-lab-id=\"lab-step-5\"><span class=\"lab-step-text\">Open <strong>AWS Cost Explorer</strong> and review your spending by service for the past month.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-6\"><span class=\"lab-step-text\">Create an <strong>AWS Budget</strong> with a monthly threshold (for example, a learning budget).</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-7\"><span class=\"lab-step-text\">Configure email notifications for 80% and 100% of the budget.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-8\"><span class=\"lab-step-text\">Apply consistent tags (<code>Environment</code>, <code>Project</code>, <code>Owner</code>) to a few test resources.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-9\"><span class=\"lab-step-text\">Use Cost Explorer to group spending by tags.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-10\"><span class=\"lab-step-text\">Launch a small EC2 instance, observe its cost trend, then terminate it.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-11\"><span class=\"lab-step-text\">Create an S3 Lifecycle Rule that transitions older objects to a cheaper storage class.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-12\"><span class=\"lab-step-text\">Review <strong>Trusted Advisor</strong> recommendations available in your account.</span></li>\n</ol>\n<hr class=\"divider\" />\n<h3>Final Mental Model</h3>\n<p>If you remember only one diagram from this lesson, remember this:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>                  AWS Resources\n                        │\n     ┌──────────────────┼──────────────────┐\n     ▼                  ▼                  ▼\n    EC2                S3                 RDS\n     │                  │                  │\n     └──────────────────┼──────────────────┘\n                        ▼\n                 AWS Billing Data\n                        │\n        ┌───────────────┼────────────────┐\n        ▼               ▼                ▼\n  Cost Explorer     AWS Budgets   Cost Anomaly Detection\n        │               │                │\n        ▼               ▼                ▼\n Analyse Spend     Alerts &amp; Limits   Detect Unusual Costs\n                        │\n                        ▼\n                Optimise Infrastructure\n          (Rightsizing, Savings Plans,\n          Spot, Lifecycle Policies, Tags)</code></pre></div>\n<p>The key ideas are:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-13\"><span class=\"lab-step-text\"><strong>Cost Explorer helps you understand where your money goes.</strong></span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-14\"><span class=\"lab-step-text\"><strong>AWS Budgets helps you avoid unexpected bills.</strong></span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-15\"><span class=\"lab-step-text\"><strong>Savings Plans, Spot Instances, and rightsizing reduce costs.</strong></span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-16\"><span class=\"lab-step-text\"><strong>Good cloud architecture is not just secure and scalable—it is also cost-efficient.</strong></span></li>\n</ul>\n<aside class=\"accuracy-note\" role=\"note\"><p><strong>Content review:</strong> 2026-07. Curriculum text is adapted from a shared learning roadmap; verify critical details in official AWS docs before production use.</p><p class=\"accuracy-note-label\">References</p><ul><li class=\"lab-step\" data-lab-id=\"lab-step-17\"><span class=\"lab-step-text\"><a href=\"https://docs.aws.amazon.com/cost-management/latest/userguide/ce-what-is.html\" rel=\"noopener noreferrer\" target=\"_blank\">docs.aws.amazon.com/cost-management/latest/userguide/ce-what…</a></span></li><li class=\"lab-step\" data-lab-id=\"lab-step-18\"><span class=\"lab-step-text\"><a href=\"https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-managing-costs.html\" rel=\"noopener noreferrer\" target=\"_blank\">docs.aws.amazon.com/cost-management/latest/userguide/budgets…</a></span></li></ul></aside></div>",
   "quiz": [
     {
       "q": "AWS pricing philosophy is best summarized as:",
       "options": [
-        "Always fixed 5-year contracts only",
         "Pay for what you use (with options like reserved capacity)",
+        "Always fixed 5-year contracts only",
         "Everything is free forever without limits",
         "Only prepaid gold bars"
       ],
-      "answer": 1,
+      "answer": 0,
       "explain": "Usage-based pricing with multiple purchase models.",
       "style": "general"
     },
@@ -192,11 +168,11 @@
       "q": "The Free Tier is:",
       "options": [
         "Unlimited free production forever for all services",
-        "Limited free usage for learning/experimentation (with conditions)",
         "A CDN product",
+        "Limited free usage for learning/experimentation (with conditions)",
         "A type of IAM user"
       ],
-      "answer": 1,
+      "answer": 2,
       "explain": "Free Tier has limits and eligibility rules.",
       "style": "general"
     },
@@ -204,23 +180,23 @@
       "q": "A common beginner cost mistake is:",
       "options": [
         "Turning off unused resources",
-        "Leaving billable resources running (NAT, idle instances, etc.)",
         "Setting budgets",
-        "Using Cost Explorer"
+        "Using Cost Explorer",
+        "Leaving billable resources running (NAT, idle instances, etc.)"
       ],
-      "answer": 1,
+      "answer": 3,
       "explain": "Forgotten resources create surprise bills.",
       "style": "general"
     },
     {
       "q": "AWS Cost Explorer helps you:",
       "options": [
-        "Deploy Kubernetes only",
         "Visualize and analyze historical/forecasted spend",
+        "Deploy Kubernetes only",
         "Create VPCs",
         "Issue SSL certs only"
       ],
-      "answer": 1,
+      "answer": 0,
       "explain": "Cost Explorer is for cost analysis.",
       "style": "general"
     },
@@ -240,11 +216,11 @@
       "q": "AWS Budgets are used to:",
       "options": [
         "Automatically delete all accounts",
-        "Set cost/usage thresholds and alerts",
         "Replace CloudWatch logs",
+        "Set cost/usage thresholds and alerts",
         "Disable MFA"
       ],
-      "answer": 1,
+      "answer": 2,
       "explain": "Budgets alert when thresholds are crossed.",
       "style": "general"
     },
@@ -252,23 +228,23 @@
       "q": "Cost Anomaly Detection helps by:",
       "options": [
         "Creating random charges",
-        "Flagging unusual spend patterns",
         "Removing encryption",
-        "Blocking all API calls"
+        "Blocking all API calls",
+        "Flagging unusual spend patterns"
       ],
-      "answer": 1,
+      "answer": 3,
       "explain": "Anomaly detection highlights unexpected cost changes.",
       "style": "general"
     },
     {
       "q": "Cost allocation tags are useful for:",
       "options": [
-        "Decorating consoles only",
         "Attributing costs to teams/projects",
+        "Decorating consoles only",
         "Speeding DNS",
         "Replacing IAM"
       ],
-      "answer": 1,
+      "answer": 0,
       "explain": "Tags enable chargeback/showback.",
       "style": "general"
     },
@@ -288,11 +264,11 @@
       "q": "Turning off/deleting unused resources primarily reduces:",
       "options": [
         "Latency only",
-        "Ongoing billable charges",
         "DNS TTL",
+        "Ongoing billable charges",
         "AMI count only always"
       ],
-      "answer": 1,
+      "answer": 2,
       "explain": "Idle resources still cost money.",
       "style": "general"
     },
@@ -300,23 +276,23 @@
       "q": "NAT Gateways are a classic surprise cost because:",
       "options": [
         "They are always free",
-        "They can be expensive when left running with traffic/data processing",
         "They only exist on-prem",
-        "They replace S3"
+        "They replace S3",
+        "They can be expensive when left running with traffic/data processing"
       ],
-      "answer": 1,
+      "answer": 3,
       "explain": "NAT can rack up hourly + data charges.",
       "style": "general"
     },
     {
       "q": "A practical day-one control is:",
       "options": [
-        "No billing access for anyone ever",
         "Create a budget alert early",
+        "No billing access for anyone ever",
         "Disable Cost Explorer",
         "Share root credentials"
       ],
-      "answer": 1,
+      "answer": 0,
       "explain": "Early alerts prevent bill shock.",
       "style": "general"
     },
@@ -336,35 +312,35 @@
       "q": "Data transfer costs matter because:",
       "options": [
         "All transfers are free always",
-        "Cross-AZ/internet transfer can add charges",
         "Only CPU is billed",
+        "Cross-AZ/internet transfer can add charges",
         "Only support is billed"
       ],
-      "answer": 1,
+      "answer": 2,
       "explain": "Transfer is a major hidden cost dimension.",
       "style": "general"
     },
     {
       "q": "Forecasting in Cost Explorer helps:",
       "options": [
-        "Predict future spend trends",
         "Create subnets",
         "Rotate keys",
-        "Deploy containers"
+        "Deploy containers",
+        "Predict future spend trends"
       ],
-      "answer": 0,
+      "answer": 3,
       "explain": "Forecasts support planning.",
       "style": "general"
     },
     {
       "q": "Which is a good cost hygiene habit?",
       "options": [
-        "Never tag resources",
         "Review Cost Explorer weekly and clean idle resources",
+        "Never tag resources",
         "Leave load balancers forever with no traffic",
         "Ignore Free Tier limits"
       ],
-      "answer": 1,
+      "answer": 0,
       "explain": "Regular review + cleanup controls spend.",
       "style": "general"
     },
@@ -384,11 +360,11 @@
       "q": "If spend spikes unexpectedly, first useful step is:",
       "options": [
         "Delete the organization immediately without looking",
-        "Investigate Cost Explorer filters (service/region/usage type)",
         "Disable CloudTrail and hope",
+        "Investigate Cost Explorer filters (service/region/usage type)",
         "Share access keys publicly"
       ],
-      "answer": 1,
+      "answer": 2,
       "explain": "Analyze where the spike comes from.",
       "style": "general"
     },
@@ -396,13 +372,78 @@
       "q": "The lesson’s bottom line for learners is:",
       "options": [
         "Cost tools are optional forever",
-        "Visibility (Explorer) + guardrails (Budgets) + hygiene prevent surprise bills",
         "Only Free Tier matters forever",
-        "Never look at bills"
+        "Never look at bills",
+        "Visibility (Explorer) + guardrails (Budgets) + hygiene prevent surprise bills"
       ],
-      "answer": 1,
+      "answer": 3,
       "explain": "See costs, alert early, clean up.",
       "style": "general"
+    },
+    {
+      "q": "A learner left a NAT Gateway running for a month. What should they have done earlier?",
+      "options": [
+        "Create a Budget alert and review Cost Explorer",
+        "Never use budgets",
+        "Disable billing",
+        "Use only root without MFA"
+      ],
+      "answer": 0,
+      "explain": "Budgets + Explorer catch surprise spend.",
+      "style": "scenario",
+      "topic": "Budgets"
+    },
+    {
+      "q": "Spend spiked yesterday. First useful investigation step?",
+      "options": [
+        "Delete the org immediately",
+        "Open Cost Explorer and group by service/region/usage type",
+        "Turn off CloudTrail",
+        "Post access keys publicly"
+      ],
+      "answer": 1,
+      "explain": "Explorer shows where the spike came from.",
+      "style": "general",
+      "topic": "Cost Explorer"
+    },
+    {
+      "q": "Two teams share an account. How do you attribute cost?",
+      "options": [
+        "Guess",
+        "Never tag",
+        "Cost allocation tags per team/project",
+        "One shared untagged resource pile"
+      ],
+      "answer": 2,
+      "explain": "Tags enable showback/chargeback.",
+      "style": "general",
+      "topic": "Tags"
+    },
+    {
+      "q": "A always-on m5.4xlarge is 5% CPU. Cost action?",
+      "options": [
+        "Scale even larger",
+        "Buy more unused volumes",
+        "Disable monitoring",
+        "Rightsize or stop/schedule when idle"
+      ],
+      "answer": 3,
+      "explain": "Rightsize to actual need.",
+      "style": "general",
+      "topic": "Rightsizing"
+    },
+    {
+      "q": "Steady production load for a year. Purchase model to consider?",
+      "options": [
+        "Savings Plans / reserved options after measuring baseline",
+        "Only pure on-demand forever with no analysis",
+        "No Free Tier awareness ever",
+        "Spot only for stateful single-node DBs always"
+      ],
+      "answer": 0,
+      "explain": "Commit discounts fit stable baselines.",
+      "style": "scenario",
+      "topic": "Pricing models"
     }
   ]
 }

@@ -27,126 +27,18 @@
     },
     {
       "id": "part-2",
-      "title": "Why Do We Need Another Database?"
-    },
-    {
-      "id": "part-3",
-      "title": "What is NoSQL?"
-    },
-    {
-      "id": "part-4",
-      "title": "SQL Example"
-    },
-    {
-      "id": "part-5",
-      "title": "DynamoDB Example"
-    },
-    {
-      "id": "part-6",
-      "title": "SQL vs NoSQL"
-    },
-    {
-      "id": "part-7",
-      "title": "DynamoDB Terminology"
-    },
-    {
-      "id": "part-8",
-      "title": "Table"
-    },
-    {
-      "id": "part-9",
-      "title": "Item"
-    },
-    {
-      "id": "part-10",
-      "title": "Attribute"
-    },
-    {
-      "id": "part-11",
-      "title": "Primary Key"
-    },
-    {
-      "id": "part-12",
-      "title": "Partition Key"
-    },
-    {
-      "id": "part-13",
-      "title": "Sort Key"
-    },
-    {
-      "id": "part-14",
-      "title": "Reading Data"
-    },
-    {
-      "id": "part-15",
-      "title": "Scan vs Query"
-    },
-    {
-      "id": "part-16",
-      "title": "Global Secondary Index (GSI)"
-    },
-    {
-      "id": "part-17",
-      "title": "Local Secondary Index (LSI)"
-    },
-    {
-      "id": "part-18",
-      "title": "Capacity Modes"
-    },
-    {
-      "id": "part-19",
-      "title": "DynamoDB Streams"
-    },
-    {
-      "id": "part-20",
-      "title": "TTL (Time To Live)"
-    },
-    {
-      "id": "part-21",
-      "title": "Security"
-    },
-    {
-      "id": "part-22",
-      "title": "Backup"
-    },
-    {
-      "id": "part-23",
-      "title": "Global Tables"
-    },
-    {
-      "id": "part-24",
-      "title": "Real-World Example"
-    },
-    {
-      "id": "part-25",
-      "title": "RDS vs DynamoDB"
-    },
-    {
-      "id": "part-26",
-      "title": "Architecture"
-    },
-    {
-      "id": "part-27",
       "title": "Hands-on Lab"
     },
     {
-      "id": "part-28",
+      "id": "part-3",
       "title": "Interview practice prompts"
     },
     {
-      "id": "part-29",
+      "id": "part-4",
       "title": "Architecture So Far"
-    },
-    {
-      "id": "part-30",
-      "title": "AWS Services You've Mastered"
-    },
-    {
-      "id": "part-31",
-      "title": "Next Lesson: Amazon CloudWatch & CloudTrail"
     }
   ],
-  "content": "<h2>Lesson 9: Amazon DynamoDB (NoSQL Database)</h2>\n<p>You already know RDS for SQL. DynamoDB is the NoSQL counterpart—used heavily for shopping carts, gaming, IoT, sessions, and other high-scale, low-latency workloads.</p>\n<hr class=\"divider\" />\n<h2>Why Do We Need Another Database?</h2>\n<p>Suppose you have a social media app with:</p>\n<ul>\n<li>100 million users</li>\n<li>Millions of posts</li>\n<li>Billions of likes</li>\n</ul>\n<p>A traditional SQL database can become difficult to scale for some workloads.</p>\n<p>AWS created <strong>DynamoDB</strong> for applications that need:</p>\n<ul>\n<li>Very high performance</li>\n<li>Massive scale</li>\n<li>Low latency</li>\n<li>Fully managed operations</li>\n</ul>\n<hr class=\"divider\" />\n<h2>What is NoSQL?</h2>\n<p><strong>NoSQL</strong> means <strong>Not Only SQL</strong>.</p>\n<p>Unlike relational databases, NoSQL databases don't require rigid table schemas.</p>\n<hr class=\"divider\" />\n<h2>SQL Example</h2>\n<p>Suppose we have a Users table.</p>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>UserID</th><th>Name</th><th>Email</th></tr></thead><tbody>\n<tr><td>1</td><td>Arnab</td><td>arnab@email.com</td></tr>\n<tr><td>2</td><td>Rahul</td><td>rahul@email.com</td></tr>\n</tbody></table></div>\n<p>Every row follows the same structure.</p>\n<hr class=\"divider\" />\n<h2>DynamoDB Example</h2>\n<p>Each item can have different attributes.</p>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>UserID</th><th>Name</th><th>Email</th><th>Hobby</th><th>Age</th></tr></thead><tbody>\n<tr><td>1</td><td>Arnab</td><td>arnab@email.com</td><td>Running</td><td>26</td></tr>\n<tr><td>2</td><td>Rahul</td><td>rahul@email.com</td><td>—</td><td>—</td></tr>\n</tbody></table></div>\n<p>You don't have to define every column in advance.</p>\n<hr class=\"divider\" />\n<h2>SQL vs NoSQL</h2>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>SQL (RDS)</th><th>NoSQL (DynamoDB)</th></tr></thead><tbody>\n<tr><td>Tables with fixed schema</td><td>Flexible schema</td></tr>\n<tr><td>JOIN operations</td><td>No JOINs</td></tr>\n<tr><td>ACID transactions</td><td>Supports transactions, but data modeling differs</td></tr>\n<tr><td>Complex queries</td><td>Optimized for key-based access patterns</td></tr>\n<tr><td>Best for relational data</td><td>Best for high-scale, predictable access patterns</td></tr>\n</tbody></table></div>\n<hr class=\"divider\" />\n<h2>DynamoDB Terminology</h2>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>SQL</th><th>DynamoDB</th></tr></thead><tbody>\n<tr><td>Database</td><td>Table</td></tr>\n<tr><td>Row</td><td>Item</td></tr>\n<tr><td>Column</td><td>Attribute</td></tr>\n</tbody></table></div>\n<hr class=\"divider\" />\n<h2>Table</h2>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Users Table</code></pre></div>\n<p>Contains:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>User 1\n\nUser 2\n\nUser 3</code></pre></div>\n<hr class=\"divider\" />\n<h2>Item</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>One record is called an <strong>Item</strong>.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>json</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>{\n  \"UserID\": 1,\n  \"Name\": \"Arnab\",\n  \"Country\": \"India\"\n}</code></pre></div>\n<hr class=\"divider\" />\n</div><h2>Attribute</h2>\n<p>Each field is an <strong>Attribute</strong>.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>json</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>{\n  \"Name\": \"Arnab\"\n}</code></pre></div>\n<p><code>Name</code> is an attribute.</p>\n<hr class=\"divider\" />\n<h2>Primary Key</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Every DynamoDB table needs a primary key.</p>\n<p>Two options:</p>\n<h3>1. Partition Key</h3>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>UserID</code></pre></div>\n<p>AWS hashes this value to determine where the item is stored.</p>\n<hr class=\"divider\" />\n<h3>2. Composite Key</h3>\n<p>Consists of:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Partition Key\n\n+\n\nSort Key</code></pre></div>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>UserID\n\n+\n\nOrderDate</code></pre></div>\n<hr class=\"divider\" />\n</div><h2>Partition Key</h2>\n<p>Suppose we have:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>UserID\n\n101\n\n102\n\n103</code></pre></div>\n<p>AWS distributes these items across multiple storage partitions.</p>\n<p>Think of it like different warehouses.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Warehouse A\n\n101\n\n105\n\n109\n\n----------------\n\nWarehouse B\n\n102\n\n108\n\n111\n\n----------------\n\nWarehouse C\n\n103\n\n104\n\n106</code></pre></div>\n<p>AWS decides where each item goes based on the partition key.</p>\n<hr class=\"divider\" />\n<h2>Sort Key</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Imagine an Orders table.</p>\n<p>Partition Key:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>UserID</code></pre></div>\n<p>Sort Key:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>OrderDate</code></pre></div>\n<p>Now you can efficiently query:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>All orders for User 101</code></pre></div>\n<p>sorted by date.</p>\n<hr class=\"divider\" />\n</div><h2>Reading Data</h2>\n<p>Instead of:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>sql</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>SELECT *\nFROM Orders\nWHERE UserID = 101</code></pre></div>\n<p>DynamoDB uses API operations like:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>GetItem\n\nQuery\n\nScan</code></pre></div>\n<p><strong>Query</strong> is much faster than <strong>Scan</strong> because it uses keys.</p>\n<hr class=\"divider\" />\n<h2>Scan vs Query</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<h3>Query</h3>\n<p>Looks only where the matching partition key exists.</p>\n<p>Fast.</p>\n<hr class=\"divider\" />\n<h3>Scan</h3>\n<p>Looks through the whole table.</p>\n<p>Slow for large datasets.</p>\n<p>Rule of thumb:</p>\n<p>✅ Prefer Query</p>\n<p>❌ Avoid full table scans unless necessary.</p>\n<hr class=\"divider\" />\n</div><h2>Global Secondary Index (GSI)</h2>\n<p>Suppose your table uses:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>UserID</code></pre></div>\n<p>as the partition key.</p>\n<p>Later you want to search by:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Email</code></pre></div>\n<p>Instead of redesigning the table, create a <strong>Global Secondary Index (GSI)</strong>.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Main Table\n\nUserID\n\n↓\n\nGSI\n\nEmail</code></pre></div>\n<p>Now you can efficiently search by email.</p>\n<hr class=\"divider\" />\n<h2>Local Secondary Index (LSI)</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>An LSI lets you use the <strong>same partition key</strong> but a <strong>different sort key</strong>.</p>\n<p>Example:</p>\n<p>Main table:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Partition:\n\nUserID\n\nSort:\n\nOrderDate</code></pre></div>\n<p>LSI:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Partition:\n\nUserID\n\nSort:\n\nPrice</code></pre></div>\n<p>Useful when you need multiple ways to sort data for the same partition key.</p>\n<hr class=\"divider\" />\n</div><h2>Capacity Modes</h2>\n<p>DynamoDB provides two main modes.</p>\n<h3>On-Demand</h3>\n<p>AWS automatically handles capacity.</p>\n<p>Good for:</p>\n<ul>\n<li>Startups</li>\n<li>Unpredictable traffic</li>\n<li>Simplicity</li>\n</ul>\n<hr class=\"divider\" />\n<h3>Provisioned</h3>\n<p>You specify expected read/write capacity.</p>\n<p>Good for:</p>\n<ul>\n<li>Predictable workloads</li>\n<li>Cost optimization</li>\n</ul>\n<hr class=\"divider\" />\n<h2>DynamoDB Streams</h2>\n<p>Every change can be recorded.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>New Order\n\n↓\n\nDynamoDB\n\n↓\n\nStream Event\n\n↓\n\nLambda\n\n↓\n\nSend Email</code></pre></div>\n<p>This is useful for event-driven architectures.</p>\n<hr class=\"divider\" />\n<h2>TTL (Time To Live)</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Suppose OTP codes expire after 5 minutes.</p>\n<p>Instead of deleting them manually:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>OTP Created\n\n↓\n\n5 Minutes\n\n↓\n\nAutomatically Deleted</code></pre></div>\n<p>TTL is great for:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Sessions</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">OTPs</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">Temporary cache</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">Expiring tokens</span></li>\n</ul>\n<hr class=\"divider\" />\n</div><h2>Security</h2>\n<p>DynamoDB integrates with IAM.</p>\n<p>Permissions can control:</p>\n<ul>\n<li>Read</li>\n<li>Write</li>\n<li>Delete</li>\n<li>Update</li>\n</ul>\n<p>Applications usually access DynamoDB using IAM roles.</p>\n<hr class=\"divider\" />\n<h2>Backup</h2>\n<p>DynamoDB supports:</p>\n<ul>\n<li>On-demand backups</li>\n<li>Point-in-time recovery (PITR)</li>\n</ul>\n<p>If data is accidentally deleted, you can restore it within the retention window if PITR is enabled.</p>\n<hr class=\"divider\" />\n<h2>Global Tables</h2>\n<p>Suppose your users are in:</p>\n<ul>\n<li>India</li>\n<li>Germany</li>\n<li>USA</li>\n</ul>\n<p>You can replicate tables across regions.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>India\n\n↓\n\nGermany\n\n↓\n\nUSA</code></pre></div>\n<p>Users read and write to the nearest region, improving latency and resilience.</p>\n<hr class=\"divider\" />\n<h2>Real-World Example</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Food delivery app.</p>\n<p>Customer opens app.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>UserID\n\n↓\n\nDynamoDB\n\n↓\n\nProfile Loaded</code></pre></div>\n<p>Customer places order.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Order\n\n↓\n\nDynamoDB\n\n↓\n\nLambda\n\n↓\n\nNotification</code></pre></div>\n<hr class=\"divider\" />\n</div><h2>RDS vs DynamoDB</h2>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Amazon RDS</th><th>DynamoDB</th></tr></thead><tbody>\n<tr><td>SQL</td><td>NoSQL</td></tr>\n<tr><td>Fixed schema</td><td>Flexible schema</td></tr>\n<tr><td>JOINs supported</td><td>No JOINs</td></tr>\n<tr><td>Complex relational queries</td><td>Key-value/document access</td></tr>\n<tr><td>Good for financial systems, ERP, CRM</td><td>Good for gaming, IoT, sessions, carts, leaderboards</td></tr>\n</tbody></table></div>\n<hr class=\"divider\" />\n<h2>Architecture</h2>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Browser\n    │\nAPI Gateway\n    │\nLambda\n    │\nDynamoDB</code></pre></div>\n<p>Or:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Application (EC2)\n        │\n        ▼\n    DynamoDB</code></pre></div>\n<hr class=\"divider\" />\n<h2>Hands-on Lab</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<aside class=\"cost-safety callout warn\" role=\"note\"><p class=\"callout-title\">Cost safety</p><ul><li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Prefer <strong>Free Tier</strong> / small instance sizes while learning.</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Create a <strong>billing alarm</strong> (CloudWatch or Budgets) on day one.</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\"><strong>Tear down</strong> lab resources when finished (instances, load balancers, NAT gateways).</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">Never put long-lived access keys in code or public repos.</span></li></ul><p class=\"workshop-links\"><strong>Official practice:</strong> <a href=\"https://explore.skillbuilder.aws/\" rel=\"noopener noreferrer\" target=\"_blank\">AWS Skill Builder</a> · <a href=\"https://wellarchitectedlabs.com/\" rel=\"noopener noreferrer\" target=\"_blank\">Well-Architected Labs</a> · <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/free-tier.html\" rel=\"noopener noreferrer\" target=\"_blank\">Free Tier docs</a></p></aside>\n<ol>\n<li class=\"lab-step\" data-lab-id=\"lab-step-5\"><span class=\"lab-step-text\">Create a DynamoDB table called <code>Users</code>.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-6\"><span class=\"lab-step-text\">Use <code>UserID</code> as the partition key.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-7\"><span class=\"lab-step-text\">Insert a few items with different attributes.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-8\"><span class=\"lab-step-text\">Retrieve an item using <code>GetItem</code>.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-9\"><span class=\"lab-step-text\">Create a GSI on <code>Email</code>.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-10\"><span class=\"lab-step-text\">Query using the GSI.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-11\"><span class=\"lab-step-text\">Enable DynamoDB Streams.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-12\"><span class=\"lab-step-text\">(Optional) Create a Lambda function triggered by stream events.</span></li>\n</ol>\n<hr class=\"divider\" />\n</div><h2>Interview practice prompts</h2>\n<p>Use these as open-ended prompts (the lesson quiz below is multiple choice).</p>\n<ol>\n<li>What is DynamoDB?</li>\n<li>What is the difference between SQL and NoSQL?</li>\n<li>What is a partition key?</li>\n<li>What is a sort key?</li>\n<li>What is the difference between a Query and a Scan?</li>\n<li>What is a GSI?</li>\n<li>What is an LSI?</li>\n<li>What is DynamoDB Streams?</li>\n<li>What is TTL?</li>\n<li>When would you choose DynamoDB over RDS?</li>\n</ol>\n<hr class=\"divider\" />\n<h2>Architecture So Far</h2>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>                Internet\n                    │\n             API Gateway / ALB\n                    │\n          ┌─────────┴─────────┐\n          ▼                   ▼\n       Lambda              EC2 App\n          │                   │\n     ┌────┴────┐         ┌────┴────┐\n     ▼         ▼         ▼         ▼\n DynamoDB     S3       Amazon RDS  S3</code></pre></div>\n<h2>AWS Services You've Mastered</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Service</th><th>Purpose</th></tr></thead><tbody>\n<tr><td>IAM</td><td>Identity &amp; permissions</td></tr>\n<tr><td>EC2</td><td>Virtual servers</td></tr>\n<tr><td>S3</td><td>Object storage</td></tr>\n<tr><td>VPC</td><td>Networking</td></tr>\n<tr><td>RDS</td><td>SQL databases</td></tr>\n<tr><td>ELB</td><td>Traffic distribution</td></tr>\n<tr><td>Auto Scaling</td><td>Automatic scaling</td></tr>\n<tr><td>Lambda</td><td>Serverless compute</td></tr>\n<tr><td>DynamoDB</td><td>NoSQL database</td></tr>\n</tbody></table></div>\n<hr class=\"divider\" />\n</div><h2>Next Lesson: Amazon CloudWatch &amp; CloudTrail</h2>\n<p>This lesson is about <strong>observability and auditing</strong>, where you'll learn:</p>\n<ul>\n<li>Monitoring applications</li>\n<li>Collecting logs</li>\n<li>Creating metrics and dashboards</li>\n<li>Setting alarms</li>\n<li>Tracking API calls</li>\n<li>Auditing user activity</li>\n<li>Troubleshooting production issues</li>\n</ul>\n<p>These services are essential for operating applications reliably in production and are commonly discussed in AWS interviews.</p>\n<aside class=\"accuracy-note\" role=\"note\"><p><strong>Content review:</strong> 2026-07. Curriculum text is adapted from a shared learning roadmap; verify critical details in official AWS docs before production use.</p><p class=\"accuracy-note-label\">References</p><ul><li><a href=\"https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html\" rel=\"noopener noreferrer\" target=\"_blank\">docs.aws.amazon.com/amazondynamodb/latest/developerguide/Int…</a></li></ul></aside>",
+  "content": "<h2>Lesson 9: Amazon DynamoDB (NoSQL Database)</h2>\n<p>You already know RDS for SQL. DynamoDB is the NoSQL counterpart—used heavily for shopping carts, gaming, IoT, sessions, and other high-scale, low-latency workloads.</p>\n<hr class=\"divider\" />\n<h3>Why Do We Need Another Database?</h3>\n<p>Suppose you have a social media app with:</p>\n<ul>\n<li>100 million users</li>\n<li>Millions of posts</li>\n<li>Billions of likes</li>\n</ul>\n<p>A traditional SQL database can become difficult to scale for some workloads.</p>\n<p>AWS created <strong>DynamoDB</strong> for applications that need:</p>\n<ul>\n<li>Very high performance</li>\n<li>Massive scale</li>\n<li>Low latency</li>\n<li>Fully managed operations</li>\n</ul>\n<hr class=\"divider\" />\n<h3>What is NoSQL?</h3>\n<p><strong>NoSQL</strong> means <strong>Not Only SQL</strong>.</p>\n<p>Unlike relational databases, NoSQL databases don't require rigid table schemas.</p>\n<hr class=\"divider\" />\n<h3>SQL Example</h3>\n<p>Suppose we have a Users table.</p>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>UserID</th><th>Name</th><th>Email</th></tr></thead><tbody>\n<tr><td>1</td><td>Arnab</td><td>arnab@email.com</td></tr>\n<tr><td>2</td><td>Rahul</td><td>rahul@email.com</td></tr>\n</tbody></table></div>\n<p>Every row follows the same structure.</p>\n<hr class=\"divider\" />\n<h3>DynamoDB Example</h3>\n<p>Each item can have different attributes.</p>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>UserID</th><th>Name</th><th>Email</th><th>Hobby</th><th>Age</th></tr></thead><tbody>\n<tr><td>1</td><td>Arnab</td><td>arnab@email.com</td><td>Running</td><td>26</td></tr>\n<tr><td>2</td><td>Rahul</td><td>rahul@email.com</td><td>—</td><td>—</td></tr>\n</tbody></table></div>\n<p>You don't have to define every column in advance.</p>\n<hr class=\"divider\" />\n<h3>SQL vs NoSQL</h3>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>SQL (RDS)</th><th>NoSQL (DynamoDB)</th></tr></thead><tbody>\n<tr><td>Tables with fixed schema</td><td>Flexible schema</td></tr>\n<tr><td>JOIN operations</td><td>No JOINs</td></tr>\n<tr><td>ACID transactions</td><td>Supports transactions, but data modeling differs</td></tr>\n<tr><td>Complex queries</td><td>Optimized for key-based access patterns</td></tr>\n<tr><td>Best for relational data</td><td>Best for high-scale, predictable access patterns</td></tr>\n</tbody></table></div>\n<hr class=\"divider\" />\n<h3>DynamoDB Terminology</h3>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>SQL</th><th>DynamoDB</th></tr></thead><tbody>\n<tr><td>Database</td><td>Table</td></tr>\n<tr><td>Row</td><td>Item</td></tr>\n<tr><td>Column</td><td>Attribute</td></tr>\n</tbody></table></div>\n<hr class=\"divider\" />\n<h3>Table</h3>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Users Table</code></pre></div>\n<p>Contains:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>User 1\n\nUser 2\n\nUser 3</code></pre></div>\n<hr class=\"divider\" />\n<h3>Item</h3>\n<p>One record is called an <strong>Item</strong>.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>json</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>{\n  \"UserID\": 1,\n  \"Name\": \"Arnab\",\n  \"Country\": \"India\"\n}</code></pre></div>\n<hr class=\"divider\" />\n<h3>Attribute</h3>\n<p>Each field is an <strong>Attribute</strong>.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>json</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>{\n  \"Name\": \"Arnab\"\n}</code></pre></div>\n<p><code>Name</code> is an attribute.</p>\n<hr class=\"divider\" />\n<h3>Primary Key</h3>\n<p>Every DynamoDB table needs a primary key.</p>\n<p>Two options:</p>\n<h4>1. Partition Key</h4>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>UserID</code></pre></div>\n<p>AWS hashes this value to determine where the item is stored.</p>\n<hr class=\"divider\" />\n<h4>2. Composite Key</h4>\n<p>Consists of:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Partition Key\n\n+\n\nSort Key</code></pre></div>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>UserID\n\n+\n\nOrderDate</code></pre></div>\n<hr class=\"divider\" />\n<h3>Partition Key</h3>\n<p>Suppose we have:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>UserID\n\n101\n\n102\n\n103</code></pre></div>\n<p>AWS distributes these items across multiple storage partitions.</p>\n<p>Think of it like different warehouses.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Warehouse A\n\n101\n\n105\n\n109\n\n----------------\n\nWarehouse B\n\n102\n\n108\n\n111\n\n----------------\n\nWarehouse C\n\n103\n\n104\n\n106</code></pre></div>\n<p>AWS decides where each item goes based on the partition key.</p>\n<hr class=\"divider\" />\n<h3>Sort Key</h3>\n<p>Imagine an Orders table.</p>\n<p>Partition Key:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>UserID</code></pre></div>\n<p>Sort Key:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>OrderDate</code></pre></div>\n<p>Now you can efficiently query:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>All orders for User 101</code></pre></div>\n<p>sorted by date.</p>\n<hr class=\"divider\" />\n<h3>Reading Data</h3>\n<p>Instead of:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>sql</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>SELECT *\nFROM Orders\nWHERE UserID = 101</code></pre></div>\n<p>DynamoDB uses API operations like:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>GetItem\n\nQuery\n\nScan</code></pre></div>\n<p><strong>Query</strong> is much faster than <strong>Scan</strong> because it uses keys.</p>\n<hr class=\"divider\" />\n<h3>Scan vs Query</h3>\n<h4>Query</h4>\n<p>Looks only where the matching partition key exists.</p>\n<p>Fast.</p>\n<hr class=\"divider\" />\n<h4>Scan</h4>\n<p>Looks through the whole table.</p>\n<p>Slow for large datasets.</p>\n<p>Rule of thumb:</p>\n<p>✅ Prefer Query</p>\n<p>❌ Avoid full table scans unless necessary.</p>\n<hr class=\"divider\" />\n<h3>Global Secondary Index (GSI)</h3>\n<p>Suppose your table uses:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>UserID</code></pre></div>\n<p>as the partition key.</p>\n<p>Later you want to search by:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Email</code></pre></div>\n<p>Instead of redesigning the table, create a <strong>Global Secondary Index (GSI)</strong>.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Main Table\n\nUserID\n\n↓\n\nGSI\n\nEmail</code></pre></div>\n<p>Now you can efficiently search by email.</p>\n<hr class=\"divider\" />\n<h3>Local Secondary Index (LSI)</h3>\n<p>An LSI lets you use the <strong>same partition key</strong> but a <strong>different sort key</strong>.</p>\n<p>Example:</p>\n<p>Main table:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Partition:\n\nUserID\n\nSort:\n\nOrderDate</code></pre></div>\n<p>LSI:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Partition:\n\nUserID\n\nSort:\n\nPrice</code></pre></div>\n<p>Useful when you need multiple ways to sort data for the same partition key.</p>\n<hr class=\"divider\" />\n<h3>Capacity Modes</h3>\n<p>DynamoDB provides two main modes.</p>\n<h4>On-Demand</h4>\n<p>AWS automatically handles capacity.</p>\n<p>Good for:</p>\n<ul>\n<li>Startups</li>\n<li>Unpredictable traffic</li>\n<li>Simplicity</li>\n</ul>\n<hr class=\"divider\" />\n<h4>Provisioned</h4>\n<p>You specify expected read/write capacity.</p>\n<p>Good for:</p>\n<ul>\n<li>Predictable workloads</li>\n<li>Cost optimization</li>\n</ul>\n<hr class=\"divider\" />\n<h3>DynamoDB Streams</h3>\n<p>Every change can be recorded.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>New Order\n\n↓\n\nDynamoDB\n\n↓\n\nStream Event\n\n↓\n\nLambda\n\n↓\n\nSend Email</code></pre></div>\n<p>This is useful for event-driven architectures.</p>\n<hr class=\"divider\" />\n<h3>TTL (Time To Live)</h3>\n<p>Suppose OTP codes expire after 5 minutes.</p>\n<p>Instead of deleting them manually:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>OTP Created\n\n↓\n\n5 Minutes\n\n↓\n\nAutomatically Deleted</code></pre></div>\n<p>TTL is great for:</p>\n<ul>\n<li>Sessions</li>\n<li>OTPs</li>\n<li>Temporary cache</li>\n<li>Expiring tokens</li>\n</ul>\n<hr class=\"divider\" />\n<h3>Security</h3>\n<p>DynamoDB integrates with IAM.</p>\n<p>Permissions can control:</p>\n<ul>\n<li>Read</li>\n<li>Write</li>\n<li>Delete</li>\n<li>Update</li>\n</ul>\n<p>Applications usually access DynamoDB using IAM roles.</p>\n<hr class=\"divider\" />\n<h3>Backup</h3>\n<p>DynamoDB supports:</p>\n<ul>\n<li>On-demand backups</li>\n<li>Point-in-time recovery (PITR)</li>\n</ul>\n<p>If data is accidentally deleted, you can restore it within the retention window if PITR is enabled.</p>\n<hr class=\"divider\" />\n<h3>Global Tables</h3>\n<p>Suppose your users are in:</p>\n<ul>\n<li>India</li>\n<li>Germany</li>\n<li>USA</li>\n</ul>\n<p>You can replicate tables across regions.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>India\n\n↓\n\nGermany\n\n↓\n\nUSA</code></pre></div>\n<p>Users read and write to the nearest region, improving latency and resilience.</p>\n<hr class=\"divider\" />\n<h3>Real-World Example</h3>\n<p>Food delivery app.</p>\n<p>Customer opens app.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>UserID\n\n↓\n\nDynamoDB\n\n↓\n\nProfile Loaded</code></pre></div>\n<p>Customer places order.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Order\n\n↓\n\nDynamoDB\n\n↓\n\nLambda\n\n↓\n\nNotification</code></pre></div>\n<hr class=\"divider\" />\n<h3>RDS vs DynamoDB</h3>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Amazon RDS</th><th>DynamoDB</th></tr></thead><tbody>\n<tr><td>SQL</td><td>NoSQL</td></tr>\n<tr><td>Fixed schema</td><td>Flexible schema</td></tr>\n<tr><td>JOINs supported</td><td>No JOINs</td></tr>\n<tr><td>Complex relational queries</td><td>Key-value/document access</td></tr>\n<tr><td>Good for financial systems, ERP, CRM</td><td>Good for gaming, IoT, sessions, carts, leaderboards</td></tr>\n</tbody></table></div>\n<hr class=\"divider\" />\n<h3>Architecture</h3>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Browser\n    │\nAPI Gateway\n    │\nLambda\n    │\nDynamoDB</code></pre></div>\n<p>Or:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Application (EC2)\n        │\n        ▼\n    DynamoDB</code></pre></div>\n<hr class=\"divider\" />\n<h2>Hands-on Lab</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<aside class=\"cost-safety callout warn\" role=\"note\"><p class=\"callout-title\">Cost safety</p><ul><li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Prefer <strong>Free Tier</strong> / small instance sizes while learning.</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Create a <strong>billing alarm</strong> (CloudWatch or Budgets) on day one.</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\"><strong>Tear down</strong> lab resources when finished (instances, load balancers, NAT gateways).</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">Never put long-lived access keys in code or public repos.</span></li></ul><p class=\"workshop-links\"><strong>Official practice:</strong> <a href=\"https://explore.skillbuilder.aws/\" rel=\"noopener noreferrer\" target=\"_blank\">AWS Skill Builder</a> · <a href=\"https://wellarchitectedlabs.com/\" rel=\"noopener noreferrer\" target=\"_blank\">Well-Architected Labs</a> · <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/free-tier.html\" rel=\"noopener noreferrer\" target=\"_blank\">Free Tier docs</a></p></aside>\n<ol>\n<li class=\"lab-step\" data-lab-id=\"lab-step-5\"><span class=\"lab-step-text\">Create a DynamoDB table called <code>Users</code>.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-6\"><span class=\"lab-step-text\">Use <code>UserID</code> as the partition key.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-7\"><span class=\"lab-step-text\">Insert a few items with different attributes.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-8\"><span class=\"lab-step-text\">Retrieve an item using <code>GetItem</code>.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-9\"><span class=\"lab-step-text\">Create a GSI on <code>Email</code>.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-10\"><span class=\"lab-step-text\">Query using the GSI.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-11\"><span class=\"lab-step-text\">Enable DynamoDB Streams.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-12\"><span class=\"lab-step-text\">(Optional) Create a Lambda function triggered by stream events.</span></li>\n</ol>\n<hr class=\"divider\" />\n</div><h2>Interview practice prompts</h2>\n<p>Use these as open-ended prompts (the lesson quiz below is multiple choice).</p>\n<ol>\n<li>What is DynamoDB?</li>\n<li>What is the difference between SQL and NoSQL?</li>\n<li>What is a partition key?</li>\n<li>What is a sort key?</li>\n<li>What is the difference between a Query and a Scan?</li>\n<li>What is a GSI?</li>\n<li>What is an LSI?</li>\n<li>What is DynamoDB Streams?</li>\n<li>What is TTL?</li>\n<li>When would you choose DynamoDB over RDS?</li>\n</ol>\n<hr class=\"divider\" />\n<h2>Architecture So Far</h2>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>                Internet\n                    │\n             API Gateway / ALB\n                    │\n          ┌─────────┴─────────┐\n          ▼                   ▼\n       Lambda              EC2 App\n          │                   │\n     ┌────┴────┐         ┌────┴────┐\n     ▼         ▼         ▼         ▼\n DynamoDB     S3       Amazon RDS  S3</code></pre></div>\n<h3>AWS Services You've Mastered</h3>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Service</th><th>Purpose</th></tr></thead><tbody>\n<tr><td>IAM</td><td>Identity &amp; permissions</td></tr>\n<tr><td>EC2</td><td>Virtual servers</td></tr>\n<tr><td>S3</td><td>Object storage</td></tr>\n<tr><td>VPC</td><td>Networking</td></tr>\n<tr><td>RDS</td><td>SQL databases</td></tr>\n<tr><td>ELB</td><td>Traffic distribution</td></tr>\n<tr><td>Auto Scaling</td><td>Automatic scaling</td></tr>\n<tr><td>Lambda</td><td>Serverless compute</td></tr>\n<tr><td>DynamoDB</td><td>NoSQL database</td></tr>\n</tbody></table></div>\n<hr class=\"divider\" />\n<h3>Next Lesson: Amazon CloudWatch &amp; CloudTrail</h3>\n<p>This lesson is about <strong>observability and auditing</strong>, where you'll learn:</p>\n<ul>\n<li>Monitoring applications</li>\n<li>Collecting logs</li>\n<li>Creating metrics and dashboards</li>\n<li>Setting alarms</li>\n<li>Tracking API calls</li>\n<li>Auditing user activity</li>\n<li>Troubleshooting production issues</li>\n</ul>\n<p>These services are essential for operating applications reliably in production and are commonly discussed in AWS interviews.</p>\n<aside class=\"accuracy-note\" role=\"note\"><p><strong>Content review:</strong> 2026-07. Curriculum text is adapted from a shared learning roadmap; verify critical details in official AWS docs before production use.</p><p class=\"accuracy-note-label\">References</p><ul><li><a href=\"https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html\" rel=\"noopener noreferrer\" target=\"_blank\">docs.aws.amazon.com/amazondynamodb/latest/developerguide/Int…</a></li></ul></aside>",
   "quiz": [
     {
       "q": "DynamoDB is:",
@@ -163,36 +55,36 @@
     {
       "q": "NoSQL is useful when:",
       "options": [
-        "Flexible high-scale key-value/document access patterns fit",
         "You only ever need Excel",
+        "Flexible high-scale key-value/document access patterns fit",
         "You refuse all databases",
         "You only use DNS"
       ],
-      "answer": 0,
+      "answer": 1,
       "explain": "Why another DB.",
       "style": "general"
     },
     {
       "q": "SQL vs NoSQL in the lesson:",
       "options": [
-        "Different models/tradeoffs—not always identical replacements",
         "Always identical",
         "SQL cannot store text",
+        "Different models/tradeoffs—not always identical replacements",
         "NoSQL cannot store numbers"
       ],
-      "answer": 0,
+      "answer": 2,
       "explain": "Tradeoffs.",
       "style": "general"
     },
     {
       "q": "A table contains:",
       "options": [
-        "Items",
         "Subnets",
         "AMIs",
-        "Load balancers"
+        "Load balancers",
+        "Items"
       ],
-      "answer": 0,
+      "answer": 3,
       "explain": "Terminology.",
       "style": "general"
     },
@@ -211,36 +103,36 @@
     {
       "q": "Attributes are:",
       "options": [
-        "Fields on an item",
         "Only AZ names",
+        "Fields on an item",
         "Only CIDRs",
         "Only ports"
       ],
-      "answer": 0,
+      "answer": 1,
       "explain": "Attributes.",
       "style": "general"
     },
     {
       "q": "Primary key uniquely identifies:",
       "options": [
-        "An item",
         "A VPC",
         "An alarm",
+        "An item",
         "A stack"
       ],
-      "answer": 0,
+      "answer": 2,
       "explain": "Primary key.",
       "style": "general"
     },
     {
       "q": "Partition key is used to:",
       "options": [
-        "Distribute and locate data partitions",
         "Create IGWs",
         "Name S3 classes",
-        "Set ALB idle timeout"
+        "Set ALB idle timeout",
+        "Distribute and locate data partitions"
       ],
-      "answer": 0,
+      "answer": 3,
       "explain": "PK.",
       "style": "general"
     },
@@ -259,36 +151,36 @@
     {
       "q": "Query is preferred over Scan because:",
       "options": [
-        "Query is efficient with keys; Scan reads large portions",
         "Scan is always free and faster for one item by key",
+        "Query is efficient with keys; Scan reads large portions",
         "Query deletes data",
         "Scan creates GSIs automatically"
       ],
-      "answer": 0,
+      "answer": 1,
       "explain": "Scan vs Query.",
       "style": "general"
     },
     {
       "q": "GSI is:",
       "options": [
-        "Global Secondary Index—alternate query pattern",
         "Gateway Security Interface",
         "Green Storage Instance",
+        "Global Secondary Index—alternate query pattern",
         "Group Scaling Interval"
       ],
-      "answer": 0,
+      "answer": 2,
       "explain": "GSI.",
       "style": "general"
     },
     {
       "q": "LSI is:",
       "options": [
-        "Local Secondary Index",
         "Linux System Image",
         "Load Status Indicator",
-        "Lambda Start Index"
+        "Lambda Start Index",
+        "Local Secondary Index"
       ],
-      "answer": 0,
+      "answer": 3,
       "explain": "LSI.",
       "style": "general"
     },
@@ -307,36 +199,36 @@
     {
       "q": "Provisioned mode:",
       "options": [
-        "You set capacity (can autoscale) for steadier workloads",
         "Only for S3",
+        "You set capacity (can autoscale) for steadier workloads",
         "Only for DNS",
         "Forbids all reads"
       ],
-      "answer": 0,
+      "answer": 1,
       "explain": "Provisioned.",
       "style": "general"
     },
     {
       "q": "DynamoDB Streams provide:",
       "options": [
-        "Change data capture of item changes",
         "Internet gateways",
         "EBS snapshots",
+        "Change data capture of item changes",
         "AMI copies only"
       ],
-      "answer": 0,
+      "answer": 2,
       "explain": "Streams.",
       "style": "general"
     },
     {
       "q": "TTL is used to:",
       "options": [
-        "Expire items automatically after a time",
         "Terminate EC2 only",
         "Rotate MFA only",
-        "Rename buckets only"
+        "Rename buckets only",
+        "Expire items automatically after a time"
       ],
-      "answer": 0,
+      "answer": 3,
       "explain": "Time to Live.",
       "style": "general"
     },
@@ -355,36 +247,36 @@
     {
       "q": "RDS vs DynamoDB choose DynamoDB when:",
       "options": [
-        "Key-value/document scale & access patterns fit NoSQL",
         "You need complex multi-table SQL joins as primary model always",
+        "Key-value/document scale & access patterns fit NoSQL",
         "You need only FTP",
         "You need only email"
       ],
-      "answer": 0,
+      "answer": 1,
       "explain": "Selection guidance.",
       "style": "general"
     },
     {
       "q": "Security includes:",
       "options": [
-        "IAM permissions and encryption options",
         "Making table public without auth always",
         "No keys ever",
+        "IAM permissions and encryption options",
         "Root password in items"
       ],
-      "answer": 0,
+      "answer": 2,
       "explain": "Secure access.",
       "style": "general"
     },
     {
       "q": "Backup options exist so you can:",
       "options": [
-        "Recover from data loss scenarios",
         "Delete Regions",
         "Disable Streams forever mandatorily",
-        "Remove GSIs only"
+        "Remove GSIs only",
+        "Recover from data loss scenarios"
       ],
-      "answer": 0,
+      "answer": 3,
       "explain": "Backup.",
       "style": "general"
     },
@@ -403,12 +295,12 @@
     {
       "q": "Hands-on: design keys from:",
       "options": [
-        "Access patterns first",
         "Random UUIDs only without queries",
+        "Access patterns first",
         "Only Scan forever",
         "Copying RDS schemas blindly always"
       ],
-      "answer": 0,
+      "answer": 1,
       "explain": "Access-pattern-first.",
       "style": "general"
     }

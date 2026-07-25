@@ -12,7 +12,7 @@ This lesson explains exactly why.
 
 # Learning Objectives
 
-After this lesson, you should be able to answer:
+After this lesson, you should be able to:
 
 - Why are queues needed?
 - What is asynchronous communication?

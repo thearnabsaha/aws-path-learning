@@ -82,16 +82,20 @@ describe("inferTopic", () => {
 });
 
 describe("upsertMisses / spaced review", () => {
-  it("adds wrong answers and drops corrects", () => {
+  it("adds wrong answers and expands interval on later success", () => {
     const qs = [sample];
     const q1 = upsertMisses([], "ec2", qs, { 0: 1 });
     expect(q1).toHaveLength(1);
     expect(q1[0].lessonId).toBe("ec2");
     expect(q1[0].id).toBe(makeReviewId("ec2", sample.q));
+    expect(q1[0].intervalDays).toBe(1);
     expect(q1[0].dueAt).toBeGreaterThan(Date.now() - 1000);
 
+    // Correct once → stays in queue with longer interval, not dropped immediately
     const q2 = upsertMisses(q1, "ec2", qs, { 0: 0 });
-    expect(q2).toHaveLength(0);
+    expect(q2).toHaveLength(1);
+    expect(q2[0].timesCorrect).toBe(1);
+    expect((q2[0].intervalDays || 0) >= 1).toBe(true);
   });
 
   it("hashString is stable", () => {

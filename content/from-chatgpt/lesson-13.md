@@ -1,12 +1,10 @@
 # Lesson 13 — AWS IAM Identity Center (AWS SSO) & Enterprise Identity Management
 
-> **This is a complete lesson.** By the end of it, you should understand not only *how* IAM Identity Center works, but *why* AWS built it, what happens behind the scenes during login, and how enterprises manage access across hundreds of AWS accounts.
-
 ---
 
 # Learning Objectives
 
-After this lesson, you'll be able to answer questions like:
+After this lesson, you should be able to:
 
 - Why shouldn't enterprises use IAM users?
 - What is IAM Identity Center?
@@ -25,8 +23,6 @@ After this lesson, you'll be able to answer questions like:
 ---
 
 # Chapter 1 — The Problem AWS Had to Solve
-
-Let's travel back in time.
 
 Imagine it's 2014.
 
@@ -439,7 +435,7 @@ It uses them.
 
 # Chapter 5 — The Complete Login Flow
 
-Let's follow Alice.
+We follow Alice.
 
 She opens:
 
@@ -1187,3 +1183,14 @@ If you remember only one diagram from this lesson, remember this:
 ```
 
 This single flow ties together nearly every concept in enterprise AWS identity management. Once you understand this architecture, you'll recognize the design used by many medium and large organizations running workloads on AWS.
+
+# Hands-on Lab
+
+1. Open **IAM Identity Center** in the console (enable if needed in a sandbox account).
+2. Create a permission set with read-only or limited access (not AdministratorAccess).
+3. Create a user/group in the Identity Center directory (or connect a test IdP if available).
+4. Assign the permission set to one account for that user/group.
+5. Sign in via the access portal and confirm the role/account list.
+6. **Tear down:** remove assignments, permission sets, and test users you created.
+
+> Prefer a non-production org/account. Enable MFA. Delete test principals when finished.

@@ -14,7 +14,7 @@ describe("splitLessonHtml", () => {
     expect(parts[0].html).toContain("Hello");
   });
 
-  it("splits on each h2 and strips tags in titles", () => {
+  it("splits on each h2 when there are few sections", () => {
     const html = `
       <h2>First <em>section</em></h2>
       <p>A</p>
@@ -36,11 +36,20 @@ describe("splitLessonHtml", () => {
     expect(parts[0].title).toBe("You've got this");
   });
 
-  it("discards orphan prose before the first h2", () => {
-    const html = `<p>orphan</p><h2>Real</h2><p>body</p>`;
-    const parts = splitLessonHtml(html);
-    expect(parts).toHaveLength(1);
-    expect(parts[0].title).toBe("Real");
-    expect(parts[0].html).not.toContain("orphan");
+  it("groups minor h2s under major chapters when many sections exist", () => {
+    const chunks: string[] = [];
+    chunks.push("<h2>Chapter 1 — Big idea</h2><p>intro</p>");
+    for (let i = 0; i < 16; i++) {
+      chunks.push(`<h2>Minor topic ${i}</h2><p>body ${i}</p>`);
+    }
+    chunks.push("<h2>Chapter 2 — Next</h2><p>more</p>");
+    chunks.push("<h2>Another minor</h2><p>x</p>");
+    const parts = splitLessonHtml(chunks.join("\n"));
+    // Should not create 18+ parts
+    expect(parts.length).toBeLessThan(8);
+    expect(parts[0].title).toMatch(/Chapter 1/i);
+    // minor headings demoted into body
+    expect(parts[0].html).toMatch(/<h3/i);
+    expect(parts.some((p) => /Chapter 2/i.test(p.title))).toBe(true);
   });
 });

@@ -25,7 +25,7 @@ After this lesson, you'll be able to design production-ready AWS architectures.
 
 # Learning Objectives
 
-After this lesson, you'll understand:
+After this lesson, you should understand:
 
 - Why container orchestration exists
 - What ECS is

@@ -43,176 +43,116 @@
     },
     {
       "id": "part-4",
-      "title": "Problems Docker Doesn't Solve"
-    },
-    {
-      "id": "part-5",
-      "title": "Solution"
-    },
-    {
-      "id": "part-6",
       "title": "Chapter 2 — What is Container Orchestration?"
     },
     {
-      "id": "part-7",
+      "id": "part-5",
       "title": "Chapter 3 — Amazon ECS"
     },
     {
-      "id": "part-8",
+      "id": "part-6",
       "title": "Chapter 4 — ECS Components"
     },
     {
-      "id": "part-9",
-      "title": "ECS Cluster"
-    },
-    {
-      "id": "part-10",
+      "id": "part-7",
       "title": "Chapter 5 — Task Definition"
     },
     {
-      "id": "part-11",
+      "id": "part-8",
       "title": "Chapter 6 — ECS Task"
     },
     {
-      "id": "part-12",
+      "id": "part-9",
       "title": "Chapter 7 — ECS Service"
     },
     {
-      "id": "part-13",
+      "id": "part-10",
       "title": "Chapter 8 — Service Discovery"
     },
     {
-      "id": "part-14",
+      "id": "part-11",
       "title": "Chapter 9 — ECS Launch Types"
     },
     {
-      "id": "part-15",
-      "title": "EC2 Launch Type"
-    },
-    {
-      "id": "part-16",
-      "title": "Fargate"
-    },
-    {
-      "id": "part-17",
-      "title": "EC2 vs Fargate"
-    },
-    {
-      "id": "part-18",
+      "id": "part-12",
       "title": "Chapter 10 — Auto Scaling in ECS"
     },
     {
-      "id": "part-19",
+      "id": "part-13",
       "title": "Chapter 11 — Load Balancer Integration"
     },
     {
-      "id": "part-20",
+      "id": "part-14",
       "title": "Chapter 12 — Rolling Deployments"
     },
     {
-      "id": "part-21",
+      "id": "part-15",
       "title": "Chapter 13 — Blue/Green Deployment"
     },
     {
-      "id": "part-22",
+      "id": "part-16",
       "title": "Chapter 14 — Amazon EKS"
     },
     {
-      "id": "part-23",
-      "title": "What is Kubernetes?"
-    },
-    {
-      "id": "part-24",
-      "title": "Why Kubernetes?"
-    },
-    {
-      "id": "part-25",
+      "id": "part-17",
       "title": "Chapter 15 — Kubernetes Architecture"
     },
     {
-      "id": "part-26",
-      "title": "Node"
-    },
-    {
-      "id": "part-27",
-      "title": "Pod"
-    },
-    {
-      "id": "part-28",
-      "title": "Deployment"
-    },
-    {
-      "id": "part-29",
-      "title": "Kubernetes Service"
-    },
-    {
-      "id": "part-30",
-      "title": "Ingress"
-    },
-    {
-      "id": "part-31",
+      "id": "part-18",
       "title": "Chapter 16 — ECS vs EKS Concepts"
     },
     {
-      "id": "part-32",
+      "id": "part-19",
       "title": "Chapter 17 — ECS vs EKS"
     },
     {
-      "id": "part-33",
+      "id": "part-20",
       "title": "Chapter 18 — When Should You Use ECS?"
     },
     {
-      "id": "part-34",
+      "id": "part-21",
       "title": "Chapter 19 — When Should You Use EKS?"
     },
     {
-      "id": "part-35",
+      "id": "part-22",
       "title": "Chapter 20 — Real Production Architecture"
     },
     {
-      "id": "part-36",
+      "id": "part-23",
       "title": "Chapter 21 — Microservices Architecture"
     },
     {
-      "id": "part-37",
+      "id": "part-24",
       "title": "Chapter 22 — CI/CD Pipeline"
     },
     {
-      "id": "part-38",
+      "id": "part-25",
       "title": "Chapter 23 — Best Practices"
     },
     {
-      "id": "part-39",
+      "id": "part-26",
       "title": "Chapter 24 — Common Mistakes"
     },
     {
-      "id": "part-40",
+      "id": "part-27",
       "title": "Chapter 25 — Interview Questions"
     },
     {
-      "id": "part-41",
+      "id": "part-28",
       "title": "Hands-on Lab"
-    },
-    {
-      "id": "part-42",
-      "title": "Final Mental Model"
-    },
-    {
-      "id": "part-43",
-      "title": "🎉 Congratulations!"
     }
   ],
-  "content": "<h2>Lesson 20 — Amazon ECS vs Amazon EKS &amp; Real Architecture Decisions (Complete Deep Dive)</h2>\n<blockquote class=\"callout tip\"><p><strong>Goal:</strong> By the end of this lesson, you'll understand container orchestration, why Docker alone isn't enough in production, how Amazon ECS and Amazon EKS work internally, when to choose each, Fargate vs EC2 launch types, service discovery, deployments, and how experienced cloud architects decide which service to use.</p></blockquote>\n<p>This lesson ties together everything you've learned so far:</p>\n<ul>\n<li>EC2</li>\n<li>VPC</li>\n<li>ALB</li>\n<li>IAM</li>\n<li>CloudWatch</li>\n<li>Docker</li>\n<li>ECR</li>\n<li>Auto Scaling</li>\n<li>CloudFront</li>\n<li>Route 53</li>\n<li>Security</li>\n<li>SQS</li>\n<li>SNS</li>\n<li>EventBridge</li>\n</ul>\n<p>After this lesson, you'll be able to design production-ready AWS architectures.</p>\n<hr class=\"divider\" />\n<h2>Learning Objectives</h2>\n<p>After this lesson, you'll understand:</p>\n<ul>\n<li>Why container orchestration exists</li>\n<li>What ECS is</li>\n<li>What EKS is</li>\n<li>ECS Cluster</li>\n<li>Task Definition</li>\n<li>Tasks</li>\n<li>Services</li>\n<li>Capacity Providers</li>\n<li>Fargate vs EC2</li>\n<li>Kubernetes basics</li>\n<li>Pods</li>\n<li>Nodes</li>\n<li>Deployments</li>\n<li>Services (Kubernetes)</li>\n<li>Ingress</li>\n<li>Service Discovery</li>\n<li>Rolling Deployments</li>\n<li>Blue/Green Deployments</li>\n<li>When to choose ECS vs EKS</li>\n</ul>\n<hr class=\"divider\" />\n<h2>Chapter 1 — Docker Solves Only One Problem</h2>\n<p>Suppose you built an application.</p>\n<p>Docker makes it portable.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Application\n\n↓\n\nDocker Image\n\n↓\n\nRuns Anywhere</code></pre></div>\n<p>Great.</p>\n<p>Now imagine your application becomes popular.</p>\n<p>Instead of one container...</p>\n<p>You now have:</p>\n<ul>\n<li>50 containers</li>\n<li>100 containers</li>\n<li>500 containers</li>\n</ul>\n<p>Who manages them?</p>\n<p>Docker doesn't.</p>\n<hr class=\"divider\" />\n<h2>Problems Docker Doesn't Solve</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Suppose:</p>\n<p>Container crashes.</p>\n<p>Who restarts it?</p>\n<p>Suppose:</p>\n<p>Traffic doubles.</p>\n<p>Who launches more containers?</p>\n<p>Suppose:</p>\n<p>One server dies.</p>\n<p>Who moves containers elsewhere?</p>\n<p>Suppose:</p>\n<p>New application version is released.</p>\n<p>Who updates containers safely?</p>\n<p>Docker alone doesn't answer these questions.</p>\n<hr class=\"divider\" />\n</div><h2>Solution</h2>\n<p>We need an <strong>Orchestrator</strong>.</p>\n<p>Think of it as:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Conductor\n\n↓\n\nMany Musicians\n\n↓\n\nBeautiful Orchestra</code></pre></div>\n<p>Instead of musicians:</p>\n<p>Containers.</p>\n<hr class=\"divider\" />\n<h2>Chapter 2 — What is Container Orchestration?</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Container orchestration means:</p>\n<p>Managing containers automatically.</p>\n<p>Tasks include:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Scheduling</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Scaling</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">Networking</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">Health monitoring</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-5\"><span class=\"lab-step-text\">Deployments</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-6\"><span class=\"lab-step-text\">Service discovery</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-7\"><span class=\"lab-step-text\">Self-healing</span></li>\n</ul>\n<p>AWS offers:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-8\"><span class=\"lab-step-text\">ECS</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-9\"><span class=\"lab-step-text\">EKS</span></li>\n</ul>\n<hr class=\"divider\" />\n</div><h2>Chapter 3 — Amazon ECS</h2>\n<p>ECS stands for:</p>\n<p><strong>Elastic Container Service</strong></p>\n<p>AWS built ECS specifically for AWS.</p>\n<p>It is fully managed.</p>\n<p>It integrates deeply with AWS services.</p>\n<hr class=\"divider\" />\n<p>Basic architecture:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>ECR\n\n↓\n\nECS Cluster\n\n↓\n\nContainers\n\n↓\n\nUsers</code></pre></div>\n<hr class=\"divider\" />\n<h2>Chapter 4 — ECS Components</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Imagine ECS like a company.</p>\n<p>Company</p>\n<p>↓</p>\n<p>Departments</p>\n<p>↓</p>\n<p>Employees</p>\n<p>Similarly:</p>\n<p>Cluster</p>\n<p>↓</p>\n<p>Services</p>\n<p>↓</p>\n<p>Tasks</p>\n<p>↓</p>\n<p>Containers</p>\n<hr class=\"divider\" />\n</div><h2>ECS Cluster</h2>\n<p>A Cluster is:</p>\n<p>A logical grouping of compute capacity.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Production Cluster</code></pre></div>\n<p>Inside:</p>\n<ul>\n<li>Frontend</li>\n<li>Backend</li>\n<li>API</li>\n<li>Workers</li>\n</ul>\n<p>All managed together.</p>\n<hr class=\"divider\" />\n<h2>Chapter 5 — Task Definition</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>One of the most important ECS concepts.</p>\n<p>A Task Definition is like a blueprint.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Container Image\n\nCPU\n\nMemory\n\nPorts\n\nEnvironment Variables\n\nIAM Role\n\nLogging</code></pre></div>\n<p>Nothing actually runs yet.</p>\n<p>It's only instructions.</p>\n<p>Think of it as:</p>\n<p>Architectural drawing.</p>\n<p>Not the building.</p>\n<hr class=\"divider\" />\n</div><h2>Chapter 6 — ECS Task</h2>\n<p>Task Definition:</p>\n<p>Blueprint.</p>\n<p>Task:</p>\n<p>Running instance.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Task Definition\n\n↓\n\nLaunch\n\n↓\n\nRunning Task</code></pre></div>\n<p>Exactly like:</p>\n<p>Class → Object</p>\n<p>Template → Running Application</p>\n<hr class=\"divider\" />\n<h2>Chapter 7 — ECS Service</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Suppose:</p>\n<p>You always need:</p>\n<p>5 API containers.</p>\n<p>If one crashes:</p>\n<p>Should you manually restart it?</p>\n<p>No.</p>\n<p>Instead:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Desired Count = 5\n\n↓\n\nTask Dies\n\n↓\n\nECS Starts New Task</code></pre></div>\n<p>This is an ECS Service.</p>\n<p>It maintains the desired number of running tasks.</p>\n<hr class=\"divider\" />\n</div><h2>Chapter 8 — Service Discovery</h2>\n<p>Imagine:</p>\n<p>Frontend needs:</p>\n<p>Backend.</p>\n<p>Instead of remembering IP addresses:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>frontend.internal\n\n↓\n\nBackend Service</code></pre></div>\n<p>Containers find each other automatically.</p>\n<p>No hardcoded IPs.</p>\n<hr class=\"divider\" />\n<h2>Chapter 9 — ECS Launch Types</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Two main choices.</p>\n<hr class=\"divider\" />\n</div><h2>EC2 Launch Type</h2>\n<p>You manage EC2 instances.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>EC2\n\n↓\n\nDocker\n\n↓\n\nContainers</code></pre></div>\n<p>Advantages:</p>\n<ul>\n<li>Maximum control</li>\n<li>Custom AMIs</li>\n<li>GPU support</li>\n<li>Special networking</li>\n</ul>\n<p>Disadvantages:</p>\n<ul>\n<li>Patch EC2</li>\n<li>Scale EC2</li>\n<li>Manage EC2</li>\n</ul>\n<hr class=\"divider\" />\n<h2>Fargate</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Serverless containers.</p>\n<p>No EC2 management.</p>\n<p>Architecture:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Application\n\n↓\n\nFargate\n\n↓\n\nRuns</code></pre></div>\n<p>No servers visible.</p>\n<p>You specify:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">CPU</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Memory</span></li>\n</ul>\n<p>AWS manages the infrastructure.</p>\n<hr class=\"divider\" />\n</div><h2>EC2 vs Fargate</h2>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>EC2</th><th>Fargate</th></tr></thead><tbody>\n<tr><td>Manage servers</td><td>No servers to manage</td></tr>\n<tr><td>Lower cost at large scale (often)</td><td>Operational simplicity</td></tr>\n<tr><td>Full control</td><td>Fully managed</td></tr>\n<tr><td>More responsibility</td><td>Less operational overhead</td></tr>\n</tbody></table></div>\n<hr class=\"divider\" />\n<h2>Chapter 10 — Auto Scaling in ECS</h2>\n<p>Suppose traffic increases.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>100 Users\n\n↓\n\n2 Tasks</code></pre></div>\n<p>Later:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>10,000 Users\n\n↓\n\n20 Tasks</code></pre></div>\n<p>ECS Auto Scaling launches more tasks automatically.</p>\n<p>When traffic drops:</p>\n<p>Tasks are removed.</p>\n<hr class=\"divider\" />\n<h2>Chapter 11 — Load Balancer Integration</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Typical architecture:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Users\n\n↓\n\nALB\n\n↓\n\nTask 1\n\nTask 2\n\nTask 3</code></pre></div>\n<p>ALB distributes traffic.</p>\n<p>Healthy tasks receive requests.</p>\n<hr class=\"divider\" />\n</div><h2>Chapter 12 — Rolling Deployments</h2>\n<p>Suppose:</p>\n<p>Version 2 arrives.</p>\n<p>Don't stop everything.</p>\n<p>Instead:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Task v1\n\n↓\n\nTask v2\n\n↓\n\nTask v2\n\n↓\n\nTask v1 Removed</code></pre></div>\n<p>Users barely notice.</p>\n<p>This is:</p>\n<p>Rolling Deployment.</p>\n<hr class=\"divider\" />\n<h2>Chapter 13 — Blue/Green Deployment</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Safer deployment.</p>\n<p>Instead of replacing containers:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Blue\n\n↓\n\nCurrent Version</code></pre></div>\n<p>Deploy:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Green\n\n↓\n\nNew Version</code></pre></div>\n<p>Test.</p>\n<p>If successful:</p>\n<p>Switch traffic.</p>\n<p>If something goes wrong:</p>\n<p>Return traffic to Blue.</p>\n<p>Rollback is fast.</p>\n<hr class=\"divider\" />\n</div><h2>Chapter 14 — Amazon EKS</h2>\n<p>EKS stands for:</p>\n<p><strong>Elastic Kubernetes Service</strong></p>\n<p>Instead of AWS's own orchestrator...</p>\n<p>It runs:</p>\n<p>Kubernetes.</p>\n<hr class=\"divider\" />\n<h2>What is Kubernetes?</h2>\n<p>Kubernetes (often abbreviated as <strong>K8s</strong>) is the world's most widely adopted container orchestration platform.</p>\n<p>Originally developed by Google.</p>\n<p>Now maintained by the Cloud Native Computing Foundation (CNCF).</p>\n<hr class=\"divider\" />\n<h2>Why Kubernetes?</h2>\n<p>Companies wanted:</p>\n<p>One orchestrator.</p>\n<p>Not one per cloud.</p>\n<p>Kubernetes works across:</p>\n<ul>\n<li>AWS</li>\n<li>Azure</li>\n<li>Google Cloud</li>\n<li>On-premises</li>\n</ul>\n<p>This portability is a major reason organisations adopt it.</p>\n<hr class=\"divider\" />\n<h2>Chapter 15 — Kubernetes Architecture</h2>\n<p>High-level view:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Cluster\n\n↓\n\nNodes\n\n↓\n\nPods\n\n↓\n\nContainers</code></pre></div>\n<hr class=\"divider\" />\n<h2>Node</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>A Node is:</p>\n<p>A machine running workloads.</p>\n<p>Can be:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">EC2</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Virtual Machine</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">Physical Server</span></li>\n</ul>\n<hr class=\"divider\" />\n</div><h2>Pod</h2>\n<p>The smallest deployable unit in Kubernetes.</p>\n<p>Usually:</p>\n<p>One application container.</p>\n<p>Sometimes:</p>\n<p>Multiple tightly coupled containers.</p>\n<p>Think of a Pod as the wrapper that Kubernetes manages.</p>\n<hr class=\"divider\" />\n<h2>Deployment</h2>\n<p>Suppose:</p>\n<p>Need:</p>\n<p>10 Pods.</p>\n<p>Deployment ensures:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Desired = 10\n\n↓\n\nPod Dies\n\n↓\n\nCreate New Pod</code></pre></div>\n<p>Very similar to ECS Services.</p>\n<hr class=\"divider\" />\n<h2>Kubernetes Service</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Pods have changing IP addresses.</p>\n<p>Applications shouldn't depend on those.</p>\n<p>Instead:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Frontend\n\n↓\n\nService\n\n↓\n\nBackend Pods</code></pre></div>\n<p>Service provides a stable endpoint.</p>\n<hr class=\"divider\" />\n</div><h2>Ingress</h2>\n<p>How does traffic reach the cluster?</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Internet\n\n↓\n\nIngress\n\n↓\n\nServices\n\n↓\n\nPods</code></pre></div>\n<p>Ingress manages external HTTP/HTTPS routing.</p>\n<hr class=\"divider\" />\n<h2>Chapter 16 — ECS vs EKS Concepts</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<div class=\"table-wrap\"><table>\n<thead><tr><th>ECS</th><th>Kubernetes</th></tr></thead><tbody>\n<tr><td>Task</td><td>Pod</td></tr>\n<tr><td>Service</td><td>Deployment + Service (rough comparison)</td></tr>\n<tr><td>Cluster</td><td>Cluster</td></tr>\n<tr><td>Task Definition</td><td>Pod Specification</td></tr>\n</tbody></table></div>\n<p>The concepts are similar, but the terminology differs.</p>\n<hr class=\"divider\" />\n</div><h2>Chapter 17 — ECS vs EKS</h2>\n<p>One of the most common interview questions.</p>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>ECS</th><th>EKS</th></tr></thead><tbody>\n<tr><td>AWS-native</td><td>Kubernetes</td></tr>\n<tr><td>Easier</td><td>More complex</td></tr>\n<tr><td>Faster learning</td><td>Steeper learning curve</td></tr>\n<tr><td>Deep AWS integration</td><td>Multi-cloud portability</td></tr>\n<tr><td>Lower operational complexity</td><td>Larger ecosystem</td></tr>\n</tbody></table></div>\n<hr class=\"divider\" />\n<h2>Chapter 18 — When Should You Use ECS?</h2>\n<p>Choose ECS when:</p>\n<ul>\n<li>Everything runs on AWS.</li>\n<li>Team is small.</li>\n<li>Fast delivery matters.</li>\n<li>Operational simplicity is important.</li>\n<li>No Kubernetes expertise.</li>\n</ul>\n<p>Many startups begin here.</p>\n<hr class=\"divider\" />\n<h2>Chapter 19 — When Should You Use EKS?</h2>\n<p>Choose EKS when:</p>\n<ul>\n<li>Company already uses Kubernetes.</li>\n<li>Multi-cloud portability is required.</li>\n<li>Large Kubernetes ecosystem is needed.</li>\n<li>Existing Kubernetes tooling is in place.</li>\n<li>Teams already have Kubernetes expertise.</li>\n</ul>\n<p>Large enterprises often choose EKS for standardisation.</p>\n<hr class=\"divider\" />\n<h2>Chapter 20 — Real Production Architecture</h2>\n<p>Imagine an e-commerce platform.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Users\n        │\n        ▼\n    Route 53\n        │\n        ▼\n   CloudFront\n        │\n        ▼\n        WAF\n        │\n        ▼\n        ALB\n        │\n ┌──────┴─────────┐\n ▼                ▼\nFrontend ECS   Backend ECS\n     │              │\n     ▼              ▼\n    SQS         EventBridge\n     │              │\n     ▼              ▼\n Worker ECS     Lambda\n        │\n        ▼\n       RDS\n        │\n        ▼\n        S3</code></pre></div>\n<p>Every service you learned now fits together.</p>\n<hr class=\"divider\" />\n<h2>Chapter 21 — Microservices Architecture</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Instead of:</p>\n<p>One large application.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Monolith</code></pre></div>\n<p>Modern architecture uses:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Frontend\n\n↓\n\nAuth Service\n\n↓\n\nOrder Service\n\n↓\n\nPayment Service\n\n↓\n\nInventory Service\n\n↓\n\nNotification Service</code></pre></div>\n<p>Each service:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Independent deployment</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Independent scaling</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">Independent updates</span></li>\n</ul>\n<p>Containers make this practical.</p>\n<hr class=\"divider\" />\n</div><h2>Chapter 22 — CI/CD Pipeline</h2>\n<p>Typical deployment flow:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Developer\n\n↓\n\nGit Push\n\n↓\n\nBuild\n\n↓\n\nDocker Image\n\n↓\n\nECR\n\n↓\n\nECS Deployment\n\n↓\n\nTraffic Updated</code></pre></div>\n<p>No manual server login.</p>\n<p>Everything automated.</p>\n<hr class=\"divider\" />\n<h2>Chapter 23 — Best Practices</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Use Fargate unless you have a reason to manage EC2.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Store images in ECR.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">Use IAM Roles for Tasks instead of long-lived credentials.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">Send logs to CloudWatch.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-5\"><span class=\"lab-step-text\">Place services behind an ALB.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-6\"><span class=\"lab-step-text\">Keep applications stateless where possible.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-7\"><span class=\"lab-step-text\">Use Auto Scaling.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-8\"><span class=\"lab-step-text\">Perform rolling or blue/green deployments.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-9\"><span class=\"lab-step-text\">Store secrets in Secrets Manager.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-10\"><span class=\"lab-step-text\">Monitor health continuously.</span></li>\n</ul>\n<hr class=\"divider\" />\n</div><h2>Chapter 24 — Common Mistakes</h2>\n<p>❌ Running containers manually on EC2.</p>\n<p>❌ Hardcoding secrets.</p>\n<p>❌ Not using health checks.</p>\n<p>❌ Building oversized Docker images.</p>\n<p>❌ Using the <code>latest</code> image tag for production deployments.</p>\n<p>❌ Ignoring logging and monitoring.</p>\n<p>❌ Treating containers like virtual machines.</p>\n<hr class=\"divider\" />\n<h2>Chapter 25 — Interview Questions</h2>\n<h3>Q1. What problem does ECS solve?</h3>\n<p>It orchestrates containers by handling scheduling, scaling, deployments, networking, and self-healing.</p>\n<hr class=\"divider\" />\n<h3>Q2. What is a Task Definition?</h3>\n<p>A blueprint that defines how one or more containers should run, including image, CPU, memory, networking, IAM role, and other settings.</p>\n<hr class=\"divider\" />\n<h3>Q3. Difference between a Task and a Service?</h3>\n<p>A Task is a running instance of a Task Definition. A Service maintains a desired number of running Tasks and replaces failed ones automatically.</p>\n<hr class=\"divider\" />\n<h3>Q4. Difference between ECS EC2 and Fargate?</h3>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>EC2</th><th>Fargate</th></tr></thead><tbody>\n<tr><td>You manage servers</td><td>AWS manages infrastructure</td></tr>\n<tr><td>More control</td><td>Less operational work</td></tr>\n<tr><td>Suitable for specialised workloads</td><td>Suitable for most modern applications</td></tr>\n</tbody></table></div>\n<hr class=\"divider\" />\n<h3>Q5. What is Kubernetes?</h3>\n<p>An open-source container orchestration platform for managing containerised applications.</p>\n<hr class=\"divider\" />\n<h3>Q6. What is the smallest deployable unit in Kubernetes?</h3>\n<p>A Pod.</p>\n<hr class=\"divider\" />\n<h3>Q7. Difference between ECS and EKS?</h3>\n<p>ECS is AWS's native container orchestrator. EKS is AWS's managed Kubernetes service.</p>\n<hr class=\"divider\" />\n<h3>Q8. When would you choose ECS over EKS?</h3>\n<p>When running only on AWS and prioritising simplicity and operational efficiency.</p>\n<hr class=\"divider\" />\n<h3>Q9. What is a Rolling Deployment?</h3>\n<p>A deployment strategy that gradually replaces old application instances with new ones while keeping the application available.</p>\n<hr class=\"divider\" />\n<h3>Q10. What is a Blue/Green Deployment?</h3>\n<p>A deployment strategy where a new environment is deployed alongside the existing one, traffic is switched after validation, and rollback is quick if issues occur.</p>\n<hr class=\"divider\" />\n<h2>Hands-on Lab</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<aside class=\"cost-safety callout warn\" role=\"note\"><p class=\"callout-title\">Cost safety</p><ul><li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Prefer <strong>Free Tier</strong> / small instance sizes while learning.</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Create a <strong>billing alarm</strong> (CloudWatch or Budgets) on day one.</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\"><strong>Tear down</strong> lab resources when finished (instances, load balancers, NAT gateways).</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">Never put long-lived access keys in code or public repos.</span></li></ul><p class=\"workshop-links\"><strong>Official practice:</strong> <a href=\"https://explore.skillbuilder.aws/\" rel=\"noopener noreferrer\" target=\"_blank\">AWS Skill Builder</a> · <a href=\"https://wellarchitectedlabs.com/\" rel=\"noopener noreferrer\" target=\"_blank\">Well-Architected Labs</a> · <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/free-tier.html\" rel=\"noopener noreferrer\" target=\"_blank\">Free Tier docs</a></p></aside>\n<p>Build a simple containerised web application using AWS:</p>\n<ol>\n<li class=\"lab-step\" data-lab-id=\"lab-step-5\"><span class=\"lab-step-text\">Create a Docker image for a small web application.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-6\"><span class=\"lab-step-text\">Push the image to Amazon ECR.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-7\"><span class=\"lab-step-text\">Create an ECS Cluster.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-8\"><span class=\"lab-step-text\">Create a Task Definition using the ECR image.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-9\"><span class=\"lab-step-text\">Create an ECS Service using <strong>Fargate</strong>.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-10\"><span class=\"lab-step-text\">Attach an Application Load Balancer.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-11\"><span class=\"lab-step-text\">Configure Auto Scaling based on CPU utilisation.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-12\"><span class=\"lab-step-text\">Store application secrets in AWS Secrets Manager.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-13\"><span class=\"lab-step-text\">Send application logs to CloudWatch Logs.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-14\"><span class=\"lab-step-text\">Update the Docker image and perform a rolling deployment.</span></li>\n</ol>\n<hr class=\"divider\" />\n</div><h2>Final Mental Model</h2>\n<p>If you remember only one diagram from this entire course, remember this:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>                      Users\n                        │\n                        ▼\n                    Route 53\n                        │\n                        ▼\n                   CloudFront\n                        │\n                        ▼\n                  Shield + WAF\n                        │\n                        ▼\n              Application Load Balancer\n                        │\n        ┌───────────────┼───────────────┐\n        ▼                               ▼\n     ECS / Fargate                  Lambda\n        │                               │\n        ▼                               ▼\n   SQS / EventBridge               Background Jobs\n        │\n        ▼\n   Microservices\n        │\n   ┌────┴───────────────┐\n   ▼                    ▼\n  RDS              DynamoDB\n   │                    │\n   └────────┬───────────┘\n            ▼\n            S3\n            │\n            ▼\n      KMS + Secrets Manager\n\nMonitoring:\nCloudWatch • CloudTrail • GuardDuty • Security Hub</code></pre></div>\n<p>This diagram represents a modern AWS production architecture:</p>\n<ul>\n<li><strong>Route 53</strong> directs users to your application.</li>\n<li><strong>CloudFront</strong> accelerates global delivery.</li>\n<li><strong>Shield</strong> and <strong>WAF</strong> protect the edge.</li>\n<li><strong>ALB</strong> distributes incoming traffic.</li>\n<li><strong>ECS (or EKS)</strong> runs containerised microservices.</li>\n<li><strong>SQS</strong> and <strong>EventBridge</strong> enable asynchronous communication.</li>\n<li><strong>RDS</strong>, <strong>DynamoDB</strong>, and <strong>S3</strong> store application data.</li>\n<li><strong>KMS</strong> and <strong>Secrets Manager</strong> protect sensitive information.</li>\n<li><strong>CloudWatch</strong>, <strong>CloudTrail</strong>, <strong>GuardDuty</strong>, and <strong>Security Hub</strong> provide observability and security.</li>\n</ul>\n<hr class=\"divider\" />\n<h2>🎉 Congratulations!</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>You have now completed the <strong>20-lesson AWS Cloud Engineer curriculum</strong>. You have covered:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Core AWS services</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Networking</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">Compute</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">Storage</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-5\"><span class=\"lab-step-text\">Databases</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-6\"><span class=\"lab-step-text\">Security</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-7\"><span class=\"lab-step-text\">Monitoring</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-8\"><span class=\"lab-step-text\">Serverless</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-9\"><span class=\"lab-step-text\">Containers</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-10\"><span class=\"lab-step-text\">Infrastructure as Code</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-11\"><span class=\"lab-step-text\">Event-driven architecture</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-12\"><span class=\"lab-step-text\">Cost optimisation</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-13\"><span class=\"lab-step-text\">Production architecture</span></li>\n</ul>\n<p>From here, the next stage is the <strong>Projects Phase</strong>, where you'll build complete, production-style systems that combine everything you've learned. This is where concepts turn into practical engineering skills and interview-ready experience.</p>\n<aside class=\"accuracy-note\" role=\"note\"><p><strong>Content review:</strong> 2026-07. Curriculum text is adapted from a shared learning roadmap; verify critical details in official AWS docs before production use.</p><p class=\"accuracy-note-label\">References</p><ul><li class=\"lab-step\" data-lab-id=\"lab-step-14\"><span class=\"lab-step-text\"><a href=\"https://docs.aws.amazon.com/AmazonECS/latest/developerguide/Welcome.html\" rel=\"noopener noreferrer\" target=\"_blank\">docs.aws.amazon.com/AmazonECS/latest/developerguide/Welcome.…</a></span></li><li class=\"lab-step\" data-lab-id=\"lab-step-15\"><span class=\"lab-step-text\"><a href=\"https://docs.aws.amazon.com/eks/latest/userguide/what-is-eks.html\" rel=\"noopener noreferrer\" target=\"_blank\">docs.aws.amazon.com/eks/latest/userguide/what-is-eks.html…</a></span></li></ul></aside></div>",
+  "content": "<h2>Lesson 20 — Amazon ECS vs Amazon EKS &amp; Real Architecture Decisions (Complete Deep Dive)</h2>\n<blockquote class=\"callout tip\"><p><strong>Goal:</strong> By the end of this lesson, you'll understand container orchestration, why Docker alone isn't enough in production, how Amazon ECS and Amazon EKS work internally, when to choose each, Fargate vs EC2 launch types, service discovery, deployments, and how experienced cloud architects decide which service to use.</p></blockquote>\n<p>This lesson ties together everything you've learned so far:</p>\n<ul>\n<li>EC2</li>\n<li>VPC</li>\n<li>ALB</li>\n<li>IAM</li>\n<li>CloudWatch</li>\n<li>Docker</li>\n<li>ECR</li>\n<li>Auto Scaling</li>\n<li>CloudFront</li>\n<li>Route 53</li>\n<li>Security</li>\n<li>SQS</li>\n<li>SNS</li>\n<li>EventBridge</li>\n</ul>\n<p>After this lesson, you'll be able to design production-ready AWS architectures.</p>\n<hr class=\"divider\" />\n<h2>Learning Objectives</h2>\n<p>After this lesson, you should understand:</p>\n<ul>\n<li>Why container orchestration exists</li>\n<li>What ECS is</li>\n<li>What EKS is</li>\n<li>ECS Cluster</li>\n<li>Task Definition</li>\n<li>Tasks</li>\n<li>Services</li>\n<li>Capacity Providers</li>\n<li>Fargate vs EC2</li>\n<li>Kubernetes basics</li>\n<li>Pods</li>\n<li>Nodes</li>\n<li>Deployments</li>\n<li>Services (Kubernetes)</li>\n<li>Ingress</li>\n<li>Service Discovery</li>\n<li>Rolling Deployments</li>\n<li>Blue/Green Deployments</li>\n<li>When to choose ECS vs EKS</li>\n</ul>\n<hr class=\"divider\" />\n<h2>Chapter 1 — Docker Solves Only One Problem</h2>\n<p>Suppose you built an application.</p>\n<p>Docker makes it portable.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Application\n\n↓\n\nDocker Image\n\n↓\n\nRuns Anywhere</code></pre></div>\n<p>Great.</p>\n<p>Now imagine your application becomes popular.</p>\n<p>Instead of one container...</p>\n<p>You now have:</p>\n<ul>\n<li>50 containers</li>\n<li>100 containers</li>\n<li>500 containers</li>\n</ul>\n<p>Who manages them?</p>\n<p>Docker doesn't.</p>\n<hr class=\"divider\" />\n<h3>Problems Docker Doesn't Solve</h3>\n<p>Suppose:</p>\n<p>Container crashes.</p>\n<p>Who restarts it?</p>\n<p>Suppose:</p>\n<p>Traffic doubles.</p>\n<p>Who launches more containers?</p>\n<p>Suppose:</p>\n<p>One server dies.</p>\n<p>Who moves containers elsewhere?</p>\n<p>Suppose:</p>\n<p>New application version is released.</p>\n<p>Who updates containers safely?</p>\n<p>Docker alone doesn't answer these questions.</p>\n<hr class=\"divider\" />\n<h3>Solution</h3>\n<p>We need an <strong>Orchestrator</strong>.</p>\n<p>Think of it as:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Conductor\n\n↓\n\nMany Musicians\n\n↓\n\nBeautiful Orchestra</code></pre></div>\n<p>Instead of musicians:</p>\n<p>Containers.</p>\n<hr class=\"divider\" />\n<h2>Chapter 2 — What is Container Orchestration?</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Container orchestration means:</p>\n<p>Managing containers automatically.</p>\n<p>Tasks include:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Scheduling</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Scaling</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">Networking</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">Health monitoring</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-5\"><span class=\"lab-step-text\">Deployments</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-6\"><span class=\"lab-step-text\">Service discovery</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-7\"><span class=\"lab-step-text\">Self-healing</span></li>\n</ul>\n<p>AWS offers:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-8\"><span class=\"lab-step-text\">ECS</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-9\"><span class=\"lab-step-text\">EKS</span></li>\n</ul>\n<hr class=\"divider\" />\n</div><h2>Chapter 3 — Amazon ECS</h2>\n<p>ECS stands for:</p>\n<p><strong>Elastic Container Service</strong></p>\n<p>AWS built ECS specifically for AWS.</p>\n<p>It is fully managed.</p>\n<p>It integrates deeply with AWS services.</p>\n<hr class=\"divider\" />\n<p>Basic architecture:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>ECR\n\n↓\n\nECS Cluster\n\n↓\n\nContainers\n\n↓\n\nUsers</code></pre></div>\n<hr class=\"divider\" />\n<h2>Chapter 4 — ECS Components</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Imagine ECS like a company.</p>\n<p>Company</p>\n<p>↓</p>\n<p>Departments</p>\n<p>↓</p>\n<p>Employees</p>\n<p>Similarly:</p>\n<p>Cluster</p>\n<p>↓</p>\n<p>Services</p>\n<p>↓</p>\n<p>Tasks</p>\n<p>↓</p>\n<p>Containers</p>\n<hr class=\"divider\" />\n<h3>ECS Cluster</h3>\n<p>A Cluster is:</p>\n<p>A logical grouping of compute capacity.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Production Cluster</code></pre></div>\n<p>Inside:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Frontend</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Backend</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">API</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">Workers</span></li>\n</ul>\n<p>All managed together.</p>\n<hr class=\"divider\" />\n</div><h2>Chapter 5 — Task Definition</h2>\n<p>One of the most important ECS concepts.</p>\n<p>A Task Definition is like a blueprint.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Container Image\n\nCPU\n\nMemory\n\nPorts\n\nEnvironment Variables\n\nIAM Role\n\nLogging</code></pre></div>\n<p>Nothing actually runs yet.</p>\n<p>It's only instructions.</p>\n<p>Think of it as:</p>\n<p>Architectural drawing.</p>\n<p>Not the building.</p>\n<hr class=\"divider\" />\n<h2>Chapter 6 — ECS Task</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Task Definition:</p>\n<p>Blueprint.</p>\n<p>Task:</p>\n<p>Running instance.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Task Definition\n\n↓\n\nLaunch\n\n↓\n\nRunning Task</code></pre></div>\n<p>Exactly like:</p>\n<p>Class → Object</p>\n<p>Template → Running Application</p>\n<hr class=\"divider\" />\n</div><h2>Chapter 7 — ECS Service</h2>\n<p>Suppose:</p>\n<p>You always need:</p>\n<p>5 API containers.</p>\n<p>If one crashes:</p>\n<p>Should you manually restart it?</p>\n<p>No.</p>\n<p>Instead:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Desired Count = 5\n\n↓\n\nTask Dies\n\n↓\n\nECS Starts New Task</code></pre></div>\n<p>This is an ECS Service.</p>\n<p>It maintains the desired number of running tasks.</p>\n<hr class=\"divider\" />\n<h2>Chapter 8 — Service Discovery</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Imagine:</p>\n<p>Frontend needs:</p>\n<p>Backend.</p>\n<p>Instead of remembering IP addresses:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>frontend.internal\n\n↓\n\nBackend Service</code></pre></div>\n<p>Containers find each other automatically.</p>\n<p>No hardcoded IPs.</p>\n<hr class=\"divider\" />\n</div><h2>Chapter 9 — ECS Launch Types</h2>\n<p>Two main choices.</p>\n<hr class=\"divider\" />\n<h3>EC2 Launch Type</h3>\n<p>You manage EC2 instances.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>EC2\n\n↓\n\nDocker\n\n↓\n\nContainers</code></pre></div>\n<p>Advantages:</p>\n<ul>\n<li>Maximum control</li>\n<li>Custom AMIs</li>\n<li>GPU support</li>\n<li>Special networking</li>\n</ul>\n<p>Disadvantages:</p>\n<ul>\n<li>Patch EC2</li>\n<li>Scale EC2</li>\n<li>Manage EC2</li>\n</ul>\n<hr class=\"divider\" />\n<h3>Fargate</h3>\n<p>Serverless containers.</p>\n<p>No EC2 management.</p>\n<p>Architecture:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Application\n\n↓\n\nFargate\n\n↓\n\nRuns</code></pre></div>\n<p>No servers visible.</p>\n<p>You specify:</p>\n<ul>\n<li>CPU</li>\n<li>Memory</li>\n</ul>\n<p>AWS manages the infrastructure.</p>\n<hr class=\"divider\" />\n<h3>EC2 vs Fargate</h3>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>EC2</th><th>Fargate</th></tr></thead><tbody>\n<tr><td>Manage servers</td><td>No servers to manage</td></tr>\n<tr><td>Lower cost at large scale (often)</td><td>Operational simplicity</td></tr>\n<tr><td>Full control</td><td>Fully managed</td></tr>\n<tr><td>More responsibility</td><td>Less operational overhead</td></tr>\n</tbody></table></div>\n<hr class=\"divider\" />\n<h2>Chapter 10 — Auto Scaling in ECS</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Suppose traffic increases.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>100 Users\n\n↓\n\n2 Tasks</code></pre></div>\n<p>Later:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>10,000 Users\n\n↓\n\n20 Tasks</code></pre></div>\n<p>ECS Auto Scaling launches more tasks automatically.</p>\n<p>When traffic drops:</p>\n<p>Tasks are removed.</p>\n<hr class=\"divider\" />\n</div><h2>Chapter 11 — Load Balancer Integration</h2>\n<p>Typical architecture:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Users\n\n↓\n\nALB\n\n↓\n\nTask 1\n\nTask 2\n\nTask 3</code></pre></div>\n<p>ALB distributes traffic.</p>\n<p>Healthy tasks receive requests.</p>\n<hr class=\"divider\" />\n<h2>Chapter 12 — Rolling Deployments</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Suppose:</p>\n<p>Version 2 arrives.</p>\n<p>Don't stop everything.</p>\n<p>Instead:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Task v1\n\n↓\n\nTask v2\n\n↓\n\nTask v2\n\n↓\n\nTask v1 Removed</code></pre></div>\n<p>Users barely notice.</p>\n<p>This is:</p>\n<p>Rolling Deployment.</p>\n<hr class=\"divider\" />\n</div><h2>Chapter 13 — Blue/Green Deployment</h2>\n<p>Safer deployment.</p>\n<p>Instead of replacing containers:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Blue\n\n↓\n\nCurrent Version</code></pre></div>\n<p>Deploy:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Green\n\n↓\n\nNew Version</code></pre></div>\n<p>Test.</p>\n<p>If successful:</p>\n<p>Switch traffic.</p>\n<p>If something goes wrong:</p>\n<p>Return traffic to Blue.</p>\n<p>Rollback is fast.</p>\n<hr class=\"divider\" />\n<h2>Chapter 14 — Amazon EKS</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>EKS stands for:</p>\n<p><strong>Elastic Kubernetes Service</strong></p>\n<p>Instead of AWS's own orchestrator...</p>\n<p>It runs:</p>\n<p>Kubernetes.</p>\n<hr class=\"divider\" />\n<h3>What is Kubernetes?</h3>\n<p>Kubernetes (often abbreviated as <strong>K8s</strong>) is the world's most widely adopted container orchestration platform.</p>\n<p>Originally developed by Google.</p>\n<p>Now maintained by the Cloud Native Computing Foundation (CNCF).</p>\n<hr class=\"divider\" />\n<h3>Why Kubernetes?</h3>\n<p>Companies wanted:</p>\n<p>One orchestrator.</p>\n<p>Not one per cloud.</p>\n<p>Kubernetes works across:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">AWS</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Azure</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">Google Cloud</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">On-premises</span></li>\n</ul>\n<p>This portability is a major reason organisations adopt it.</p>\n<hr class=\"divider\" />\n</div><h2>Chapter 15 — Kubernetes Architecture</h2>\n<p>High-level view:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Cluster\n\n↓\n\nNodes\n\n↓\n\nPods\n\n↓\n\nContainers</code></pre></div>\n<hr class=\"divider\" />\n<h3>Node</h3>\n<p>A Node is:</p>\n<p>A machine running workloads.</p>\n<p>Can be:</p>\n<ul>\n<li>EC2</li>\n<li>Virtual Machine</li>\n<li>Physical Server</li>\n</ul>\n<hr class=\"divider\" />\n<h3>Pod</h3>\n<p>The smallest deployable unit in Kubernetes.</p>\n<p>Usually:</p>\n<p>One application container.</p>\n<p>Sometimes:</p>\n<p>Multiple tightly coupled containers.</p>\n<p>Think of a Pod as the wrapper that Kubernetes manages.</p>\n<hr class=\"divider\" />\n<h3>Deployment</h3>\n<p>Suppose:</p>\n<p>Need:</p>\n<p>10 Pods.</p>\n<p>Deployment ensures:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Desired = 10\n\n↓\n\nPod Dies\n\n↓\n\nCreate New Pod</code></pre></div>\n<p>Very similar to ECS Services.</p>\n<hr class=\"divider\" />\n<h3>Kubernetes Service</h3>\n<p>Pods have changing IP addresses.</p>\n<p>Applications shouldn't depend on those.</p>\n<p>Instead:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Frontend\n\n↓\n\nService\n\n↓\n\nBackend Pods</code></pre></div>\n<p>Service provides a stable endpoint.</p>\n<hr class=\"divider\" />\n<h3>Ingress</h3>\n<p>How does traffic reach the cluster?</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Internet\n\n↓\n\nIngress\n\n↓\n\nServices\n\n↓\n\nPods</code></pre></div>\n<p>Ingress manages external HTTP/HTTPS routing.</p>\n<hr class=\"divider\" />\n<h2>Chapter 16 — ECS vs EKS Concepts</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<div class=\"table-wrap\"><table>\n<thead><tr><th>ECS</th><th>Kubernetes</th></tr></thead><tbody>\n<tr><td>Task</td><td>Pod</td></tr>\n<tr><td>Service</td><td>Deployment + Service (rough comparison)</td></tr>\n<tr><td>Cluster</td><td>Cluster</td></tr>\n<tr><td>Task Definition</td><td>Pod Specification</td></tr>\n</tbody></table></div>\n<p>The concepts are similar, but the terminology differs.</p>\n<hr class=\"divider\" />\n</div><h2>Chapter 17 — ECS vs EKS</h2>\n<p>One of the most common interview questions.</p>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>ECS</th><th>EKS</th></tr></thead><tbody>\n<tr><td>AWS-native</td><td>Kubernetes</td></tr>\n<tr><td>Easier</td><td>More complex</td></tr>\n<tr><td>Faster learning</td><td>Steeper learning curve</td></tr>\n<tr><td>Deep AWS integration</td><td>Multi-cloud portability</td></tr>\n<tr><td>Lower operational complexity</td><td>Larger ecosystem</td></tr>\n</tbody></table></div>\n<hr class=\"divider\" />\n<h2>Chapter 18 — When Should You Use ECS?</h2>\n<p>Choose ECS when:</p>\n<ul>\n<li>Everything runs on AWS.</li>\n<li>Team is small.</li>\n<li>Fast delivery matters.</li>\n<li>Operational simplicity is important.</li>\n<li>No Kubernetes expertise.</li>\n</ul>\n<p>Many startups begin here.</p>\n<hr class=\"divider\" />\n<h2>Chapter 19 — When Should You Use EKS?</h2>\n<p>Choose EKS when:</p>\n<ul>\n<li>Company already uses Kubernetes.</li>\n<li>Multi-cloud portability is required.</li>\n<li>Large Kubernetes ecosystem is needed.</li>\n<li>Existing Kubernetes tooling is in place.</li>\n<li>Teams already have Kubernetes expertise.</li>\n</ul>\n<p>Large enterprises often choose EKS for standardisation.</p>\n<hr class=\"divider\" />\n<h2>Chapter 20 — Real Production Architecture</h2>\n<p>Imagine an e-commerce platform.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Users\n        │\n        ▼\n    Route 53\n        │\n        ▼\n   CloudFront\n        │\n        ▼\n        WAF\n        │\n        ▼\n        ALB\n        │\n ┌──────┴─────────┐\n ▼                ▼\nFrontend ECS   Backend ECS\n     │              │\n     ▼              ▼\n    SQS         EventBridge\n     │              │\n     ▼              ▼\n Worker ECS     Lambda\n        │\n        ▼\n       RDS\n        │\n        ▼\n        S3</code></pre></div>\n<p>Every service you learned now fits together.</p>\n<hr class=\"divider\" />\n<h2>Chapter 21 — Microservices Architecture</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Instead of:</p>\n<p>One large application.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Monolith</code></pre></div>\n<p>Modern architecture uses:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Frontend\n\n↓\n\nAuth Service\n\n↓\n\nOrder Service\n\n↓\n\nPayment Service\n\n↓\n\nInventory Service\n\n↓\n\nNotification Service</code></pre></div>\n<p>Each service:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Independent deployment</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Independent scaling</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">Independent updates</span></li>\n</ul>\n<p>Containers make this practical.</p>\n<hr class=\"divider\" />\n</div><h2>Chapter 22 — CI/CD Pipeline</h2>\n<p>Typical deployment flow:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Developer\n\n↓\n\nGit Push\n\n↓\n\nBuild\n\n↓\n\nDocker Image\n\n↓\n\nECR\n\n↓\n\nECS Deployment\n\n↓\n\nTraffic Updated</code></pre></div>\n<p>No manual server login.</p>\n<p>Everything automated.</p>\n<hr class=\"divider\" />\n<h2>Chapter 23 — Best Practices</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Use Fargate unless you have a reason to manage EC2.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Store images in ECR.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">Use IAM Roles for Tasks instead of long-lived credentials.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">Send logs to CloudWatch.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-5\"><span class=\"lab-step-text\">Place services behind an ALB.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-6\"><span class=\"lab-step-text\">Keep applications stateless where possible.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-7\"><span class=\"lab-step-text\">Use Auto Scaling.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-8\"><span class=\"lab-step-text\">Perform rolling or blue/green deployments.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-9\"><span class=\"lab-step-text\">Store secrets in Secrets Manager.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-10\"><span class=\"lab-step-text\">Monitor health continuously.</span></li>\n</ul>\n<hr class=\"divider\" />\n</div><h2>Chapter 24 — Common Mistakes</h2>\n<p>❌ Running containers manually on EC2.</p>\n<p>❌ Hardcoding secrets.</p>\n<p>❌ Not using health checks.</p>\n<p>❌ Building oversized Docker images.</p>\n<p>❌ Using the <code>latest</code> image tag for production deployments.</p>\n<p>❌ Ignoring logging and monitoring.</p>\n<p>❌ Treating containers like virtual machines.</p>\n<hr class=\"divider\" />\n<h2>Chapter 25 — Interview Questions</h2>\n<h4>Q1. What problem does ECS solve?</h4>\n<p>It orchestrates containers by handling scheduling, scaling, deployments, networking, and self-healing.</p>\n<hr class=\"divider\" />\n<h4>Q2. What is a Task Definition?</h4>\n<p>A blueprint that defines how one or more containers should run, including image, CPU, memory, networking, IAM role, and other settings.</p>\n<hr class=\"divider\" />\n<h4>Q3. Difference between a Task and a Service?</h4>\n<p>A Task is a running instance of a Task Definition. A Service maintains a desired number of running Tasks and replaces failed ones automatically.</p>\n<hr class=\"divider\" />\n<h4>Q4. Difference between ECS EC2 and Fargate?</h4>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>EC2</th><th>Fargate</th></tr></thead><tbody>\n<tr><td>You manage servers</td><td>AWS manages infrastructure</td></tr>\n<tr><td>More control</td><td>Less operational work</td></tr>\n<tr><td>Suitable for specialised workloads</td><td>Suitable for most modern applications</td></tr>\n</tbody></table></div>\n<hr class=\"divider\" />\n<h4>Q5. What is Kubernetes?</h4>\n<p>An open-source container orchestration platform for managing containerised applications.</p>\n<hr class=\"divider\" />\n<h4>Q6. What is the smallest deployable unit in Kubernetes?</h4>\n<p>A Pod.</p>\n<hr class=\"divider\" />\n<h4>Q7. Difference between ECS and EKS?</h4>\n<p>ECS is AWS's native container orchestrator. EKS is AWS's managed Kubernetes service.</p>\n<hr class=\"divider\" />\n<h4>Q8. When would you choose ECS over EKS?</h4>\n<p>When running only on AWS and prioritising simplicity and operational efficiency.</p>\n<hr class=\"divider\" />\n<h4>Q9. What is a Rolling Deployment?</h4>\n<p>A deployment strategy that gradually replaces old application instances with new ones while keeping the application available.</p>\n<hr class=\"divider\" />\n<h4>Q10. What is a Blue/Green Deployment?</h4>\n<p>A deployment strategy where a new environment is deployed alongside the existing one, traffic is switched after validation, and rollback is quick if issues occur.</p>\n<hr class=\"divider\" />\n<h2>Hands-on Lab</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<aside class=\"cost-safety callout warn\" role=\"note\"><p class=\"callout-title\">Cost safety</p><ul><li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Prefer <strong>Free Tier</strong> / small instance sizes while learning.</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Create a <strong>billing alarm</strong> (CloudWatch or Budgets) on day one.</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\"><strong>Tear down</strong> lab resources when finished (instances, load balancers, NAT gateways).</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">Never put long-lived access keys in code or public repos.</span></li></ul><p class=\"workshop-links\"><strong>Official practice:</strong> <a href=\"https://explore.skillbuilder.aws/\" rel=\"noopener noreferrer\" target=\"_blank\">AWS Skill Builder</a> · <a href=\"https://wellarchitectedlabs.com/\" rel=\"noopener noreferrer\" target=\"_blank\">Well-Architected Labs</a> · <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/free-tier.html\" rel=\"noopener noreferrer\" target=\"_blank\">Free Tier docs</a></p></aside>\n<p>Build a simple containerised web application using AWS:</p>\n<ol>\n<li class=\"lab-step\" data-lab-id=\"lab-step-5\"><span class=\"lab-step-text\">Create a Docker image for a small web application.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-6\"><span class=\"lab-step-text\">Push the image to Amazon ECR.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-7\"><span class=\"lab-step-text\">Create an ECS Cluster.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-8\"><span class=\"lab-step-text\">Create a Task Definition using the ECR image.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-9\"><span class=\"lab-step-text\">Create an ECS Service using <strong>Fargate</strong>.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-10\"><span class=\"lab-step-text\">Attach an Application Load Balancer.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-11\"><span class=\"lab-step-text\">Configure Auto Scaling based on CPU utilisation.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-12\"><span class=\"lab-step-text\">Store application secrets in AWS Secrets Manager.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-13\"><span class=\"lab-step-text\">Send application logs to CloudWatch Logs.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-14\"><span class=\"lab-step-text\">Update the Docker image and perform a rolling deployment.</span></li>\n</ol>\n<hr class=\"divider\" />\n<h3>Final Mental Model</h3>\n<p>If you remember only one diagram from this entire course, remember this:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>                      Users\n                        │\n                        ▼\n                    Route 53\n                        │\n                        ▼\n                   CloudFront\n                        │\n                        ▼\n                  Shield + WAF\n                        │\n                        ▼\n              Application Load Balancer\n                        │\n        ┌───────────────┼───────────────┐\n        ▼                               ▼\n     ECS / Fargate                  Lambda\n        │                               │\n        ▼                               ▼\n   SQS / EventBridge               Background Jobs\n        │\n        ▼\n   Microservices\n        │\n   ┌────┴───────────────┐\n   ▼                    ▼\n  RDS              DynamoDB\n   │                    │\n   └────────┬───────────┘\n            ▼\n            S3\n            │\n            ▼\n      KMS + Secrets Manager\n\nMonitoring:\nCloudWatch • CloudTrail • GuardDuty • Security Hub</code></pre></div>\n<p>This diagram represents a modern AWS production architecture:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-15\"><span class=\"lab-step-text\"><strong>Route 53</strong> directs users to your application.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-16\"><span class=\"lab-step-text\"><strong>CloudFront</strong> accelerates global delivery.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-17\"><span class=\"lab-step-text\"><strong>Shield</strong> and <strong>WAF</strong> protect the edge.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-18\"><span class=\"lab-step-text\"><strong>ALB</strong> distributes incoming traffic.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-19\"><span class=\"lab-step-text\"><strong>ECS (or EKS)</strong> runs containerised microservices.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-20\"><span class=\"lab-step-text\"><strong>SQS</strong> and <strong>EventBridge</strong> enable asynchronous communication.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-21\"><span class=\"lab-step-text\"><strong>RDS</strong>, <strong>DynamoDB</strong>, and <strong>S3</strong> store application data.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-22\"><span class=\"lab-step-text\"><strong>KMS</strong> and <strong>Secrets Manager</strong> protect sensitive information.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-23\"><span class=\"lab-step-text\"><strong>CloudWatch</strong>, <strong>CloudTrail</strong>, <strong>GuardDuty</strong>, and <strong>Security Hub</strong> provide observability and security.</span></li>\n</ul>\n<hr class=\"divider\" />\n<h3>🎉 Congratulations!</h3>\n<p>You have now completed the <strong>20-lesson AWS Cloud Engineer curriculum</strong>. You have covered:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-24\"><span class=\"lab-step-text\">Core AWS services</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-25\"><span class=\"lab-step-text\">Networking</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-26\"><span class=\"lab-step-text\">Compute</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-27\"><span class=\"lab-step-text\">Storage</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-28\"><span class=\"lab-step-text\">Databases</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-29\"><span class=\"lab-step-text\">Security</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-30\"><span class=\"lab-step-text\">Monitoring</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-31\"><span class=\"lab-step-text\">Serverless</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-32\"><span class=\"lab-step-text\">Containers</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-33\"><span class=\"lab-step-text\">Infrastructure as Code</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-34\"><span class=\"lab-step-text\">Event-driven architecture</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-35\"><span class=\"lab-step-text\">Cost optimisation</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-36\"><span class=\"lab-step-text\">Production architecture</span></li>\n</ul>\n<p>From here, the next stage is the <strong>Projects Phase</strong>, where you'll build complete, production-style systems that combine everything you've learned. This is where concepts turn into practical engineering skills and interview-ready experience.</p>\n<aside class=\"accuracy-note\" role=\"note\"><p><strong>Content review:</strong> 2026-07. Curriculum text is adapted from a shared learning roadmap; verify critical details in official AWS docs before production use.</p><p class=\"accuracy-note-label\">References</p><ul><li class=\"lab-step\" data-lab-id=\"lab-step-37\"><span class=\"lab-step-text\"><a href=\"https://docs.aws.amazon.com/AmazonECS/latest/developerguide/Welcome.html\" rel=\"noopener noreferrer\" target=\"_blank\">docs.aws.amazon.com/AmazonECS/latest/developerguide/Welcome.…</a></span></li><li class=\"lab-step\" data-lab-id=\"lab-step-38\"><span class=\"lab-step-text\"><a href=\"https://docs.aws.amazon.com/eks/latest/userguide/what-is-eks.html\" rel=\"noopener noreferrer\" target=\"_blank\">docs.aws.amazon.com/eks/latest/userguide/what-is-eks.html…</a></span></li></ul></aside></div>",
   "quiz": [
     {
       "q": "Docker primarily packages:",
       "options": [
-        "Only physical servers",
         "Applications and dependencies into containers",
+        "Only physical servers",
         "Only DNS zones",
         "Only IAM policies"
       ],
-      "answer": 1,
+      "answer": 0,
       "explain": "Containers package app + deps.",
       "style": "general"
     },
@@ -231,48 +171,48 @@
     {
       "q": "Amazon ECS is:",
       "options": [
-        "A managed container orchestration service on AWS",
         "A DNS resolver",
         "A KMS key type",
+        "A managed container orchestration service on AWS",
         "A budget tool"
       ],
-      "answer": 0,
+      "answer": 2,
       "explain": "ECS orchestrates containers on AWS.",
       "style": "general"
     },
     {
       "q": "An ECS cluster is:",
       "options": [
-        "A group of resources where tasks/services run",
         "A single S3 object",
         "A Route 53 record only",
-        "A CloudFront invalidation"
+        "A CloudFront invalidation",
+        "A group of resources where tasks/services run"
       ],
-      "answer": 0,
+      "answer": 3,
       "explain": "Cluster is the compute pool boundary.",
       "style": "general"
     },
     {
       "q": "A task definition describes:",
       "options": [
-        "Only a VPC CIDR",
         "How containers should run (image, CPU/mem, ports, roles, etc.)",
+        "Only a VPC CIDR",
         "Only a billing invoice",
         "Only an AMI marketplace product"
       ],
-      "answer": 1,
+      "answer": 0,
       "explain": "Task defs are blueprints for tasks.",
       "style": "general"
     },
     {
       "q": "An ECS task is roughly:",
       "options": [
-        "A running instantiation of a task definition",
         "A stopped S3 bucket",
+        "A running instantiation of a task definition",
         "A DNS NS set",
         "A KMS grant only"
       ],
-      "answer": 0,
+      "answer": 1,
       "explain": "Task = running set of containers from the def.",
       "style": "general"
     },
@@ -280,11 +220,11 @@
       "q": "An ECS service helps by:",
       "options": [
         "Deleting clusters randomly",
-        "Maintaining desired count of tasks and integrating with load balancing",
         "Replacing IAM",
+        "Maintaining desired count of tasks and integrating with load balancing",
         "Disabling logs"
       ],
-      "answer": 1,
+      "answer": 2,
       "explain": "Services keep N tasks healthy.",
       "style": "general"
     },
@@ -292,11 +232,11 @@
       "q": "Fargate is attractive because:",
       "options": [
         "You manage every EC2 host patch yourself always",
-        "AWS runs the underlying compute without you managing servers",
         "It only works offline",
-        "It removes containers"
+        "It removes containers",
+        "AWS runs the underlying compute without you managing servers"
       ],
-      "answer": 1,
+      "answer": 3,
       "explain": "Serverless container compute.",
       "style": "general"
     },
@@ -328,11 +268,11 @@
       "q": "A reason teams choose ECS over EKS is often:",
       "options": [
         "They want maximum Kubernetes ecosystem complexity always",
-        "Simpler AWS-native model and lower ops overhead",
         "ECS cannot run containers",
+        "Simpler AWS-native model and lower ops overhead",
         "ECS forbids IAM roles"
       ],
-      "answer": 1,
+      "answer": 2,
       "explain": "ECS is simpler for many AWS-centric apps.",
       "style": "general"
     },
@@ -340,23 +280,23 @@
       "q": "A reason teams choose EKS is often:",
       "options": [
         "They never need portability",
-        "Kubernetes portability/ecosystem and multi-cloud skills",
         "EKS cannot schedule pods",
-        "EKS forbids containers"
+        "EKS forbids containers",
+        "Kubernetes portability/ecosystem and multi-cloud skills"
       ],
-      "answer": 1,
+      "answer": 3,
       "explain": "K8s ecosystem and portability drive EKS.",
       "style": "general"
     },
     {
       "q": "Compared to ECS, EKS generally has:",
       "options": [
-        "Zero concepts to learn",
         "More Kubernetes operational complexity",
+        "Zero concepts to learn",
         "No networking",
         "No IAM integration options"
       ],
-      "answer": 1,
+      "answer": 0,
       "explain": "K8s power comes with complexity.",
       "style": "scenario"
     },
@@ -376,47 +316,47 @@
       "q": "If you want the lightest AWS-native container path for many apps, consider:",
       "options": [
         "Self-managed K8s on laptops only",
-        "ECS (often with Fargate)",
         "Only bare metal DNS",
+        "ECS (often with Fargate)",
         "Only manual SSH deploys forever"
       ],
-      "answer": 1,
+      "answer": 2,
       "explain": "ECS is the simpler AWS path.",
       "style": "general"
     },
     {
       "q": "Task roles in ECS are important to:",
       "options": [
-        "Give containers least-privilege AWS API access",
         "Make containers root on the host always",
         "Disable CloudTrail",
-        "Open all ports"
+        "Open all ports",
+        "Give containers least-privilege AWS API access"
       ],
-      "answer": 0,
+      "answer": 3,
       "explain": "Task roles replace embedding keys.",
       "style": "general"
     },
     {
       "q": "A deployment concern shared by ECS and EKS is:",
       "options": [
-        "Neither needs images",
         "Image registry, networking, observability, and IAM",
+        "Neither needs images",
         "Only CSS styling",
         "Only Route 53 private zones without apps"
       ],
-      "answer": 1,
+      "answer": 0,
       "explain": "Both need solid delivery/ops foundations.",
       "style": "general"
     },
     {
       "q": "Self-healing in orchestration means:",
       "options": [
-        "Tasks/pods are recreated if they fail (per service desired state)",
         "Clusters never need monitoring",
+        "Tasks/pods are recreated if they fail (per service desired state)",
         "Images auto-write themselves",
         "Billing stops automatically"
       ],
-      "answer": 0,
+      "answer": 1,
       "explain": "Controllers reconcile desired vs actual state.",
       "style": "general"
     },
@@ -424,11 +364,11 @@
       "q": "Which statement is fairest?",
       "options": [
         "ECS and EKS are identical with zero trade-offs",
-        "Choose based on team skills, portability needs, and ops capacity",
         "Always pick EKS for a single static site",
+        "Choose based on team skills, portability needs, and ops capacity",
         "Always pick ECS for multi-cloud Kubernetes platforms"
       ],
-      "answer": 1,
+      "answer": 2,
       "explain": "Decision is context-dependent.",
       "style": "general"
     },
@@ -436,13 +376,78 @@
       "q": "The lesson’s decision framework emphasizes:",
       "options": [
         "Only price of coffee",
-        "Trade-offs: simplicity vs Kubernetes ecosystem/portability",
         "Never using load balancers",
-        "Avoiding containers entirely always"
+        "Avoiding containers entirely always",
+        "Trade-offs: simplicity vs Kubernetes ecosystem/portability"
       ],
-      "answer": 1,
+      "answer": 3,
       "explain": "ECS simplicity vs EKS ecosystem is the core trade-off.",
       "style": "scenario"
+    },
+    {
+      "q": "A small AWS-only team wants containers without running Kubernetes. Best default?",
+      "options": [
+        "ECS (often with Fargate)",
+        "Self-managed K8s on laptops only",
+        "Only raw EC2 with no process manager",
+        "Only S3 website"
+      ],
+      "answer": 0,
+      "explain": "ECS is the simpler AWS-native orchestrator.",
+      "style": "general",
+      "topic": "ECS"
+    },
+    {
+      "q": "Company standard is Kubernetes across clouds. AWS choice?",
+      "options": [
+        "Only Classic ELB without containers",
+        "EKS",
+        "Only SQS",
+        "Only Budgets"
+      ],
+      "answer": 1,
+      "explain": "EKS provides managed Kubernetes.",
+      "style": "general",
+      "topic": "EKS"
+    },
+    {
+      "q": "You need 3 replicas always running behind a load balancer on ECS. Construct?",
+      "options": [
+        "One-off task only",
+        "Manual SSH restarts",
+        "ECS Service with desired count + load balancer integration",
+        "Only a single container forever"
+      ],
+      "answer": 2,
+      "explain": "Services maintain desired task count.",
+      "style": "general",
+      "topic": "ECS service"
+    },
+    {
+      "q": "You don't want to manage EC2 capacity for containers. Feature?",
+      "options": [
+        "Always unmanaged bare metal only",
+        "Disable IAM roles",
+        "Public docker daemon on 2375 open to world",
+        "Fargate launch type"
+      ],
+      "answer": 3,
+      "explain": "Fargate removes server management.",
+      "style": "general",
+      "topic": "Fargate"
+    },
+    {
+      "q": "Containers need S3 read access without access keys in the image. Approach?",
+      "options": [
+        "Task role / pod identity with least privilege",
+        "Bake keys into the Dockerfile",
+        "Disable S3 encryption and hope",
+        "Use root account keys in env"
+      ],
+      "answer": 0,
+      "explain": "Task roles provide temporary AWS credentials.",
+      "style": "general",
+      "topic": "IAM roles"
     }
   ]
 }

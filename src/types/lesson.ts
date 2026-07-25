@@ -40,6 +40,12 @@ export type ReviewItem = {
   explain: string;
   topic: string;
   timesWrong: number;
+  /** Successful recalls in a row (for expanding intervals) */
+  timesCorrect?: number;
+  /** SM-2-ish ease factor (default 2.5) */
+  ease?: number;
+  /** Last interval in days */
+  intervalDays?: number;
   wrongAt: number;
   dueAt: number;
 };

@@ -8,7 +8,7 @@ Every website you've ever visited—from Google to Netflix to Amazon—depends o
 
 # Learning Objectives
 
-After this lesson, you'll understand:
+After this lesson, you should understand:
 
 - What DNS is
 - Why DNS exists
@@ -109,7 +109,7 @@ Example:
 www.company.com
 ```
 
-Let's break it apart.
+We break it apart.
 
 ```text
 www.company.com

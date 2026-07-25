@@ -9,39 +9,27 @@ type Step = {
   id: string;
   title: string;
   body: string;
-  /** CSS selector to spotlight; optional */
   target?: string;
 };
 
+/** Short 3-step first-run tour (P3: simplify home) */
 const STEPS: Step[] = [
   {
     id: "welcome",
-    title: "Welcome to AWS Path",
-    body: "A self-paced course with quizzes and local progress. This quick tour shows where to start—dismiss anytime.",
+    title: "Start here",
+    body: "Self-paced AWS lessons with quizzes. Progress stays in this browser — no login required.",
   },
   {
     id: "path",
-    title: "Pick a learning path",
-    body: "Fast foundations, Full core 12, Interview drills, or Everything including SAA extras. Stats follow your path.",
+    title: "Pick a path",
+    body: "Fast foundations, Full core 12, Interview drills, or Everything including SAA topics 13–20.",
     target: ".path-picker",
   },
   {
-    id: "search",
-    title: "Search lessons & sections",
-    body: "Jump to any topic with search (⌘K on desktop). Try “IAM” or “VPC”.",
-    target: ".landing-search, .home-search, .topbar-search",
-  },
-  {
     id: "start",
-    title: "Start lesson 01",
-    body: "Open the first card in the curriculum (or Continue). Accordion sections, labs, and quizzes are inside.",
+    title: "Open lesson 01",
+    body: "Read sections, do the lab when present, then take the quiz. Aim for ≥70% before marking complete.",
     target: ".landing-lesson-grid .lesson-card, .lesson-grid .lesson-card",
-  },
-  {
-    id: "progress",
-    title: "Progress stays local",
-    body: "Completion and quiz scores live in this browser. Export a backup from the bottom of the home page anytime.",
-    target: ".landing-glass, .progress-tools",
   },
 ];
 
@@ -58,9 +46,10 @@ export function CoachMarks() {
     } catch {
       return;
     }
-    // Only auto-show for first-run (no lessons completed)
     if (completedCount > 0) return;
-    setOpen(true);
+    // Delay so we don't block the first paint / CTA
+    const t = window.setTimeout(() => setOpen(true), 1200);
+    return () => clearTimeout(t);
   }, [ready, completedCount]);
 
   useEffect(() => {
@@ -146,7 +135,7 @@ export function CoachMarks() {
         <p>{s.body}</p>
         <div className="coach-actions">
           <button type="button" className="btn btn-ghost btn-sm" onClick={finish}>
-            Skip tour
+            Skip
           </button>
           <div className="coach-nav">
             {step > 0 && (

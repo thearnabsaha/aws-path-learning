@@ -123,10 +123,64 @@ export function makeReviewId(lessonId: string, question: string): string {
   return `${lessonId}:${hashString(question).toString(16)}`;
 }
 
-/** SM-2-ish simple interval: wrong → 1d, again → *2 up to 14d */
+const DAY = 24 * 60 * 60 * 1000;
+
+/**
+ * Expanding review schedule (SM-2 inspired, simplified):
+ * - First fail → due in 1 day
+ * - After success → interval grows (1 → 3 → 7 → 14 …) capped at 60d
+ * - Fail resets interval to 1 day
+ */
 export function nextDue(timesWrong: number, now = Date.now()): number {
   const days = Math.min(14, Math.max(1, timesWrong));
-  return now + days * 24 * 60 * 60 * 1000;
+  return now + days * DAY;
+}
+
+export function scheduleAfterFail(
+  prev: ReviewItem | undefined,
+  now = Date.now()
+): Pick<ReviewItem, "timesWrong" | "timesCorrect" | "ease" | "intervalDays" | "dueAt" | "wrongAt"> {
+  const timesWrong = (prev?.timesWrong || 0) + 1;
+  const ease = Math.max(1.3, (prev?.ease ?? 2.5) - 0.2);
+  return {
+    timesWrong,
+    timesCorrect: 0,
+    ease,
+    intervalDays: 1,
+    wrongAt: now,
+    dueAt: now + 1 * DAY,
+  };
+}
+
+export function scheduleAfterSuccess(
+  prev: ReviewItem,
+  now = Date.now()
+): ReviewItem | null {
+  const timesCorrect = (prev.timesCorrect || 0) + 1;
+  const ease = Math.min(3.0, (prev.ease ?? 2.5) + 0.1);
+  let intervalDays: number;
+  if (timesCorrect === 1) intervalDays = 1;
+  else if (timesCorrect === 2) intervalDays = 3;
+  else if (timesCorrect === 3) intervalDays = 7;
+  else
+    intervalDays = Math.min(
+      60,
+      Math.round((prev.intervalDays || 7) * ease)
+    );
+
+  // Mastered after a long interval success streak
+  if (timesCorrect >= 5 && intervalDays >= 30) {
+    return null; // drop from queue
+  }
+
+  return {
+    ...prev,
+    timesCorrect,
+    timesWrong: prev.timesWrong,
+    ease,
+    intervalDays,
+    dueAt: now + intervalDays * DAY,
+  };
 }
 
 export function upsertMisses(
@@ -139,16 +193,20 @@ export function upsertMisses(
   const byId = new Map(queue.map((r) => [r.id, { ...r }]));
 
   questions.forEach((q, i) => {
+    const id = makeReviewId(lessonId, q.q);
+    if (selected[i] === undefined) return;
+
     if (selected[i] === q.answer) {
-      // correct — drop from queue if present
-      const id = makeReviewId(lessonId, q.q);
-      byId.delete(id);
+      const prev = byId.get(id);
+      if (!prev) return; // never failed — stay out of queue
+      const next = scheduleAfterSuccess(prev, now);
+      if (!next) byId.delete(id);
+      else byId.set(id, next);
       return;
     }
-    if (selected[i] === undefined) return;
-    const id = makeReviewId(lessonId, q.q);
+
     const prev = byId.get(id);
-    const timesWrong = (prev?.timesWrong || 0) + 1;
+    const sched = scheduleAfterFail(prev, now);
     byId.set(id, {
       id,
       lessonId,
@@ -157,13 +215,23 @@ export function upsertMisses(
       answer: q.answer,
       explain: q.explain,
       topic: inferTopic(q),
-      timesWrong,
-      wrongAt: now,
-      dueAt: nextDue(timesWrong, now),
+      ...sched,
     });
   });
 
   return [...byId.values()].sort((a, b) => a.dueAt - b.dueAt);
+}
+
+/** Pass threshold for lesson mastery (soft/hard gate). */
+export const MASTERY_THRESHOLD = 0.7;
+
+export function isQuizMastered(
+  score: number,
+  total: number,
+  threshold = MASTERY_THRESHOLD
+): boolean {
+  if (!total) return false;
+  return score / total >= threshold;
 }
 
 export function dueReviews(queue: ReviewItem[], now = Date.now()): ReviewItem[] {

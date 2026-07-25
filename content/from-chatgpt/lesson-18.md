@@ -20,7 +20,7 @@ Understanding AWS pricing is a critical skill for Cloud Engineers, DevOps Engine
 
 # Learning Objectives
 
-After this lesson, you'll understand:
+After this lesson, you should understand:
 
 - AWS pricing philosophy
 - Pay-as-you-go

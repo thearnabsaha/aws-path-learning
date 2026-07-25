@@ -3687,3 +3687,132 @@ body.landing-shell {
     animation: none;
   }
 }
+
+/* Research roadmap — mastery / due / certificate / simplified home */
+.due-today {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.85rem 1rem;
+  margin: 0 0 1.25rem;
+  padding: 1rem 1.15rem;
+  border-radius: var(--radius);
+  border: 1px solid color-mix(in srgb, var(--accent) 28%, var(--border));
+  background: var(--accent-soft);
+}
+.due-today h2 {
+  margin: 0 0 0.25rem;
+  font-size: 1.05rem;
+}
+.due-today p {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  max-width: 36rem;
+}
+
+.certificate {
+  margin: 0 0 1.5rem;
+}
+.certificate-card {
+  padding: 1.35rem 1.4rem 1.2rem;
+  border-radius: 18px;
+  border: 1px solid color-mix(in srgb, var(--yellow) 40%, var(--border));
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--yellow) 12%, var(--bg-elevated)), var(--bg-elevated));
+  box-shadow: var(--shadow-md);
+  text-align: center;
+}
+.certificate-kicker {
+  margin: 0 0 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+.certificate-card h2 {
+  margin: 0 0 0.55rem;
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+}
+.certificate-body {
+  margin: 0 auto 0.65rem;
+  max-width: 36rem;
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+.certificate-meta {
+  margin: 0 0 0.85rem;
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  font-weight: 600;
+}
+.certificate-actions {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.arch-details {
+  margin: 0 0 1.5rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg-elevated);
+  overflow: hidden;
+}
+.arch-details > summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 0.9rem 1.1rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text);
+  user-select: none;
+}
+.arch-details > summary::-webkit-details-marker {
+  display: none;
+}
+.arch-details > summary::after {
+  content: "+";
+  float: right;
+  color: var(--text-dim);
+  font-weight: 700;
+}
+.arch-details[open] > summary::after {
+  content: "−";
+}
+.arch-details[open] > summary {
+  border-bottom: 1px solid var(--border);
+}
+.arch-details .arch-map {
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.complete-row .complete-status {
+  max-width: 36rem;
+  line-height: 1.45;
+}
+
+@media (max-width: 640px) {
+  .landing-hero.landing-hero-static {
+    min-height: auto;
+  }
+  .landing-hero-static .landing-hero-inner {
+    min-height: auto;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+  }
+  .lesson-with-sticky-nav {
+    padding-bottom: calc(5.25rem + var(--safe-b));
+  }
+  .due-today {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

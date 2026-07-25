@@ -14,7 +14,7 @@ After this lesson, you'll be able to answer that confidently.
 
 # Learning Objectives
 
-After this lesson, you'll understand:
+After this lesson, you should understand:
 
 - AWS Shared Responsibility Model
 - Defence in Depth

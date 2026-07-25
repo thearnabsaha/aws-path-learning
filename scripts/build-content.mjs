@@ -145,8 +145,23 @@ function mdToHtml(md) {
       closeLists();
       flushTable();
       const level = hm[1].length;
-      const tag = level <= 2 ? 2 : level === 3 ? 3 : 4;
       const headingText = hm[2];
+      // Map markdown levels → HTML. Prefer fewer h2 "chapter" splits for accordion UX.
+      // # Chapter / Learning Objectives / Hands-on / Interview → h2
+      // other single-# section titles → h3 (stay inside a chapter panel)
+      // ## → h3, ###+ → h4
+      let tag;
+      if (level === 1) {
+        const major =
+          /^(lesson\s+\d+|chapter\s+\d+|learning objectives|what you will learn|hands-?on|lab\b|interview|your learning plan|key takeaways?|summary|recap|next steps?|official|architecture so far)/i.test(
+            headingText.trim()
+          );
+        tag = major ? 2 : 3;
+      } else if (level === 2) {
+        tag = 3;
+      } else {
+        tag = 4;
+      }
       out.push(`<h${tag}>${mdInline(headingText)}</h${tag}>`);
       // Hands-on labs: inject cost-safety callout + workshop links
       if (/hands-?on\s+lab|lab\s*:/i.test(headingText)) {

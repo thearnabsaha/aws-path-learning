@@ -43,160 +43,112 @@
     },
     {
       "id": "part-4",
-      "title": "What is Latency?"
-    },
-    {
-      "id": "part-5",
-      "title": "Problem"
-    },
-    {
-      "id": "part-6",
       "title": "Chapter 2 — What is a CDN?"
     },
     {
-      "id": "part-7",
-      "title": "Real-World Analogy"
-    },
-    {
-      "id": "part-8",
+      "id": "part-5",
       "title": "Chapter 3 — What is CloudFront?"
     },
     {
-      "id": "part-9",
+      "id": "part-6",
       "title": "Chapter 4 — Edge Locations"
     },
     {
-      "id": "part-10",
+      "id": "part-7",
       "title": "Chapter 5 — Origin"
     },
     {
-      "id": "part-11",
+      "id": "part-8",
       "title": "Chapter 6 — CloudFront Distribution"
     },
     {
-      "id": "part-12",
+      "id": "part-9",
       "title": "Chapter 7 — First Request"
     },
     {
-      "id": "part-13",
+      "id": "part-10",
       "title": "Chapter 8 — Cache Hit"
     },
     {
-      "id": "part-14",
+      "id": "part-11",
       "title": "Chapter 9 — Cache Miss"
     },
     {
-      "id": "part-15",
-      "title": "Cache Hit Ratio"
-    },
-    {
-      "id": "part-16",
+      "id": "part-12",
       "title": "Chapter 10 — Time To Live (TTL)"
     },
     {
-      "id": "part-17",
+      "id": "part-13",
       "title": "Chapter 11 — Cache Invalidation"
     },
     {
-      "id": "part-18",
-      "title": "Better Than Invalidation"
-    },
-    {
-      "id": "part-19",
+      "id": "part-14",
       "title": "Chapter 12 — Compression"
     },
     {
-      "id": "part-20",
+      "id": "part-15",
       "title": "Chapter 13 — HTTPS"
     },
     {
-      "id": "part-21",
+      "id": "part-16",
       "title": "Chapter 14 — Origin Access Control (OAC)"
     },
     {
-      "id": "part-22",
-      "title": "The Problem"
-    },
-    {
-      "id": "part-23",
-      "title": "Solution"
-    },
-    {
-      "id": "part-24",
-      "title": "How OAC Works"
-    },
-    {
-      "id": "part-25",
-      "title": "Benefits of OAC"
-    },
-    {
-      "id": "part-26",
+      "id": "part-17",
       "title": "Chapter 15 — Signed URLs"
     },
     {
-      "id": "part-27",
-      "title": "Example"
-    },
-    {
-      "id": "part-28",
+      "id": "part-18",
       "title": "Chapter 16 — Signed Cookies"
     },
     {
-      "id": "part-29",
-      "title": "Signed URL vs Signed Cookie"
-    },
-    {
-      "id": "part-30",
+      "id": "part-19",
       "title": "Chapter 17 — Geo Restriction"
     },
     {
-      "id": "part-31",
+      "id": "part-20",
       "title": "Chapter 18 — Price Classes"
     },
     {
-      "id": "part-32",
+      "id": "part-21",
       "title": "Chapter 19 — Dynamic Content"
     },
     {
-      "id": "part-33",
+      "id": "part-22",
       "title": "Chapter 20 — CloudFront + S3 Static Website"
     },
     {
-      "id": "part-34",
+      "id": "part-23",
       "title": "Chapter 21 — Production Architecture"
     },
     {
-      "id": "part-35",
+      "id": "part-24",
       "title": "Chapter 22 — Best Practices"
     },
     {
-      "id": "part-36",
+      "id": "part-25",
       "title": "Chapter 23 — Common Mistakes"
     },
     {
-      "id": "part-37",
+      "id": "part-26",
       "title": "Chapter 24 — Interview Questions"
     },
     {
-      "id": "part-38",
+      "id": "part-27",
       "title": "Hands-on Lab"
-    },
-    {
-      "id": "part-39",
-      "title": "Final Mental Model"
     }
   ],
-  "content": "<h2>Lesson 16 — Amazon CloudFront &amp; Origin Access Control (OAC) (Complete Deep Dive)</h2>\n<blockquote class=\"callout tip\"><p><strong>Goal:</strong> By the end of this lesson, you'll understand how the internet delivers content quickly around the world, what a CDN is, how CloudFront works internally, caching, cache invalidation, TTLs, signed URLs, signed cookies, Origin Access Control (OAC), and why almost every production website uses CloudFront.</p></blockquote>\n<p>If you open Netflix, Amazon, YouTube, Instagram, or almost any modern website, you're almost certainly using a CDN.</p>\n<p>On AWS, that CDN is <strong>Amazon CloudFront</strong>.</p>\n<hr class=\"divider\" />\n<h2>Learning Objectives</h2>\n<p>After this lesson, you'll understand:</p>\n<ul>\n<li>Why CDNs exist</li>\n<li>What latency is</li>\n<li>Edge Locations</li>\n<li>CloudFront Distributions</li>\n<li>Origins</li>\n<li>Cache</li>\n<li>Cache Hit vs Cache Miss</li>\n<li>TTL</li>\n<li>Cache Invalidation</li>\n<li>OAC (Origin Access Control)</li>\n<li>Signed URLs</li>\n<li>Signed Cookies</li>\n<li>Compression</li>\n<li>HTTPS</li>\n<li>Geo Restrictions</li>\n<li>Price Classes</li>\n<li>Real production architectures</li>\n</ul>\n<hr class=\"divider\" />\n<h2>Chapter 1 — The Internet Isn't Magic</h2>\n<p>Suppose your website is hosted in Mumbai.</p>\n<p>A user in Kolkata requests:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>logo.png</code></pre></div>\n<p>Simple.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Kolkata\n\n↓\n\nMumbai Server\n\n↓\n\nImage</code></pre></div>\n<p>Now imagine a user from Germany.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Germany\n\n↓\n\nMumbai\n\n↓\n\nGermany</code></pre></div>\n<p>Distance increased.</p>\n<p>Response becomes slower.</p>\n<hr class=\"divider\" />\n<h2>What is Latency?</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Latency is:</p>\n<p><strong>The time it takes for data to travel.</strong></p>\n<p>Example:</p>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>User</th><th>Server</th><th>Latency</th></tr></thead><tbody>\n<tr><td>Mumbai</td><td>Mumbai</td><td>10 ms</td></tr>\n<tr><td>Delhi</td><td>Mumbai</td><td>25 ms</td></tr>\n<tr><td>Germany</td><td>Mumbai</td><td>180 ms</td></tr>\n<tr><td>USA</td><td>Mumbai</td><td>250 ms</td></tr>\n</tbody></table></div>\n<p>The farther away the user is, the longer requests usually take.</p>\n<hr class=\"divider\" />\n</div><h2>Problem</h2>\n<p>Imagine your application has:</p>\n<ul>\n<li>HTML</li>\n<li>CSS</li>\n<li>JavaScript</li>\n<li>Images</li>\n<li>Videos</li>\n</ul>\n<p>Every request travels thousands of kilometres.</p>\n<p>Users wait.</p>\n<hr class=\"divider\" />\n<h2>Chapter 2 — What is a CDN?</h2>\n<p>CDN stands for:</p>\n<p><strong>Content Delivery Network</strong></p>\n<p>Instead of one server:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Mumbai Server</code></pre></div>\n<p>We create copies worldwide.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>India\n\nGermany\n\nJapan\n\nUSA\n\nAustralia</code></pre></div>\n<p>Users download from the nearest location.</p>\n<hr class=\"divider\" />\n<h2>Real-World Analogy</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Suppose Amazon had one warehouse.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>India\n\n↓\n\nWarehouse\n\n↓\n\nUSA Customer</code></pre></div>\n<p>Very slow.</p>\n<p>Instead:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>USA Warehouse\n\nGermany Warehouse\n\nIndia Warehouse</code></pre></div>\n<p>Same idea.</p>\n<p>CloudFront creates \"warehouses\" for your files.</p>\n<hr class=\"divider\" />\n</div><h2>Chapter 3 — What is CloudFront?</h2>\n<p>CloudFront is AWS's CDN.</p>\n<p>It caches content closer to users.</p>\n<p>Instead of:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>User\n\n↓\n\nMumbai S3\n\n↓\n\nResponse</code></pre></div>\n<p>It becomes:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>User\n\n↓\n\nNearest Edge Location\n\n↓\n\nResponse</code></pre></div>\n<p>Much faster.</p>\n<hr class=\"divider\" />\n<h2>Chapter 4 — Edge Locations</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>One of the most important CloudFront concepts.</p>\n<p>AWS has hundreds of <strong>Edge Locations</strong> around the world.</p>\n<p>Imagine:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>London\n\nParis\n\nTokyo\n\nMumbai\n\nSingapore\n\nSydney\n\nNew York</code></pre></div>\n<p>Each stores cached content.</p>\n<hr class=\"divider\" />\n<p>Suppose your S3 bucket is in Mumbai.</p>\n<p>A German user requests:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>index.html</code></pre></div>\n<p>First request:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Germany\n\n↓\n\nMumbai S3\n\n↓\n\nGermany</code></pre></div>\n<p>CloudFront stores a copy.</p>\n<p>Second request:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Germany\n\n↓\n\nFrankfurt Edge\n\n↓\n\nResponse</code></pre></div>\n<p>No trip to Mumbai.</p>\n<p>Huge improvement.</p>\n<hr class=\"divider\" />\n</div><h2>Chapter 5 — Origin</h2>\n<p>CloudFront doesn't create content.</p>\n<p>It fetches content from an <strong>Origin</strong>.</p>\n<p>Common origins:</p>\n<ul>\n<li>Amazon S3</li>\n<li>Application Load Balancer</li>\n<li>EC2</li>\n<li>API Gateway</li>\n<li>Custom HTTP servers</li>\n</ul>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>CloudFront\n\n↓\n\nOrigin\n\n↓\n\nS3 Bucket</code></pre></div>\n<hr class=\"divider\" />\n<h2>Chapter 6 — CloudFront Distribution</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Everything starts with a Distribution.</p>\n<p>A Distribution defines:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Origin</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Cache Behaviour</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">SSL</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">Domain Name</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-5\"><span class=\"lab-step-text\">Security</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-6\"><span class=\"lab-step-text\">Caching Rules</span></li>\n</ul>\n<p>Think of it as:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>CloudFront Configuration</code></pre></div>\n<hr class=\"divider\" />\n</div><h2>Chapter 7 — First Request</h2>\n<p>Suppose nobody has requested:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>cat.jpg</code></pre></div>\n<p>Flow:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>User\n\n↓\n\nCloudFront\n\n↓\n\nCache?\n\n↓\n\nNo\n\n↓\n\nOrigin\n\n↓\n\nImage\n\n↓\n\nStore in Cache\n\n↓\n\nReturn to User</code></pre></div>\n<hr class=\"divider\" />\n<h2>Chapter 8 — Cache Hit</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Next customer asks:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>cat.jpg</code></pre></div>\n<p>Now:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>User\n\n↓\n\nCloudFront\n\n↓\n\nCache Found\n\n↓\n\nImmediate Response</code></pre></div>\n<p>This is called:</p>\n<p><strong>Cache Hit</strong></p>\n<hr class=\"divider\" />\n</div><h2>Chapter 9 — Cache Miss</h2>\n<p>If CloudFront doesn't have it:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Cache Miss\n\n↓\n\nOrigin\n\n↓\n\nDownload\n\n↓\n\nStore\n\n↓\n\nReturn</code></pre></div>\n<p>Every file starts as a cache miss.</p>\n<hr class=\"divider\" />\n<h2>Cache Hit Ratio</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>One of the most important CloudFront metrics.</p>\n<p>Example:</p>\n<p>1000 requests</p>\n<p>980 served from cache</p>\n<p>20 from origin</p>\n<p>Cache Hit Ratio:</p>\n<p>98%</p>\n<p>Excellent.</p>\n<p>Higher cache hit ratio means:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Faster users</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Lower origin load</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">Lower costs</span></li>\n</ul>\n<hr class=\"divider\" />\n</div><h2>Chapter 10 — Time To Live (TTL)</h2>\n<p>Should CloudFront cache forever?</p>\n<p>No.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>logo.png\n\n↓\n\nCache\n\n↓\n\n24 Hours</code></pre></div>\n<p>After TTL expires:</p>\n<p>CloudFront checks the origin again.</p>\n<hr class=\"divider\" />\n<p>Different files need different TTLs.</p>\n<p>Example:</p>\n<p>Logo</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>1 Month</code></pre></div>\n<p>API Responses</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>5 Seconds</code></pre></div>\n<p>HTML</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>1 Minute</code></pre></div>\n<p>Product Images</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>1 Week</code></pre></div>\n<p>Choosing good TTLs is a balance between freshness and performance.</p>\n<hr class=\"divider\" />\n<h2>Chapter 11 — Cache Invalidation</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Suppose:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>logo.png</code></pre></div>\n<p>changes today.</p>\n<p>But CloudFront still has the old version.</p>\n<p>What now?</p>\n<p>You invalidate it.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Invalidate\n\n↓\n\nRemove Cached Copy\n\n↓\n\nFetch New File</code></pre></div>\n<hr class=\"divider\" />\n<p>Common command:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>/images/*</code></pre></div>\n<p>CloudFront removes those cached objects.</p>\n<p>Next request fetches fresh content.</p>\n<hr class=\"divider\" />\n</div><h2>Better Than Invalidation</h2>\n<p>Many companies don't invalidate often.</p>\n<p>Instead:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>logo_v2.png</code></pre></div>\n<p>or</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>main.8f72ab.js</code></pre></div>\n<p>This is called:</p>\n<p><strong>Versioned Assets</strong></p>\n<p>Much cheaper and more scalable.</p>\n<hr class=\"divider\" />\n<h2>Chapter 12 — Compression</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>CloudFront supports compression.</p>\n<p>Instead of sending:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>500 KB CSS</code></pre></div>\n<p>It may send:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>80 KB</code></pre></div>\n<p>using:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Gzip</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Brotli</span></li>\n</ul>\n<p>Benefits:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">Faster downloads</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">Less bandwidth</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-5\"><span class=\"lab-step-text\">Lower costs</span></li>\n</ul>\n<hr class=\"divider\" />\n</div><h2>Chapter 13 — HTTPS</h2>\n<p>CloudFront supports HTTPS.</p>\n<p>Flow:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Browser\n\n↓\n\nHTTPS\n\n↓\n\nCloudFront\n\n↓\n\nOrigin</code></pre></div>\n<p>SSL certificates usually come from:</p>\n<p>AWS Certificate Manager (ACM)</p>\n<hr class=\"divider\" />\n<h2>Chapter 14 — Origin Access Control (OAC)</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>This is one of the most important modern interview topics.</p>\n<p>Years ago AWS used:</p>\n<p>Origin Access Identity (OAI)</p>\n<p>Today:</p>\n<p>AWS recommends:</p>\n<p><strong>Origin Access Control (OAC)</strong></p>\n<hr class=\"divider\" />\n</div><h2>The Problem</h2>\n<p>Suppose your bucket is public.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Internet\n\n↓\n\nS3 Bucket</code></pre></div>\n<p>Anyone can bypass CloudFront.</p>\n<p>They can directly download:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>https://bucket.s3.amazonaws.com/file.jpg</code></pre></div>\n<p>This defeats the purpose of using CloudFront for controlled access.</p>\n<hr class=\"divider\" />\n<h2>Solution</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Make the bucket private.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Internet\n\n↓\n\nCloudFront\n\n↓\n\nPrivate S3</code></pre></div>\n<p>Only CloudFront may access S3.</p>\n<p>Users cannot.</p>\n<hr class=\"divider\" />\n</div><h2>How OAC Works</h2>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>User\n\n↓\n\nCloudFront\n\n↓\n\nSigned Request\n\n↓\n\nPrivate S3 Bucket</code></pre></div>\n<p>S3 verifies:</p>\n<p>\"Did CloudFront send this?\"</p>\n<p>If yes:</p>\n<p>Serve object.</p>\n<p>Otherwise:</p>\n<p>Access Denied.</p>\n<hr class=\"divider\" />\n<h2>Benefits of OAC</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Private buckets</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Stronger security</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">Better integration with AWS security features</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">Recommended replacement for OAI</span></li>\n</ul>\n<hr class=\"divider\" />\n</div><h2>Chapter 15 — Signed URLs</h2>\n<p>Suppose you're selling an online course.</p>\n<p>Videos shouldn't be public.</p>\n<p>Instead:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>User\n\n↓\n\nSigned URL\n\n↓\n\nCloudFront\n\n↓\n\nVideo</code></pre></div>\n<p>Signed URLs include:</p>\n<ul>\n<li>Expiration</li>\n<li>Signature</li>\n<li>Access conditions</li>\n</ul>\n<p>After expiry:</p>\n<p>Access denied.</p>\n<hr class=\"divider\" />\n<h2>Example</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Instead of:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>video.mp4</code></pre></div>\n<p>You get:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>video.mp4?Expires=...\n\n&amp;Signature=...\n\n&amp;Key-Pair-Id=...</code></pre></div>\n<p>The URL itself proves temporary permission.</p>\n<hr class=\"divider\" />\n</div><h2>Chapter 16 — Signed Cookies</h2>\n<p>Signed URLs work well for one file.</p>\n<p>But what if a user watches:</p>\n<ul>\n<li>Lesson 1</li>\n<li>Lesson 2</li>\n<li>Lesson 3</li>\n<li>Lesson 4</li>\n<li>Lesson 5</li>\n</ul>\n<p>Creating five signed URLs is inconvenient.</p>\n<p>Instead:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Login\n\n↓\n\nReceive Signed Cookie\n\n↓\n\nAccess All Videos</code></pre></div>\n<p>One cookie authorises access to multiple protected objects.</p>\n<hr class=\"divider\" />\n<h2>Signed URL vs Signed Cookie</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Signed URL</th><th>Signed Cookie</th></tr></thead><tbody>\n<tr><td>One object</td><td>Many objects</td></tr>\n<tr><td>Simpler</td><td>Better for websites with many protected assets</td></tr>\n</tbody></table></div>\n<hr class=\"divider\" />\n</div><h2>Chapter 17 — Geo Restriction</h2>\n<p>Suppose your licence allows streaming only in India.</p>\n<p>CloudFront checks:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Request\n\n↓\n\nCountry\n\n↓\n\nAllowed?</code></pre></div>\n<p>If not:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>403 Forbidden</code></pre></div>\n<p>This is called:</p>\n<p><strong>Geo Restriction (Geo Blocking)</strong></p>\n<hr class=\"divider\" />\n<h2>Chapter 18 — Price Classes</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>CloudFront has Edge Locations worldwide.</p>\n<p>More locations:</p>\n<p>Higher cost.</p>\n<p>You can choose a price class to limit which edge locations serve your content, trading off global reach and cost.</p>\n<hr class=\"divider\" />\n</div><h2>Chapter 19 — Dynamic Content</h2>\n<p>Many people think CloudFront only caches images.</p>\n<p>Wrong.</p>\n<p>CloudFront can also accelerate:</p>\n<ul>\n<li>APIs</li>\n<li>Dynamic websites</li>\n<li>Web applications</li>\n</ul>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>User\n\n↓\n\nCloudFront\n\n↓\n\nApplication Load Balancer\n\n↓\n\nEC2</code></pre></div>\n<p>CloudFront can forward requests while still providing HTTPS termination and other optimisations.</p>\n<hr class=\"divider\" />\n<h2>Chapter 20 — CloudFront + S3 Static Website</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Very common interview architecture.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Browser\n\n↓\n\nCloudFront\n\n↓\n\nPrivate S3 Bucket</code></pre></div>\n<p>Benefits:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">HTTPS</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Global caching</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">Lower latency</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">Better security</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-5\"><span class=\"lab-step-text\">DDoS protection integration</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-6\"><span class=\"lab-step-text\">Custom domains</span></li>\n</ul>\n<hr class=\"divider\" />\n</div><h2>Chapter 21 — Production Architecture</h2>\n<p>Imagine an e-commerce website.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>User\n        │\n        ▼\n   CloudFront\n        │\n ┌──────┴────────┐\n ▼               ▼\nPrivate S3      ALB\n(Images/CSS)     │\n                 ▼\n              ECS Service\n                 │\n                 ▼\n                RDS</code></pre></div>\n<p>Static content comes from S3.</p>\n<p>Dynamic requests go to ECS through the ALB.</p>\n<p>Users only interact with CloudFront.</p>\n<hr class=\"divider\" />\n<h2>Chapter 22 — Best Practices</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Keep S3 buckets private when using CloudFront.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Use OAC instead of OAI for new deployments.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">Cache static assets aggressively.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">Use shorter TTLs for frequently changing content.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-5\"><span class=\"lab-step-text\">Use versioned assets instead of frequent invalidations.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-6\"><span class=\"lab-step-text\">Enable compression.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-7\"><span class=\"lab-step-text\">Use HTTPS everywhere.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-8\"><span class=\"lab-step-text\">Monitor cache hit ratio.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-9\"><span class=\"lab-step-text\">Use signed URLs or signed cookies for premium content.</span></li>\n</ul>\n<hr class=\"divider\" />\n</div><h2>Chapter 23 — Common Mistakes</h2>\n<p>❌ Making S3 buckets public.</p>\n<p>❌ Invalidating the entire cache after every deployment.</p>\n<p>❌ Using very short TTLs for static assets.</p>\n<p>❌ Storing secrets in CloudFront headers.</p>\n<p>❌ Forgetting HTTPS.</p>\n<p>❌ Assuming CloudFront only works with S3.</p>\n<hr class=\"divider\" />\n<h2>Chapter 24 — Interview Questions</h2>\n<h3>Q1. What is CloudFront?</h3>\n<p>AWS's global Content Delivery Network (CDN) that caches content at edge locations closer to users.</p>\n<hr class=\"divider\" />\n<h3>Q2. What is an Edge Location?</h3>\n<p>A geographically distributed AWS location that caches content and serves users with lower latency.</p>\n<hr class=\"divider\" />\n<h3>Q3. What is an Origin?</h3>\n<p>The source from which CloudFront fetches content, such as S3, an Application Load Balancer, EC2, or another HTTP server.</p>\n<hr class=\"divider\" />\n<h3>Q4. What is the difference between a Cache Hit and a Cache Miss?</h3>\n<p>A cache hit is served directly from the edge cache. A cache miss requires CloudFront to retrieve content from the origin before caching it.</p>\n<hr class=\"divider\" />\n<h3>Q5. What is TTL?</h3>\n<p>The duration cached content remains valid before CloudFront checks the origin again.</p>\n<hr class=\"divider\" />\n<h3>Q6. Why is OAC better than a public S3 bucket?</h3>\n<p>OAC allows only CloudFront to access a private S3 bucket, preventing users from bypassing CloudFront and directly accessing the bucket.</p>\n<hr class=\"divider\" />\n<h3>Q7. What is the difference between Signed URLs and Signed Cookies?</h3>\n<p>Signed URLs grant temporary access to individual objects. Signed Cookies grant access to multiple protected objects.</p>\n<hr class=\"divider\" />\n<h3>Q8. Can CloudFront work with APIs?</h3>\n<p>Yes. CloudFront can front APIs and dynamic applications, not just static content.</p>\n<hr class=\"divider\" />\n<h3>Q9. Why is versioning preferred over cache invalidation?</h3>\n<p>Versioning avoids expensive or large-scale invalidations and ensures users receive the latest assets by requesting new filenames.</p>\n<hr class=\"divider\" />\n<h3>Q10. Does CloudFront store the original file?</h3>\n<p>No. The origin (such as S3 or an ALB-backed application) remains the source of truth. CloudFront stores cached copies according to its cache rules.</p>\n<hr class=\"divider\" />\n<h2>Hands-on Lab</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<aside class=\"cost-safety callout warn\" role=\"note\"><p class=\"callout-title\">Cost safety</p><ul><li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Prefer <strong>Free Tier</strong> / small instance sizes while learning.</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Create a <strong>billing alarm</strong> (CloudWatch or Budgets) on day one.</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\"><strong>Tear down</strong> lab resources when finished (instances, load balancers, NAT gateways).</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">Never put long-lived access keys in code or public repos.</span></li></ul><p class=\"workshop-links\"><strong>Official practice:</strong> <a href=\"https://explore.skillbuilder.aws/\" rel=\"noopener noreferrer\" target=\"_blank\">AWS Skill Builder</a> · <a href=\"https://wellarchitectedlabs.com/\" rel=\"noopener noreferrer\" target=\"_blank\">Well-Architected Labs</a> · <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/free-tier.html\" rel=\"noopener noreferrer\" target=\"_blank\">Free Tier docs</a></p></aside>\n<ol>\n<li class=\"lab-step\" data-lab-id=\"lab-step-5\"><span class=\"lab-step-text\">Create an S3 bucket.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-6\"><span class=\"lab-step-text\">Enable <strong>Block Public Access</strong>.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-7\"><span class=\"lab-step-text\">Upload a simple static website (<code>index.html</code>, CSS, images).</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-8\"><span class=\"lab-step-text\">Create a CloudFront distribution with the S3 bucket as the origin.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-9\"><span class=\"lab-step-text\">Configure <strong>Origin Access Control (OAC)</strong> and update the bucket policy so only CloudFront can access the bucket.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-10\"><span class=\"lab-step-text\">Open the CloudFront domain name and verify the website loads.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-11\"><span class=\"lab-step-text\">Try accessing the S3 object URL directly—you should receive an access denied response.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-12\"><span class=\"lab-step-text\">Update an image, invalidate that path (or deploy a versioned filename), and observe the change through CloudFront.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-13\"><span class=\"lab-step-text\">Enable compression and inspect the response headers in your browser's developer tools.</span></li>\n</ol>\n<hr class=\"divider\" />\n</div><h2>Final Mental Model</h2>\n<p>If you remember only one diagram from this lesson, remember this:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>                    User\n                      │\n                      ▼\n                 CloudFront\n          (Nearest Edge Location)\n              │             │\n      Cache Hit?         Cache Miss\n         │                   │\n         ▼                   ▼\n   Return Cached       Fetch from Origin\n      Content                │\n                              ▼\n                    Private S3 (OAC)\n                       or ALB / API\n                              │\n                              ▼\n                    Store Copy in Cache\n                              │\n                              ▼\n                           User</code></pre></div>\n<p>The key ideas are:</p>\n<ul>\n<li><strong>CloudFront is AWS's CDN.</strong></li>\n<li><strong>Edge Locations cache content close to users.</strong></li>\n<li><strong>Origins hold the original content.</strong></li>\n<li><strong>OAC keeps S3 buckets private while allowing CloudFront access.</strong></li>\n<li><strong>Caching, TTLs, versioned assets, and secure access are what make CloudFront fast, scalable, and secure in production.</strong></li>\n</ul>\n<aside class=\"accuracy-note\" role=\"note\"><p><strong>Content review:</strong> 2026-07. Curriculum text is adapted from a shared learning roadmap; verify critical details in official AWS docs before production use.</p><p class=\"accuracy-note-label\">References</p><ul><li><a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html\" rel=\"noopener noreferrer\" target=\"_blank\">docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/I…</a></li><li><a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html\" rel=\"noopener noreferrer\" target=\"_blank\">docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/p…</a></li></ul></aside>",
+  "content": "<h2>Lesson 16 — Amazon CloudFront &amp; Origin Access Control (OAC) (Complete Deep Dive)</h2>\n<blockquote class=\"callout tip\"><p><strong>Goal:</strong> By the end of this lesson, you'll understand how the internet delivers content quickly around the world, what a CDN is, how CloudFront works internally, caching, cache invalidation, TTLs, signed URLs, signed cookies, Origin Access Control (OAC), and why almost every production website uses CloudFront.</p></blockquote>\n<p>If you open Netflix, Amazon, YouTube, Instagram, or almost any modern website, you're almost certainly using a CDN.</p>\n<p>On AWS, that CDN is <strong>Amazon CloudFront</strong>.</p>\n<hr class=\"divider\" />\n<h2>Learning Objectives</h2>\n<p>After this lesson, you should understand:</p>\n<ul>\n<li>Why CDNs exist</li>\n<li>What latency is</li>\n<li>Edge Locations</li>\n<li>CloudFront Distributions</li>\n<li>Origins</li>\n<li>Cache</li>\n<li>Cache Hit vs Cache Miss</li>\n<li>TTL</li>\n<li>Cache Invalidation</li>\n<li>OAC (Origin Access Control)</li>\n<li>Signed URLs</li>\n<li>Signed Cookies</li>\n<li>Compression</li>\n<li>HTTPS</li>\n<li>Geo Restrictions</li>\n<li>Price Classes</li>\n<li>Real production architectures</li>\n</ul>\n<hr class=\"divider\" />\n<h2>Chapter 1 — The Internet Isn't Magic</h2>\n<p>Suppose your website is hosted in Mumbai.</p>\n<p>A user in Kolkata requests:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>logo.png</code></pre></div>\n<p>Simple.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Kolkata\n\n↓\n\nMumbai Server\n\n↓\n\nImage</code></pre></div>\n<p>Now imagine a user from Germany.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Germany\n\n↓\n\nMumbai\n\n↓\n\nGermany</code></pre></div>\n<p>Distance increased.</p>\n<p>Response becomes slower.</p>\n<hr class=\"divider\" />\n<h3>What is Latency?</h3>\n<p>Latency is:</p>\n<p><strong>The time it takes for data to travel.</strong></p>\n<p>Example:</p>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>User</th><th>Server</th><th>Latency</th></tr></thead><tbody>\n<tr><td>Mumbai</td><td>Mumbai</td><td>10 ms</td></tr>\n<tr><td>Delhi</td><td>Mumbai</td><td>25 ms</td></tr>\n<tr><td>Germany</td><td>Mumbai</td><td>180 ms</td></tr>\n<tr><td>USA</td><td>Mumbai</td><td>250 ms</td></tr>\n</tbody></table></div>\n<p>The farther away the user is, the longer requests usually take.</p>\n<hr class=\"divider\" />\n<h3>Problem</h3>\n<p>Imagine your application has:</p>\n<ul>\n<li>HTML</li>\n<li>CSS</li>\n<li>JavaScript</li>\n<li>Images</li>\n<li>Videos</li>\n</ul>\n<p>Every request travels thousands of kilometres.</p>\n<p>Users wait.</p>\n<hr class=\"divider\" />\n<h2>Chapter 2 — What is a CDN?</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>CDN stands for:</p>\n<p><strong>Content Delivery Network</strong></p>\n<p>Instead of one server:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Mumbai Server</code></pre></div>\n<p>We create copies worldwide.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>India\n\nGermany\n\nJapan\n\nUSA\n\nAustralia</code></pre></div>\n<p>Users download from the nearest location.</p>\n<hr class=\"divider\" />\n<h3>Real-World Analogy</h3>\n<p>Suppose Amazon had one warehouse.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>India\n\n↓\n\nWarehouse\n\n↓\n\nUSA Customer</code></pre></div>\n<p>Very slow.</p>\n<p>Instead:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>USA Warehouse\n\nGermany Warehouse\n\nIndia Warehouse</code></pre></div>\n<p>Same idea.</p>\n<p>CloudFront creates \"warehouses\" for your files.</p>\n<hr class=\"divider\" />\n</div><h2>Chapter 3 — What is CloudFront?</h2>\n<p>CloudFront is AWS's CDN.</p>\n<p>It caches content closer to users.</p>\n<p>Instead of:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>User\n\n↓\n\nMumbai S3\n\n↓\n\nResponse</code></pre></div>\n<p>It becomes:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>User\n\n↓\n\nNearest Edge Location\n\n↓\n\nResponse</code></pre></div>\n<p>Much faster.</p>\n<hr class=\"divider\" />\n<h2>Chapter 4 — Edge Locations</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>One of the most important CloudFront concepts.</p>\n<p>AWS has hundreds of <strong>Edge Locations</strong> around the world.</p>\n<p>Imagine:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>London\n\nParis\n\nTokyo\n\nMumbai\n\nSingapore\n\nSydney\n\nNew York</code></pre></div>\n<p>Each stores cached content.</p>\n<hr class=\"divider\" />\n<p>Suppose your S3 bucket is in Mumbai.</p>\n<p>A German user requests:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>index.html</code></pre></div>\n<p>First request:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Germany\n\n↓\n\nMumbai S3\n\n↓\n\nGermany</code></pre></div>\n<p>CloudFront stores a copy.</p>\n<p>Second request:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Germany\n\n↓\n\nFrankfurt Edge\n\n↓\n\nResponse</code></pre></div>\n<p>No trip to Mumbai.</p>\n<p>Huge improvement.</p>\n<hr class=\"divider\" />\n</div><h2>Chapter 5 — Origin</h2>\n<p>CloudFront doesn't create content.</p>\n<p>It fetches content from an <strong>Origin</strong>.</p>\n<p>Common origins:</p>\n<ul>\n<li>Amazon S3</li>\n<li>Application Load Balancer</li>\n<li>EC2</li>\n<li>API Gateway</li>\n<li>Custom HTTP servers</li>\n</ul>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>CloudFront\n\n↓\n\nOrigin\n\n↓\n\nS3 Bucket</code></pre></div>\n<hr class=\"divider\" />\n<h2>Chapter 6 — CloudFront Distribution</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Everything starts with a Distribution.</p>\n<p>A Distribution defines:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Origin</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Cache Behaviour</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">SSL</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">Domain Name</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-5\"><span class=\"lab-step-text\">Security</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-6\"><span class=\"lab-step-text\">Caching Rules</span></li>\n</ul>\n<p>Think of it as:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>CloudFront Configuration</code></pre></div>\n<hr class=\"divider\" />\n</div><h2>Chapter 7 — First Request</h2>\n<p>Suppose nobody has requested:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>cat.jpg</code></pre></div>\n<p>Flow:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>User\n\n↓\n\nCloudFront\n\n↓\n\nCache?\n\n↓\n\nNo\n\n↓\n\nOrigin\n\n↓\n\nImage\n\n↓\n\nStore in Cache\n\n↓\n\nReturn to User</code></pre></div>\n<hr class=\"divider\" />\n<h2>Chapter 8 — Cache Hit</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Next customer asks:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>cat.jpg</code></pre></div>\n<p>Now:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>User\n\n↓\n\nCloudFront\n\n↓\n\nCache Found\n\n↓\n\nImmediate Response</code></pre></div>\n<p>This is called:</p>\n<p><strong>Cache Hit</strong></p>\n<hr class=\"divider\" />\n</div><h2>Chapter 9 — Cache Miss</h2>\n<p>If CloudFront doesn't have it:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Cache Miss\n\n↓\n\nOrigin\n\n↓\n\nDownload\n\n↓\n\nStore\n\n↓\n\nReturn</code></pre></div>\n<p>Every file starts as a cache miss.</p>\n<hr class=\"divider\" />\n<h3>Cache Hit Ratio</h3>\n<p>One of the most important CloudFront metrics.</p>\n<p>Example:</p>\n<p>1000 requests</p>\n<p>980 served from cache</p>\n<p>20 from origin</p>\n<p>Cache Hit Ratio:</p>\n<p>98%</p>\n<p>Excellent.</p>\n<p>Higher cache hit ratio means:</p>\n<ul>\n<li>Faster users</li>\n<li>Lower origin load</li>\n<li>Lower costs</li>\n</ul>\n<hr class=\"divider\" />\n<h2>Chapter 10 — Time To Live (TTL)</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Should CloudFront cache forever?</p>\n<p>No.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>logo.png\n\n↓\n\nCache\n\n↓\n\n24 Hours</code></pre></div>\n<p>After TTL expires:</p>\n<p>CloudFront checks the origin again.</p>\n<hr class=\"divider\" />\n<p>Different files need different TTLs.</p>\n<p>Example:</p>\n<p>Logo</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>1 Month</code></pre></div>\n<p>API Responses</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>5 Seconds</code></pre></div>\n<p>HTML</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>1 Minute</code></pre></div>\n<p>Product Images</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>1 Week</code></pre></div>\n<p>Choosing good TTLs is a balance between freshness and performance.</p>\n<hr class=\"divider\" />\n</div><h2>Chapter 11 — Cache Invalidation</h2>\n<p>Suppose:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>logo.png</code></pre></div>\n<p>changes today.</p>\n<p>But CloudFront still has the old version.</p>\n<p>What now?</p>\n<p>You invalidate it.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Invalidate\n\n↓\n\nRemove Cached Copy\n\n↓\n\nFetch New File</code></pre></div>\n<hr class=\"divider\" />\n<p>Common command:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>/images/*</code></pre></div>\n<p>CloudFront removes those cached objects.</p>\n<p>Next request fetches fresh content.</p>\n<hr class=\"divider\" />\n<h3>Better Than Invalidation</h3>\n<p>Many companies don't invalidate often.</p>\n<p>Instead:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>logo_v2.png</code></pre></div>\n<p>or</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>main.8f72ab.js</code></pre></div>\n<p>This is called:</p>\n<p><strong>Versioned Assets</strong></p>\n<p>Much cheaper and more scalable.</p>\n<hr class=\"divider\" />\n<h2>Chapter 12 — Compression</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>CloudFront supports compression.</p>\n<p>Instead of sending:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>500 KB CSS</code></pre></div>\n<p>It may send:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>80 KB</code></pre></div>\n<p>using:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Gzip</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Brotli</span></li>\n</ul>\n<p>Benefits:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">Faster downloads</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">Less bandwidth</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-5\"><span class=\"lab-step-text\">Lower costs</span></li>\n</ul>\n<hr class=\"divider\" />\n</div><h2>Chapter 13 — HTTPS</h2>\n<p>CloudFront supports HTTPS.</p>\n<p>Flow:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Browser\n\n↓\n\nHTTPS\n\n↓\n\nCloudFront\n\n↓\n\nOrigin</code></pre></div>\n<p>SSL certificates usually come from:</p>\n<p>AWS Certificate Manager (ACM)</p>\n<hr class=\"divider\" />\n<h2>Chapter 14 — Origin Access Control (OAC)</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>This is one of the most important modern interview topics.</p>\n<p>Years ago AWS used:</p>\n<p>Origin Access Identity (OAI)</p>\n<p>Today:</p>\n<p>AWS recommends:</p>\n<p><strong>Origin Access Control (OAC)</strong></p>\n<hr class=\"divider\" />\n<h3>The Problem</h3>\n<p>Suppose your bucket is public.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Internet\n\n↓\n\nS3 Bucket</code></pre></div>\n<p>Anyone can bypass CloudFront.</p>\n<p>They can directly download:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>https://bucket.s3.amazonaws.com/file.jpg</code></pre></div>\n<p>This defeats the purpose of using CloudFront for controlled access.</p>\n<hr class=\"divider\" />\n<h3>Solution</h3>\n<p>Make the bucket private.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Internet\n\n↓\n\nCloudFront\n\n↓\n\nPrivate S3</code></pre></div>\n<p>Only CloudFront may access S3.</p>\n<p>Users cannot.</p>\n<hr class=\"divider\" />\n<h3>How OAC Works</h3>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>User\n\n↓\n\nCloudFront\n\n↓\n\nSigned Request\n\n↓\n\nPrivate S3 Bucket</code></pre></div>\n<p>S3 verifies:</p>\n<p>\"Did CloudFront send this?\"</p>\n<p>If yes:</p>\n<p>Serve object.</p>\n<p>Otherwise:</p>\n<p>Access Denied.</p>\n<hr class=\"divider\" />\n<h3>Benefits of OAC</h3>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Private buckets</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Stronger security</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">Better integration with AWS security features</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">Recommended replacement for OAI</span></li>\n</ul>\n<hr class=\"divider\" />\n</div><h2>Chapter 15 — Signed URLs</h2>\n<p>Suppose you're selling an online course.</p>\n<p>Videos shouldn't be public.</p>\n<p>Instead:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>User\n\n↓\n\nSigned URL\n\n↓\n\nCloudFront\n\n↓\n\nVideo</code></pre></div>\n<p>Signed URLs include:</p>\n<ul>\n<li>Expiration</li>\n<li>Signature</li>\n<li>Access conditions</li>\n</ul>\n<p>After expiry:</p>\n<p>Access denied.</p>\n<hr class=\"divider\" />\n<h3>Example</h3>\n<p>Instead of:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>video.mp4</code></pre></div>\n<p>You get:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>video.mp4?Expires=...\n\n&amp;Signature=...\n\n&amp;Key-Pair-Id=...</code></pre></div>\n<p>The URL itself proves temporary permission.</p>\n<hr class=\"divider\" />\n<h2>Chapter 16 — Signed Cookies</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Signed URLs work well for one file.</p>\n<p>But what if a user watches:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Lesson 1</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Lesson 2</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">Lesson 3</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">Lesson 4</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-5\"><span class=\"lab-step-text\">Lesson 5</span></li>\n</ul>\n<p>Creating five signed URLs is inconvenient.</p>\n<p>Instead:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Login\n\n↓\n\nReceive Signed Cookie\n\n↓\n\nAccess All Videos</code></pre></div>\n<p>One cookie authorises access to multiple protected objects.</p>\n<hr class=\"divider\" />\n<h3>Signed URL vs Signed Cookie</h3>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Signed URL</th><th>Signed Cookie</th></tr></thead><tbody>\n<tr><td>One object</td><td>Many objects</td></tr>\n<tr><td>Simpler</td><td>Better for websites with many protected assets</td></tr>\n</tbody></table></div>\n<hr class=\"divider\" />\n</div><h2>Chapter 17 — Geo Restriction</h2>\n<p>Suppose your licence allows streaming only in India.</p>\n<p>CloudFront checks:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Request\n\n↓\n\nCountry\n\n↓\n\nAllowed?</code></pre></div>\n<p>If not:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>403 Forbidden</code></pre></div>\n<p>This is called:</p>\n<p><strong>Geo Restriction (Geo Blocking)</strong></p>\n<hr class=\"divider\" />\n<h2>Chapter 18 — Price Classes</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>CloudFront has Edge Locations worldwide.</p>\n<p>More locations:</p>\n<p>Higher cost.</p>\n<p>You can choose a price class to limit which edge locations serve your content, trading off global reach and cost.</p>\n<hr class=\"divider\" />\n</div><h2>Chapter 19 — Dynamic Content</h2>\n<p>Many people think CloudFront only caches images.</p>\n<p>Wrong.</p>\n<p>CloudFront can also accelerate:</p>\n<ul>\n<li>APIs</li>\n<li>Dynamic websites</li>\n<li>Web applications</li>\n</ul>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>User\n\n↓\n\nCloudFront\n\n↓\n\nApplication Load Balancer\n\n↓\n\nEC2</code></pre></div>\n<p>CloudFront can forward requests while still providing HTTPS termination and other optimisations.</p>\n<hr class=\"divider\" />\n<h2>Chapter 20 — CloudFront + S3 Static Website</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Very common interview architecture.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Browser\n\n↓\n\nCloudFront\n\n↓\n\nPrivate S3 Bucket</code></pre></div>\n<p>Benefits:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">HTTPS</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Global caching</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">Lower latency</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">Better security</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-5\"><span class=\"lab-step-text\">DDoS protection integration</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-6\"><span class=\"lab-step-text\">Custom domains</span></li>\n</ul>\n<hr class=\"divider\" />\n</div><h2>Chapter 21 — Production Architecture</h2>\n<p>Imagine an e-commerce website.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>User\n        │\n        ▼\n   CloudFront\n        │\n ┌──────┴────────┐\n ▼               ▼\nPrivate S3      ALB\n(Images/CSS)     │\n                 ▼\n              ECS Service\n                 │\n                 ▼\n                RDS</code></pre></div>\n<p>Static content comes from S3.</p>\n<p>Dynamic requests go to ECS through the ALB.</p>\n<p>Users only interact with CloudFront.</p>\n<hr class=\"divider\" />\n<h2>Chapter 22 — Best Practices</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Keep S3 buckets private when using CloudFront.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Use OAC instead of OAI for new deployments.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">Cache static assets aggressively.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">Use shorter TTLs for frequently changing content.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-5\"><span class=\"lab-step-text\">Use versioned assets instead of frequent invalidations.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-6\"><span class=\"lab-step-text\">Enable compression.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-7\"><span class=\"lab-step-text\">Use HTTPS everywhere.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-8\"><span class=\"lab-step-text\">Monitor cache hit ratio.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-9\"><span class=\"lab-step-text\">Use signed URLs or signed cookies for premium content.</span></li>\n</ul>\n<hr class=\"divider\" />\n</div><h2>Chapter 23 — Common Mistakes</h2>\n<p>❌ Making S3 buckets public.</p>\n<p>❌ Invalidating the entire cache after every deployment.</p>\n<p>❌ Using very short TTLs for static assets.</p>\n<p>❌ Storing secrets in CloudFront headers.</p>\n<p>❌ Forgetting HTTPS.</p>\n<p>❌ Assuming CloudFront only works with S3.</p>\n<hr class=\"divider\" />\n<h2>Chapter 24 — Interview Questions</h2>\n<h4>Q1. What is CloudFront?</h4>\n<p>AWS's global Content Delivery Network (CDN) that caches content at edge locations closer to users.</p>\n<hr class=\"divider\" />\n<h4>Q2. What is an Edge Location?</h4>\n<p>A geographically distributed AWS location that caches content and serves users with lower latency.</p>\n<hr class=\"divider\" />\n<h4>Q3. What is an Origin?</h4>\n<p>The source from which CloudFront fetches content, such as S3, an Application Load Balancer, EC2, or another HTTP server.</p>\n<hr class=\"divider\" />\n<h4>Q4. What is the difference between a Cache Hit and a Cache Miss?</h4>\n<p>A cache hit is served directly from the edge cache. A cache miss requires CloudFront to retrieve content from the origin before caching it.</p>\n<hr class=\"divider\" />\n<h4>Q5. What is TTL?</h4>\n<p>The duration cached content remains valid before CloudFront checks the origin again.</p>\n<hr class=\"divider\" />\n<h4>Q6. Why is OAC better than a public S3 bucket?</h4>\n<p>OAC allows only CloudFront to access a private S3 bucket, preventing users from bypassing CloudFront and directly accessing the bucket.</p>\n<hr class=\"divider\" />\n<h4>Q7. What is the difference between Signed URLs and Signed Cookies?</h4>\n<p>Signed URLs grant temporary access to individual objects. Signed Cookies grant access to multiple protected objects.</p>\n<hr class=\"divider\" />\n<h4>Q8. Can CloudFront work with APIs?</h4>\n<p>Yes. CloudFront can front APIs and dynamic applications, not just static content.</p>\n<hr class=\"divider\" />\n<h4>Q9. Why is versioning preferred over cache invalidation?</h4>\n<p>Versioning avoids expensive or large-scale invalidations and ensures users receive the latest assets by requesting new filenames.</p>\n<hr class=\"divider\" />\n<h4>Q10. Does CloudFront store the original file?</h4>\n<p>No. The origin (such as S3 or an ALB-backed application) remains the source of truth. CloudFront stores cached copies according to its cache rules.</p>\n<hr class=\"divider\" />\n<h2>Hands-on Lab</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<aside class=\"cost-safety callout warn\" role=\"note\"><p class=\"callout-title\">Cost safety</p><ul><li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Prefer <strong>Free Tier</strong> / small instance sizes while learning.</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Create a <strong>billing alarm</strong> (CloudWatch or Budgets) on day one.</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\"><strong>Tear down</strong> lab resources when finished (instances, load balancers, NAT gateways).</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">Never put long-lived access keys in code or public repos.</span></li></ul><p class=\"workshop-links\"><strong>Official practice:</strong> <a href=\"https://explore.skillbuilder.aws/\" rel=\"noopener noreferrer\" target=\"_blank\">AWS Skill Builder</a> · <a href=\"https://wellarchitectedlabs.com/\" rel=\"noopener noreferrer\" target=\"_blank\">Well-Architected Labs</a> · <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/free-tier.html\" rel=\"noopener noreferrer\" target=\"_blank\">Free Tier docs</a></p></aside>\n<ol>\n<li class=\"lab-step\" data-lab-id=\"lab-step-5\"><span class=\"lab-step-text\">Create an S3 bucket.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-6\"><span class=\"lab-step-text\">Enable <strong>Block Public Access</strong>.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-7\"><span class=\"lab-step-text\">Upload a simple static website (<code>index.html</code>, CSS, images).</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-8\"><span class=\"lab-step-text\">Create a CloudFront distribution with the S3 bucket as the origin.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-9\"><span class=\"lab-step-text\">Configure <strong>Origin Access Control (OAC)</strong> and update the bucket policy so only CloudFront can access the bucket.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-10\"><span class=\"lab-step-text\">Open the CloudFront domain name and verify the website loads.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-11\"><span class=\"lab-step-text\">Try accessing the S3 object URL directly—you should receive an access denied response.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-12\"><span class=\"lab-step-text\">Update an image, invalidate that path (or deploy a versioned filename), and observe the change through CloudFront.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-13\"><span class=\"lab-step-text\">Enable compression and inspect the response headers in your browser's developer tools.</span></li>\n</ol>\n<hr class=\"divider\" />\n<h3>Final Mental Model</h3>\n<p>If you remember only one diagram from this lesson, remember this:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>                    User\n                      │\n                      ▼\n                 CloudFront\n          (Nearest Edge Location)\n              │             │\n      Cache Hit?         Cache Miss\n         │                   │\n         ▼                   ▼\n   Return Cached       Fetch from Origin\n      Content                │\n                              ▼\n                    Private S3 (OAC)\n                       or ALB / API\n                              │\n                              ▼\n                    Store Copy in Cache\n                              │\n                              ▼\n                           User</code></pre></div>\n<p>The key ideas are:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-14\"><span class=\"lab-step-text\"><strong>CloudFront is AWS's CDN.</strong></span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-15\"><span class=\"lab-step-text\"><strong>Edge Locations cache content close to users.</strong></span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-16\"><span class=\"lab-step-text\"><strong>Origins hold the original content.</strong></span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-17\"><span class=\"lab-step-text\"><strong>OAC keeps S3 buckets private while allowing CloudFront access.</strong></span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-18\"><span class=\"lab-step-text\"><strong>Caching, TTLs, versioned assets, and secure access are what make CloudFront fast, scalable, and secure in production.</strong></span></li>\n</ul>\n<aside class=\"accuracy-note\" role=\"note\"><p><strong>Content review:</strong> 2026-07. Curriculum text is adapted from a shared learning roadmap; verify critical details in official AWS docs before production use.</p><p class=\"accuracy-note-label\">References</p><ul><li class=\"lab-step\" data-lab-id=\"lab-step-19\"><span class=\"lab-step-text\"><a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html\" rel=\"noopener noreferrer\" target=\"_blank\">docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/I…</a></span></li><li class=\"lab-step\" data-lab-id=\"lab-step-20\"><span class=\"lab-step-text\"><a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html\" rel=\"noopener noreferrer\" target=\"_blank\">docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/p…</a></span></li></ul></aside></div>",
   "quiz": [
     {
       "q": "Latency on the internet is mainly:",
       "options": [
-        "Always zero",
         "Delay for data to travel between client and server",
+        "Always zero",
         "Only disk encryption time",
         "Only DNSSEC cost"
       ],
-      "answer": 1,
+      "answer": 0,
       "explain": "Distance and network hops add latency.",
       "style": "general"
     },
@@ -216,11 +168,11 @@
       "q": "Amazon CloudFront is AWS’s:",
       "options": [
         "Relational database",
-        "Content delivery network (CDN)",
         "IAM policy language",
+        "Content delivery network (CDN)",
         "Container runtime"
       ],
-      "answer": 1,
+      "answer": 2,
       "explain": "CloudFront is the AWS CDN.",
       "style": "general"
     },
@@ -228,35 +180,35 @@
       "q": "An Edge Location is:",
       "options": [
         "A single on-prem rack only",
-        "A CloudFront point of presence that can cache content",
         "A KMS key type",
-        "An SQS queue"
+        "An SQS queue",
+        "A CloudFront point of presence that can cache content"
       ],
-      "answer": 1,
+      "answer": 3,
       "explain": "Edge locations cache and serve content.",
       "style": "general"
     },
     {
       "q": "A CloudFront distribution is:",
       "options": [
-        "A VPC subnet mask",
         "The configuration that connects viewers to origins via CloudFront",
+        "A VPC subnet mask",
         "An EC2 purchase option",
         "A billing invoice"
       ],
-      "answer": 1,
+      "answer": 0,
       "explain": "Distributions define how CloudFront serves your content.",
       "style": "general"
     },
     {
       "q": "An origin in CloudFront is:",
       "options": [
-        "The source of content (e.g. S3, ALB, custom HTTP)",
         "Only a Route 53 name server",
+        "The source of content (e.g. S3, ALB, custom HTTP)",
         "Only a security group",
         "A Lambda layer only"
       ],
-      "answer": 0,
+      "answer": 1,
       "explain": "Origins supply the content CloudFront fetches/caches.",
       "style": "general"
     },
@@ -264,11 +216,11 @@
       "q": "Caching reduces load on origins by:",
       "options": [
         "Always bypassing edges",
-        "Serving repeated requests from edge cache when possible",
         "Deleting all objects daily",
+        "Serving repeated requests from edge cache when possible",
         "Turning off HTTPS"
       ],
-      "answer": 1,
+      "answer": 2,
       "explain": "Hits at the edge avoid origin fetches.",
       "style": "general"
     },
@@ -276,23 +228,23 @@
       "q": "OAC stands for:",
       "options": [
         "Object Access Container",
-        "Origin Access Control",
         "Online Auto Cache",
-        "Outbound ACL"
+        "Outbound ACL",
+        "Origin Access Control"
       ],
-      "answer": 1,
+      "answer": 3,
       "explain": "Origin Access Control restricts origin access to CloudFront.",
       "style": "general"
     },
     {
       "q": "Why keep an S3 origin private with OAC?",
       "options": [
-        "So anyone can write as admin",
         "So users must go through CloudFront, not direct public bucket access",
+        "So anyone can write as admin",
         "So DNS stops working",
         "So KMS is disabled"
       ],
-      "answer": 1,
+      "answer": 0,
       "explain": "Prevents bypassing CDN/security controls via public bucket URLs.",
       "style": "general"
     },
@@ -311,12 +263,12 @@
     {
       "q": "A cache hit means:",
       "options": [
-        "Edge had the object and served it",
         "Origin always regenerated everything",
         "DNS failed",
+        "Edge had the object and served it",
         "TLS failed"
       ],
-      "answer": 0,
+      "answer": 2,
       "explain": "Hit = served from cache.",
       "style": "general"
     },
@@ -324,23 +276,23 @@
       "q": "A cache miss typically causes:",
       "options": [
         "Immediate account deletion",
-        "CloudFront to fetch from origin (then often cache)",
         "VPC deletion",
-        "IAM user creation"
+        "IAM user creation",
+        "CloudFront to fetch from origin (then often cache)"
       ],
-      "answer": 1,
+      "answer": 3,
       "explain": "Misses go to origin.",
       "style": "general"
     },
     {
       "q": "HTTPS on CloudFront is important because:",
       "options": [
-        "It slows everything with no benefit",
         "It encrypts data in transit to viewers",
+        "It slows everything with no benefit",
         "It replaces all IAM policies",
         "It disables caching forever"
       ],
-      "answer": 1,
+      "answer": 0,
       "explain": "TLS protects in-transit traffic.",
       "style": "general"
     },
@@ -359,12 +311,12 @@
     {
       "q": "Behaviors in CloudFront map:",
       "options": [
-        "Path patterns to origin/cache settings",
         "Only billing tags",
         "Only AZ names",
+        "Path patterns to origin/cache settings",
         "Only AMI IDs"
       ],
-      "answer": 0,
+      "answer": 2,
       "explain": "Path behaviors control how requests are handled.",
       "style": "general"
     },
@@ -372,35 +324,35 @@
       "q": "Putting CloudFront in front of a global audience helps most with:",
       "options": [
         "Physical shipping",
-        "Latency and offloading origin bandwidth",
         "Removing need for DNS",
-        "Disabling monitoring"
+        "Disabling monitoring",
+        "Latency and offloading origin bandwidth"
       ],
-      "answer": 1,
+      "answer": 3,
       "explain": "Performance and origin protection.",
       "style": "general"
     },
     {
       "q": "If the origin is S3 and the bucket is public, a risk is:",
       "options": [
-        "No one can download",
         "Users may bypass CloudFront and hit S3 directly",
+        "No one can download",
         "CloudFront cannot exist",
         "DNS cannot resolve"
       ],
-      "answer": 1,
+      "answer": 0,
       "explain": "Public buckets allow direct access unless restricted.",
       "style": "general"
     },
     {
       "q": "TTL in caching roughly means:",
       "options": [
-        "Time to live for cached objects before revalidation/expiry",
         "Total transfer limit only",
+        "Time to live for cached objects before revalidation/expiry",
         "Type of load balancer",
         "Tag taxonomy language"
       ],
-      "answer": 0,
+      "answer": 1,
       "explain": "TTL governs how long content may stay cached.",
       "style": "general"
     },
@@ -408,11 +360,11 @@
       "q": "CloudFront can use custom domains when:",
       "options": [
         "You never own a domain",
-        "You configure alternate domain names/certificates appropriately",
         "You disable TLS forever",
+        "You configure alternate domain names/certificates appropriately",
         "You use only HTTP IP addresses in browsers always"
       ],
-      "answer": 1,
+      "answer": 2,
       "explain": "CNAMEs/aliases + certs enable branded domains.",
       "style": "general"
     },
@@ -420,13 +372,78 @@
       "q": "A primary lesson takeaway is:",
       "options": [
         "Serve the world from one distant origin with no cache",
-        "Use CDN caching + secure private origins (OAC) for scale and safety",
         "Never use HTTPS",
-        "Only use FTP"
+        "Only use FTP",
+        "Use CDN caching + secure private origins (OAC) for scale and safety"
       ],
-      "answer": 1,
+      "answer": 3,
       "explain": "CDN + private origin is the modern static/content pattern.",
       "style": "general"
+    },
+    {
+      "q": "Users in Asia are slow to a US-only origin. First architecture improvement?",
+      "options": [
+        "Put CloudFront (CDN) in front to cache near users",
+        "Delete the origin",
+        "Disable HTTPS",
+        "Use only FTP"
+      ],
+      "answer": 0,
+      "explain": "CDN edge caching reduces latency globally.",
+      "style": "general",
+      "topic": "CDN"
+    },
+    {
+      "q": "S3 is public and users skip CloudFront. What should you do?",
+      "options": [
+        "Celebrate the bypass",
+        "Make S3 private and allow only CloudFront via OAC",
+        "Remove CloudFront",
+        "Turn off logging"
+      ],
+      "answer": 1,
+      "explain": "OAC keeps the bucket private so viewers must use CloudFront.",
+      "style": "scenario",
+      "topic": "OAC"
+    },
+    {
+      "q": "You deployed a broken CSS file and users still see the old one. What helps immediately?",
+      "options": [
+        "Wait 10 years",
+        "Delete the distribution forever",
+        "Invalidate the cached path (or versioned filenames)",
+        "Disable DNS"
+      ],
+      "answer": 2,
+      "explain": "Invalidation or cache-busting updates edges.",
+      "style": "general",
+      "topic": "Cache"
+    },
+    {
+      "q": "API traffic under /api/* must not use long HTML cache TTLs. How?",
+      "options": [
+        "One behavior for everything",
+        "No distributions",
+        "Only security groups",
+        "Separate cache behaviors by path pattern"
+      ],
+      "answer": 3,
+      "explain": "Behaviors map paths to different cache/origin settings.",
+      "style": "general",
+      "topic": "Behaviors"
+    },
+    {
+      "q": "Why is HTTPS on CloudFront important for a login site?",
+      "options": [
+        "Encrypts data in transit to viewers",
+        "It is only cosmetic",
+        "Replaces IAM entirely",
+        "Stops all caching forever"
+      ],
+      "answer": 0,
+      "explain": "TLS protects viewer traffic.",
+      "style": "scenario",
+      "topic": "HTTPS"
     }
   ]
 }

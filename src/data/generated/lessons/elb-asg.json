@@ -28,106 +28,14 @@
     },
     {
       "id": "part-2",
-      "title": "The Problem with One Server"
-    },
-    {
-      "id": "part-3",
-      "title": "Solution: Multiple Servers"
-    },
-    {
-      "id": "part-4",
-      "title": "Enter the Load Balancer"
-    },
-    {
-      "id": "part-5",
-      "title": "What Does a Load Balancer Actually Do?"
-    },
-    {
-      "id": "part-6",
-      "title": "Why Use a Load Balancer?"
-    },
-    {
-      "id": "part-7",
-      "title": "Types of AWS Load Balancers"
-    },
-    {
-      "id": "part-8",
-      "title": "Application Load Balancer (ALB)"
-    },
-    {
-      "id": "part-9",
-      "title": "Health Checks"
-    },
-    {
-      "id": "part-10",
-      "title": "Before and After"
-    },
-    {
-      "id": "part-11",
-      "title": "Auto Scaling"
-    },
-    {
-      "id": "part-12",
-      "title": "Auto Scaling Group (ASG)"
-    },
-    {
-      "id": "part-13",
-      "title": "Desired, Minimum, and Maximum Capacity"
-    },
-    {
-      "id": "part-14",
-      "title": "Scaling Out vs Scaling Up"
-    },
-    {
-      "id": "part-15",
-      "title": "Scaling Policies"
-    },
-    {
-      "id": "part-16",
-      "title": "Launch Template"
-    },
-    {
-      "id": "part-17",
-      "title": "High Availability (HA)"
-    },
-    {
-      "id": "part-18",
-      "title": "Fault Tolerance"
-    },
-    {
-      "id": "part-19",
-      "title": "Production Architecture"
-    },
-    {
-      "id": "part-20",
-      "title": "Example: Black Friday Sale"
-    },
-    {
-      "id": "part-21",
-      "title": "ELB vs Auto Scaling"
-    },
-    {
-      "id": "part-22",
       "title": "Interview practice prompts"
     },
     {
-      "id": "part-23",
+      "id": "part-3",
       "title": "Hands-on Lab"
-    },
-    {
-      "id": "part-24",
-      "title": "Complete AWS Architecture So Far"
-    },
-    {
-      "id": "part-25",
-      "title": "What You've Learned"
-    },
-    {
-      "id": "part-26",
-      "title": "Next Lesson: AWS Lambda (Serverless Computing)"
     }
   ],
-  "content": "<h2>Lesson 7: Elastic Load Balancer (ELB) &amp; Auto Scaling</h2>\n<p>Here you move from a single server to systems that survive failures and traffic spikes. Load balancing and auto scaling are among the most common AWS interview topics—and production essentials.</p>\n<hr class=\"divider\" />\n<h2>The Problem with One Server</h2>\n<p>Suppose your website runs on one EC2 instance.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Users\n   │\n   ▼\nEC2</code></pre></div>\n<p>Now imagine:</p>\n<ul>\n<li>10,000 people visit at once.</li>\n<li>The server becomes overloaded.</li>\n<li>Or worse—it crashes.</li>\n</ul>\n<p>Now nobody can access your website.</p>\n<hr class=\"divider\" />\n<h2>Solution: Multiple Servers</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Instead of one server:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Users\n\n↓\n\nEC2-1\n\nEC2-2\n\nEC2-3</code></pre></div>\n<p>Now the work is shared.</p>\n<p>But there's another problem...</p>\n<p>How do users know which server to connect to?</p>\n<hr class=\"divider\" />\n</div><h2>Enter the Load Balancer</h2>\n<p>A <strong>Load Balancer</strong> sits in front of your servers.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>           Users\n              │\n              ▼\n      Load Balancer\n       /     |     \\\n      ▼      ▼      ▼\n    EC2-1  EC2-2  EC2-3</code></pre></div>\n<p>Users only know the Load Balancer's address.</p>\n<p>The Load Balancer decides which server should handle each request.</p>\n<hr class=\"divider\" />\n<h2>What Does a Load Balancer Actually Do?</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Imagine a receptionist in a hospital.</p>\n<p>Patients arrive.</p>\n<p>The receptionist sends them to:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Doctor 1</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Doctor 2</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">Doctor 3</span></li>\n</ul>\n<p>The receptionist doesn't treat patients.</p>\n<p>They just distribute them.</p>\n<p>A Load Balancer works the same way.</p>\n<hr class=\"divider\" />\n</div><h2>Why Use a Load Balancer?</h2>\n<p>Without one:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>User\n\n↓\n\nEC2-1</code></pre></div>\n<p>If EC2-1 crashes:</p>\n<p>❌ Website unavailable.</p>\n<p>With one:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>User\n\n↓\n\nLoad Balancer\n\n↓\n\nHealthy EC2</code></pre></div>\n<p>The user may not even notice that one server failed.</p>\n<hr class=\"divider\" />\n<h2>Types of AWS Load Balancers</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>AWS provides several load balancer types.</p>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Type</th><th>Best For</th></tr></thead><tbody>\n<tr><td>Application Load Balancer (ALB)</td><td>HTTP/HTTPS web applications</td></tr>\n<tr><td>Network Load Balancer (NLB)</td><td>Very high-performance TCP/UDP traffic</td></tr>\n<tr><td>Gateway Load Balancer (GWLB)</td><td>Integrating virtual network appliances</td></tr>\n</tbody></table></div>\n<p>For most web applications, you'll start with an <strong>Application Load Balancer (ALB)</strong>.</p>\n<hr class=\"divider\" />\n</div><h2>Application Load Balancer (ALB)</h2>\n<p>An ALB understands HTTP and HTTPS.</p>\n<p>It can make routing decisions based on:</p>\n<ul>\n<li>URL path</li>\n<li>Host name</li>\n<li>HTTP headers</li>\n</ul>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>example.com/images\n\n↓\n\nImage Server</code></pre></div>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>example.com/api\n\n↓\n\nAPI Server</code></pre></div>\n<p>This is called <strong>path-based routing</strong>.</p>\n<hr class=\"divider\" />\n<h2>Health Checks</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>A Load Balancer constantly checks if servers are healthy.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Load Balancer\n\n↓\n\nGET /health\n\n↓\n\nServer responds\n\n200 OK</code></pre></div>\n<p>If a server doesn't respond correctly:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>EC2-2\n\n↓\n\nFailed Health Check\n\n↓\n\nRemoved from rotation</code></pre></div>\n<p>No user traffic is sent to that server until it becomes healthy again.</p>\n<hr class=\"divider\" />\n</div><h2>Before and After</h2>\n<p>Without health checks:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>User\n\n↓\n\nBroken Server\n\n↓\n\nError</code></pre></div>\n<p>With health checks:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>User\n\n↓\n\nLoad Balancer\n\n↓\n\nHealthy Server</code></pre></div>\n<hr class=\"divider\" />\n<h2>Auto Scaling</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Now imagine traffic suddenly increases.</p>\n<p>One server isn't enough.</p>\n<p>Instead of manually creating more servers:</p>\n<p>AWS can do it automatically.</p>\n<p>This feature is called <strong>Auto Scaling</strong>.</p>\n<hr class=\"divider\" />\n</div><h2>Auto Scaling Group (ASG)</h2>\n<p>An <strong>Auto Scaling Group</strong> manages a group of EC2 instances.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Auto Scaling Group\n\n↓\n\nEC2-1\n\nEC2-2\n\nEC2-3</code></pre></div>\n<p>If one instance fails:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>EC2-2\n\n↓\n\nCrash\n\n↓\n\nASG launches a replacement</code></pre></div>\n<p>The group automatically returns to its desired size.</p>\n<hr class=\"divider\" />\n<h2>Desired, Minimum, and Maximum Capacity</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Suppose you configure:</p>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Setting</th><th>Value</th></tr></thead><tbody>\n<tr><td>Minimum</td><td>2</td></tr>\n<tr><td>Desired</td><td>3</td></tr>\n<tr><td>Maximum</td><td>10</td></tr>\n</tbody></table></div>\n<p>Initially:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>EC2-1\n\nEC2-2\n\nEC2-3</code></pre></div>\n<p>If traffic increases:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>EC2-4\n\nEC2-5\n\nEC2-6</code></pre></div>\n<p>The ASG can keep adding instances until it reaches the maximum.</p>\n<hr class=\"divider\" />\n</div><h2>Scaling Out vs Scaling Up</h2>\n<p>Two ways to increase capacity:</p>\n<h3>Vertical Scaling (Scale Up)</h3>\n<p>Make one server bigger.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>2 CPU\n\n↓\n\n8 CPU</code></pre></div>\n<p>Pros:</p>\n<ul>\n<li>Simple</li>\n</ul>\n<p>Cons:</p>\n<ul>\n<li>Has hardware limits.</li>\n<li>Can require downtime.</li>\n</ul>\n<hr class=\"divider\" />\n<h3>Horizontal Scaling (Scale Out)</h3>\n<p>Add more servers.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>1 Server\n\n↓\n\n4 Servers</code></pre></div>\n<p>Pros:</p>\n<ul>\n<li>Better fault tolerance.</li>\n<li>Easier to handle very large traffic.</li>\n</ul>\n<p>Cloud applications usually prefer horizontal scaling.</p>\n<hr class=\"divider\" />\n<h2>Scaling Policies</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Auto Scaling decides when to add or remove instances.</p>\n<p>Example:</p>\n<p>If CPU usage exceeds 70%:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>CPU &gt; 70%\n\n↓\n\nLaunch another EC2</code></pre></div>\n<p>If CPU usage drops below 20% for a while:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>CPU &lt; 20%\n\n↓\n\nTerminate one EC2</code></pre></div>\n<p>This saves money during quiet periods.</p>\n<hr class=\"divider\" />\n</div><h2>Launch Template</h2>\n<p>When Auto Scaling creates a new server, it needs instructions.</p>\n<p>A <strong>Launch Template</strong> includes:</p>\n<ul>\n<li>AMI</li>\n<li>Instance type</li>\n<li>Security Group</li>\n<li>Key pair (optional, depending on your setup)</li>\n<li>IAM role</li>\n<li>User data (startup script)</li>\n</ul>\n<p>Think of it as a recipe for creating new EC2 instances.</p>\n<hr class=\"divider\" />\n<h2>High Availability (HA)</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>High Availability means your application keeps running even if something fails.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>AZ-A\n\nEC2-1\n\nEC2-2\n\n----------------\n\nAZ-B\n\nEC2-3\n\nEC2-4</code></pre></div>\n<p>If one Availability Zone fails, the other can continue serving traffic.</p>\n<hr class=\"divider\" />\n</div><h2>Fault Tolerance</h2>\n<p>Fault tolerance means the system is designed to continue operating despite failures.</p>\n<p>Examples:</p>\n<ul>\n<li>Server crashes</li>\n<li>Disk failure</li>\n<li>Availability Zone outage</li>\n</ul>\n<p>Good AWS architectures expect failures and recover automatically.</p>\n<hr class=\"divider\" />\n<h2>Production Architecture</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>                  Internet\n                      │\n          Application Load Balancer\n               /                \\\n              ▼                  ▼\n      EC2 (AZ-A)           EC2 (AZ-B)\n              \\              /\n               ▼            ▼\n          Auto Scaling Group\n                   │\n                   ▼\n               Amazon RDS\n                   │\n                   ▼\n                Amazon S3</code></pre></div>\n<p>This architecture provides:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">High availability</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Automatic recovery</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">Automatic scaling</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">Better resilience</span></li>\n</ul>\n<hr class=\"divider\" />\n</div><h2>Example: Black Friday Sale</h2>\n<p>At 2 AM:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Users\n\n↓\n\n2 Servers</code></pre></div>\n<p>At 10 AM:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>100,000 Users\n\n↓\n\n8 Servers</code></pre></div>\n<p>At midnight:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Users leave\n\n↓\n\nBack to 2 Servers</code></pre></div>\n<p>No engineer needed to manually add or remove servers.</p>\n<hr class=\"divider\" />\n<h2>ELB vs Auto Scaling</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<div class=\"table-wrap\"><table>\n<thead><tr><th>ELB</th><th>Auto Scaling</th></tr></thead><tbody>\n<tr><td>Distributes traffic</td><td>Adds/removes EC2 instances</td></tr>\n<tr><td>Performs health checks</td><td>Replaces failed instances</td></tr>\n<tr><td>Routes users to healthy targets</td><td>Responds to changing demand</td></tr>\n</tbody></table></div>\n<p>They are often used together.</p>\n<hr class=\"divider\" />\n</div><h2>Interview practice prompts</h2>\n<p>Use these as open-ended prompts (the lesson quiz below is multiple choice).</p>\n<ol>\n<li>Why is a Load Balancer needed?</li>\n<li>What is the difference between an ALB and an NLB?</li>\n<li>What are health checks?</li>\n<li>What is an Auto Scaling Group?</li>\n<li>What is the difference between scaling up and scaling out?</li>\n<li>What is a Launch Template?</li>\n<li>What is High Availability?</li>\n<li>Why should EC2 instances be spread across multiple Availability Zones?</li>\n</ol>\n<hr class=\"divider\" />\n<h2>Hands-on Lab</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<aside class=\"cost-safety callout warn\" role=\"note\"><p class=\"callout-title\">Cost safety</p><ul><li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Prefer <strong>Free Tier</strong> / small instance sizes while learning.</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Create a <strong>billing alarm</strong> (CloudWatch or Budgets) on day one.</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\"><strong>Tear down</strong> lab resources when finished (instances, load balancers, NAT gateways).</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">Never put long-lived access keys in code or public repos.</span></li></ul><p class=\"workshop-links\"><strong>Official practice:</strong> <a href=\"https://explore.skillbuilder.aws/\" rel=\"noopener noreferrer\" target=\"_blank\">AWS Skill Builder</a> · <a href=\"https://wellarchitectedlabs.com/\" rel=\"noopener noreferrer\" target=\"_blank\">Well-Architected Labs</a> · <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/free-tier.html\" rel=\"noopener noreferrer\" target=\"_blank\">Free Tier docs</a></p></aside>\n<p>If you have an AWS account:</p>\n<ol>\n<li class=\"lab-step\" data-lab-id=\"lab-step-5\"><span class=\"lab-step-text\">Launch two EC2 instances with the same simple web application.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-6\"><span class=\"lab-step-text\">Create an Application Load Balancer.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-7\"><span class=\"lab-step-text\">Create a target group and register the instances.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-8\"><span class=\"lab-step-text\">Configure a health check endpoint.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-9\"><span class=\"lab-step-text\">Verify that traffic is distributed between both instances.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-10\"><span class=\"lab-step-text\">Create a Launch Template.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-11\"><span class=\"lab-step-text\">Create an Auto Scaling Group with:</span></li>\n<p>- Minimum: 2 - Desired: 2 - Maximum: 4</p>\n<li class=\"lab-step\" data-lab-id=\"lab-step-12\"><span class=\"lab-step-text\">(Optional) Configure a target-tracking policy based on average CPU utilization.</span></li>\n</ol>\n<hr class=\"divider\" />\n</div><h2>Complete AWS Architecture So Far</h2>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>                     Internet\n                         │\n                 Internet Gateway\n                         │\n              Application Load Balancer\n                         │\n              Auto Scaling Group (EC2)\n                  │               │\n                  ├───────────────┤\n                  │\n        ┌─────────┴─────────┐\n        ▼                   ▼\n     Amazon RDS          Amazon S3\n (Relational Data)   (Images &amp; Files)</code></pre></div>\n<h2>What You've Learned</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Service</th><th>Purpose</th></tr></thead><tbody>\n<tr><td>IAM</td><td>Identity &amp; permissions</td></tr>\n<tr><td>EC2</td><td>Virtual servers</td></tr>\n<tr><td>S3</td><td>Object storage</td></tr>\n<tr><td>VPC</td><td>Networking</td></tr>\n<tr><td>RDS</td><td>Managed relational database</td></tr>\n<tr><td>ELB</td><td>Distributes incoming traffic</td></tr>\n<tr><td>Auto Scaling</td><td>Automatically adjusts EC2 capacity</td></tr>\n</tbody></table></div>\n<hr class=\"divider\" />\n</div><h2>Next Lesson: AWS Lambda (Serverless Computing)</h2>\n<p>This is where you'll learn a completely different way to build applications:</p>\n<ul>\n<li>No EC2 servers to manage</li>\n<li>Pay only when your code runs</li>\n<li>Event-driven architecture</li>\n<li>API Gateway integration</li>\n<li>Real-world serverless applications</li>\n<li>When to choose Lambda instead of EC2</li>\n</ul>\n<p>Lambda is one of AWS's flagship services and a key concept in modern cloud architecture.</p>\n<aside class=\"accuracy-note\" role=\"note\"><p><strong>Content review:</strong> 2026-07. Curriculum text is adapted from a shared learning roadmap; verify critical details in official AWS docs before production use.</p><p class=\"accuracy-note-label\">References</p><ul><li><a href=\"https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/what-is-load-balancing.html\" rel=\"noopener noreferrer\" target=\"_blank\">docs.aws.amazon.com/elasticloadbalancing/latest/userguide/wh…</a></li></ul></aside>",
+  "content": "<h2>Lesson 7: Elastic Load Balancer (ELB) &amp; Auto Scaling</h2>\n<p>Here you move from a single server to systems that survive failures and traffic spikes. Load balancing and auto scaling are among the most common AWS interview topics—and production essentials.</p>\n<hr class=\"divider\" />\n<h3>The Problem with One Server</h3>\n<p>Suppose your website runs on one EC2 instance.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Users\n   │\n   ▼\nEC2</code></pre></div>\n<p>Now imagine:</p>\n<ul>\n<li>10,000 people visit at once.</li>\n<li>The server becomes overloaded.</li>\n<li>Or worse—it crashes.</li>\n</ul>\n<p>Now nobody can access your website.</p>\n<hr class=\"divider\" />\n<h3>Solution: Multiple Servers</h3>\n<p>Instead of one server:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Users\n\n↓\n\nEC2-1\n\nEC2-2\n\nEC2-3</code></pre></div>\n<p>Now the work is shared.</p>\n<p>But there's another problem...</p>\n<p>How do users know which server to connect to?</p>\n<hr class=\"divider\" />\n<h3>Enter the Load Balancer</h3>\n<p>A <strong>Load Balancer</strong> sits in front of your servers.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>           Users\n              │\n              ▼\n      Load Balancer\n       /     |     \\\n      ▼      ▼      ▼\n    EC2-1  EC2-2  EC2-3</code></pre></div>\n<p>Users only know the Load Balancer's address.</p>\n<p>The Load Balancer decides which server should handle each request.</p>\n<hr class=\"divider\" />\n<h3>What Does a Load Balancer Actually Do?</h3>\n<p>Imagine a receptionist in a hospital.</p>\n<p>Patients arrive.</p>\n<p>The receptionist sends them to:</p>\n<ul>\n<li>Doctor 1</li>\n<li>Doctor 2</li>\n<li>Doctor 3</li>\n</ul>\n<p>The receptionist doesn't treat patients.</p>\n<p>They just distribute them.</p>\n<p>A Load Balancer works the same way.</p>\n<hr class=\"divider\" />\n<h3>Why Use a Load Balancer?</h3>\n<p>Without one:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>User\n\n↓\n\nEC2-1</code></pre></div>\n<p>If EC2-1 crashes:</p>\n<p>❌ Website unavailable.</p>\n<p>With one:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>User\n\n↓\n\nLoad Balancer\n\n↓\n\nHealthy EC2</code></pre></div>\n<p>The user may not even notice that one server failed.</p>\n<hr class=\"divider\" />\n<h3>Types of AWS Load Balancers</h3>\n<p>AWS provides several load balancer types.</p>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Type</th><th>Best For</th></tr></thead><tbody>\n<tr><td>Application Load Balancer (ALB)</td><td>HTTP/HTTPS web applications</td></tr>\n<tr><td>Network Load Balancer (NLB)</td><td>Very high-performance TCP/UDP traffic</td></tr>\n<tr><td>Gateway Load Balancer (GWLB)</td><td>Integrating virtual network appliances</td></tr>\n</tbody></table></div>\n<p>For most web applications, you'll start with an <strong>Application Load Balancer (ALB)</strong>.</p>\n<hr class=\"divider\" />\n<h3>Application Load Balancer (ALB)</h3>\n<p>An ALB understands HTTP and HTTPS.</p>\n<p>It can make routing decisions based on:</p>\n<ul>\n<li>URL path</li>\n<li>Host name</li>\n<li>HTTP headers</li>\n</ul>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>example.com/images\n\n↓\n\nImage Server</code></pre></div>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>example.com/api\n\n↓\n\nAPI Server</code></pre></div>\n<p>This is called <strong>path-based routing</strong>.</p>\n<hr class=\"divider\" />\n<h3>Health Checks</h3>\n<p>A Load Balancer constantly checks if servers are healthy.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Load Balancer\n\n↓\n\nGET /health\n\n↓\n\nServer responds\n\n200 OK</code></pre></div>\n<p>If a server doesn't respond correctly:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>EC2-2\n\n↓\n\nFailed Health Check\n\n↓\n\nRemoved from rotation</code></pre></div>\n<p>No user traffic is sent to that server until it becomes healthy again.</p>\n<hr class=\"divider\" />\n<h3>Before and After</h3>\n<p>Without health checks:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>User\n\n↓\n\nBroken Server\n\n↓\n\nError</code></pre></div>\n<p>With health checks:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>User\n\n↓\n\nLoad Balancer\n\n↓\n\nHealthy Server</code></pre></div>\n<hr class=\"divider\" />\n<h3>Auto Scaling</h3>\n<p>Now imagine traffic suddenly increases.</p>\n<p>One server isn't enough.</p>\n<p>Instead of manually creating more servers:</p>\n<p>AWS can do it automatically.</p>\n<p>This feature is called <strong>Auto Scaling</strong>.</p>\n<hr class=\"divider\" />\n<h3>Auto Scaling Group (ASG)</h3>\n<p>An <strong>Auto Scaling Group</strong> manages a group of EC2 instances.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Auto Scaling Group\n\n↓\n\nEC2-1\n\nEC2-2\n\nEC2-3</code></pre></div>\n<p>If one instance fails:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>EC2-2\n\n↓\n\nCrash\n\n↓\n\nASG launches a replacement</code></pre></div>\n<p>The group automatically returns to its desired size.</p>\n<hr class=\"divider\" />\n<h3>Desired, Minimum, and Maximum Capacity</h3>\n<p>Suppose you configure:</p>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Setting</th><th>Value</th></tr></thead><tbody>\n<tr><td>Minimum</td><td>2</td></tr>\n<tr><td>Desired</td><td>3</td></tr>\n<tr><td>Maximum</td><td>10</td></tr>\n</tbody></table></div>\n<p>Initially:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>EC2-1\n\nEC2-2\n\nEC2-3</code></pre></div>\n<p>If traffic increases:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>EC2-4\n\nEC2-5\n\nEC2-6</code></pre></div>\n<p>The ASG can keep adding instances until it reaches the maximum.</p>\n<hr class=\"divider\" />\n<h3>Scaling Out vs Scaling Up</h3>\n<p>Two ways to increase capacity:</p>\n<h4>Vertical Scaling (Scale Up)</h4>\n<p>Make one server bigger.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>2 CPU\n\n↓\n\n8 CPU</code></pre></div>\n<p>Pros:</p>\n<ul>\n<li>Simple</li>\n</ul>\n<p>Cons:</p>\n<ul>\n<li>Has hardware limits.</li>\n<li>Can require downtime.</li>\n</ul>\n<hr class=\"divider\" />\n<h4>Horizontal Scaling (Scale Out)</h4>\n<p>Add more servers.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>1 Server\n\n↓\n\n4 Servers</code></pre></div>\n<p>Pros:</p>\n<ul>\n<li>Better fault tolerance.</li>\n<li>Easier to handle very large traffic.</li>\n</ul>\n<p>Cloud applications usually prefer horizontal scaling.</p>\n<hr class=\"divider\" />\n<h3>Scaling Policies</h3>\n<p>Auto Scaling decides when to add or remove instances.</p>\n<p>Example:</p>\n<p>If CPU usage exceeds 70%:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>CPU &gt; 70%\n\n↓\n\nLaunch another EC2</code></pre></div>\n<p>If CPU usage drops below 20% for a while:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>CPU &lt; 20%\n\n↓\n\nTerminate one EC2</code></pre></div>\n<p>This saves money during quiet periods.</p>\n<hr class=\"divider\" />\n<h3>Launch Template</h3>\n<p>When Auto Scaling creates a new server, it needs instructions.</p>\n<p>A <strong>Launch Template</strong> includes:</p>\n<ul>\n<li>AMI</li>\n<li>Instance type</li>\n<li>Security Group</li>\n<li>Key pair (optional, depending on your setup)</li>\n<li>IAM role</li>\n<li>User data (startup script)</li>\n</ul>\n<p>Think of it as a recipe for creating new EC2 instances.</p>\n<hr class=\"divider\" />\n<h3>High Availability (HA)</h3>\n<p>High Availability means your application keeps running even if something fails.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>AZ-A\n\nEC2-1\n\nEC2-2\n\n----------------\n\nAZ-B\n\nEC2-3\n\nEC2-4</code></pre></div>\n<p>If one Availability Zone fails, the other can continue serving traffic.</p>\n<hr class=\"divider\" />\n<h3>Fault Tolerance</h3>\n<p>Fault tolerance means the system is designed to continue operating despite failures.</p>\n<p>Examples:</p>\n<ul>\n<li>Server crashes</li>\n<li>Disk failure</li>\n<li>Availability Zone outage</li>\n</ul>\n<p>Good AWS architectures expect failures and recover automatically.</p>\n<hr class=\"divider\" />\n<h3>Production Architecture</h3>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>                  Internet\n                      │\n          Application Load Balancer\n               /                \\\n              ▼                  ▼\n      EC2 (AZ-A)           EC2 (AZ-B)\n              \\              /\n               ▼            ▼\n          Auto Scaling Group\n                   │\n                   ▼\n               Amazon RDS\n                   │\n                   ▼\n                Amazon S3</code></pre></div>\n<p>This architecture provides:</p>\n<ul>\n<li>High availability</li>\n<li>Automatic recovery</li>\n<li>Automatic scaling</li>\n<li>Better resilience</li>\n</ul>\n<hr class=\"divider\" />\n<h3>Example: Black Friday Sale</h3>\n<p>At 2 AM:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Users\n\n↓\n\n2 Servers</code></pre></div>\n<p>At 10 AM:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>100,000 Users\n\n↓\n\n8 Servers</code></pre></div>\n<p>At midnight:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Users leave\n\n↓\n\nBack to 2 Servers</code></pre></div>\n<p>No engineer needed to manually add or remove servers.</p>\n<hr class=\"divider\" />\n<h3>ELB vs Auto Scaling</h3>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>ELB</th><th>Auto Scaling</th></tr></thead><tbody>\n<tr><td>Distributes traffic</td><td>Adds/removes EC2 instances</td></tr>\n<tr><td>Performs health checks</td><td>Replaces failed instances</td></tr>\n<tr><td>Routes users to healthy targets</td><td>Responds to changing demand</td></tr>\n</tbody></table></div>\n<p>They are often used together.</p>\n<hr class=\"divider\" />\n<h2>Interview practice prompts</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Use these as open-ended prompts (the lesson quiz below is multiple choice).</p>\n<ol>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Why is a Load Balancer needed?</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">What is the difference between an ALB and an NLB?</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">What are health checks?</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">What is an Auto Scaling Group?</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-5\"><span class=\"lab-step-text\">What is the difference between scaling up and scaling out?</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-6\"><span class=\"lab-step-text\">What is a Launch Template?</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-7\"><span class=\"lab-step-text\">What is High Availability?</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-8\"><span class=\"lab-step-text\">Why should EC2 instances be spread across multiple Availability Zones?</span></li>\n</ol>\n<hr class=\"divider\" />\n</div><h2>Hands-on Lab</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<aside class=\"cost-safety callout warn\" role=\"note\"><p class=\"callout-title\">Cost safety</p><ul><li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Prefer <strong>Free Tier</strong> / small instance sizes while learning.</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Create a <strong>billing alarm</strong> (CloudWatch or Budgets) on day one.</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\"><strong>Tear down</strong> lab resources when finished (instances, load balancers, NAT gateways).</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">Never put long-lived access keys in code or public repos.</span></li></ul><p class=\"workshop-links\"><strong>Official practice:</strong> <a href=\"https://explore.skillbuilder.aws/\" rel=\"noopener noreferrer\" target=\"_blank\">AWS Skill Builder</a> · <a href=\"https://wellarchitectedlabs.com/\" rel=\"noopener noreferrer\" target=\"_blank\">Well-Architected Labs</a> · <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/free-tier.html\" rel=\"noopener noreferrer\" target=\"_blank\">Free Tier docs</a></p></aside>\n<p>If you have an AWS account:</p>\n<ol>\n<li class=\"lab-step\" data-lab-id=\"lab-step-5\"><span class=\"lab-step-text\">Launch two EC2 instances with the same simple web application.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-6\"><span class=\"lab-step-text\">Create an Application Load Balancer.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-7\"><span class=\"lab-step-text\">Create a target group and register the instances.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-8\"><span class=\"lab-step-text\">Configure a health check endpoint.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-9\"><span class=\"lab-step-text\">Verify that traffic is distributed between both instances.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-10\"><span class=\"lab-step-text\">Create a Launch Template.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-11\"><span class=\"lab-step-text\">Create an Auto Scaling Group with:</span></li>\n<p>- Minimum: 2 - Desired: 2 - Maximum: 4</p>\n<li class=\"lab-step\" data-lab-id=\"lab-step-12\"><span class=\"lab-step-text\">(Optional) Configure a target-tracking policy based on average CPU utilization.</span></li>\n</ol>\n<hr class=\"divider\" />\n<h3>Complete AWS Architecture So Far</h3>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>                     Internet\n                         │\n                 Internet Gateway\n                         │\n              Application Load Balancer\n                         │\n              Auto Scaling Group (EC2)\n                  │               │\n                  ├───────────────┤\n                  │\n        ┌─────────┴─────────┐\n        ▼                   ▼\n     Amazon RDS          Amazon S3\n (Relational Data)   (Images &amp; Files)</code></pre></div>\n<h3>What You've Learned</h3>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Service</th><th>Purpose</th></tr></thead><tbody>\n<tr><td>IAM</td><td>Identity &amp; permissions</td></tr>\n<tr><td>EC2</td><td>Virtual servers</td></tr>\n<tr><td>S3</td><td>Object storage</td></tr>\n<tr><td>VPC</td><td>Networking</td></tr>\n<tr><td>RDS</td><td>Managed relational database</td></tr>\n<tr><td>ELB</td><td>Distributes incoming traffic</td></tr>\n<tr><td>Auto Scaling</td><td>Automatically adjusts EC2 capacity</td></tr>\n</tbody></table></div>\n<hr class=\"divider\" />\n<h3>Next Lesson: AWS Lambda (Serverless Computing)</h3>\n<p>This is where you'll learn a completely different way to build applications:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-13\"><span class=\"lab-step-text\">No EC2 servers to manage</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-14\"><span class=\"lab-step-text\">Pay only when your code runs</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-15\"><span class=\"lab-step-text\">Event-driven architecture</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-16\"><span class=\"lab-step-text\">API Gateway integration</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-17\"><span class=\"lab-step-text\">Real-world serverless applications</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-18\"><span class=\"lab-step-text\">When to choose Lambda instead of EC2</span></li>\n</ul>\n<p>Lambda is one of AWS's flagship services and a key concept in modern cloud architecture.</p>\n<aside class=\"accuracy-note\" role=\"note\"><p><strong>Content review:</strong> 2026-07. Curriculum text is adapted from a shared learning roadmap; verify critical details in official AWS docs before production use.</p><p class=\"accuracy-note-label\">References</p><ul><li class=\"lab-step\" data-lab-id=\"lab-step-19\"><span class=\"lab-step-text\"><a href=\"https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/what-is-load-balancing.html\" rel=\"noopener noreferrer\" target=\"_blank\">docs.aws.amazon.com/elasticloadbalancing/latest/userguide/wh…</a></span></li></ul></aside></div>",
   "quiz": [
     {
       "q": "One server is a problem because:",
@@ -144,36 +52,36 @@
     {
       "q": "A load balancer:",
       "options": [
-        "Distributes traffic across multiple targets",
         "Stores S3 objects only",
+        "Distributes traffic across multiple targets",
         "Replaces IAM",
         "Creates Regions"
       ],
-      "answer": 0,
+      "answer": 1,
       "explain": "Traffic distribution.",
       "style": "general"
     },
     {
       "q": "Health checks allow the LB to:",
       "options": [
-        "Send traffic only to healthy targets",
         "Encrypt EBS automatically",
         "Delete NACLs",
+        "Send traffic only to healthy targets",
         "Rotate root passwords"
       ],
-      "answer": 0,
+      "answer": 2,
       "explain": "Unhealthy targets taken out of rotation.",
       "style": "general"
     },
     {
       "q": "ALB operates primarily at:",
       "options": [
-        "HTTP/HTTPS application layer (L7)",
         "Only physical cables",
         "Only S3 inventory",
-        "Only Glacier"
+        "Only Glacier",
+        "HTTP/HTTPS application layer (L7)"
       ],
-      "answer": 0,
+      "answer": 3,
       "explain": "Application Load Balancer.",
       "style": "general"
     },
@@ -192,36 +100,36 @@
     {
       "q": "Auto Scaling Group maintains:",
       "options": [
-        "A fleet of instances between min/desired/max",
         "A single frozen AMI forever without replace",
+        "A fleet of instances between min/desired/max",
         "Only DynamoDB items",
         "Only Route 53 records"
       ],
-      "answer": 0,
+      "answer": 1,
       "explain": "ASG capacity.",
       "style": "general"
     },
     {
       "q": "Scaling out means:",
       "options": [
-        "Adding more instances",
         "Only adding RAM to one box always",
         "Deleting the VPC",
+        "Adding more instances",
         "Turning off the ALB"
       ],
-      "answer": 0,
+      "answer": 2,
       "explain": "Horizontal scale.",
       "style": "general"
     },
     {
       "q": "Scaling up means:",
       "options": [
-        "Making an instance bigger (vertical)",
         "Always adding more instances only",
         "Only adding subnets",
-        "Only adding bucket versions"
+        "Only adding bucket versions",
+        "Making an instance bigger (vertical)"
       ],
-      "answer": 0,
+      "answer": 3,
       "explain": "Vertical scale.",
       "style": "general"
     },
@@ -240,36 +148,36 @@
     {
       "q": "Launch template defines:",
       "options": [
-        "How new instances are configured (AMI, type, etc.)",
         "Only CloudTrail home Region",
+        "How new instances are configured (AMI, type, etc.)",
         "Only S3 lifecycle",
         "Only DNS TTL"
       ],
-      "answer": 0,
+      "answer": 1,
       "explain": "Launch configuration/template idea.",
       "style": "general"
     },
     {
       "q": "High Availability means:",
       "options": [
-        "System keeps working despite component failures (multi-AZ patterns)",
         "One server always enough",
         "No health checks",
+        "System keeps working despite component failures (multi-AZ patterns)",
         "No backups"
       ],
-      "answer": 0,
+      "answer": 2,
       "explain": "HA.",
       "style": "general"
     },
     {
       "q": "Fault tolerance emphasizes:",
       "options": [
-        "Continuing operation through failures",
         "Failing permanently on first error always",
         "No redundancy",
-        "Single AZ only always"
+        "Single AZ only always",
+        "Continuing operation through failures"
       ],
-      "answer": 0,
+      "answer": 3,
       "explain": "Related reliability concept.",
       "style": "general"
     },
@@ -288,36 +196,36 @@
     {
       "q": "ELB vs Auto Scaling:",
       "options": [
-        "LB distributes traffic; ASG changes capacity—they work together",
         "They are identical services",
+        "LB distributes traffic; ASG changes capacity—they work together",
         "ASG replaces HTTPS",
         "ELB stores databases"
       ],
-      "answer": 0,
+      "answer": 1,
       "explain": "Complementary.",
       "style": "general"
     },
     {
       "q": "Production architecture often is:",
       "options": [
-        "Users → LB → ASG instances across AZs",
         "Users → single laptop",
         "Users → root user only",
+        "Users → LB → ASG instances across AZs",
         "Users → only CloudFormation UI"
       ],
-      "answer": 0,
+      "answer": 2,
       "explain": "Standard web tier.",
       "style": "scenario"
     },
     {
       "q": "If min=max=2:",
       "options": [
-        "No elastic scale, but can still replace unhealthy",
         "Infinite scale",
         "Zero instances always",
-        "Only Lambda"
+        "Only Lambda",
+        "No elastic scale, but can still replace unhealthy"
       ],
-      "answer": 0,
+      "answer": 3,
       "explain": "Fixed size fleet.",
       "style": "general"
     },
@@ -336,36 +244,36 @@
     {
       "q": "Without health checks:",
       "options": [
-        "LB may send traffic to dead instances",
         "ASG becomes free",
+        "LB may send traffic to dead instances",
         "VPC disappears",
         "S3 versioning enables"
       ],
-      "answer": 0,
+      "answer": 1,
       "explain": "Health checks matter.",
       "style": "general"
     },
     {
       "q": "Interview: sticky sessions:",
       "options": [
-        "Can be a design tradeoff; better to design stateless when possible",
         "Always required",
         "Disable ALB forever",
+        "Can be a design tradeoff; better to design stateless when possible",
         "Replace Multi-AZ"
       ],
-      "answer": 0,
+      "answer": 2,
       "explain": "Design awareness.",
       "style": "general"
     },
     {
       "q": "Hands-on lab spirit:",
       "options": [
-        "Put instances behind LB and attach ASG policies",
         "Open DB to 0.0.0.0/0",
         "Use only root keys in git",
-        "Disable all logs"
+        "Disable all logs",
+        "Put instances behind LB and attach ASG policies"
       ],
-      "answer": 0,
+      "answer": 3,
       "explain": "Practice HA web tier.",
       "style": "general"
     },
@@ -384,12 +292,12 @@
     {
       "q": "Before/after diagrams in the lesson show:",
       "options": [
-        "From single server risk to LB+multiple servers",
         "From multi-AZ to single server as best practice",
+        "From single server risk to LB+multiple servers",
         "From ALB to no internet",
         "From ASG to root-only"
       ],
-      "answer": 0,
+      "answer": 1,
       "explain": "Core teaching arc.",
       "style": "general"
     }

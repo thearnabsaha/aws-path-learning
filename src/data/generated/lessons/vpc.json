@@ -28,98 +28,14 @@
     },
     {
       "id": "part-2",
-      "title": "What is a VPC?"
-    },
-    {
-      "id": "part-3",
-      "title": "Why Do We Need a VPC?"
-    },
-    {
-      "id": "part-4",
-      "title": "CIDR Block"
-    },
-    {
-      "id": "part-5",
-      "title": "Subnets"
-    },
-    {
-      "id": "part-6",
-      "title": "Public Subnet"
-    },
-    {
-      "id": "part-7",
-      "title": "Private Subnet"
-    },
-    {
-      "id": "part-8",
-      "title": "Real Architecture"
-    },
-    {
-      "id": "part-9",
-      "title": "Internet Gateway (IGW)"
-    },
-    {
-      "id": "part-10",
-      "title": "Route Table"
-    },
-    {
-      "id": "part-11",
-      "title": "Public Route Table"
-    },
-    {
-      "id": "part-12",
-      "title": "Private Route Table"
-    },
-    {
-      "id": "part-13",
-      "title": "NAT Gateway"
-    },
-    {
-      "id": "part-14",
-      "title": "Complete Architecture"
-    },
-    {
-      "id": "part-15",
-      "title": "Security Groups"
-    },
-    {
-      "id": "part-16",
-      "title": "Network ACL (NACL)"
-    },
-    {
-      "id": "part-17",
-      "title": "Security Group vs NACL"
-    },
-    {
-      "id": "part-18",
-      "title": "Real Company Example"
-    },
-    {
-      "id": "part-19",
-      "title": "Data Flow"
-    },
-    {
-      "id": "part-20",
-      "title": "Why Put Databases in Private Subnets?"
-    },
-    {
-      "id": "part-21",
       "title": "Interview practice prompts"
     },
     {
-      "id": "part-22",
+      "id": "part-3",
       "title": "Hands-on Lab"
-    },
-    {
-      "id": "part-23",
-      "title": "AWS Services You've Mastered So Far"
-    },
-    {
-      "id": "part-24",
-      "title": "Next Lesson: Amazon RDS (Relational Database Service)"
     }
   ],
-  "content": "<h2>Lesson 5: Amazon VPC (Virtual Private Cloud)</h2>\n<p>This is where AWS networking often “clicks.” Once you understand VPC, subnets, gateways, and security layers, most application architectures become much easier to design and interview for.</p>\n<hr class=\"divider\" />\n<h2>What is a VPC?</h2>\n<p>A <strong>VPC (Virtual Private Cloud)</strong> is your own private network inside AWS.</p>\n<p>Imagine AWS is a giant apartment complex.</p>\n<p>Each customer gets their own apartment.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>AWS Cloud\n+------------------------------------------------------+\n|                                                      |\n|  Your VPC                    Other Customer's VPC    |\n| +----------------------+     +-------------------+    |\n| |                      |     |                   |    |\n| | Your Servers         |     | Their Servers     |    |\n| | Your Database        |     | Their Database    |    |\n| | Your Network         |     | Their Network     |    |\n| +----------------------+     +-------------------+    |\n|                                                      |\n+------------------------------------------------------+</code></pre></div>\n<p>Even though you're sharing AWS's infrastructure, your network is isolated from everyone else's.</p>\n<hr class=\"divider\" />\n<h2>Why Do We Need a VPC?</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Without a VPC:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Everyone's servers\n        │\n        ▼\n One giant network</code></pre></div>\n<p>Chaos.</p>\n<p>With a VPC:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Company A\n\nOwn Network\n\n----------------\n\nCompany B\n\nOwn Network\n\n----------------\n\nCompany C\n\nOwn Network</code></pre></div>\n<p>Each company has complete control over its own network.</p>\n<hr class=\"divider\" />\n</div><h2>CIDR Block</h2>\n<p>Every VPC gets an IP address range.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>10.0.0.0/16</code></pre></div>\n<p>This is called a <strong>CIDR block</strong>.</p>\n<p>Think of it as assigning addresses to houses in a city.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>VPC\n\n10.0.0.0/16\n\n↓\n\n10.0.0.1\n\n10.0.0.2\n\n10.0.0.3\n\n...</code></pre></div>\n<p>The <code>/16</code> tells AWS how large the network is.</p>\n<hr class=\"divider\" />\n<h2>Subnets</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>A VPC is divided into smaller sections called <strong>subnets</strong>.</p>\n<p>Imagine a city.</p>\n<p>The city has neighborhoods.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>City (VPC)\n\n├── North Area\n├── South Area\n├── East Area\n└── West Area</code></pre></div>\n<p>Those neighborhoods are subnets.</p>\n<hr class=\"divider\" />\n</div><h2>Public Subnet</h2>\n<p>A <strong>public subnet</strong> contains resources that need internet access.</p>\n<p>Examples:</p>\n<ul>\n<li>Web servers</li>\n<li>Load Balancers</li>\n<li>Bastion hosts</li>\n</ul>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Internet\n\n↓\n\nPublic Subnet\n\n↓\n\nEC2 Web Server</code></pre></div>\n<hr class=\"divider\" />\n<h2>Private Subnet</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>A <strong>private subnet</strong> has <strong>no direct internet access</strong>.</p>\n<p>Examples:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Databases</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Internal APIs</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">Backend services</span></li>\n</ul>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Internet\n\n↓\n\n(No direct access)\n\n↓\n\nPrivate Subnet\n\n↓\n\nDatabase</code></pre></div>\n<p>This is much safer.</p>\n<hr class=\"divider\" />\n</div><h2>Real Architecture</h2>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Internet\n\n↓\n\nPublic Subnet\n\n↓\n\nWeb Server\n\n↓\n\nPrivate Subnet\n\n↓\n\nDatabase</code></pre></div>\n<p>Users reach the web server.</p>\n<p>The web server communicates with the database.</p>\n<p>Users never connect directly to the database.</p>\n<hr class=\"divider\" />\n<h2>Internet Gateway (IGW)</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>A VPC doesn't automatically connect to the internet.</p>\n<p>You attach an <strong>Internet Gateway</strong>.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Internet\n\n↓\n\nInternet Gateway\n\n↓\n\nVPC</code></pre></div>\n<p>Without an IGW:</p>\n<p>No internet access.</p>\n<hr class=\"divider\" />\n</div><h2>Route Table</h2>\n<p>A route table tells AWS where to send network traffic.</p>\n<p>Think of it like Google Maps.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Destination: Internet\n\n↓\n\nGo through Internet Gateway</code></pre></div>\n<p>Without a route table, packets don't know where to go.</p>\n<hr class=\"divider\" />\n<h2>Public Route Table</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>0.0.0.0/0\n\n↓\n\nInternet Gateway</code></pre></div>\n<p><code>0.0.0.0/0</code> means <strong>all destinations</strong>.</p>\n<hr class=\"divider\" />\n</div><h2>Private Route Table</h2>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>10.0.0.0/16\n\n↓\n\nLocal Network</code></pre></div>\n<p>No internet route.</p>\n<p>Only internal communication.</p>\n<hr class=\"divider\" />\n<h2>NAT Gateway</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Now comes an important question.</p>\n<p>A private server may need internet access to:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Download software updates</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Install packages</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">Access external APIs</span></li>\n</ul>\n<p>But we don't want the internet to initiate connections to it.</p>\n<p>Solution:</p>\n<p><strong>NAT Gateway</strong></p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Private EC2\n\n↓\n\nNAT Gateway\n\n↓\n\nInternet</code></pre></div>\n<p>The private server can make outbound requests.</p>\n<p>The internet still cannot directly reach it.</p>\n<hr class=\"divider\" />\n</div><h2>Complete Architecture</h2>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>                    Internet\n                        │\n                Internet Gateway\n                        │\n          +-----------------------------+\n          |            VPC              |\n          |                             |\n          |  Public Subnet              |\n          |  +----------------------+   |\n          |  | Load Balancer        |   |\n          |  | Web Server (EC2)     |   |\n          |  +----------------------+   |\n          |              │              |\n          |              ▼              |\n          |  Private Subnet             |\n          |  +----------------------+   |\n          |  | App Server (EC2)     |   |\n          |  | Database (RDS)       |   |\n          |  +----------------------+   |\n          |              │              |\n          |              ▼              |\n          |         NAT Gateway         |\n          +-----------------------------+</code></pre></div>\n<hr class=\"divider\" />\n<h2>Security Groups</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Think of Security Groups as the <strong>security guard at each building</strong>.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Web Server\n\nAllow:\n\nPort 80\n\nPort 443\n\nPort 22</code></pre></div>\n<p>Everything else is blocked.</p>\n<hr class=\"divider\" />\n</div><h2>Network ACL (NACL)</h2>\n<p>A Network ACL is another layer of protection.</p>\n<p>Think of it as the <strong>security gate at the neighborhood entrance</strong>.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>City Gate\n\n↓\n\nNetwork ACL\n\n↓\n\nNeighborhood\n\n↓\n\nSecurity Guard\n\n↓\n\nHouse</code></pre></div>\n<p>Both Security Groups and NACLs work together.</p>\n<hr class=\"divider\" />\n<h2>Security Group vs NACL</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Security Group</th><th>Network ACL</th></tr></thead><tbody>\n<tr><td>Attached to EC2</td><td>Attached to Subnet</td></tr>\n<tr><td>Stateful</td><td>Stateless</td></tr>\n<tr><td>Usually used more often</td><td>Adds subnet-level control</td></tr>\n<tr><td>Default: deny inbound, allow all outbound unless changed</td><td>Rules evaluated in order, can allow and deny</td></tr>\n</tbody></table></div>\n<h3>What does \"stateful\" mean?</h3>\n<p>If a Security Group allows an incoming connection, the response traffic is automatically allowed back.</p>\n<p>With a stateless NACL, you need explicit rules for both directions.</p>\n<hr class=\"divider\" />\n</div><h2>Real Company Example</h2>\n<p>Suppose you're building Amazon.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Customer\n\n↓\n\nLoad Balancer\n\n↓\n\nWeb Server\n\n↓\n\nApplication Server\n\n↓\n\nDatabase</code></pre></div>\n<p>Where should each component go?</p>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Component</th><th>Location</th></tr></thead><tbody>\n<tr><td>Load Balancer</td><td>Public Subnet</td></tr>\n<tr><td>Web Server</td><td>Public or private (many modern designs use private)</td></tr>\n<tr><td>Application Server</td><td>Private Subnet</td></tr>\n<tr><td>Database</td><td>Private Subnet</td></tr>\n</tbody></table></div>\n<hr class=\"divider\" />\n<h2>Data Flow</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Customer\n\n↓\n\nPublic IP\n\n↓\n\nLoad Balancer\n\n↓\n\nApplication\n\n↓\n\nDatabase\n\n↓\n\nResponse\n\n↓\n\nCustomer</code></pre></div>\n<p>The customer never talks directly to the database.</p>\n<hr class=\"divider\" />\n</div><h2>Why Put Databases in Private Subnets?</h2>\n<p>Imagine your bank's database were directly exposed to the internet.</p>\n<p>That would be a huge security risk.</p>\n<p>Instead:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Internet\n\n↓\n\nWebsite\n\n↓\n\nBackend\n\n↓\n\nDatabase</code></pre></div>\n<p>The database is protected behind multiple layers.</p>\n<hr class=\"divider\" />\n<h2>Interview practice prompts</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Use these as open-ended prompts (the lesson quiz below is multiple choice).</p>\n<ol>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">What is a VPC?</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Why do we use subnets?</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">What is the difference between a public and a private subnet?</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">What does an Internet Gateway do?</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-5\"><span class=\"lab-step-text\">What is a route table?</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-6\"><span class=\"lab-step-text\">Why is a NAT Gateway needed?</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-7\"><span class=\"lab-step-text\">What is the difference between a Security Group and a Network ACL?</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-8\"><span class=\"lab-step-text\">Why should databases be in private subnets?</span></li>\n</ol>\n<hr class=\"divider\" />\n</div><h2>Hands-on Lab</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<aside class=\"cost-safety callout warn\" role=\"note\"><p class=\"callout-title\">Cost safety</p><ul><li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Prefer <strong>Free Tier</strong> / small instance sizes while learning.</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Create a <strong>billing alarm</strong> (CloudWatch or Budgets) on day one.</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\"><strong>Tear down</strong> lab resources when finished (instances, load balancers, NAT gateways).</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">Never put long-lived access keys in code or public repos.</span></li></ul><p class=\"workshop-links\"><strong>Official practice:</strong> <a href=\"https://explore.skillbuilder.aws/\" rel=\"noopener noreferrer\" target=\"_blank\">AWS Skill Builder</a> · <a href=\"https://wellarchitectedlabs.com/\" rel=\"noopener noreferrer\" target=\"_blank\">Well-Architected Labs</a> · <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/free-tier.html\" rel=\"noopener noreferrer\" target=\"_blank\">Free Tier docs</a></p></aside>\n<p>If you have an AWS account:</p>\n<ol>\n<li class=\"lab-step\" data-lab-id=\"lab-step-5\"><span class=\"lab-step-text\">Create a new VPC with CIDR <code>10.0.0.0/16</code>.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-6\"><span class=\"lab-step-text\">Create:</span></li>\n<p>- One public subnet (<code>10.0.1.0/24</code>) - One private subnet (<code>10.0.2.0/24</code>)</p>\n<li class=\"lab-step\" data-lab-id=\"lab-step-7\"><span class=\"lab-step-text\">Attach an Internet Gateway to the VPC.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-8\"><span class=\"lab-step-text\">Create a public route table and associate it with the public subnet.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-9\"><span class=\"lab-step-text\">Launch:</span></li>\n<p>- An EC2 instance in the public subnet. - (Optional) Another EC2 instance in the private subnet.</p>\n<li class=\"lab-step\" data-lab-id=\"lab-step-10\"><span class=\"lab-step-text\">Verify that the public instance can be reached via SSH (if its security group allows it), while the private one cannot be reached directly from the internet.</span></li>\n</ol>\n<hr class=\"divider\" />\n</div><h2>AWS Services You've Mastered So Far</h2>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Service</th><th>Purpose</th></tr></thead><tbody>\n<tr><td>IAM</td><td>Identity &amp; Access Management</td></tr>\n<tr><td>EC2</td><td>Virtual servers</td></tr>\n<tr><td>S3</td><td>Object storage</td></tr>\n<tr><td>VPC</td><td>Private networking</td></tr>\n</tbody></table></div>\n<p>These four services are the foundation of most AWS deployments.</p>\n<h2>Next Lesson: Amazon RDS (Relational Database Service)</h2>\n<p>You'll learn:</p>\n<ul>\n<li>Why managed databases are better than running MySQL on EC2</li>\n<li>MySQL, PostgreSQL, MariaDB, SQL Server, and Oracle support</li>\n<li>Multi-AZ deployments</li>\n<li>Read Replicas</li>\n<li>Automated backups</li>\n<li>Failover</li>\n<li>Scaling databases</li>\n<li>Real production architectures</li>\n</ul>\n<p>By the end of that lesson, you'll understand how production applications store and protect their data.</p>\n<aside class=\"accuracy-note\" role=\"note\"><p><strong>Content review:</strong> 2026-07. Curriculum text is adapted from a shared learning roadmap; verify critical details in official AWS docs before production use.</p><p class=\"accuracy-note-label\">References</p><ul><li><a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html\" rel=\"noopener noreferrer\" target=\"_blank\">docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.…</a></li></ul></aside>",
+  "content": "<h2>Lesson 5: Amazon VPC (Virtual Private Cloud)</h2>\n<p>This is where AWS networking often “clicks.” Once you understand VPC, subnets, gateways, and security layers, most application architectures become much easier to design and interview for.</p>\n<hr class=\"divider\" />\n<h3>What is a VPC?</h3>\n<p>A <strong>VPC (Virtual Private Cloud)</strong> is your own private network inside AWS.</p>\n<p>Imagine AWS is a giant apartment complex.</p>\n<p>Each customer gets their own apartment.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>AWS Cloud\n+------------------------------------------------------+\n|                                                      |\n|  Your VPC                    Other Customer's VPC    |\n| +----------------------+     +-------------------+    |\n| |                      |     |                   |    |\n| | Your Servers         |     | Their Servers     |    |\n| | Your Database        |     | Their Database    |    |\n| | Your Network         |     | Their Network     |    |\n| +----------------------+     +-------------------+    |\n|                                                      |\n+------------------------------------------------------+</code></pre></div>\n<p>Even though you're sharing AWS's infrastructure, your network is isolated from everyone else's.</p>\n<hr class=\"divider\" />\n<h3>Why Do We Need a VPC?</h3>\n<p>Without a VPC:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Everyone's servers\n        │\n        ▼\n One giant network</code></pre></div>\n<p>Chaos.</p>\n<p>With a VPC:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Company A\n\nOwn Network\n\n----------------\n\nCompany B\n\nOwn Network\n\n----------------\n\nCompany C\n\nOwn Network</code></pre></div>\n<p>Each company has complete control over its own network.</p>\n<hr class=\"divider\" />\n<h3>CIDR Block</h3>\n<p>Every VPC gets an IP address range.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>10.0.0.0/16</code></pre></div>\n<p>This is called a <strong>CIDR block</strong>.</p>\n<p>Think of it as assigning addresses to houses in a city.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>VPC\n\n10.0.0.0/16\n\n↓\n\n10.0.0.1\n\n10.0.0.2\n\n10.0.0.3\n\n...</code></pre></div>\n<p>The <code>/16</code> tells AWS how large the network is.</p>\n<hr class=\"divider\" />\n<h3>Subnets</h3>\n<p>A VPC is divided into smaller sections called <strong>subnets</strong>.</p>\n<p>Imagine a city.</p>\n<p>The city has neighborhoods.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>City (VPC)\n\n├── North Area\n├── South Area\n├── East Area\n└── West Area</code></pre></div>\n<p>Those neighborhoods are subnets.</p>\n<hr class=\"divider\" />\n<h3>Public Subnet</h3>\n<p>A <strong>public subnet</strong> contains resources that need internet access.</p>\n<p>Examples:</p>\n<ul>\n<li>Web servers</li>\n<li>Load Balancers</li>\n<li>Bastion hosts</li>\n</ul>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Internet\n\n↓\n\nPublic Subnet\n\n↓\n\nEC2 Web Server</code></pre></div>\n<hr class=\"divider\" />\n<h3>Private Subnet</h3>\n<p>A <strong>private subnet</strong> has <strong>no direct internet access</strong>.</p>\n<p>Examples:</p>\n<ul>\n<li>Databases</li>\n<li>Internal APIs</li>\n<li>Backend services</li>\n</ul>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Internet\n\n↓\n\n(No direct access)\n\n↓\n\nPrivate Subnet\n\n↓\n\nDatabase</code></pre></div>\n<p>This is much safer.</p>\n<hr class=\"divider\" />\n<h3>Real Architecture</h3>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Internet\n\n↓\n\nPublic Subnet\n\n↓\n\nWeb Server\n\n↓\n\nPrivate Subnet\n\n↓\n\nDatabase</code></pre></div>\n<p>Users reach the web server.</p>\n<p>The web server communicates with the database.</p>\n<p>Users never connect directly to the database.</p>\n<hr class=\"divider\" />\n<h3>Internet Gateway (IGW)</h3>\n<p>A VPC doesn't automatically connect to the internet.</p>\n<p>You attach an <strong>Internet Gateway</strong>.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Internet\n\n↓\n\nInternet Gateway\n\n↓\n\nVPC</code></pre></div>\n<p>Without an IGW:</p>\n<p>No internet access.</p>\n<hr class=\"divider\" />\n<h3>Route Table</h3>\n<p>A route table tells AWS where to send network traffic.</p>\n<p>Think of it like Google Maps.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Destination: Internet\n\n↓\n\nGo through Internet Gateway</code></pre></div>\n<p>Without a route table, packets don't know where to go.</p>\n<hr class=\"divider\" />\n<h3>Public Route Table</h3>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>0.0.0.0/0\n\n↓\n\nInternet Gateway</code></pre></div>\n<p><code>0.0.0.0/0</code> means <strong>all destinations</strong>.</p>\n<hr class=\"divider\" />\n<h3>Private Route Table</h3>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>10.0.0.0/16\n\n↓\n\nLocal Network</code></pre></div>\n<p>No internet route.</p>\n<p>Only internal communication.</p>\n<hr class=\"divider\" />\n<h3>NAT Gateway</h3>\n<p>Now comes an important question.</p>\n<p>A private server may need internet access to:</p>\n<ul>\n<li>Download software updates</li>\n<li>Install packages</li>\n<li>Access external APIs</li>\n</ul>\n<p>But we don't want the internet to initiate connections to it.</p>\n<p>Solution:</p>\n<p><strong>NAT Gateway</strong></p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Private EC2\n\n↓\n\nNAT Gateway\n\n↓\n\nInternet</code></pre></div>\n<p>The private server can make outbound requests.</p>\n<p>The internet still cannot directly reach it.</p>\n<hr class=\"divider\" />\n<h3>Complete Architecture</h3>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>                    Internet\n                        │\n                Internet Gateway\n                        │\n          +-----------------------------+\n          |            VPC              |\n          |                             |\n          |  Public Subnet              |\n          |  +----------------------+   |\n          |  | Load Balancer        |   |\n          |  | Web Server (EC2)     |   |\n          |  +----------------------+   |\n          |              │              |\n          |              ▼              |\n          |  Private Subnet             |\n          |  +----------------------+   |\n          |  | App Server (EC2)     |   |\n          |  | Database (RDS)       |   |\n          |  +----------------------+   |\n          |              │              |\n          |              ▼              |\n          |         NAT Gateway         |\n          +-----------------------------+</code></pre></div>\n<hr class=\"divider\" />\n<h3>Security Groups</h3>\n<p>Think of Security Groups as the <strong>security guard at each building</strong>.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Web Server\n\nAllow:\n\nPort 80\n\nPort 443\n\nPort 22</code></pre></div>\n<p>Everything else is blocked.</p>\n<hr class=\"divider\" />\n<h3>Network ACL (NACL)</h3>\n<p>A Network ACL is another layer of protection.</p>\n<p>Think of it as the <strong>security gate at the neighborhood entrance</strong>.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>City Gate\n\n↓\n\nNetwork ACL\n\n↓\n\nNeighborhood\n\n↓\n\nSecurity Guard\n\n↓\n\nHouse</code></pre></div>\n<p>Both Security Groups and NACLs work together.</p>\n<hr class=\"divider\" />\n<h3>Security Group vs NACL</h3>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Security Group</th><th>Network ACL</th></tr></thead><tbody>\n<tr><td>Attached to EC2</td><td>Attached to Subnet</td></tr>\n<tr><td>Stateful</td><td>Stateless</td></tr>\n<tr><td>Usually used more often</td><td>Adds subnet-level control</td></tr>\n<tr><td>Default: deny inbound, allow all outbound unless changed</td><td>Rules evaluated in order, can allow and deny</td></tr>\n</tbody></table></div>\n<h4>What does \"stateful\" mean?</h4>\n<p>If a Security Group allows an incoming connection, the response traffic is automatically allowed back.</p>\n<p>With a stateless NACL, you need explicit rules for both directions.</p>\n<hr class=\"divider\" />\n<h3>Real Company Example</h3>\n<p>Suppose you're building Amazon.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Customer\n\n↓\n\nLoad Balancer\n\n↓\n\nWeb Server\n\n↓\n\nApplication Server\n\n↓\n\nDatabase</code></pre></div>\n<p>Where should each component go?</p>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Component</th><th>Location</th></tr></thead><tbody>\n<tr><td>Load Balancer</td><td>Public Subnet</td></tr>\n<tr><td>Web Server</td><td>Public or private (many modern designs use private)</td></tr>\n<tr><td>Application Server</td><td>Private Subnet</td></tr>\n<tr><td>Database</td><td>Private Subnet</td></tr>\n</tbody></table></div>\n<hr class=\"divider\" />\n<h3>Data Flow</h3>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Customer\n\n↓\n\nPublic IP\n\n↓\n\nLoad Balancer\n\n↓\n\nApplication\n\n↓\n\nDatabase\n\n↓\n\nResponse\n\n↓\n\nCustomer</code></pre></div>\n<p>The customer never talks directly to the database.</p>\n<hr class=\"divider\" />\n<h3>Why Put Databases in Private Subnets?</h3>\n<p>Imagine your bank's database were directly exposed to the internet.</p>\n<p>That would be a huge security risk.</p>\n<p>Instead:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Internet\n\n↓\n\nWebsite\n\n↓\n\nBackend\n\n↓\n\nDatabase</code></pre></div>\n<p>The database is protected behind multiple layers.</p>\n<hr class=\"divider\" />\n<h2>Interview practice prompts</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Use these as open-ended prompts (the lesson quiz below is multiple choice).</p>\n<ol>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">What is a VPC?</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Why do we use subnets?</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">What is the difference between a public and a private subnet?</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">What does an Internet Gateway do?</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-5\"><span class=\"lab-step-text\">What is a route table?</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-6\"><span class=\"lab-step-text\">Why is a NAT Gateway needed?</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-7\"><span class=\"lab-step-text\">What is the difference between a Security Group and a Network ACL?</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-8\"><span class=\"lab-step-text\">Why should databases be in private subnets?</span></li>\n</ol>\n<hr class=\"divider\" />\n</div><h2>Hands-on Lab</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<aside class=\"cost-safety callout warn\" role=\"note\"><p class=\"callout-title\">Cost safety</p><ul><li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Prefer <strong>Free Tier</strong> / small instance sizes while learning.</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Create a <strong>billing alarm</strong> (CloudWatch or Budgets) on day one.</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\"><strong>Tear down</strong> lab resources when finished (instances, load balancers, NAT gateways).</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">Never put long-lived access keys in code or public repos.</span></li></ul><p class=\"workshop-links\"><strong>Official practice:</strong> <a href=\"https://explore.skillbuilder.aws/\" rel=\"noopener noreferrer\" target=\"_blank\">AWS Skill Builder</a> · <a href=\"https://wellarchitectedlabs.com/\" rel=\"noopener noreferrer\" target=\"_blank\">Well-Architected Labs</a> · <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/free-tier.html\" rel=\"noopener noreferrer\" target=\"_blank\">Free Tier docs</a></p></aside>\n<p>If you have an AWS account:</p>\n<ol>\n<li class=\"lab-step\" data-lab-id=\"lab-step-5\"><span class=\"lab-step-text\">Create a new VPC with CIDR <code>10.0.0.0/16</code>.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-6\"><span class=\"lab-step-text\">Create:</span></li>\n<p>- One public subnet (<code>10.0.1.0/24</code>) - One private subnet (<code>10.0.2.0/24</code>)</p>\n<li class=\"lab-step\" data-lab-id=\"lab-step-7\"><span class=\"lab-step-text\">Attach an Internet Gateway to the VPC.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-8\"><span class=\"lab-step-text\">Create a public route table and associate it with the public subnet.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-9\"><span class=\"lab-step-text\">Launch:</span></li>\n<p>- An EC2 instance in the public subnet. - (Optional) Another EC2 instance in the private subnet.</p>\n<li class=\"lab-step\" data-lab-id=\"lab-step-10\"><span class=\"lab-step-text\">Verify that the public instance can be reached via SSH (if its security group allows it), while the private one cannot be reached directly from the internet.</span></li>\n</ol>\n<hr class=\"divider\" />\n<h3>AWS Services You've Mastered So Far</h3>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Service</th><th>Purpose</th></tr></thead><tbody>\n<tr><td>IAM</td><td>Identity &amp; Access Management</td></tr>\n<tr><td>EC2</td><td>Virtual servers</td></tr>\n<tr><td>S3</td><td>Object storage</td></tr>\n<tr><td>VPC</td><td>Private networking</td></tr>\n</tbody></table></div>\n<p>These four services are the foundation of most AWS deployments.</p>\n<h3>Next Lesson: Amazon RDS (Relational Database Service)</h3>\n<p>You'll learn:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-11\"><span class=\"lab-step-text\">Why managed databases are better than running MySQL on EC2</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-12\"><span class=\"lab-step-text\">MySQL, PostgreSQL, MariaDB, SQL Server, and Oracle support</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-13\"><span class=\"lab-step-text\">Multi-AZ deployments</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-14\"><span class=\"lab-step-text\">Read Replicas</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-15\"><span class=\"lab-step-text\">Automated backups</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-16\"><span class=\"lab-step-text\">Failover</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-17\"><span class=\"lab-step-text\">Scaling databases</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-18\"><span class=\"lab-step-text\">Real production architectures</span></li>\n</ul>\n<p>By the end of that lesson, you'll understand how production applications store and protect their data.</p>\n<aside class=\"accuracy-note\" role=\"note\"><p><strong>Content review:</strong> 2026-07. Curriculum text is adapted from a shared learning roadmap; verify critical details in official AWS docs before production use.</p><p class=\"accuracy-note-label\">References</p><ul><li class=\"lab-step\" data-lab-id=\"lab-step-19\"><span class=\"lab-step-text\"><a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html\" rel=\"noopener noreferrer\" target=\"_blank\">docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.…</a></span></li></ul></aside></div>",
   "quiz": [
     {
       "q": "A VPC is:",
@@ -136,36 +52,36 @@
     {
       "q": "CIDR block defines:",
       "options": [
-        "IP address range for the VPC/subnets",
         "IAM password length only",
+        "IP address range for the VPC/subnets",
         "EBS volume type only",
         "Lambda timeout only"
       ],
-      "answer": 0,
+      "answer": 1,
       "explain": "e.g. 10.0.0.0/16 style ranges.",
       "style": "general"
     },
     {
       "q": "A public subnet typically:",
       "options": [
-        "Has a route to an Internet Gateway for internet access patterns",
         "Can never have any route table",
         "Is only for DynamoDB",
+        "Has a route to an Internet Gateway for internet access patterns",
         "Blocks all ENIs"
       ],
-      "answer": 0,
+      "answer": 2,
       "explain": "IGW route + public addressing patterns.",
       "style": "general"
     },
     {
       "q": "A private subnet typically:",
       "options": [
-        "Keeps resources off direct internet inbound; egress via NAT if needed",
         "Must always have public IPs",
         "Cannot host EC2",
-        "Replaces IAM"
+        "Replaces IAM",
+        "Keeps resources off direct internet inbound; egress via NAT if needed"
       ],
-      "answer": 0,
+      "answer": 3,
       "explain": "Private apps/DBs.",
       "style": "general"
     },
@@ -184,36 +100,36 @@
     {
       "q": "Route tables decide:",
       "options": [
-        "Where network traffic is directed",
         "Which AMI to use",
+        "Where network traffic is directed",
         "S3 storage class",
         "Lambda memory only"
       ],
-      "answer": 0,
+      "answer": 1,
       "explain": "Routing.",
       "style": "general"
     },
     {
       "q": "NAT Gateway is used so private instances can:",
       "options": [
-        "Reach the internet outbound (updates) without being publicly inbound",
         "Become public ALBs",
         "Disable encryption",
+        "Reach the internet outbound (updates) without being publicly inbound",
         "Skip security groups"
       ],
-      "answer": 0,
+      "answer": 2,
       "explain": "Egress for private subnets.",
       "style": "general"
     },
     {
       "q": "Security Groups are:",
       "options": [
-        "Stateful firewall rules on ENIs/resources",
         "Stateless only always",
         "Only for S3 buckets",
-        "Only for billing"
+        "Only for billing",
+        "Stateful firewall rules on ENIs/resources"
       ],
-      "answer": 0,
+      "answer": 3,
       "explain": "SG = stateful allow rules.",
       "style": "general"
     },
@@ -232,36 +148,36 @@
     {
       "q": "Why put databases in private subnets?",
       "options": [
-        "Reduce internet exposure—only app tier reaches them",
         "Because public subnets cannot have IPs",
+        "Reduce internet exposure—only app tier reaches them",
         "Because RDS forbids private subnets",
         "To avoid backups"
       ],
-      "answer": 0,
+      "answer": 1,
       "explain": "Security isolation.",
       "style": "general"
     },
     {
       "q": "Public route table often has:",
       "options": [
-        "0.0.0.0/0 → IGW",
         "0.0.0.0/0 → DynamoDB only",
         "No local route ever",
+        "0.0.0.0/0 → IGW",
         "Only IPv6 to S3"
       ],
-      "answer": 0,
+      "answer": 2,
       "explain": "Internet path.",
       "style": "general"
     },
     {
       "q": "Private route table often has:",
       "options": [
-        "0.0.0.0/0 → NAT Gateway (if egress needed)",
         "0.0.0.0/0 → IGW on every private host necessarily",
         "No VPC local route",
-        "Only CloudTrail"
+        "Only CloudTrail",
+        "0.0.0.0/0 → NAT Gateway (if egress needed)"
       ],
-      "answer": 0,
+      "answer": 3,
       "explain": "NAT for egress.",
       "style": "general"
     },
@@ -280,36 +196,36 @@
     {
       "q": "Security Group vs NACL: SGs are:",
       "options": [
-        "Stateful and resource-associated",
         "Only subnet and stateless",
+        "Stateful and resource-associated",
         "Only global",
         "Only for DNS"
       ],
-      "answer": 0,
+      "answer": 1,
       "explain": "Key interview distinction.",
       "style": "general"
     },
     {
       "q": "Without a VPC understanding, the chat says:",
       "options": [
-        "AWS architecture is hard to understand",
         "You cannot create accounts",
         "S3 stops working",
+        "AWS architecture is hard to understand",
         "Billing is free"
       ],
-      "answer": 0,
+      "answer": 2,
       "explain": "Networking is where AWS “clicks.”",
       "style": "general"
     },
     {
       "q": "Subnets live:",
       "options": [
-        "Inside a VPC, typically mapped to AZs",
         "Inside IAM policies only",
         "Inside AMIs only",
-        "Inside CloudWatch metrics only"
+        "Inside CloudWatch metrics only",
+        "Inside a VPC, typically mapped to AZs"
       ],
-      "answer": 0,
+      "answer": 3,
       "explain": "Subnet per AZ patterns.",
       "style": "general"
     },
@@ -328,36 +244,36 @@
     {
       "q": "Overlapping CIDRs later cause:",
       "options": [
-        "Peering/connectivity pain",
         "Faster S3",
+        "Peering/connectivity pain",
         "Free NAT",
         "Automatic MFA"
       ],
-      "answer": 0,
+      "answer": 1,
       "explain": "Plan CIDRs carefully.",
       "style": "general"
     },
     {
       "q": "Hands-on lab goal spirit:",
       "options": [
-        "Build public/private subnets with proper routes",
         "Delete all Regions",
         "Disable CloudTrail",
+        "Build public/private subnets with proper routes",
         "Use only root keys in git"
       ],
-      "answer": 0,
+      "answer": 2,
       "explain": "Practice the architecture.",
       "style": "general"
     },
     {
       "q": "Interview: traffic from private subnet to internet for yum/apt needs:",
       "options": [
-        "NAT (or private package mirrors/endpoints strategy)",
         "Always a public IP on DB",
         "Disabling route tables",
-        "Turning off SGs entirely"
+        "Turning off SGs entirely",
+        "NAT (or private package mirrors/endpoints strategy)"
       ],
-      "answer": 0,
+      "answer": 3,
       "explain": "Egress pattern.",
       "style": "general"
     },
@@ -376,12 +292,12 @@
     {
       "q": "Complete architecture in the lesson ties together:",
       "options": [
-        "IGW, public/private subnets, NAT, routes, SGs",
         "Only EBS snapshots",
+        "IGW, public/private subnets, NAT, routes, SGs",
         "Only DynamoDB Streams",
         "Only Terraform modules"
       ],
-      "answer": 0,
+      "answer": 1,
       "explain": "Core VPC building blocks.",
       "style": "general"
     }
