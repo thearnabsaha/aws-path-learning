@@ -6,7 +6,7 @@ export type LessonPart = {
 
 /**
  * Split lesson HTML into accordion parts on each <h2>.
- * Leading content before the first h2 becomes "Introduction".
+ * Titles are decoded to plain text (no raw &#x27; entities in the UI).
  */
 export function splitLessonHtml(html: string): LessonPart[] {
   const trimmed = html.trim();
@@ -55,7 +55,10 @@ function stripTags(s: string): string {
     .replace(/&lt;/g, "<")
     .replace(/&gt;/g, ">")
     .replace(/&quot;/g, '"')
-    .replace(/&#39;/g, "'")
+    .replace(/&#0*39;/g, "'")
+    .replace(/&#x0*27;/gi, "'")
+    .replace(/&apos;/g, "'")
+    .replace(/&nbsp;/g, " ")
     .replace(/\s+/g, " ")
     .trim();
 }
