@@ -36,7 +36,7 @@ That's Cloud Computing.
 
 Example:
 
-Instead of buying a ₹10 lakh server...
+Instead of buying a ₹10 (~$1 USD) lakh (~$12,000 USD) server...
 
 You pay AWS only for what you use.
 
@@ -278,28 +278,12 @@ Create an IAM user instead.
 | VPC | Private network |
 | RDS | Managed database |
 
----
-
-# Mini Quiz
-
-Try answering these without looking back:
-
-1. What is cloud computing?
-2. What does AWS stand for?
-3. What is a Region?
-4. What is an Availability Zone?
-5. Which AWS service stores files?
-6. Which AWS service provides virtual servers?
-7. Why are multiple Availability Zones important?
-8. Is AWS pay-as-you-go or a fixed monthly subscription?
-
-If you can answer these, you've understood the fundamentals.
 
 ---
 
 # Your Learning Plan
 
-Here's the sequence I'd recommend:
+Recommended lesson sequence:
 
 - **Lesson 1:** Cloud fundamentals (this lesson)
 - **Lesson 2:** AWS account, console, and IAM
@@ -314,4 +298,4 @@ Here's the sequence I'd recommend:
 - **Lesson 11:** Docker, ECR, and ECS
 - **Lesson 12:** Infrastructure as Code (CloudFormation and Terraform)
 
-We'll build knowledge step by step, with hands-on labs after every lesson so you gain practical experience, not just theory.
+Build knowledge step by step. Hands-on labs after each lesson develop practical skill, not only theory.

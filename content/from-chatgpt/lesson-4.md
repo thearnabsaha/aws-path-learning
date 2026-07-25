@@ -2,9 +2,6 @@
 
 Almost every company on AWS uses Amazon S3. This lesson covers how cloud object storage works—for files, backups, static sites, logs, and large data—without managing disks yourself.
 
-By the end of this lesson, you will understand:
-
-- Understand how AWS stores files and how you can use S3 to host websites, store backups, images, videos, logs, and more.
 
 ---
 # What is Amazon S3?
@@ -457,7 +454,9 @@ If you have an AWS account:
 
 ---
 
-# Interview Questions
+# Interview practice prompts
+
+Use these as open-ended prompts (the lesson quiz below is multiple choice).
 
 1. What is an S3 bucket?
 2. What is an object?

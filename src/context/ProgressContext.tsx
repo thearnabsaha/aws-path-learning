@@ -16,7 +16,13 @@ import {
   loadProgress,
   saveProgress,
 } from "@/lib/progress";
-import type { ProgressState, QuizQuestion, ReviewItem } from "@/types/lesson";
+import { filterLessonsByPath } from "@/lib/paths";
+import type {
+  LearningPathId,
+  ProgressState,
+  QuizQuestion,
+  ReviewItem,
+} from "@/types/lesson";
 import { upsertMisses } from "@/lib/quizUtils";
 
 type ProgressContextValue = {
@@ -27,10 +33,17 @@ type ProgressContextValue = {
   labs: ProgressState["labs"];
   lastSection: ProgressState["lastSection"];
   reviewQueue: ReviewItem[];
+  learningPath: LearningPathId;
+  setLearningPath: (id: LearningPathId) => void;
+  pathLessons: typeof lessonSummaries;
+  /** Path-scoped */
   completedCount: number;
   total: number;
   percent: number;
   minutesRemaining: number;
+  /** All lessons (for admin/export) */
+  globalCompletedCount: number;
+  globalTotal: number;
   isDone: (id: string) => boolean;
   setDone: (id: string, done: boolean) => void;
   saveQuizScore: (
@@ -72,6 +85,19 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
     setState(next);
     saveProgress(next);
   }, []);
+
+  const pathLessons = useMemo(
+    () => filterLessonsByPath(lessonSummaries, state.learningPath),
+    [state.learningPath]
+  );
+
+  const setLearningPath = useCallback(
+    (id: LearningPathId) => {
+      if (state.learningPath === id) return;
+      persist({ ...state, learningPath: id });
+    },
+    [persist, state]
+  );
 
   const isDone = useCallback(
     (id: string) => !!state.completed[id],
@@ -129,7 +155,6 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
     (lessonId: string, sectionId: string) => {
       const lessonSecs = { ...(state.sections[lessonId] || {}) };
       if (lessonSecs[sectionId]) {
-        // still update lastSection
         persist({
           ...state,
           lastSection: { ...state.lastSection, [lessonId]: sectionId },
@@ -250,20 +275,26 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
   }, [persist]);
 
   const completedCount = useMemo(
-    () => lessonSummaries.filter((l) => state.completed[l.id]).length,
-    [state.completed]
+    () => pathLessons.filter((l) => state.completed[l.id]).length,
+    [pathLessons, state.completed]
   );
 
-  const total = lessonSummaries.length;
+  const total = pathLessons.length;
   const percent = total ? Math.round((completedCount / total) * 100) : 0;
 
   const minutesRemaining = useMemo(
     () =>
-      lessonSummaries
+      pathLessons
         .filter((l) => !state.completed[l.id])
         .reduce((n, l) => n + l.minutes, 0),
+    [pathLessons, state.completed]
+  );
+
+  const globalCompletedCount = useMemo(
+    () => lessonSummaries.filter((l) => state.completed[l.id]).length,
     [state.completed]
   );
+  const globalTotal = lessonSummaries.length;
 
   const value = useMemo(
     () => ({
@@ -274,10 +305,15 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
       labs: state.labs,
       lastSection: state.lastSection,
       reviewQueue: state.reviewQueue,
+      learningPath: state.learningPath,
+      setLearningPath,
+      pathLessons,
       completedCount,
       total,
       percent,
       minutesRemaining,
+      globalCompletedCount,
+      globalTotal,
       isDone,
       setDone,
       saveQuizScore,
@@ -297,10 +333,14 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
     [
       ready,
       state,
+      setLearningPath,
+      pathLessons,
       completedCount,
       total,
       percent,
       minutesRemaining,
+      globalCompletedCount,
+      globalTotal,
       isDone,
       setDone,
       saveQuizScore,

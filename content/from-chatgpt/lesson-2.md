@@ -2,14 +2,6 @@
 
 This lesson is the start of a hands-on AWS bootcamp: how an account is organized, how you use the console, and how IAM controls access. Get this wrong and every later service becomes insecure.
 
-By the end of this lesson, you will understand:
-
-- How AWS is organized
-- What the AWS Console is
-- Why the Root User is dangerous
-- What IAM is
-- How permissions work
-- Best security practices
 
 ---
 # 1. What happens when you create an AWS account?
@@ -71,7 +63,7 @@ Think of it as the control panel for your cloud infrastructure.
 
 # 3. AWS Services
 
-When you log in, you'll see hundreds of services.
+After signing in, the console shows hundreds of services.
 
 Don't worry—you only need a handful to become productive.
 
@@ -447,17 +439,3 @@ If you don't already have one:
 5. Sign back in using the IAM user.
 
 These are standard first steps before building anything on AWS.
-
----
-
-# Mini Quiz
-
-1. Why shouldn't you use the root user for everyday work?
-2. What is the difference between an IAM user and an IAM role?
-3. What is the purpose of an IAM policy?
-4. What does MFA protect against?
-5. What is the principle of least privilege?
-6. What's the difference between authentication and authorization?
-7. When would you use the AWS CLI instead of the console?
-
-In **Lesson 3**, we'll launch your **first EC2 virtual server**, connect to it over SSH, install software, and host a simple website—the first step toward deploying real applications.

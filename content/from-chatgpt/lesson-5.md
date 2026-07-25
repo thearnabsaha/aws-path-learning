@@ -2,17 +2,6 @@
 
 This is where AWS networking often “clicks.” Once you understand VPC, subnets, gateways, and security layers, most application architectures become much easier to design and interview for.
 
-By the end of this lesson, you will understand:
-
-- What a VPC is
-- Public vs Private Subnets
-- CIDR Blocks
-- Internet Gateway
-- Route Tables
-- NAT Gateway
-- Security Groups
-- Network ACLs
-- How everything connects together
 
 ---
 # What is a VPC?
@@ -524,9 +513,9 @@ The database is protected behind multiple layers.
 
 ---
 
-# Interview Questions
+# Interview practice prompts
 
-Try answering these:
+Use these as open-ended prompts (the lesson quiz below is multiple choice).
 
 1. What is a VPC?
 2. Why do we use subnets?

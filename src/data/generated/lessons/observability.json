@@ -120,7 +120,7 @@
     },
     {
       "id": "part-25",
-      "title": "Interview Questions"
+      "title": "Interview practice prompts"
     },
     {
       "id": "part-26",
@@ -135,7 +135,7 @@
       "title": "Next Lesson: Docker & Amazon ECS"
     }
   ],
-  "content": "<h2>Lesson 10: Amazon CloudWatch &amp; AWS CloudTrail</h2>\n<p>Building is not enough—you must operate systems. Juniors ask how to deploy; seniors ask how to know it's healthy and how to debug at 2 AM. That is CloudWatch and CloudTrail.</p>\n<p>By the end of this lesson, you will understand:</p>\n<ul>\n<li>Monitoring vs Logging vs Auditing</li>\n<li>Amazon CloudWatch</li>\n<li>Metrics</li>\n<li>Logs</li>\n<li>Alarms</li>\n<li>Dashboards</li>\n<li>Events</li>\n<li>CloudTrail</li>\n<li>Troubleshooting production systems</li>\n</ul>\n<hr class=\"divider\" />\n<h2>Imagine You're Running Netflix</h2>\n<p>Suppose your website suddenly becomes slow.</p>\n<p>Customers complain.</p>\n<p>The first question is:</p>\n<blockquote class=\"callout tip\"><p><strong>Why?</strong></p></blockquote>\n<p>You need visibility into what's happening.</p>\n<p>AWS provides two major services:</p>\n<ul>\n<li><strong>CloudWatch</strong> → Monitors the health and performance of resources.</li>\n<li><strong>CloudTrail</strong> → Records who did what in your AWS account.</li>\n</ul>\n<hr class=\"divider\" />\n<h2>Monitoring vs Logging vs Auditing</h2>\n<p>These terms are often confused.</p>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Term</th><th>Purpose</th></tr></thead><tbody>\n<tr><td>Monitoring</td><td>Is the system healthy right now?</td></tr>\n<tr><td>Logging</td><td>What exactly happened?</td></tr>\n<tr><td>Auditing</td><td>Who performed an action and when?</td></tr>\n</tbody></table></div>\n<p>Think of a hospital:</p>\n<ul>\n<li>Heart monitor → Monitoring</li>\n<li>Doctor's notes → Logs</li>\n<li>CCTV footage → Audit</li>\n</ul>\n<hr class=\"divider\" />\n<h2>What is CloudWatch?</h2>\n<p>CloudWatch is AWS's monitoring service.</p>\n<p>It collects information like:</p>\n<ul>\n<li>CPU utilization</li>\n<li>Memory (requires additional setup on EC2)</li>\n<li>Network traffic</li>\n<li>Disk usage (requires additional setup on EC2)</li>\n<li>Request counts</li>\n<li>Errors</li>\n<li>Latency</li>\n</ul>\n<hr class=\"divider\" />\n<h2>Metrics</h2>\n<p>A <strong>metric</strong> is a numerical measurement over time.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>CPU Usage\n\n10%\n\n25%\n\n70%\n\n95%</code></pre></div>\n<p>CloudWatch stores these values so you can monitor trends.</p>\n<hr class=\"divider\" />\n<h2>Common EC2 Metrics</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Metric</th><th>Meaning</th></tr></thead><tbody>\n<tr><td>CPUUtilization</td><td>CPU usage percentage</td></tr>\n<tr><td>NetworkIn</td><td>Data received</td></tr>\n<tr><td>NetworkOut</td><td>Data sent</td></tr>\n<tr><td>DiskReadOps</td><td>Disk read operations</td></tr>\n<tr><td>DiskWriteOps</td><td>Disk write operations</td></tr>\n</tbody></table></div>\n<hr class=\"divider\" />\n</div><h2>Example</h2>\n<p>Your web server suddenly reaches:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>CPU = 98%</code></pre></div>\n<p>CloudWatch detects this.</p>\n<p>Now you can:</p>\n<ul>\n<li>Investigate the cause</li>\n<li>Trigger an alarm</li>\n<li>Scale the application (if configured)</li>\n</ul>\n<hr class=\"divider\" />\n<h2>CloudWatch Dashboard</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Instead of checking each server separately:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>EC2-1\n\nEC2-2\n\nEC2-3</code></pre></div>\n<p>CloudWatch can display everything on one dashboard.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Dashboard\n\nCPU\n\nMemory\n\nNetwork\n\nErrors\n\nLatency</code></pre></div>\n<p>This gives you a centralized view of your application's health.</p>\n<hr class=\"divider\" />\n</div><h2>CloudWatch Logs</h2>\n<p>Metrics tell you <strong>something is wrong</strong>.</p>\n<p>Logs tell you <strong>what went wrong</strong>.</p>\n<p>Example application log:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>10:02 User Login\n\n10:03 Database Timeout\n\n10:04 Payment Failed</code></pre></div>\n<p>These logs can be sent to CloudWatch Logs for searching and analysis.</p>\n<hr class=\"divider\" />\n<h2>EC2 Logs</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Applications often write logs like:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>INFO User Logged In\n\nINFO Payment Started\n\nERROR Database Connection Failed</code></pre></div>\n<p>CloudWatch Logs stores these records centrally.</p>\n<hr class=\"divider\" />\n</div><h2>Lambda Logs</h2>\n<p>Lambda automatically writes logs to CloudWatch Logs.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Function Started\n\nProcessing Order\n\nOrder Completed</code></pre></div>\n<p>This makes debugging much easier.</p>\n<hr class=\"divider\" />\n<h2>Searching Logs</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Imagine millions of log lines.</p>\n<p>Instead of manually reading them, you can search for keywords such as:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>ERROR\n\nTimeout\n\nPayment Failed</code></pre></div>\n<p>CloudWatch Logs Insights also lets you query logs using a dedicated query language.</p>\n<hr class=\"divider\" />\n</div><h2>CloudWatch Alarm</h2>\n<p>Suppose:</p>\n<p>CPU exceeds 80%.</p>\n<p>Create an alarm:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>CPU &gt; 80%\n\n↓\n\nCloudWatch Alarm\n\n↓\n\nNotify Admin</code></pre></div>\n<p>Now you don't need to watch dashboards all day.</p>\n<hr class=\"divider\" />\n<h2>Alarm Actions</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>An alarm can trigger actions such as:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Sending a notification (using Amazon SNS)</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Triggering Auto Scaling</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">Invoking a Lambda function (indirectly via supported integrations)</span></li>\n</ul>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>CPU High\n\n↓\n\nLaunch Another EC2</code></pre></div>\n<hr class=\"divider\" />\n</div><h2>Example Production Scenario</h2>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Traffic Spike\n\n↓\n\nCPU = 95%\n\n↓\n\nAlarm\n\n↓\n\nAuto Scaling\n\n↓\n\nNew EC2 Created</code></pre></div>\n<p>Everything can happen automatically.</p>\n<hr class=\"divider\" />\n<h2>CloudWatch Events / EventBridge</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Sometimes you don't want to monitor a metric.</p>\n<p>You want something to happen at a certain time.</p>\n<p>Example:</p>\n<p>Every night at 2 AM:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>2:00 AM\n\n↓\n\nRun Lambda\n\n↓\n\nCreate Backup</code></pre></div>\n<p>This scheduling capability is now provided through <strong>Amazon EventBridge</strong>, which evolved from CloudWatch Events.</p>\n<hr class=\"divider\" />\n</div><h2>What is CloudTrail?</h2>\n<p>CloudTrail answers a different question.</p>\n<p>Instead of:</p>\n<blockquote class=\"callout tip\"><p>\"How healthy is my server?\"</p></blockquote>\n<p>It answers:</p>\n<blockquote class=\"callout tip\"><p>\"Who changed my AWS account?\"</p></blockquote>\n<hr class=\"divider\" />\n<h2>Example</h2>\n<p>Suppose someone deletes an S3 bucket.</p>\n<p>Who did it?</p>\n<p>CloudTrail records:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>User: Arnab\n\nAction: DeleteBucket\n\nTime: 10:43 AM\n\nIP Address: xx.xx.xx.xx</code></pre></div>\n<hr class=\"divider\" />\n<h2>CloudTrail Records</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>CloudTrail logs AWS API activity such as:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Create EC2</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Delete EC2</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">Create IAM User</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">Modify Security Group</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-5\"><span class=\"lab-step-text\">Delete S3 Bucket</span></li>\n</ul>\n<p>It provides an audit trail for your AWS account.</p>\n<hr class=\"divider\" />\n</div><h2>Real Example</h2>\n<p>Manager asks:</p>\n<blockquote class=\"callout tip\"><p>\"Who deleted the production database?\"</p></blockquote>\n<p>CloudTrail tells you:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>User\n\nAction\n\nTime\n\nSource IP</code></pre></div>\n<p>This is invaluable for troubleshooting and compliance.</p>\n<hr class=\"divider\" />\n<h2>CloudTrail vs CloudWatch</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<div class=\"table-wrap\"><table>\n<thead><tr><th>CloudWatch</th><th>CloudTrail</th></tr></thead><tbody>\n<tr><td>Monitors system health</td><td>Records AWS API activity</td></tr>\n<tr><td>CPU, memory, latency</td><td>User actions</td></tr>\n<tr><td>Metrics &amp; logs</td><td>Audit logs</td></tr>\n<tr><td>Helps detect operational issues</td><td>Helps investigate account changes</td></tr>\n</tbody></table></div>\n<hr class=\"divider\" />\n</div><h2>Example Architecture</h2>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>                  Internet\n                      │\n                      ▼\n                 Load Balancer\n                      │\n                      ▼\n                     EC2\n                      │\n        ┌─────────────┴─────────────┐\n        ▼                           ▼\nCloudWatch Metrics          CloudWatch Logs\n        │\n        ▼\n     Alarms\n        │\n        ▼\n Notifications / Auto Scaling\n\nCloudTrail (separately records AWS API actions)</code></pre></div>\n<hr class=\"divider\" />\n<h2>Production Example</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Suppose customers report:</p>\n<blockquote class=\"callout tip\"><p>Website is slow.</p></blockquote>\n<p>Investigation:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>CloudWatch\n\n↓\n\nCPU = 99%\n\n↓\n\nLogs\n\n↓\n\nDatabase Timeout\n\n↓\n\nCloudTrail\n\n↓\n\nNo recent configuration changes</code></pre></div>\n<p>You now know it's a performance problem, not an unauthorized change.</p>\n<hr class=\"divider\" />\n</div><h2>Hands-on Lab</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<aside class=\"cost-safety callout warn\" role=\"note\"><p class=\"callout-title\">Cost safety</p><ul><li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Prefer <strong>Free Tier</strong> / small instance sizes while learning.</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Create a <strong>billing alarm</strong> (CloudWatch or Budgets) on day one.</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\"><strong>Tear down</strong> lab resources when finished (instances, load balancers, NAT gateways).</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">Never put long-lived access keys in code or public repos.</span></li></ul><p class=\"workshop-links\"><strong>Official practice:</strong> <a href=\"https://explore.skillbuilder.aws/\" rel=\"noopener noreferrer\" target=\"_blank\">AWS Skill Builder</a> · <a href=\"https://wellarchitectedlabs.com/\" rel=\"noopener noreferrer\" target=\"_blank\">Well-Architected Labs</a> · <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/free-tier.html\" rel=\"noopener noreferrer\" target=\"_blank\">Free Tier docs</a></p></aside>\n<p>If you have an AWS account:</p>\n<ol>\n<li class=\"lab-step\" data-lab-id=\"lab-step-5\"><span class=\"lab-step-text\">Launch an EC2 instance.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-6\"><span class=\"lab-step-text\">Open CloudWatch and view its CPUUtilization metric.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-7\"><span class=\"lab-step-text\">Create a CloudWatch dashboard.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-8\"><span class=\"lab-step-text\">Create an alarm for CPU &gt; 70%.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-9\"><span class=\"lab-step-text\">SSH into the instance and generate CPU load (or use a simple stress tool).</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-10\"><span class=\"lab-step-text\">Watch the alarm state change.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-11\"><span class=\"lab-step-text\">Open CloudTrail and review recent API events (such as launching the EC2 instance).</span></li>\n</ol>\n<hr class=\"divider\" />\n</div><h2>Interview Questions</h2>\n<ol>\n<li>What is Amazon CloudWatch?</li>\n<li>What is a metric?</li>\n<li>What is a CloudWatch alarm?</li>\n<li>What is the difference between metrics and logs?</li>\n<li>What is AWS CloudTrail?</li>\n<li>What is the difference between CloudTrail and CloudWatch?</li>\n<li>Why are dashboards useful?</li>\n<li>How would you investigate a slow production application?</li>\n</ol>\n<hr class=\"divider\" />\n<h2>AWS Services You've Mastered</h2>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Service</th><th>Purpose</th></tr></thead><tbody>\n<tr><td>IAM</td><td>Identity &amp; Access Management</td></tr>\n<tr><td>EC2</td><td>Virtual servers</td></tr>\n<tr><td>S3</td><td>Object storage</td></tr>\n<tr><td>VPC</td><td>Networking</td></tr>\n<tr><td>RDS</td><td>Relational databases</td></tr>\n<tr><td>ELB</td><td>Load balancing</td></tr>\n<tr><td>Auto Scaling</td><td>Automatic scaling</td></tr>\n<tr><td>Lambda</td><td>Serverless compute</td></tr>\n<tr><td>DynamoDB</td><td>NoSQL database</td></tr>\n<tr><td>CloudWatch</td><td>Monitoring and logging</td></tr>\n<tr><td>CloudTrail</td><td>Auditing AWS API activity</td></tr>\n</tbody></table></div>\n<hr class=\"divider\" />\n<h2>Final Architecture So Far</h2>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>                  Internet\n                      │\n             Application Load Balancer\n                      │\n           Auto Scaling Group (EC2)\n            │                 │\n            ├─────────┬───────┤\n            ▼         ▼       ▼\n         Amazon RDS DynamoDB  S3\n              │               │\n              └──────┬────────┘\n                     ▼\n                CloudWatch\n                     │\n                  Alarms\n                     │\n                 Notifications\n\nCloudTrail records all AWS API actions across the account.</code></pre></div>\n<hr class=\"divider\" />\n<h2>Next Lesson: Docker &amp; Amazon ECS</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>This is where you'll move from deploying applications directly onto EC2 to using <strong>containers</strong>, the standard deployment model in modern cloud environments.</p>\n<p>You'll learn:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">What Docker is</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Images vs Containers</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">Dockerfiles</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">Volumes</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-5\"><span class=\"lab-step-text\">Networking</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-6\"><span class=\"lab-step-text\">Amazon ECS</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-7\"><span class=\"lab-step-text\">Amazon ECR</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-8\"><span class=\"lab-step-text\">ECS Fargate</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-9\"><span class=\"lab-step-text\">Containers vs Virtual Machines</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-10\"><span class=\"lab-step-text\">How production microservices are deployed on AWS</span></li>\n</ul>\n<p>This is one of the most valuable skills for cloud engineers, DevOps engineers, and backend developers.</p>\n<aside class=\"accuracy-note\" role=\"note\"><p><strong>Content review:</strong> 2026-07. Curriculum text is adapted from a shared learning roadmap; verify critical details in official AWS docs before production use.</p><p class=\"accuracy-note-label\">References</p><ul><li class=\"lab-step\" data-lab-id=\"lab-step-11\"><span class=\"lab-step-text\"><a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html\" rel=\"noopener noreferrer\" target=\"_blank\">docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatI…</a></span></li><li class=\"lab-step\" data-lab-id=\"lab-step-12\"><span class=\"lab-step-text\"><a href=\"https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html\" rel=\"noopener noreferrer\" target=\"_blank\">docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrai…</a></span></li></ul></aside></div>",
+  "content": "<h2>Lesson 10: Amazon CloudWatch &amp; AWS CloudTrail</h2>\n<p>Building is not enough—you must operate systems. Juniors ask how to deploy; seniors ask how to know it's healthy and how to debug at 2 AM. That is CloudWatch and CloudTrail.</p>\n<hr class=\"divider\" />\n<h2>Imagine You're Running Netflix</h2>\n<p>Suppose your website suddenly becomes slow.</p>\n<p>Customers complain.</p>\n<p>The first question is:</p>\n<blockquote class=\"callout tip\"><p><strong>Why?</strong></p></blockquote>\n<p>You need visibility into what's happening.</p>\n<p>AWS provides two major services:</p>\n<ul>\n<li><strong>CloudWatch</strong> → Monitors the health and performance of resources.</li>\n<li><strong>CloudTrail</strong> → Records who did what in your AWS account.</li>\n</ul>\n<hr class=\"divider\" />\n<h2>Monitoring vs Logging vs Auditing</h2>\n<p>These terms are often confused.</p>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Term</th><th>Purpose</th></tr></thead><tbody>\n<tr><td>Monitoring</td><td>Is the system healthy right now?</td></tr>\n<tr><td>Logging</td><td>What exactly happened?</td></tr>\n<tr><td>Auditing</td><td>Who performed an action and when?</td></tr>\n</tbody></table></div>\n<p>Think of a hospital:</p>\n<ul>\n<li>Heart monitor → Monitoring</li>\n<li>Doctor's notes → Logs</li>\n<li>CCTV footage → Audit</li>\n</ul>\n<hr class=\"divider\" />\n<h2>What is CloudWatch?</h2>\n<p>CloudWatch is AWS's monitoring service.</p>\n<p>It collects information like:</p>\n<ul>\n<li>CPU utilization</li>\n<li>Memory (requires additional setup on EC2)</li>\n<li>Network traffic</li>\n<li>Disk usage (requires additional setup on EC2)</li>\n<li>Request counts</li>\n<li>Errors</li>\n<li>Latency</li>\n</ul>\n<hr class=\"divider\" />\n<h2>Metrics</h2>\n<p>A <strong>metric</strong> is a numerical measurement over time.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>CPU Usage\n\n10%\n\n25%\n\n70%\n\n95%</code></pre></div>\n<p>CloudWatch stores these values so you can monitor trends.</p>\n<hr class=\"divider\" />\n<h2>Common EC2 Metrics</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Metric</th><th>Meaning</th></tr></thead><tbody>\n<tr><td>CPUUtilization</td><td>CPU usage percentage</td></tr>\n<tr><td>NetworkIn</td><td>Data received</td></tr>\n<tr><td>NetworkOut</td><td>Data sent</td></tr>\n<tr><td>DiskReadOps</td><td>Disk read operations</td></tr>\n<tr><td>DiskWriteOps</td><td>Disk write operations</td></tr>\n</tbody></table></div>\n<hr class=\"divider\" />\n</div><h2>Example</h2>\n<p>Your web server suddenly reaches:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>CPU = 98%</code></pre></div>\n<p>CloudWatch detects this.</p>\n<p>Now you can:</p>\n<ul>\n<li>Investigate the cause</li>\n<li>Trigger an alarm</li>\n<li>Scale the application (if configured)</li>\n</ul>\n<hr class=\"divider\" />\n<h2>CloudWatch Dashboard</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Instead of checking each server separately:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>EC2-1\n\nEC2-2\n\nEC2-3</code></pre></div>\n<p>CloudWatch can display everything on one dashboard.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Dashboard\n\nCPU\n\nMemory\n\nNetwork\n\nErrors\n\nLatency</code></pre></div>\n<p>This gives you a centralized view of your application's health.</p>\n<hr class=\"divider\" />\n</div><h2>CloudWatch Logs</h2>\n<p>Metrics tell you <strong>something is wrong</strong>.</p>\n<p>Logs tell you <strong>what went wrong</strong>.</p>\n<p>Example application log:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>10:02 User Login\n\n10:03 Database Timeout\n\n10:04 Payment Failed</code></pre></div>\n<p>These logs can be sent to CloudWatch Logs for searching and analysis.</p>\n<hr class=\"divider\" />\n<h2>EC2 Logs</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Applications often write logs like:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>INFO User Logged In\n\nINFO Payment Started\n\nERROR Database Connection Failed</code></pre></div>\n<p>CloudWatch Logs stores these records centrally.</p>\n<hr class=\"divider\" />\n</div><h2>Lambda Logs</h2>\n<p>Lambda automatically writes logs to CloudWatch Logs.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Function Started\n\nProcessing Order\n\nOrder Completed</code></pre></div>\n<p>This makes debugging much easier.</p>\n<hr class=\"divider\" />\n<h2>Searching Logs</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Imagine millions of log lines.</p>\n<p>Instead of manually reading them, you can search for keywords such as:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>ERROR\n\nTimeout\n\nPayment Failed</code></pre></div>\n<p>CloudWatch Logs Insights also lets you query logs using a dedicated query language.</p>\n<hr class=\"divider\" />\n</div><h2>CloudWatch Alarm</h2>\n<p>Suppose:</p>\n<p>CPU exceeds 80%.</p>\n<p>Create an alarm:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>CPU &gt; 80%\n\n↓\n\nCloudWatch Alarm\n\n↓\n\nNotify Admin</code></pre></div>\n<p>Now you don't need to watch dashboards all day.</p>\n<hr class=\"divider\" />\n<h2>Alarm Actions</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>An alarm can trigger actions such as:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Sending a notification (using Amazon SNS)</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Triggering Auto Scaling</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">Invoking a Lambda function (indirectly via supported integrations)</span></li>\n</ul>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>CPU High\n\n↓\n\nLaunch Another EC2</code></pre></div>\n<hr class=\"divider\" />\n</div><h2>Example Production Scenario</h2>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Traffic Spike\n\n↓\n\nCPU = 95%\n\n↓\n\nAlarm\n\n↓\n\nAuto Scaling\n\n↓\n\nNew EC2 Created</code></pre></div>\n<p>Everything can happen automatically.</p>\n<hr class=\"divider\" />\n<h2>CloudWatch Events / EventBridge</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Sometimes you don't want to monitor a metric.</p>\n<p>You want something to happen at a certain time.</p>\n<p>Example:</p>\n<p>Every night at 2 AM:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>2:00 AM\n\n↓\n\nRun Lambda\n\n↓\n\nCreate Backup</code></pre></div>\n<p>This scheduling capability is now provided through <strong>Amazon EventBridge</strong>, which evolved from CloudWatch Events.</p>\n<hr class=\"divider\" />\n</div><h2>What is CloudTrail?</h2>\n<p>CloudTrail answers a different question.</p>\n<p>Instead of:</p>\n<blockquote class=\"callout tip\"><p>\"How healthy is my server?\"</p></blockquote>\n<p>It answers:</p>\n<blockquote class=\"callout tip\"><p>\"Who changed my AWS account?\"</p></blockquote>\n<hr class=\"divider\" />\n<h2>Example</h2>\n<p>Suppose someone deletes an S3 bucket.</p>\n<p>Who did it?</p>\n<p>CloudTrail records:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>User: Arnab\n\nAction: DeleteBucket\n\nTime: 10:43 AM\n\nIP Address: xx.xx.xx.xx</code></pre></div>\n<hr class=\"divider\" />\n<h2>CloudTrail Records</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>CloudTrail logs AWS API activity such as:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Create EC2</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Delete EC2</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">Create IAM User</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">Modify Security Group</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-5\"><span class=\"lab-step-text\">Delete S3 Bucket</span></li>\n</ul>\n<p>It provides an audit trail for your AWS account.</p>\n<hr class=\"divider\" />\n</div><h2>Real Example</h2>\n<p>Manager asks:</p>\n<blockquote class=\"callout tip\"><p>\"Who deleted the production database?\"</p></blockquote>\n<p>CloudTrail tells you:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>User\n\nAction\n\nTime\n\nSource IP</code></pre></div>\n<p>This is invaluable for troubleshooting and compliance.</p>\n<hr class=\"divider\" />\n<h2>CloudTrail vs CloudWatch</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<div class=\"table-wrap\"><table>\n<thead><tr><th>CloudWatch</th><th>CloudTrail</th></tr></thead><tbody>\n<tr><td>Monitors system health</td><td>Records AWS API activity</td></tr>\n<tr><td>CPU, memory, latency</td><td>User actions</td></tr>\n<tr><td>Metrics &amp; logs</td><td>Audit logs</td></tr>\n<tr><td>Helps detect operational issues</td><td>Helps investigate account changes</td></tr>\n</tbody></table></div>\n<hr class=\"divider\" />\n</div><h2>Example Architecture</h2>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>                  Internet\n                      │\n                      ▼\n                 Load Balancer\n                      │\n                      ▼\n                     EC2\n                      │\n        ┌─────────────┴─────────────┐\n        ▼                           ▼\nCloudWatch Metrics          CloudWatch Logs\n        │\n        ▼\n     Alarms\n        │\n        ▼\n Notifications / Auto Scaling\n\nCloudTrail (separately records AWS API actions)</code></pre></div>\n<hr class=\"divider\" />\n<h2>Production Example</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Suppose customers report:</p>\n<blockquote class=\"callout tip\"><p>Website is slow.</p></blockquote>\n<p>Investigation:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>CloudWatch\n\n↓\n\nCPU = 99%\n\n↓\n\nLogs\n\n↓\n\nDatabase Timeout\n\n↓\n\nCloudTrail\n\n↓\n\nNo recent configuration changes</code></pre></div>\n<p>You now know it's a performance problem, not an unauthorized change.</p>\n<hr class=\"divider\" />\n</div><h2>Hands-on Lab</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<aside class=\"cost-safety callout warn\" role=\"note\"><p class=\"callout-title\">Cost safety</p><ul><li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Prefer <strong>Free Tier</strong> / small instance sizes while learning.</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Create a <strong>billing alarm</strong> (CloudWatch or Budgets) on day one.</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\"><strong>Tear down</strong> lab resources when finished (instances, load balancers, NAT gateways).</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">Never put long-lived access keys in code or public repos.</span></li></ul><p class=\"workshop-links\"><strong>Official practice:</strong> <a href=\"https://explore.skillbuilder.aws/\" rel=\"noopener noreferrer\" target=\"_blank\">AWS Skill Builder</a> · <a href=\"https://wellarchitectedlabs.com/\" rel=\"noopener noreferrer\" target=\"_blank\">Well-Architected Labs</a> · <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/free-tier.html\" rel=\"noopener noreferrer\" target=\"_blank\">Free Tier docs</a></p></aside>\n<p>If you have an AWS account:</p>\n<ol>\n<li class=\"lab-step\" data-lab-id=\"lab-step-5\"><span class=\"lab-step-text\">Launch an EC2 instance.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-6\"><span class=\"lab-step-text\">Open CloudWatch and view its CPUUtilization metric.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-7\"><span class=\"lab-step-text\">Create a CloudWatch dashboard.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-8\"><span class=\"lab-step-text\">Create an alarm for CPU &gt; 70%.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-9\"><span class=\"lab-step-text\">SSH into the instance and generate CPU load (or use a simple stress tool).</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-10\"><span class=\"lab-step-text\">Watch the alarm state change.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-11\"><span class=\"lab-step-text\">Open CloudTrail and review recent API events (such as launching the EC2 instance).</span></li>\n</ol>\n<hr class=\"divider\" />\n</div><h2>Interview practice prompts</h2>\n<p>Use these as open-ended prompts (the lesson quiz below is multiple choice).</p>\n<ol>\n<li>What is Amazon CloudWatch?</li>\n<li>What is a metric?</li>\n<li>What is a CloudWatch alarm?</li>\n<li>What is the difference between metrics and logs?</li>\n<li>What is AWS CloudTrail?</li>\n<li>What is the difference between CloudTrail and CloudWatch?</li>\n<li>Why are dashboards useful?</li>\n<li>How would you investigate a slow production application?</li>\n</ol>\n<hr class=\"divider\" />\n<h2>AWS Services You've Mastered</h2>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Service</th><th>Purpose</th></tr></thead><tbody>\n<tr><td>IAM</td><td>Identity &amp; Access Management</td></tr>\n<tr><td>EC2</td><td>Virtual servers</td></tr>\n<tr><td>S3</td><td>Object storage</td></tr>\n<tr><td>VPC</td><td>Networking</td></tr>\n<tr><td>RDS</td><td>Relational databases</td></tr>\n<tr><td>ELB</td><td>Load balancing</td></tr>\n<tr><td>Auto Scaling</td><td>Automatic scaling</td></tr>\n<tr><td>Lambda</td><td>Serverless compute</td></tr>\n<tr><td>DynamoDB</td><td>NoSQL database</td></tr>\n<tr><td>CloudWatch</td><td>Monitoring and logging</td></tr>\n<tr><td>CloudTrail</td><td>Auditing AWS API activity</td></tr>\n</tbody></table></div>\n<hr class=\"divider\" />\n<h2>Final Architecture So Far</h2>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>                  Internet\n                      │\n             Application Load Balancer\n                      │\n           Auto Scaling Group (EC2)\n            │                 │\n            ├─────────┬───────┤\n            ▼         ▼       ▼\n         Amazon RDS DynamoDB  S3\n              │               │\n              └──────┬────────┘\n                     ▼\n                CloudWatch\n                     │\n                  Alarms\n                     │\n                 Notifications\n\nCloudTrail records all AWS API actions across the account.</code></pre></div>\n<hr class=\"divider\" />\n<h2>Next Lesson: Docker &amp; Amazon ECS</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>This is where you'll move from deploying applications directly onto EC2 to using <strong>containers</strong>, the standard deployment model in modern cloud environments.</p>\n<p>You'll learn:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">What Docker is</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Images vs Containers</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">Dockerfiles</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">Volumes</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-5\"><span class=\"lab-step-text\">Networking</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-6\"><span class=\"lab-step-text\">Amazon ECS</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-7\"><span class=\"lab-step-text\">Amazon ECR</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-8\"><span class=\"lab-step-text\">ECS Fargate</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-9\"><span class=\"lab-step-text\">Containers vs Virtual Machines</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-10\"><span class=\"lab-step-text\">How production microservices are deployed on AWS</span></li>\n</ul>\n<p>This is one of the most valuable skills for cloud engineers, DevOps engineers, and backend developers.</p>\n<aside class=\"accuracy-note\" role=\"note\"><p><strong>Content review:</strong> 2026-07. Curriculum text is adapted from a shared learning roadmap; verify critical details in official AWS docs before production use.</p><p class=\"accuracy-note-label\">References</p><ul><li class=\"lab-step\" data-lab-id=\"lab-step-11\"><span class=\"lab-step-text\"><a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html\" rel=\"noopener noreferrer\" target=\"_blank\">docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatI…</a></span></li><li class=\"lab-step\" data-lab-id=\"lab-step-12\"><span class=\"lab-step-text\"><a href=\"https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html\" rel=\"noopener noreferrer\" target=\"_blank\">docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrai…</a></span></li></ul></aside></div>",
   "quiz": [
     {
       "q": "Juniors ask how to deploy; seniors also ask:",
@@ -146,7 +146,8 @@
         "How do I share root?"
       ],
       "answer": 0,
-      "explain": "Lesson framing."
+      "explain": "Lesson framing.",
+      "style": "general"
     },
     {
       "q": "Monitoring is about:",
@@ -157,7 +158,8 @@
         "Only AMI IDs"
       ],
       "answer": 0,
-      "explain": "Monitoring vs audit."
+      "explain": "Monitoring vs audit.",
+      "style": "general"
     },
     {
       "q": "Logging is about:",
@@ -168,7 +170,8 @@
         "Only CIDR"
       ],
       "answer": 0,
-      "explain": "Logs."
+      "explain": "Logs.",
+      "style": "general"
     },
     {
       "q": "Auditing is about:",
@@ -179,7 +182,8 @@
         "Only EBS type"
       ],
       "answer": 0,
-      "explain": "Audit."
+      "explain": "Audit.",
+      "style": "general"
     },
     {
       "q": "CloudWatch primary role:",
@@ -190,7 +194,8 @@
         "Only DNS"
       ],
       "answer": 0,
-      "explain": "CloudWatch."
+      "explain": "CloudWatch.",
+      "style": "general"
     },
     {
       "q": "Common EC2 metrics include:",
@@ -201,7 +206,8 @@
         "Only Terraform plan lines"
       ],
       "answer": 0,
-      "explain": "EC2 metrics."
+      "explain": "EC2 metrics.",
+      "style": "general"
     },
     {
       "q": "Dashboards help you:",
@@ -212,7 +218,8 @@
         "Disable MFA"
       ],
       "answer": 0,
-      "explain": "Dashboards."
+      "explain": "Dashboards.",
+      "style": "general"
     },
     {
       "q": "CloudWatch Logs store:",
@@ -223,7 +230,8 @@
         "Only security group rules as metrics only"
       ],
       "answer": 0,
-      "explain": "Logs."
+      "explain": "Logs.",
+      "style": "general"
     },
     {
       "q": "Lambda logs commonly appear in:",
@@ -234,7 +242,8 @@
         "NACL entries"
       ],
       "answer": 0,
-      "explain": "Lambda logging."
+      "explain": "Lambda logging.",
+      "style": "general"
     },
     {
       "q": "Alarms trigger when:",
@@ -245,7 +254,8 @@
         "A user smiles"
       ],
       "answer": 0,
-      "explain": "Alarms."
+      "explain": "Alarms.",
+      "style": "general"
     },
     {
       "q": "Alarm actions can:",
@@ -256,7 +266,8 @@
         "Only create root users"
       ],
       "answer": 0,
-      "explain": "Actions."
+      "explain": "Actions.",
+      "style": "general"
     },
     {
       "q": "EventBridge/CloudWatch Events help with:",
@@ -267,7 +278,8 @@
         "Replacing IAM entirely"
       ],
       "answer": 0,
-      "explain": "Events."
+      "explain": "Events.",
+      "style": "general"
     },
     {
       "q": "CloudTrail records:",
@@ -278,7 +290,8 @@
         "Only container CPU"
       ],
       "answer": 0,
-      "explain": "CloudTrail."
+      "explain": "CloudTrail.",
+      "style": "general"
     },
     {
       "q": "CloudTrail vs CloudWatch:",
@@ -289,7 +302,8 @@
         "Watch only for DNS"
       ],
       "answer": 0,
-      "explain": "Distinction table."
+      "explain": "Distinction table.",
+      "style": "general"
     },
     {
       "q": "Production troubleshooting uses both because:",
@@ -300,7 +314,8 @@
         "Alarms never notify"
       ],
       "answer": 0,
-      "explain": "Together."
+      "explain": "Together.",
+      "style": "scenario"
     },
     {
       "q": "Searching logs helps you:",
@@ -311,7 +326,8 @@
         "Disable HTTPS"
       ],
       "answer": 0,
-      "explain": "Log search."
+      "explain": "Log search.",
+      "style": "general"
     },
     {
       "q": "Example: spike in errors → you check:",
@@ -322,7 +338,8 @@
         "Only AMI architecture"
       ],
       "answer": 0,
-      "explain": "Ops workflow."
+      "explain": "Ops workflow.",
+      "style": "general"
     },
     {
       "q": "Final architecture so far includes:",
@@ -333,7 +350,8 @@
         "Only one metric ever"
       ],
       "answer": 0,
-      "explain": "Complete picture."
+      "explain": "Complete picture.",
+      "style": "general"
     },
     {
       "q": "Hands-on lab spirit:",
@@ -344,7 +362,8 @@
         "Disable all observability"
       ],
       "answer": 0,
-      "explain": "Practice."
+      "explain": "Practice.",
+      "style": "general"
     },
     {
       "q": "Without CloudTrail after a suspicious RunInstances:",
@@ -355,7 +374,8 @@
         "VPC deletes itself"
       ],
       "answer": 0,
-      "explain": "Audit necessity."
+      "explain": "Audit necessity.",
+      "style": "general"
     },
     {
       "q": "Dashboards are not a substitute for:",
@@ -366,7 +386,8 @@
         "Reading docs ever"
       ],
       "answer": 0,
-      "explain": "Alarms that page matter."
+      "explain": "Alarms that page matter.",
+      "style": "general"
     },
     {
       "q": "EC2 logs may need agents/config to ship to CloudWatch—theme is:",
@@ -377,7 +398,8 @@
         "Only print on paper"
       ],
       "answer": 0,
-      "explain": "Central logging."
+      "explain": "Central logging.",
+      "style": "general"
     }
   ]
 }

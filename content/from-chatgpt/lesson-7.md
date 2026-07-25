@@ -2,17 +2,6 @@
 
 Here you move from a single server to systems that survive failures and traffic spikes. Load balancing and auto scaling are among the most common AWS interview topics—and production essentials.
 
-By the end of this lesson, you will understand:
-
-- Why one server isn't enough
-- What a Load Balancer does
-- Types of Load Balancers
-- Health Checks
-- Auto Scaling Groups
-- Scaling policies
-- High Availability
-- Fault Tolerance
-- Production architecture
 
 ---
 # The Problem with One Server
@@ -543,9 +532,9 @@ They are often used together.
 
 ---
 
-# Interview Questions
+# Interview practice prompts
 
-Try answering these:
+Use these as open-ended prompts (the lesson quiz below is multiple choice).
 
 1. Why is a Load Balancer needed?
 2. What is the difference between an ALB and an NLB?

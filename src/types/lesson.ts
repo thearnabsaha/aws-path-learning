@@ -5,6 +5,8 @@ export type QuizQuestion = {
   explain: string;
   /** Optional topic tag for weak-area reporting */
   topic?: string;
+  /** scenario = interview-style; general = knowledge check */
+  style?: "scenario" | "general";
 };
 
 export type LessonSummary = {
@@ -42,6 +44,8 @@ export type ReviewItem = {
   dueAt: number;
 };
 
+export type LearningPathId = "fast" | "full" | "interview" | "all";
+
 export type ProgressState = {
   /** lessonId → completed timestamp */
   completed: Record<string, number>;
@@ -57,6 +61,23 @@ export type ProgressState = {
   lastSection: Record<string, string>;
   /** Spaced-repetition queue for missed quiz items */
   reviewQueue: ReviewItem[];
+  /** Active difficulty path (P2 §12) */
+  learningPath: LearningPathId;
+};
+
+export type InterviewPrompt = {
+  id: string;
+  lessonId: string;
+  lessonNumber: string;
+  lessonTitle: string;
+  prompt: string;
+};
+
+export type InterviewQuestion = QuizQuestion & {
+  lessonId: string;
+  lessonNumber: string;
+  lessonTitle: string;
+  style: "scenario" | "general";
 };
 
 export type SearchHit = {

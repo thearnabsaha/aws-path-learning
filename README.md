@@ -124,6 +124,24 @@ Site quizzes and local progress are extras on top of the chat text.
 | **Copy** on code blocks | Lesson prose |
 | **Architecture so far** (SVG grows) | Home |
 
+## Learning paths (P2)
+
+| Path | Contents |
+|------|----------|
+| **Fast** | Cloud fundamentals → IAM → EC2 → S3 → VPC → RDS → ELB/ASG |
+| **Full** | Core lessons 1–12 |
+| **Interview** | Core 1–12 + `/interview` scenario drills & open prompts |
+| **Everything** | Core + additional SAA topics (13–20) |
+
+Path choice is stored in progress (`learningPath`). Stats (done %, time left) follow the active path.
+
+### Editorial (core 1–12)
+
+- In-body **Mini Quiz** blocks removed (site quizzes are canonical)
+- Duplicate “by the end of this lesson” goal lists removed (meta goals remain)
+- Chat-style phrasing neutralized; ₹ amounts show approximate USD
+- Interview sections kept as open **practice prompts**
+
 Progress storage key: `aws-path-progress-v3` (auto-migrates v2).
 
 ## Deploy

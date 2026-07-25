@@ -2,18 +2,6 @@
 
 This lesson shifts from always-on servers to serverless compute. Lambda is a major mindset change: run code in response to events without managing the underlying machines.
 
-By the end of this lesson, you will understand:
-
-- What serverless means
-- What Lambda is
-- How Lambda works
-- Events and triggers
-- API Gateway
-- Execution lifecycle
-- Timeouts and memory
-- Cold starts
-- IAM roles for Lambda
-- When to use Lambda vs EC2
 
 ---
 # The Old Way
@@ -632,7 +620,9 @@ Try this in your AWS account:
 
 ---
 
-# Interview Questions
+# Interview practice prompts
+
+Use these as open-ended prompts (the lesson quiz below is multiple choice).
 
 1. What does "serverless" mean?
 2. What is AWS Lambda?

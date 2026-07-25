@@ -2,19 +2,6 @@
 
 You are entering the data layer of cloud architecture. Banking, e-commerce, HR, and social apps all need structured storage—this lesson is Amazon RDS, managed relational databases on AWS.
 
-By the end of this lesson, you will understand:
-
-- What a database is
-- Why RDS exists
-- Supported database engines
-- Primary instance
-- Multi-AZ deployments
-- Read Replicas
-- Backups
-- Snapshots
-- Scaling
-- Security
-- Real-world architectures
 
 ---
 # What is a Database?
@@ -27,8 +14,8 @@ Instead of keeping everything in Excel:
 
 | Customer | Product | Price |
 |-----------|----------|--------|
-| Arnab | Shoes | ₹4000 |
-| Rahul | Laptop | ₹60000 |
+| Arnab | Shoes | ₹4,00 (~$5 USD)0 (~$48 USD) |
+| Rahul | Laptop | ₹60,00 (~$72 USD)0 (~$720 USD) |
 
 The application stores it in a database.
 
@@ -132,8 +119,8 @@ Example:
 
 | ID | Name | Salary |
 |----|------|---------|
-| 1 | Arnab | ₹80,000 |
-| 2 | Rahul | ₹70,000 |
+| 1 | Arnab | ₹80,00 (~$96 USD)0 (~$960 USD) |
+| 2 | Rahul | ₹70,00 (~$84 USD)0 (~$840 USD) |
 
 Each row is a record.
 
@@ -466,9 +453,9 @@ Unless you have a special requirement, RDS is usually the better choice for rela
 
 ---
 
-# Interview Questions
+# Interview practice prompts
 
-Try answering these:
+Use these as open-ended prompts (the lesson quiz below is multiple choice).
 
 1. What is Amazon RDS?
 2. Why use RDS instead of installing MySQL on EC2?

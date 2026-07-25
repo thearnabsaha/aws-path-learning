@@ -27,6 +27,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly" as const,
       priority: 0.5,
     },
+    {
+      url: `${site}/interview`,
+      lastModified: now,
+      changeFrequency: "weekly" as const,
+      priority: 0.6,
+    },
     ...lessons,
   ];
 }

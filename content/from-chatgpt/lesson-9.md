@@ -2,20 +2,6 @@
 
 You already know RDS for SQL. DynamoDB is the NoSQL counterpart—used heavily for shopping carts, gaming, IoT, sessions, and other high-scale, low-latency workloads.
 
-By the end of this lesson, you will understand:
-
-- What NoSQL is
-- SQL vs NoSQL
-- Tables, Items, and Attributes
-- Primary Keys
-- Partition Keys
-- Sort Keys
-- Global Secondary Indexes (GSI)
-- Local Secondary Indexes (LSI)
-- DynamoDB Streams
-- TTL (Time to Live)
-- Capacity Modes
-- Real-world architecture
 
 ---
 # Why Do We Need Another Database?
@@ -605,7 +591,9 @@ Application (EC2)
 
 ---
 
-# Interview Questions
+# Interview practice prompts
+
+Use these as open-ended prompts (the lesson quiz below is multiple choice).
 
 1. What is DynamoDB?
 2. What is the difference between SQL and NoSQL?

@@ -1,0 +1,597 @@
+[
+  {
+    "id": "ec2-p1",
+    "lessonId": "ec2",
+    "lessonNumber": "03",
+    "lessonTitle": "Amazon EC2",
+    "prompt": "What is an EC2 instance?"
+  },
+  {
+    "id": "ec2-p2",
+    "lessonId": "ec2",
+    "lessonNumber": "03",
+    "lessonTitle": "Amazon EC2",
+    "prompt": "What is an AMI?"
+  },
+  {
+    "id": "ec2-p3",
+    "lessonId": "ec2",
+    "lessonNumber": "03",
+    "lessonTitle": "Amazon EC2",
+    "prompt": "What is an EBS volume?"
+  },
+  {
+    "id": "ec2-p4",
+    "lessonId": "ec2",
+    "lessonNumber": "03",
+    "lessonTitle": "Amazon EC2",
+    "prompt": "What is the purpose of a Security Group?"
+  },
+  {
+    "id": "ec2-p5",
+    "lessonId": "ec2",
+    "lessonNumber": "03",
+    "lessonTitle": "Amazon EC2",
+    "prompt": "What is the difference between a public IP and a private IP?"
+  },
+  {
+    "id": "ec2-p6",
+    "lessonId": "ec2",
+    "lessonNumber": "03",
+    "lessonTitle": "Amazon EC2",
+    "prompt": "Why are SSH key pairs used instead of passwords on many Linux instances?"
+  },
+  {
+    "id": "ec2-p7",
+    "lessonId": "ec2",
+    "lessonNumber": "03",
+    "lessonTitle": "Amazon EC2",
+    "prompt": "What is the difference between stopping and terminating an EC2 instance?"
+  },
+  {
+    "id": "s3-p1",
+    "lessonId": "s3",
+    "lessonNumber": "04",
+    "lessonTitle": "Amazon S3",
+    "prompt": "What is an S3 bucket?"
+  },
+  {
+    "id": "s3-p2",
+    "lessonId": "s3",
+    "lessonNumber": "04",
+    "lessonTitle": "Amazon S3",
+    "prompt": "What is an object?"
+  },
+  {
+    "id": "s3-p3",
+    "lessonId": "s3",
+    "lessonNumber": "04",
+    "lessonTitle": "Amazon S3",
+    "prompt": "What is an object key?"
+  },
+  {
+    "id": "s3-p4",
+    "lessonId": "s3",
+    "lessonNumber": "04",
+    "lessonTitle": "Amazon S3",
+    "prompt": "Why are bucket names globally unique?"
+  },
+  {
+    "id": "s3-p5",
+    "lessonId": "s3",
+    "lessonNumber": "04",
+    "lessonTitle": "Amazon S3",
+    "prompt": "What is versioning?"
+  },
+  {
+    "id": "s3-p6",
+    "lessonId": "s3",
+    "lessonNumber": "04",
+    "lessonTitle": "Amazon S3",
+    "prompt": "What is the difference between EC2 and S3?"
+  },
+  {
+    "id": "s3-p7",
+    "lessonId": "s3",
+    "lessonNumber": "04",
+    "lessonTitle": "Amazon S3",
+    "prompt": "What is a lifecycle rule?"
+  },
+  {
+    "id": "s3-p8",
+    "lessonId": "s3",
+    "lessonNumber": "04",
+    "lessonTitle": "Amazon S3",
+    "prompt": "When would you use Glacier instead of Standard storage?"
+  },
+  {
+    "id": "s3-p9",
+    "lessonId": "s3",
+    "lessonNumber": "04",
+    "lessonTitle": "Amazon S3",
+    "prompt": "Why is S3 a good choice for storing images and backups?"
+  },
+  {
+    "id": "vpc-p1",
+    "lessonId": "vpc",
+    "lessonNumber": "05",
+    "lessonTitle": "Amazon VPC",
+    "prompt": "What is a VPC?"
+  },
+  {
+    "id": "vpc-p2",
+    "lessonId": "vpc",
+    "lessonNumber": "05",
+    "lessonTitle": "Amazon VPC",
+    "prompt": "Why do we use subnets?"
+  },
+  {
+    "id": "vpc-p3",
+    "lessonId": "vpc",
+    "lessonNumber": "05",
+    "lessonTitle": "Amazon VPC",
+    "prompt": "What is the difference between a public and a private subnet?"
+  },
+  {
+    "id": "vpc-p4",
+    "lessonId": "vpc",
+    "lessonNumber": "05",
+    "lessonTitle": "Amazon VPC",
+    "prompt": "What does an Internet Gateway do?"
+  },
+  {
+    "id": "vpc-p5",
+    "lessonId": "vpc",
+    "lessonNumber": "05",
+    "lessonTitle": "Amazon VPC",
+    "prompt": "What is a route table?"
+  },
+  {
+    "id": "vpc-p6",
+    "lessonId": "vpc",
+    "lessonNumber": "05",
+    "lessonTitle": "Amazon VPC",
+    "prompt": "Why is a NAT Gateway needed?"
+  },
+  {
+    "id": "vpc-p7",
+    "lessonId": "vpc",
+    "lessonNumber": "05",
+    "lessonTitle": "Amazon VPC",
+    "prompt": "What is the difference between a Security Group and a Network ACL?"
+  },
+  {
+    "id": "vpc-p8",
+    "lessonId": "vpc",
+    "lessonNumber": "05",
+    "lessonTitle": "Amazon VPC",
+    "prompt": "Why should databases be in private subnets?"
+  },
+  {
+    "id": "rds-p1",
+    "lessonId": "rds",
+    "lessonNumber": "06",
+    "lessonTitle": "Amazon RDS",
+    "prompt": "What is Amazon RDS?"
+  },
+  {
+    "id": "rds-p2",
+    "lessonId": "rds",
+    "lessonNumber": "06",
+    "lessonTitle": "Amazon RDS",
+    "prompt": "Why use RDS instead of installing MySQL on EC2?"
+  },
+  {
+    "id": "rds-p3",
+    "lessonId": "rds",
+    "lessonNumber": "06",
+    "lessonTitle": "Amazon RDS",
+    "prompt": "What is the difference between Multi-AZ and Read Replicas?"
+  },
+  {
+    "id": "rds-p4",
+    "lessonId": "rds",
+    "lessonNumber": "06",
+    "lessonTitle": "Amazon RDS",
+    "prompt": "What is a snapshot?"
+  },
+  {
+    "id": "rds-p5",
+    "lessonId": "rds",
+    "lessonNumber": "06",
+    "lessonTitle": "Amazon RDS",
+    "prompt": "Why should an RDS instance usually be in a private subnet?"
+  },
+  {
+    "id": "rds-p6",
+    "lessonId": "rds",
+    "lessonNumber": "06",
+    "lessonTitle": "Amazon RDS",
+    "prompt": "Which port does MySQL use?"
+  },
+  {
+    "id": "rds-p7",
+    "lessonId": "rds",
+    "lessonNumber": "06",
+    "lessonTitle": "Amazon RDS",
+    "prompt": "Which port does PostgreSQL use?"
+  },
+  {
+    "id": "rds-p8",
+    "lessonId": "rds",
+    "lessonNumber": "06",
+    "lessonTitle": "Amazon RDS",
+    "prompt": "Why are Security Groups important for databases?"
+  },
+  {
+    "id": "elb-asg-p1",
+    "lessonId": "elb-asg",
+    "lessonNumber": "07",
+    "lessonTitle": "ELB & Auto Scaling",
+    "prompt": "Why is a Load Balancer needed?"
+  },
+  {
+    "id": "elb-asg-p2",
+    "lessonId": "elb-asg",
+    "lessonNumber": "07",
+    "lessonTitle": "ELB & Auto Scaling",
+    "prompt": "What is the difference between an ALB and an NLB?"
+  },
+  {
+    "id": "elb-asg-p3",
+    "lessonId": "elb-asg",
+    "lessonNumber": "07",
+    "lessonTitle": "ELB & Auto Scaling",
+    "prompt": "What are health checks?"
+  },
+  {
+    "id": "elb-asg-p4",
+    "lessonId": "elb-asg",
+    "lessonNumber": "07",
+    "lessonTitle": "ELB & Auto Scaling",
+    "prompt": "What is an Auto Scaling Group?"
+  },
+  {
+    "id": "elb-asg-p5",
+    "lessonId": "elb-asg",
+    "lessonNumber": "07",
+    "lessonTitle": "ELB & Auto Scaling",
+    "prompt": "What is the difference between scaling up and scaling out?"
+  },
+  {
+    "id": "elb-asg-p6",
+    "lessonId": "elb-asg",
+    "lessonNumber": "07",
+    "lessonTitle": "ELB & Auto Scaling",
+    "prompt": "What is a Launch Template?"
+  },
+  {
+    "id": "elb-asg-p7",
+    "lessonId": "elb-asg",
+    "lessonNumber": "07",
+    "lessonTitle": "ELB & Auto Scaling",
+    "prompt": "What is High Availability?"
+  },
+  {
+    "id": "elb-asg-p8",
+    "lessonId": "elb-asg",
+    "lessonNumber": "07",
+    "lessonTitle": "ELB & Auto Scaling",
+    "prompt": "Why should EC2 instances be spread across multiple Availability Zones?"
+  },
+  {
+    "id": "lambda-p1",
+    "lessonId": "lambda",
+    "lessonNumber": "08",
+    "lessonTitle": "AWS Lambda",
+    "prompt": "What does \"serverless\" mean?"
+  },
+  {
+    "id": "lambda-p2",
+    "lessonId": "lambda",
+    "lessonNumber": "08",
+    "lessonTitle": "AWS Lambda",
+    "prompt": "What is AWS Lambda?"
+  },
+  {
+    "id": "lambda-p3",
+    "lessonId": "lambda",
+    "lessonNumber": "08",
+    "lessonTitle": "AWS Lambda",
+    "prompt": "What can trigger a Lambda function?"
+  },
+  {
+    "id": "lambda-p4",
+    "lessonId": "lambda",
+    "lessonNumber": "08",
+    "lessonTitle": "AWS Lambda",
+    "prompt": "Why does Lambda need an IAM role?"
+  },
+  {
+    "id": "lambda-p5",
+    "lessonId": "lambda",
+    "lessonNumber": "08",
+    "lessonTitle": "AWS Lambda",
+    "prompt": "What is a cold start?"
+  },
+  {
+    "id": "lambda-p6",
+    "lessonId": "lambda",
+    "lessonNumber": "08",
+    "lessonTitle": "AWS Lambda",
+    "prompt": "Why is Lambda considered stateless?"
+  },
+  {
+    "id": "lambda-p7",
+    "lessonId": "lambda",
+    "lessonNumber": "08",
+    "lessonTitle": "AWS Lambda",
+    "prompt": "When would you choose Lambda instead of EC2?"
+  },
+  {
+    "id": "lambda-p8",
+    "lessonId": "lambda",
+    "lessonNumber": "08",
+    "lessonTitle": "AWS Lambda",
+    "prompt": "What are the execution time limits of Lambda?"
+  },
+  {
+    "id": "dynamodb-p1",
+    "lessonId": "dynamodb",
+    "lessonNumber": "09",
+    "lessonTitle": "Amazon DynamoDB",
+    "prompt": "What is DynamoDB?"
+  },
+  {
+    "id": "dynamodb-p2",
+    "lessonId": "dynamodb",
+    "lessonNumber": "09",
+    "lessonTitle": "Amazon DynamoDB",
+    "prompt": "What is the difference between SQL and NoSQL?"
+  },
+  {
+    "id": "dynamodb-p3",
+    "lessonId": "dynamodb",
+    "lessonNumber": "09",
+    "lessonTitle": "Amazon DynamoDB",
+    "prompt": "What is a partition key?"
+  },
+  {
+    "id": "dynamodb-p4",
+    "lessonId": "dynamodb",
+    "lessonNumber": "09",
+    "lessonTitle": "Amazon DynamoDB",
+    "prompt": "What is a sort key?"
+  },
+  {
+    "id": "dynamodb-p5",
+    "lessonId": "dynamodb",
+    "lessonNumber": "09",
+    "lessonTitle": "Amazon DynamoDB",
+    "prompt": "What is the difference between a Query and a Scan?"
+  },
+  {
+    "id": "dynamodb-p6",
+    "lessonId": "dynamodb",
+    "lessonNumber": "09",
+    "lessonTitle": "Amazon DynamoDB",
+    "prompt": "What is a GSI?"
+  },
+  {
+    "id": "dynamodb-p7",
+    "lessonId": "dynamodb",
+    "lessonNumber": "09",
+    "lessonTitle": "Amazon DynamoDB",
+    "prompt": "What is an LSI?"
+  },
+  {
+    "id": "dynamodb-p8",
+    "lessonId": "dynamodb",
+    "lessonNumber": "09",
+    "lessonTitle": "Amazon DynamoDB",
+    "prompt": "What is DynamoDB Streams?"
+  },
+  {
+    "id": "dynamodb-p9",
+    "lessonId": "dynamodb",
+    "lessonNumber": "09",
+    "lessonTitle": "Amazon DynamoDB",
+    "prompt": "What is TTL?"
+  },
+  {
+    "id": "dynamodb-p10",
+    "lessonId": "dynamodb",
+    "lessonNumber": "09",
+    "lessonTitle": "Amazon DynamoDB",
+    "prompt": "When would you choose DynamoDB over RDS?"
+  },
+  {
+    "id": "observability-p1",
+    "lessonId": "observability",
+    "lessonNumber": "10",
+    "lessonTitle": "CloudWatch & CloudTrail",
+    "prompt": "What is Amazon CloudWatch?"
+  },
+  {
+    "id": "observability-p2",
+    "lessonId": "observability",
+    "lessonNumber": "10",
+    "lessonTitle": "CloudWatch & CloudTrail",
+    "prompt": "What is a metric?"
+  },
+  {
+    "id": "observability-p3",
+    "lessonId": "observability",
+    "lessonNumber": "10",
+    "lessonTitle": "CloudWatch & CloudTrail",
+    "prompt": "What is a CloudWatch alarm?"
+  },
+  {
+    "id": "observability-p4",
+    "lessonId": "observability",
+    "lessonNumber": "10",
+    "lessonTitle": "CloudWatch & CloudTrail",
+    "prompt": "What is the difference between metrics and logs?"
+  },
+  {
+    "id": "observability-p5",
+    "lessonId": "observability",
+    "lessonNumber": "10",
+    "lessonTitle": "CloudWatch & CloudTrail",
+    "prompt": "What is AWS CloudTrail?"
+  },
+  {
+    "id": "observability-p6",
+    "lessonId": "observability",
+    "lessonNumber": "10",
+    "lessonTitle": "CloudWatch & CloudTrail",
+    "prompt": "What is the difference between CloudTrail and CloudWatch?"
+  },
+  {
+    "id": "observability-p7",
+    "lessonId": "observability",
+    "lessonNumber": "10",
+    "lessonTitle": "CloudWatch & CloudTrail",
+    "prompt": "Why are dashboards useful?"
+  },
+  {
+    "id": "observability-p8",
+    "lessonId": "observability",
+    "lessonNumber": "10",
+    "lessonTitle": "CloudWatch & CloudTrail",
+    "prompt": "How would you investigate a slow production application?"
+  },
+  {
+    "id": "containers-p1",
+    "lessonId": "containers",
+    "lessonNumber": "11",
+    "lessonTitle": "Docker, ECR & ECS",
+    "prompt": "What is Docker?"
+  },
+  {
+    "id": "containers-p2",
+    "lessonId": "containers",
+    "lessonNumber": "11",
+    "lessonTitle": "Docker, ECR & ECS",
+    "prompt": "What is the difference between an image and a container?"
+  },
+  {
+    "id": "containers-p3",
+    "lessonId": "containers",
+    "lessonNumber": "11",
+    "lessonTitle": "Docker, ECR & ECS",
+    "prompt": "What is a Dockerfile?"
+  },
+  {
+    "id": "containers-p4",
+    "lessonId": "containers",
+    "lessonNumber": "11",
+    "lessonTitle": "Docker, ECR & ECS",
+    "prompt": "Why are containers lighter than virtual machines?"
+  },
+  {
+    "id": "containers-p5",
+    "lessonId": "containers",
+    "lessonNumber": "11",
+    "lessonTitle": "Docker, ECR & ECS",
+    "prompt": "What is Amazon ECR?"
+  },
+  {
+    "id": "containers-p6",
+    "lessonId": "containers",
+    "lessonNumber": "11",
+    "lessonTitle": "Docker, ECR & ECS",
+    "prompt": "What is Amazon ECS?"
+  },
+  {
+    "id": "containers-p7",
+    "lessonId": "containers",
+    "lessonNumber": "11",
+    "lessonTitle": "Docker, ECR & ECS",
+    "prompt": "What is the difference between ECS on EC2 and ECS on Fargate?"
+  },
+  {
+    "id": "containers-p8",
+    "lessonId": "containers",
+    "lessonNumber": "11",
+    "lessonTitle": "Docker, ECR & ECS",
+    "prompt": "What is a Task Definition?"
+  },
+  {
+    "id": "containers-p9",
+    "lessonId": "containers",
+    "lessonNumber": "11",
+    "lessonTitle": "Docker, ECR & ECS",
+    "prompt": "What is an ECS Service?"
+  },
+  {
+    "id": "iac-p1",
+    "lessonId": "iac",
+    "lessonNumber": "12",
+    "lessonTitle": "IaC — CloudFormation & Terraform",
+    "prompt": "What is Infrastructure as Code?"
+  },
+  {
+    "id": "iac-p2",
+    "lessonId": "iac",
+    "lessonNumber": "12",
+    "lessonTitle": "IaC — CloudFormation & Terraform",
+    "prompt": "Why is Infrastructure as Code important?"
+  },
+  {
+    "id": "iac-p3",
+    "lessonId": "iac",
+    "lessonNumber": "12",
+    "lessonTitle": "IaC — CloudFormation & Terraform",
+    "prompt": "What is Terraform?"
+  },
+  {
+    "id": "iac-p4",
+    "lessonId": "iac",
+    "lessonNumber": "12",
+    "lessonTitle": "IaC — CloudFormation & Terraform",
+    "prompt": "What is CloudFormation?"
+  },
+  {
+    "id": "iac-p5",
+    "lessonId": "iac",
+    "lessonNumber": "12",
+    "lessonTitle": "IaC — CloudFormation & Terraform",
+    "prompt": "What is a Terraform state file?"
+  },
+  {
+    "id": "iac-p6",
+    "lessonId": "iac",
+    "lessonNumber": "12",
+    "lessonTitle": "IaC — CloudFormation & Terraform",
+    "prompt": "What is configuration drift?"
+  },
+  {
+    "id": "iac-p7",
+    "lessonId": "iac",
+    "lessonNumber": "12",
+    "lessonTitle": "IaC — CloudFormation & Terraform",
+    "prompt": "What is idempotency?"
+  },
+  {
+    "id": "iac-p8",
+    "lessonId": "iac",
+    "lessonNumber": "12",
+    "lessonTitle": "IaC — CloudFormation & Terraform",
+    "prompt": "What is a Terraform module?"
+  },
+  {
+    "id": "iac-p9",
+    "lessonId": "iac",
+    "lessonNumber": "12",
+    "lessonTitle": "IaC — CloudFormation & Terraform",
+    "prompt": "What is the difference between `terraform plan` and `terraform apply`?"
+  },
+  {
+    "id": "iac-p10",
+    "lessonId": "iac",
+    "lessonNumber": "12",
+    "lessonTitle": "IaC — CloudFormation & Terraform",
+    "prompt": "Why do companies store infrastructure in Git?"
+  }
+]

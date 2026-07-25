@@ -301,9 +301,51 @@ function enhanceLabLists(html) {
   );
 }
 
+/** Open-ended interview prompts from markdown “Interview practice” sections */
+function extractInterviewPrompts(md, lesson) {
+  // Use $ (not \Z): with /i, \Z matches the letter "z" and truncates bodies like "quiz".
+  const m = md.match(
+    /#+\s*Interview(?:\s+practice)?(?:\s+prompts)?(?:\s+Questions)?[^\n]*\n([\s\S]*?)(?=\n#+\s|\n---\s*\n|$)/i
+  );
+  if (!m) return [];
+  const body = m[1];
+  const prompts = [];
+  const re = /^\s*(?:\d+[\.\)]\s+|[-*]\s+)(.+)$/gm;
+  let hit;
+  let i = 0;
+  while ((hit = re.exec(body))) {
+    const prompt = hit[1].replace(/\*\*/g, "").trim();
+    if (prompt.length < 8) continue;
+    if (/^use these as open-ended/i.test(prompt)) continue;
+    i += 1;
+    prompts.push({
+      id: `${lesson.id}-p${i}`,
+      lessonId: lesson.id,
+      lessonNumber: lesson.number,
+      lessonTitle: lesson.title,
+      prompt,
+    });
+  }
+  return prompts;
+}
+
+const SCENARIO_RE =
+  /\b(which of the following|scenario|architect|best (?:practice|approach|choice|way)|most (?:secure|cost|highly available|scalable|appropriate)|least privilege|multi-?az|production|would you|what should|when (?:would|should)|why (?:should|is|would|do)|trade-?off|prefer|instead of|compared to|difference between|primary (?:purpose|benefit)|main (?:reason|benefit)|suitable|recommended)\b/i;
+
+function markQuizStyle(quiz) {
+  return (quiz || []).map((q) => ({
+    ...q,
+    style: SCENARIO_RE.test(`${q.q} ${q.explain || ""}`)
+      ? "scenario"
+      : "general",
+  }));
+}
+
 fs.mkdirSync(lessonsOut, { recursive: true });
 
 const index = [];
+const interviewPrompts = [];
+const interviewBank = [];
 
 for (const lesson of meta) {
   const mdPath = path.join(mdDir, lesson.source);
@@ -317,7 +359,19 @@ for (const lesson of meta) {
   html = enhanceLabLists(html);
 
   const parts = extractParts(html);
-  const quiz = quizzes[lesson.id] || [];
+  const quiz = markQuizStyle(quizzes[lesson.id] || []);
+
+  const prompts = extractInterviewPrompts(md, lesson);
+  interviewPrompts.push(...prompts);
+
+  for (const q of quiz) {
+    interviewBank.push({
+      ...q,
+      lessonId: lesson.id,
+      lessonNumber: lesson.number,
+      lessonTitle: lesson.title,
+    });
+  }
 
   const full = {
     id: lesson.id,
@@ -361,6 +415,21 @@ fs.writeFileSync(
   JSON.stringify(index, null, 2) + "\n"
 );
 
+fs.writeFileSync(
+  path.join(outDir, "interview-prompts.json"),
+  JSON.stringify(interviewPrompts, null, 2) + "\n"
+);
+
+// Prefer scenario-style for interview drill, then fill with general
+const scenario = interviewBank.filter((q) => q.style === "scenario");
+const general = interviewBank.filter((q) => q.style !== "scenario");
+const interviewQuestions = [...scenario, ...general];
+
+fs.writeFileSync(
+  path.join(outDir, "interview-questions.json"),
+  JSON.stringify(interviewQuestions, null, 2) + "\n"
+);
+
 console.log(
-  `build-content: ${index.length} lessons → src/data/generated/ (${index.reduce((n, l) => n + (quizzes[l.id]?.length || 0), 0)} quiz questions, ${index.reduce((n, l) => n + (l.parts?.length || 0), 0)} sections)`
+  `build-content: ${index.length} lessons → src/data/generated/ (${index.reduce((n, l) => n + (quizzes[l.id]?.length || 0), 0)} quiz questions, ${index.reduce((n, l) => n + (l.parts?.length || 0), 0)} sections, ${interviewPrompts.length} interview prompts, ${scenario.length} scenario MCQs)`
 );

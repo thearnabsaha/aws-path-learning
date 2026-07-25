@@ -2,17 +2,6 @@
 
 Now you launch compute: your first cloud server. EC2 is the foundation for understanding virtual machines, networking to a host, and running software in AWS.
 
-By the end of this lesson, you will understand:
-
-- What EC2 is
-- How virtual machines work
-- Instance types
-- AMIs
-- Storage
-- Security Groups
-- Key Pairs
-- The complete EC2 launch process
-- How to SSH into your server
 
 ---
 # What is EC2?
@@ -276,7 +265,7 @@ If you're using Windows, you can use:
 
 # What Happens After Login?
 
-You'll see something like:
+A typical output looks like:
 
 ```text
 ubuntu@ip-172-31-15-40:~$
@@ -385,9 +374,9 @@ Your Website
 
 ---
 
-# Interview Questions
+# Interview practice prompts
 
-Try answering these:
+Use these as open-ended prompts (the lesson quiz below is multiple choice).
 
 1. What is an EC2 instance?
 2. What is an AMI?

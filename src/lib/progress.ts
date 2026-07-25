@@ -1,7 +1,17 @@
-import type { ProgressState } from "@/types/lesson";
+import type { LearningPathId, ProgressState } from "@/types/lesson";
+import { DEFAULT_PATH } from "@/lib/paths";
 
 export const STORAGE_KEY = "aws-path-progress-v3";
 const LEGACY_KEYS = ["aws-path-progress-v2", "aws-path-progress"];
+
+const PATHS: LearningPathId[] = ["fast", "full", "interview", "all"];
+
+function normalizePath(v: unknown): LearningPathId {
+  if (typeof v === "string" && PATHS.includes(v as LearningPathId)) {
+    return v as LearningPathId;
+  }
+  return DEFAULT_PATH;
+}
 
 export function emptyProgress(): ProgressState {
   return {
@@ -11,16 +21,14 @@ export function emptyProgress(): ProgressState {
     labs: {},
     lastSection: {},
     reviewQueue: [],
+    learningPath: DEFAULT_PATH,
   };
 }
 
 function normalize(raw: unknown): ProgressState {
   const base = emptyProgress();
   if (!raw || typeof raw !== "object") return base;
-  const data = raw as Partial<ProgressState> & {
-    completed?: Record<string, number>;
-    quizScores?: ProgressState["quizScores"];
-  };
+  const data = raw as Partial<ProgressState>;
   return {
     completed: data.completed || {},
     quizScores: data.quizScores || {},
@@ -28,6 +36,7 @@ function normalize(raw: unknown): ProgressState {
     labs: data.labs || {},
     lastSection: data.lastSection || {},
     reviewQueue: Array.isArray(data.reviewQueue) ? data.reviewQueue : [],
+    learningPath: normalizePath(data.learningPath),
   };
 }
 
@@ -37,7 +46,6 @@ export function loadProgress(): ProgressState {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (raw) return normalize(JSON.parse(raw));
 
-    // Migrate older keys once
     for (const key of LEGACY_KEYS) {
       const legacy = localStorage.getItem(key);
       if (legacy) {
@@ -76,7 +84,6 @@ export function importProgressJson(text: string): ProgressState {
     progress?: unknown;
     completed?: Record<string, number>;
   };
-  // Accept both wrapped export and raw ProgressState
   if (parsed.progress) return normalize(parsed.progress);
   return normalize(parsed);
 }

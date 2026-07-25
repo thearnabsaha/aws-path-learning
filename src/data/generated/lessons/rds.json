@@ -111,7 +111,7 @@
     },
     {
       "id": "part-23",
-      "title": "Interview Questions"
+      "title": "Interview practice prompts"
     },
     {
       "id": "part-24",
@@ -126,7 +126,7 @@
       "title": "Next Lesson: Elastic Load Balancer (ELB) & Auto Scaling"
     }
   ],
-  "content": "<h2>Lesson 6: Amazon RDS (Relational Database Service)</h2>\n<p>You are entering the data layer of cloud architecture. Banking, e-commerce, HR, and social apps all need structured storage—this lesson is Amazon RDS, managed relational databases on AWS.</p>\n<p>By the end of this lesson, you will understand:</p>\n<ul>\n<li>What a database is</li>\n<li>Why RDS exists</li>\n<li>Supported database engines</li>\n<li>Primary instance</li>\n<li>Multi-AZ deployments</li>\n<li>Read Replicas</li>\n<li>Backups</li>\n<li>Snapshots</li>\n<li>Scaling</li>\n<li>Security</li>\n<li>Real-world architectures</li>\n</ul>\n<hr class=\"divider\" />\n<h2>What is a Database?</h2>\n<p>A database stores <strong>structured data</strong>.</p>\n<p>Imagine an e-commerce website.</p>\n<p>Instead of keeping everything in Excel:</p>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Customer</th><th>Product</th><th>Price</th></tr></thead><tbody>\n<tr><td>Arnab</td><td>Shoes</td><td>₹4000</td></tr>\n<tr><td>Rahul</td><td>Laptop</td><td>₹60000</td></tr>\n</tbody></table></div>\n<p>The application stores it in a database.</p>\n<hr class=\"divider\" />\n<h2>Why Not Store Everything in S3?</h2>\n<p>S3 is great for storing:</p>\n<ul>\n<li>Images</li>\n<li>Videos</li>\n<li>PDFs</li>\n<li>Documents</li>\n<li>Backups</li>\n</ul>\n<p>But imagine asking:</p>\n<blockquote class=\"callout tip\"><p>\"Show me every order Arnab placed in the last 30 days.\"</p></blockquote>\n<p>A relational database is designed for these kinds of queries.</p>\n<hr class=\"divider\" />\n<h2>What is Amazon RDS?</h2>\n<p><strong>Amazon RDS (Relational Database Service)</strong> is AWS's managed relational database service.</p>\n<p>Without RDS:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>EC2\n │\n ├── Install MySQL\n ├── Configure backups\n ├── Update software\n ├── Monitor health\n ├── Handle crashes\n └── Manage storage</code></pre></div>\n<p>You do everything yourself.</p>\n<p>With RDS:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Amazon RDS\n │\n ├── Automated backups\n ├── Software patching\n ├── Monitoring\n ├── Failover\n ├── Storage management\n └── High availability options</code></pre></div>\n<p>AWS manages much of the operational work.</p>\n<hr class=\"divider\" />\n<h2>Supported Database Engines</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>RDS supports several relational databases:</p>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Engine</th><th>Common Use</th></tr></thead><tbody>\n<tr><td>MySQL</td><td>Web applications</td></tr>\n<tr><td>PostgreSQL</td><td>Enterprise apps, GIS, analytics</td></tr>\n<tr><td>MariaDB</td><td>MySQL-compatible workloads</td></tr>\n<tr><td>Oracle</td><td>Large enterprises</td></tr>\n<tr><td>Microsoft SQL Server</td><td>Windows/.NET environments</td></tr>\n</tbody></table></div>\n<p>If you already know SQL, your queries are largely the same.</p>\n<hr class=\"divider\" />\n</div><h2>Basic Architecture</h2>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Users\n   │\n   ▼\nApplication (EC2)\n   │\n   ▼\nAmazon RDS</code></pre></div>\n<p>The application connects to the database over the network.</p>\n<p>Users <strong>never</strong> connect directly to the database.</p>\n<hr class=\"divider\" />\n<h2>Tables</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>A relational database stores information in <strong>tables</strong>.</p>\n<p>Example:</p>\n<h3>Employees</h3>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>ID</th><th>Name</th><th>Salary</th></tr></thead><tbody>\n<tr><td>1</td><td>Arnab</td><td>₹80,000</td></tr>\n<tr><td>2</td><td>Rahul</td><td>₹70,000</td></tr>\n</tbody></table></div>\n<p>Each row is a record.</p>\n<p>Each column stores one type of information.</p>\n<hr class=\"divider\" />\n</div><h2>SQL</h2>\n<p>You interact with relational databases using <strong>SQL (Structured Query Language)</strong>.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>sql</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>SELECT * FROM Employees;</code></pre></div>\n<p>Find one employee:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>sql</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>SELECT * FROM Employees\nWHERE Name = 'Arnab';</code></pre></div>\n<p>Insert data:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>sql</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>INSERT INTO Employees\n(Name, Salary)\nVALUES ('Alice', 95000);</code></pre></div>\n<hr class=\"divider\" />\n<h2>Primary Database</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Most applications write data to a <strong>primary</strong> database instance.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Application\n      │\n      ▼\nPrimary RDS</code></pre></div>\n<p>This is where inserts, updates, and deletes happen.</p>\n<hr class=\"divider\" />\n</div><h2>Multi-AZ Deployment</h2>\n<p>Suppose your database server fails.</p>\n<p>Without Multi-AZ:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Application\n     │\n     ▼\nDatabase\n\n(Server crashes)\n\n↓\n\nApplication stops working</code></pre></div>\n<p>With Multi-AZ:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Application\n     │\n     ▼\nPrimary DB (AZ A)\n      │\n      ▼\nStandby DB (AZ B)</code></pre></div>\n<p>If the primary fails, AWS automatically promotes the standby to become the new primary.</p>\n<p>This improves <strong>availability</strong>, not performance.</p>\n<hr class=\"divider\" />\n<h2>Read Replicas</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Sometimes thousands of users are reading data.</p>\n<p>Instead of sending every read request to the primary:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Application\n      │\n      ▼\nPrimary DB\n      │\n      ├────────► Read Replica 1\n      │\n      ├────────► Read Replica 2\n      │\n      └────────► Read Replica 3</code></pre></div>\n<p>Writes go to the primary.</p>\n<p>Reads can be distributed across replicas.</p>\n<p>This helps scale read-heavy applications.</p>\n<hr class=\"divider\" />\n</div><h2>Multi-AZ vs Read Replica</h2>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Multi-AZ</th><th>Read Replica</th></tr></thead><tbody>\n<tr><td>High availability</td><td>Read scaling</td></tr>\n<tr><td>Automatic failover</td><td>No automatic failover by default</td></tr>\n<tr><td>Standby isn't used for normal reads</td><td>Replicas serve read traffic</td></tr>\n<tr><td>Protects against failures</td><td>Improves performance for reads</td></tr>\n</tbody></table></div>\n<hr class=\"divider\" />\n<h2>Storage Scaling</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>As your database grows:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>20 GB\n\n↓\n\n100 GB\n\n↓\n\n500 GB</code></pre></div>\n<p>RDS supports increasing storage without rebuilding the database in many cases.</p>\n<hr class=\"divider\" />\n</div><h2>Automated Backups</h2>\n<p>AWS can automatically back up your database.</p>\n<p>If you accidentally delete data:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Monday Backup\n\nTuesday Backup\n\nWednesday Backup</code></pre></div>\n<p>You can restore to a previous point within your configured backup retention period.</p>\n<hr class=\"divider\" />\n<h2>Snapshots</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>A snapshot is a manual backup you create.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Before Major Upgrade\n\n↓\n\nTake Snapshot\n\n↓\n\nUpgrade\n\n↓\n\nProblem?\n\n↓\n\nRestore Snapshot</code></pre></div>\n<p>Many teams take a snapshot before risky changes.</p>\n<hr class=\"divider\" />\n</div><h2>Security</h2>\n<p>RDS instances are typically placed in <strong>private subnets</strong>.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Internet\n\n↓\n\nWeb Server\n\n↓\n\nApplication\n\n↓\n\nRDS</code></pre></div>\n<p>The database isn't directly exposed to the internet.</p>\n<hr class=\"divider\" />\n<h2>Security Groups</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Example rules:</p>\n<p>Allow:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">PostgreSQL (5432) from the application server</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">MySQL (3306) from the application server</span></li>\n</ul>\n<p>Block everything else.</p>\n<p>This means only trusted resources can connect.</p>\n<hr class=\"divider\" />\n</div><h2>Common Database Ports</h2>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Database</th><th>Port</th></tr></thead><tbody>\n<tr><td>MySQL</td><td>3306</td></tr>\n<tr><td>PostgreSQL</td><td>5432</td></tr>\n<tr><td>SQL Server</td><td>1433</td></tr>\n<tr><td>Oracle</td><td>1521</td></tr>\n</tbody></table></div>\n<hr class=\"divider\" />\n<h2>Monitoring</h2>\n<p>AWS integrates RDS with <strong>CloudWatch</strong> so you can monitor:</p>\n<ul>\n<li>CPU usage</li>\n<li>Memory</li>\n<li>Storage</li>\n<li>Connections</li>\n<li>Read/write latency</li>\n</ul>\n<p>Monitoring helps detect performance issues early.</p>\n<hr class=\"divider\" />\n<h2>Real-World Architecture</h2>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Internet\n      │\n      ▼\nLoad Balancer\n      │\n      ▼\nEC2 Application Servers\n      │\n      ▼\nAmazon RDS\n      │\n      ▼\nBackups</code></pre></div>\n<hr class=\"divider\" />\n<h2>Example: Shopping Website</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Customer places an order.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Customer\n\n↓\n\nApplication\n\n↓\n\nINSERT Order\n\n↓\n\nRDS</code></pre></div>\n<p>Customer views order history.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Customer\n\n↓\n\nApplication\n\n↓\n\nSELECT Orders\n\n↓\n\nRDS</code></pre></div>\n<p>This is happening millions of times every day on large e-commerce platforms.</p>\n<hr class=\"divider\" />\n</div><h2>RDS vs EC2 Database</h2>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>EC2 + MySQL</th><th>Amazon RDS</th></tr></thead><tbody>\n<tr><td>You install the database</td><td>AWS provisions it</td></tr>\n<tr><td>You manage backups</td><td>AWS can automate them</td></tr>\n<tr><td>You patch software</td><td>AWS helps manage patching</td></tr>\n<tr><td>Manual failover</td><td>Multi-AZ option</td></tr>\n<tr><td>More operational work</td><td>Less operational work</td></tr>\n</tbody></table></div>\n<p>Unless you have a special requirement, RDS is usually the better choice for relational databases.</p>\n<hr class=\"divider\" />\n<h2>Interview Questions</h2>\n<p>Try answering these:</p>\n<ol>\n<li>What is Amazon RDS?</li>\n<li>Why use RDS instead of installing MySQL on EC2?</li>\n<li>What is the difference between Multi-AZ and Read Replicas?</li>\n<li>What is a snapshot?</li>\n<li>Why should an RDS instance usually be in a private subnet?</li>\n<li>Which port does MySQL use?</li>\n<li>Which port does PostgreSQL use?</li>\n<li>Why are Security Groups important for databases?</li>\n</ol>\n<hr class=\"divider\" />\n<h2>Hands-on Lab</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<aside class=\"cost-safety callout warn\" role=\"note\"><p class=\"callout-title\">Cost safety</p><ul><li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Prefer <strong>Free Tier</strong> / small instance sizes while learning.</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Create a <strong>billing alarm</strong> (CloudWatch or Budgets) on day one.</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\"><strong>Tear down</strong> lab resources when finished (instances, load balancers, NAT gateways).</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">Never put long-lived access keys in code or public repos.</span></li></ul><p class=\"workshop-links\"><strong>Official practice:</strong> <a href=\"https://explore.skillbuilder.aws/\" rel=\"noopener noreferrer\" target=\"_blank\">AWS Skill Builder</a> · <a href=\"https://wellarchitectedlabs.com/\" rel=\"noopener noreferrer\" target=\"_blank\">Well-Architected Labs</a> · <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/free-tier.html\" rel=\"noopener noreferrer\" target=\"_blank\">Free Tier docs</a></p></aside>\n<p>If you have an AWS account:</p>\n<ol>\n<li class=\"lab-step\" data-lab-id=\"lab-step-5\"><span class=\"lab-step-text\">Create an RDS MySQL or PostgreSQL instance (stay within the Free Tier if applicable).</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-6\"><span class=\"lab-step-text\">Place it in private subnets.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-7\"><span class=\"lab-step-text\">Create a Security Group allowing database access only from a trusted EC2 instance.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-8\"><span class=\"lab-step-text\">Connect from that EC2 instance using a database client.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-9\"><span class=\"lab-step-text\">Create a simple table.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-10\"><span class=\"lab-step-text\">Insert a few records.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-11\"><span class=\"lab-step-text\">Run a <code>SELECT</code> query.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-12\"><span class=\"lab-step-text\">Create a manual snapshot.</span></li>\n</ol>\n<hr class=\"divider\" />\n</div><h2>AWS Architecture So Far</h2>\n<p>You've learned the building blocks of many production systems:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>                 Internet\n                     │\n             Internet Gateway\n                     │\n              Public Subnet\n                     │\n             Load Balancer\n                     │\n                 EC2 App\n                     │\n          ┌──────────┴──────────┐\n          ▼                     ▼\n        Amazon RDS           Amazon S3\n      (Structured Data)    (Files/Images)</code></pre></div>\n<p>Each service has a distinct responsibility:</p>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Service</th><th>Responsibility</th></tr></thead><tbody>\n<tr><td>IAM</td><td>Identity and permissions</td></tr>\n<tr><td>VPC</td><td>Networking</td></tr>\n<tr><td>EC2</td><td>Compute</td></tr>\n<tr><td>S3</td><td>Object storage</td></tr>\n<tr><td>RDS</td><td>Relational database</td></tr>\n</tbody></table></div>\n<h2>Next Lesson: Elastic Load Balancer (ELB) &amp; Auto Scaling</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>This is where you'll learn how applications handle <strong>thousands or even millions of users</strong> by distributing traffic, automatically adding servers during traffic spikes, and recovering from server failures. These concepts are fundamental to designing highly available AWS architectures.</p>\n<aside class=\"accuracy-note\" role=\"note\"><p><strong>Content review:</strong> 2026-07. Curriculum text is adapted from a shared learning roadmap; verify critical details in official AWS docs before production use.</p><p class=\"accuracy-note-label\">References</p><ul><li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\"><a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html\" rel=\"noopener noreferrer\" target=\"_blank\">docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html…</a></span></li></ul></aside></div>",
+  "content": "<h2>Lesson 6: Amazon RDS (Relational Database Service)</h2>\n<p>You are entering the data layer of cloud architecture. Banking, e-commerce, HR, and social apps all need structured storage—this lesson is Amazon RDS, managed relational databases on AWS.</p>\n<hr class=\"divider\" />\n<h2>What is a Database?</h2>\n<p>A database stores <strong>structured data</strong>.</p>\n<p>Imagine an e-commerce website.</p>\n<p>Instead of keeping everything in Excel:</p>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Customer</th><th>Product</th><th>Price</th></tr></thead><tbody>\n<tr><td>Arnab</td><td>Shoes</td><td>₹4,00 (~$5 USD)0 (~$48 USD)</td></tr>\n<tr><td>Rahul</td><td>Laptop</td><td>₹60,00 (~$72 USD)0 (~$720 USD)</td></tr>\n</tbody></table></div>\n<p>The application stores it in a database.</p>\n<hr class=\"divider\" />\n<h2>Why Not Store Everything in S3?</h2>\n<p>S3 is great for storing:</p>\n<ul>\n<li>Images</li>\n<li>Videos</li>\n<li>PDFs</li>\n<li>Documents</li>\n<li>Backups</li>\n</ul>\n<p>But imagine asking:</p>\n<blockquote class=\"callout tip\"><p>\"Show me every order Arnab placed in the last 30 days.\"</p></blockquote>\n<p>A relational database is designed for these kinds of queries.</p>\n<hr class=\"divider\" />\n<h2>What is Amazon RDS?</h2>\n<p><strong>Amazon RDS (Relational Database Service)</strong> is AWS's managed relational database service.</p>\n<p>Without RDS:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>EC2\n │\n ├── Install MySQL\n ├── Configure backups\n ├── Update software\n ├── Monitor health\n ├── Handle crashes\n └── Manage storage</code></pre></div>\n<p>You do everything yourself.</p>\n<p>With RDS:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Amazon RDS\n │\n ├── Automated backups\n ├── Software patching\n ├── Monitoring\n ├── Failover\n ├── Storage management\n └── High availability options</code></pre></div>\n<p>AWS manages much of the operational work.</p>\n<hr class=\"divider\" />\n<h2>Supported Database Engines</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>RDS supports several relational databases:</p>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Engine</th><th>Common Use</th></tr></thead><tbody>\n<tr><td>MySQL</td><td>Web applications</td></tr>\n<tr><td>PostgreSQL</td><td>Enterprise apps, GIS, analytics</td></tr>\n<tr><td>MariaDB</td><td>MySQL-compatible workloads</td></tr>\n<tr><td>Oracle</td><td>Large enterprises</td></tr>\n<tr><td>Microsoft SQL Server</td><td>Windows/.NET environments</td></tr>\n</tbody></table></div>\n<p>If you already know SQL, your queries are largely the same.</p>\n<hr class=\"divider\" />\n</div><h2>Basic Architecture</h2>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Users\n   │\n   ▼\nApplication (EC2)\n   │\n   ▼\nAmazon RDS</code></pre></div>\n<p>The application connects to the database over the network.</p>\n<p>Users <strong>never</strong> connect directly to the database.</p>\n<hr class=\"divider\" />\n<h2>Tables</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>A relational database stores information in <strong>tables</strong>.</p>\n<p>Example:</p>\n<h3>Employees</h3>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>ID</th><th>Name</th><th>Salary</th></tr></thead><tbody>\n<tr><td>1</td><td>Arnab</td><td>₹80,00 (~$96 USD)0 (~$960 USD)</td></tr>\n<tr><td>2</td><td>Rahul</td><td>₹70,00 (~$84 USD)0 (~$840 USD)</td></tr>\n</tbody></table></div>\n<p>Each row is a record.</p>\n<p>Each column stores one type of information.</p>\n<hr class=\"divider\" />\n</div><h2>SQL</h2>\n<p>You interact with relational databases using <strong>SQL (Structured Query Language)</strong>.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>sql</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>SELECT * FROM Employees;</code></pre></div>\n<p>Find one employee:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>sql</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>SELECT * FROM Employees\nWHERE Name = 'Arnab';</code></pre></div>\n<p>Insert data:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>sql</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>INSERT INTO Employees\n(Name, Salary)\nVALUES ('Alice', 95000);</code></pre></div>\n<hr class=\"divider\" />\n<h2>Primary Database</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Most applications write data to a <strong>primary</strong> database instance.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Application\n      │\n      ▼\nPrimary RDS</code></pre></div>\n<p>This is where inserts, updates, and deletes happen.</p>\n<hr class=\"divider\" />\n</div><h2>Multi-AZ Deployment</h2>\n<p>Suppose your database server fails.</p>\n<p>Without Multi-AZ:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Application\n     │\n     ▼\nDatabase\n\n(Server crashes)\n\n↓\n\nApplication stops working</code></pre></div>\n<p>With Multi-AZ:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Application\n     │\n     ▼\nPrimary DB (AZ A)\n      │\n      ▼\nStandby DB (AZ B)</code></pre></div>\n<p>If the primary fails, AWS automatically promotes the standby to become the new primary.</p>\n<p>This improves <strong>availability</strong>, not performance.</p>\n<hr class=\"divider\" />\n<h2>Read Replicas</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Sometimes thousands of users are reading data.</p>\n<p>Instead of sending every read request to the primary:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Application\n      │\n      ▼\nPrimary DB\n      │\n      ├────────► Read Replica 1\n      │\n      ├────────► Read Replica 2\n      │\n      └────────► Read Replica 3</code></pre></div>\n<p>Writes go to the primary.</p>\n<p>Reads can be distributed across replicas.</p>\n<p>This helps scale read-heavy applications.</p>\n<hr class=\"divider\" />\n</div><h2>Multi-AZ vs Read Replica</h2>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Multi-AZ</th><th>Read Replica</th></tr></thead><tbody>\n<tr><td>High availability</td><td>Read scaling</td></tr>\n<tr><td>Automatic failover</td><td>No automatic failover by default</td></tr>\n<tr><td>Standby isn't used for normal reads</td><td>Replicas serve read traffic</td></tr>\n<tr><td>Protects against failures</td><td>Improves performance for reads</td></tr>\n</tbody></table></div>\n<hr class=\"divider\" />\n<h2>Storage Scaling</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>As your database grows:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>20 GB\n\n↓\n\n100 GB\n\n↓\n\n500 GB</code></pre></div>\n<p>RDS supports increasing storage without rebuilding the database in many cases.</p>\n<hr class=\"divider\" />\n</div><h2>Automated Backups</h2>\n<p>AWS can automatically back up your database.</p>\n<p>If you accidentally delete data:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Monday Backup\n\nTuesday Backup\n\nWednesday Backup</code></pre></div>\n<p>You can restore to a previous point within your configured backup retention period.</p>\n<hr class=\"divider\" />\n<h2>Snapshots</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>A snapshot is a manual backup you create.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Before Major Upgrade\n\n↓\n\nTake Snapshot\n\n↓\n\nUpgrade\n\n↓\n\nProblem?\n\n↓\n\nRestore Snapshot</code></pre></div>\n<p>Many teams take a snapshot before risky changes.</p>\n<hr class=\"divider\" />\n</div><h2>Security</h2>\n<p>RDS instances are typically placed in <strong>private subnets</strong>.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Internet\n\n↓\n\nWeb Server\n\n↓\n\nApplication\n\n↓\n\nRDS</code></pre></div>\n<p>The database isn't directly exposed to the internet.</p>\n<hr class=\"divider\" />\n<h2>Security Groups</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Example rules:</p>\n<p>Allow:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">PostgreSQL (5432) from the application server</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">MySQL (3306) from the application server</span></li>\n</ul>\n<p>Block everything else.</p>\n<p>This means only trusted resources can connect.</p>\n<hr class=\"divider\" />\n</div><h2>Common Database Ports</h2>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Database</th><th>Port</th></tr></thead><tbody>\n<tr><td>MySQL</td><td>3306</td></tr>\n<tr><td>PostgreSQL</td><td>5432</td></tr>\n<tr><td>SQL Server</td><td>1433</td></tr>\n<tr><td>Oracle</td><td>1521</td></tr>\n</tbody></table></div>\n<hr class=\"divider\" />\n<h2>Monitoring</h2>\n<p>AWS integrates RDS with <strong>CloudWatch</strong> so you can monitor:</p>\n<ul>\n<li>CPU usage</li>\n<li>Memory</li>\n<li>Storage</li>\n<li>Connections</li>\n<li>Read/write latency</li>\n</ul>\n<p>Monitoring helps detect performance issues early.</p>\n<hr class=\"divider\" />\n<h2>Real-World Architecture</h2>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Internet\n      │\n      ▼\nLoad Balancer\n      │\n      ▼\nEC2 Application Servers\n      │\n      ▼\nAmazon RDS\n      │\n      ▼\nBackups</code></pre></div>\n<hr class=\"divider\" />\n<h2>Example: Shopping Website</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Customer places an order.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Customer\n\n↓\n\nApplication\n\n↓\n\nINSERT Order\n\n↓\n\nRDS</code></pre></div>\n<p>Customer views order history.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Customer\n\n↓\n\nApplication\n\n↓\n\nSELECT Orders\n\n↓\n\nRDS</code></pre></div>\n<p>This is happening millions of times every day on large e-commerce platforms.</p>\n<hr class=\"divider\" />\n</div><h2>RDS vs EC2 Database</h2>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>EC2 + MySQL</th><th>Amazon RDS</th></tr></thead><tbody>\n<tr><td>You install the database</td><td>AWS provisions it</td></tr>\n<tr><td>You manage backups</td><td>AWS can automate them</td></tr>\n<tr><td>You patch software</td><td>AWS helps manage patching</td></tr>\n<tr><td>Manual failover</td><td>Multi-AZ option</td></tr>\n<tr><td>More operational work</td><td>Less operational work</td></tr>\n</tbody></table></div>\n<p>Unless you have a special requirement, RDS is usually the better choice for relational databases.</p>\n<hr class=\"divider\" />\n<h2>Interview practice prompts</h2>\n<p>Use these as open-ended prompts (the lesson quiz below is multiple choice).</p>\n<ol>\n<li>What is Amazon RDS?</li>\n<li>Why use RDS instead of installing MySQL on EC2?</li>\n<li>What is the difference between Multi-AZ and Read Replicas?</li>\n<li>What is a snapshot?</li>\n<li>Why should an RDS instance usually be in a private subnet?</li>\n<li>Which port does MySQL use?</li>\n<li>Which port does PostgreSQL use?</li>\n<li>Why are Security Groups important for databases?</li>\n</ol>\n<hr class=\"divider\" />\n<h2>Hands-on Lab</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<aside class=\"cost-safety callout warn\" role=\"note\"><p class=\"callout-title\">Cost safety</p><ul><li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Prefer <strong>Free Tier</strong> / small instance sizes while learning.</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Create a <strong>billing alarm</strong> (CloudWatch or Budgets) on day one.</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\"><strong>Tear down</strong> lab resources when finished (instances, load balancers, NAT gateways).</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">Never put long-lived access keys in code or public repos.</span></li></ul><p class=\"workshop-links\"><strong>Official practice:</strong> <a href=\"https://explore.skillbuilder.aws/\" rel=\"noopener noreferrer\" target=\"_blank\">AWS Skill Builder</a> · <a href=\"https://wellarchitectedlabs.com/\" rel=\"noopener noreferrer\" target=\"_blank\">Well-Architected Labs</a> · <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/free-tier.html\" rel=\"noopener noreferrer\" target=\"_blank\">Free Tier docs</a></p></aside>\n<p>If you have an AWS account:</p>\n<ol>\n<li class=\"lab-step\" data-lab-id=\"lab-step-5\"><span class=\"lab-step-text\">Create an RDS MySQL or PostgreSQL instance (stay within the Free Tier if applicable).</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-6\"><span class=\"lab-step-text\">Place it in private subnets.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-7\"><span class=\"lab-step-text\">Create a Security Group allowing database access only from a trusted EC2 instance.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-8\"><span class=\"lab-step-text\">Connect from that EC2 instance using a database client.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-9\"><span class=\"lab-step-text\">Create a simple table.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-10\"><span class=\"lab-step-text\">Insert a few records.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-11\"><span class=\"lab-step-text\">Run a <code>SELECT</code> query.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-12\"><span class=\"lab-step-text\">Create a manual snapshot.</span></li>\n</ol>\n<hr class=\"divider\" />\n</div><h2>AWS Architecture So Far</h2>\n<p>You've learned the building blocks of many production systems:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>                 Internet\n                     │\n             Internet Gateway\n                     │\n              Public Subnet\n                     │\n             Load Balancer\n                     │\n                 EC2 App\n                     │\n          ┌──────────┴──────────┐\n          ▼                     ▼\n        Amazon RDS           Amazon S3\n      (Structured Data)    (Files/Images)</code></pre></div>\n<p>Each service has a distinct responsibility:</p>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Service</th><th>Responsibility</th></tr></thead><tbody>\n<tr><td>IAM</td><td>Identity and permissions</td></tr>\n<tr><td>VPC</td><td>Networking</td></tr>\n<tr><td>EC2</td><td>Compute</td></tr>\n<tr><td>S3</td><td>Object storage</td></tr>\n<tr><td>RDS</td><td>Relational database</td></tr>\n</tbody></table></div>\n<h2>Next Lesson: Elastic Load Balancer (ELB) &amp; Auto Scaling</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>This is where you'll learn how applications handle <strong>thousands or even millions of users</strong> by distributing traffic, automatically adding servers during traffic spikes, and recovering from server failures. These concepts are fundamental to designing highly available AWS architectures.</p>\n<aside class=\"accuracy-note\" role=\"note\"><p><strong>Content review:</strong> 2026-07. Curriculum text is adapted from a shared learning roadmap; verify critical details in official AWS docs before production use.</p><p class=\"accuracy-note-label\">References</p><ul><li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\"><a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html\" rel=\"noopener noreferrer\" target=\"_blank\">docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html…</a></span></li></ul></aside></div>",
   "quiz": [
     {
       "q": "RDS provides:",
@@ -137,7 +137,8 @@
         "Only DNS"
       ],
       "answer": 0,
-      "explain": "Relational Database Service."
+      "explain": "Relational Database Service.",
+      "style": "general"
     },
     {
       "q": "Why not store everything only in S3 for app data?",
@@ -148,7 +149,8 @@
         "S3 is offline only"
       ],
       "answer": 0,
-      "explain": "DB vs object store."
+      "explain": "DB vs object store.",
+      "style": "general"
     },
     {
       "q": "Supported engines include (examples):",
@@ -159,7 +161,8 @@
         "Only PowerPoint"
       ],
       "answer": 0,
-      "explain": "Multiple SQL engines."
+      "explain": "Multiple SQL engines.",
+      "style": "general"
     },
     {
       "q": "Primary database handles:",
@@ -170,7 +173,8 @@
         "Only NAT"
       ],
       "answer": 0,
-      "explain": "Primary instance."
+      "explain": "Primary instance.",
+      "style": "general"
     },
     {
       "q": "Multi-AZ is mainly for:",
@@ -181,7 +185,8 @@
         "Public internet exposure"
       ],
       "answer": 0,
-      "explain": "HA."
+      "explain": "HA.",
+      "style": "scenario"
     },
     {
       "q": "Read Replicas are mainly for:",
@@ -192,7 +197,8 @@
         "Billing only"
       ],
       "answer": 0,
-      "explain": "Read scale."
+      "explain": "Read scale.",
+      "style": "general"
     },
     {
       "q": "Multi-AZ vs Read Replica:",
@@ -203,7 +209,8 @@
         "Both are IAM roles"
       ],
       "answer": 0,
-      "explain": "Interview table theme."
+      "explain": "Interview table theme.",
+      "style": "scenario"
     },
     {
       "q": "Automated backups help you:",
@@ -214,7 +221,8 @@
         "Disable encryption"
       ],
       "answer": 0,
-      "explain": "Backup feature."
+      "explain": "Backup feature.",
+      "style": "general"
     },
     {
       "q": "Snapshots are:",
@@ -225,7 +233,8 @@
         "Docker tags"
       ],
       "answer": 0,
-      "explain": "Manual/auto snapshots concepts."
+      "explain": "Manual/auto snapshots concepts.",
+      "style": "general"
     },
     {
       "q": "Security for RDS includes:",
@@ -236,7 +245,8 @@
         "Root user in app code"
       ],
       "answer": 0,
-      "explain": "Defense in depth."
+      "explain": "Defense in depth.",
+      "style": "general"
     },
     {
       "q": "Common MySQL port:",
@@ -247,7 +257,8 @@
         "443 only"
       ],
       "answer": 0,
-      "explain": "3306."
+      "explain": "3306.",
+      "style": "general"
     },
     {
       "q": "Common PostgreSQL port:",
@@ -258,7 +269,8 @@
         "53"
       ],
       "answer": 0,
-      "explain": "5432."
+      "explain": "5432.",
+      "style": "general"
     },
     {
       "q": "Monitoring RDS often uses:",
@@ -269,7 +281,8 @@
         "Only NACLs"
       ],
       "answer": 0,
-      "explain": "Ops visibility."
+      "explain": "Ops visibility.",
+      "style": "general"
     },
     {
       "q": "RDS vs database on EC2:",
@@ -280,7 +293,8 @@
         "EC2 cannot run software"
       ],
       "answer": 0,
-      "explain": "Managed vs self-managed."
+      "explain": "Managed vs self-managed.",
+      "style": "general"
     },
     {
       "q": "Shopping website example stores:",
@@ -291,7 +305,8 @@
         "Only in AMIs"
       ],
       "answer": 0,
-      "explain": "Layered storage."
+      "explain": "Layered storage.",
+      "style": "general"
     },
     {
       "q": "Scaling storage on RDS refers to:",
@@ -302,7 +317,8 @@
         "Removing backups"
       ],
       "answer": 0,
-      "explain": "Storage scaling."
+      "explain": "Storage scaling.",
+      "style": "general"
     },
     {
       "q": "SQL is used to:",
@@ -313,7 +329,8 @@
         "Configure IGW only"
       ],
       "answer": 0,
-      "explain": "Structured query language."
+      "explain": "Structured query language.",
+      "style": "general"
     },
     {
       "q": "Tables hold:",
@@ -324,7 +341,8 @@
         "Only policies"
       ],
       "answer": 0,
-      "explain": "Relational model."
+      "explain": "Relational model.",
+      "style": "general"
     },
     {
       "q": "Putting RDS in a public subnet with open SG is:",
@@ -335,7 +353,8 @@
         "Faster than private always"
       ],
       "answer": 0,
-      "explain": "Keep DB private."
+      "explain": "Keep DB private.",
+      "style": "general"
     },
     {
       "q": "Failover in Multi-AZ aims to:",
@@ -346,7 +365,8 @@
         "Remove read replicas only"
       ],
       "answer": 0,
-      "explain": "HA behavior."
+      "explain": "HA behavior.",
+      "style": "scenario"
     },
     {
       "q": "Credentials should be:",
@@ -357,7 +377,8 @@
         "Empty always"
       ],
       "answer": 0,
-      "explain": "Secret hygiene."
+      "explain": "Secret hygiene.",
+      "style": "general"
     },
     {
       "q": "Hands-on spirit: connect app tier to RDS using:",
@@ -368,7 +389,8 @@
         "Using only public anonymous access"
       ],
       "answer": 0,
-      "explain": "Least privilege network path."
+      "explain": "Least privilege network path.",
+      "style": "scenario"
     }
   ]
 }

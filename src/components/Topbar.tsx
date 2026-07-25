@@ -59,6 +59,13 @@ export function Topbar({
 
         <div className="topbar-progress" title="Course progress">
           <Link
+            href="/interview"
+            className="review-chip desktop-only"
+            title="Interview drills"
+          >
+            Interview
+          </Link>
+          <Link
             href="/review"
             className="review-chip desktop-only"
             title="Spaced review"

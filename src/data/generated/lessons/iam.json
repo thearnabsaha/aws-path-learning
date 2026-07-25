@@ -111,13 +111,9 @@
     {
       "id": "part-22",
       "title": "Hands-on Lab (Recommended)"
-    },
-    {
-      "id": "part-23",
-      "title": "Mini Quiz"
     }
   ],
-  "content": "<h2>Lesson 2: AWS Account, Console &amp; IAM</h2>\n<p>This lesson is the start of a hands-on AWS bootcamp: how an account is organized, how you use the console, and how IAM controls access. Get this wrong and every later service becomes insecure.</p>\n<p>By the end of this lesson, you will understand:</p>\n<ul>\n<li>How AWS is organized</li>\n<li>What the AWS Console is</li>\n<li>Why the Root User is dangerous</li>\n<li>What IAM is</li>\n<li>How permissions work</li>\n<li>Best security practices</li>\n</ul>\n<hr class=\"divider\" />\n<h2>1. What happens when you create an AWS account?</h2>\n<p>Imagine you've rented an office building.</p>\n<p>Initially, you receive <strong>one master key</strong>.</p>\n<p>That master key can:</p>\n<ul>\n<li>Open every room</li>\n<li>Delete the entire building</li>\n<li>Change billing information</li>\n<li>Create new employees</li>\n<li>Shut everything down</li>\n</ul>\n<p>This master key is called the <strong>Root User</strong>.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>AWS Account\n      │\n      └── Root User (Master Key)</code></pre></div>\n<hr class=\"divider\" />\n<h2>Never use the Root User daily</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>The root user should only be used for rare account-level tasks such as:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Changing payment methods</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Closing the AWS account</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">Managing certain account settings</span></li>\n</ul>\n<p>Everything else should be done with an IAM user or IAM Identity Center.</p>\n<p>Think of it this way:</p>\n<p>You don't carry the master key to your house everywhere—you use your everyday key.</p>\n<hr class=\"divider\" />\n</div><h2>2. What is the AWS Management Console?</h2>\n<p>The AWS Console is AWS's web dashboard.</p>\n<p>From it, you can:</p>\n<ul>\n<li>Launch servers</li>\n<li>Create databases</li>\n<li>Upload files</li>\n<li>Monitor applications</li>\n<li>View bills</li>\n<li>Configure networking</li>\n</ul>\n<p>Think of it as the control panel for your cloud infrastructure.</p>\n<hr class=\"divider\" />\n<h2>3. AWS Services</h2>\n<p>When you log in, you'll see hundreds of services.</p>\n<p>Don't worry—you only need a handful to become productive.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Compute\n └── EC2\n\nStorage\n └── S3\n\nDatabase\n └── RDS\n\nNetworking\n └── VPC\n\nSecurity\n └── IAM\n\nMonitoring\n └── CloudWatch</code></pre></div>\n<hr class=\"divider\" />\n<h2>4. What is IAM?</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p><strong>IAM = Identity and Access Management</strong></p>\n<p>IAM decides:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Who can log in</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">What they can do</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">What they cannot do</span></li>\n</ul>\n<p>Think of a company office.</p>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Person</th><th>Access</th></tr></thead><tbody>\n<tr><td>CEO</td><td>Everything</td></tr>\n<tr><td>Developer</td><td>Servers</td></tr>\n<tr><td>HR</td><td>Employee systems</td></tr>\n<tr><td>Accountant</td><td>Billing</td></tr>\n<tr><td>Intern</td><td>Limited access</td></tr>\n</tbody></table></div>\n<p>IAM works the same way.</p>\n<hr class=\"divider\" />\n</div><h2>5. IAM Components</h2>\n<p>There are four core concepts.</p>\n<h2>IAM User</h2>\n<p>Represents one person or application.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Arnab\nRahul\nAlice\nBob</code></pre></div>\n<p>Each has their own login.</p>\n<hr class=\"divider\" />\n<h2>IAM Group</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>A group contains multiple users.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Developers\n ├── Alice\n ├── Bob\n └── Charlie</code></pre></div>\n<p>Instead of assigning permissions one by one, assign them to the group.</p>\n<hr class=\"divider\" />\n</div><h2>IAM Policies</h2>\n<p>Policies define permissions.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Can Start EC2\n\nCan Stop EC2\n\nCannot Delete EC2</code></pre></div>\n<p>A policy is just a set of rules.</p>\n<p>Example (simplified):</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>json</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>{\n  \"Allow\": [\n      \"StartEC2\",\n      \"StopEC2\"\n  ]\n}</code></pre></div>\n<p>AWS policies are written in JSON.</p>\n<hr class=\"divider\" />\n<h2>IAM Roles</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Roles are temporary identities.</p>\n<p>Instead of a human logging in, AWS services can \"assume\" a role.</p>\n<p>Example:</p>\n<p>An EC2 server needs to read files from S3.</p>\n<p>Without a role:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Server\n ↓\nUsername + Password</code></pre></div>\n<p>Not secure.</p>\n<p>With a role:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Server\n ↓\nIAM Role\n ↓\nPermission Granted</code></pre></div>\n<p>Much safer.</p>\n<hr class=\"divider\" />\n</div><h2>6. Authentication vs Authorization</h2>\n<p>This is a favorite interview question.</p>\n<h3>Authentication</h3>\n<p><strong>Who are you?</strong></p>\n<p>Example:</p>\n<p>Username + Password</p>\n<p>or</p>\n<p>Fingerprint</p>\n<hr class=\"divider\" />\n<h3>Authorization</h3>\n<p><strong>What are you allowed to do?</strong></p>\n<p>Example:</p>\n<p>Can you:</p>\n<ul>\n<li>Launch EC2?</li>\n<li>Delete S3 buckets?</li>\n<li>Read databases?</li>\n</ul>\n<p>Authentication happens first, then authorization.</p>\n<hr class=\"divider\" />\n<h2>7. Principle of Least Privilege</h2>\n<p>Give only the permissions someone actually needs.</p>\n<p>Example:</p>\n<p>A developer needs to upload files to S3.</p>\n<p>Good:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Allow Upload</code></pre></div>\n<p>Bad:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Administrator Access</code></pre></div>\n<p>This reduces the impact of mistakes or compromised accounts.</p>\n<hr class=\"divider\" />\n<h2>8. Multi-Factor Authentication (MFA)</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>A password alone can be stolen.</p>\n<p>MFA adds another verification step.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Password\n+\nPhone App Code</code></pre></div>\n<p>Even if someone knows your password, they still can't log in without the second factor.</p>\n<p>Always enable MFA for the root user and privileged users.</p>\n<hr class=\"divider\" />\n</div><h2>9. Password Policies</h2>\n<p>A good AWS account enforces:</p>\n<ul>\n<li>Strong passwords</li>\n<li>Password expiration (if required by your organization)</li>\n<li>No password reuse</li>\n<li>Minimum length requirements</li>\n</ul>\n<p>These are managed through IAM settings.</p>\n<hr class=\"divider\" />\n<h2>10. Access Keys</h2>\n<p>Applications can't click the AWS Console.</p>\n<p>They use <strong>Access Keys</strong>.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Access Key ID\n\nSecret Access Key</code></pre></div>\n<p>These are used by tools like the AWS CLI or SDKs.</p>\n<p><strong>Never hard-code or share your secret access key.</strong></p>\n<hr class=\"divider\" />\n<h2>11. AWS CLI</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>The AWS Command Line Interface lets you control AWS from a terminal.</p>\n<p>Instead of clicking buttons:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Launch Server</code></pre></div>\n<p>you can run commands like:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>bash</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>aws ec2 describe-instances</code></pre></div>\n<p>Many engineers use the CLI every day because it's faster and easier to automate.</p>\n<hr class=\"divider\" />\n</div><h2>12. Console vs CLI</h2>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Console</th><th>CLI</th></tr></thead><tbody>\n<tr><td>Point and click</td><td>Terminal commands</td></tr>\n<tr><td>Easier for beginners</td><td>Better for automation</td></tr>\n<tr><td>Good for learning</td><td>Great for scripting</td></tr>\n</tbody></table></div>\n<p>You'll learn both.</p>\n<hr class=\"divider\" />\n<h2>13. Typical AWS Login Flow</h2>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Open Console\n\n↓\n\nEnter Username\n\n↓\n\nEnter Password\n\n↓\n\nMFA\n\n↓\n\nIAM checks permissions\n\n↓\n\nAccess granted</code></pre></div>\n<hr class=\"divider\" />\n<h2>14. Real-World Example</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Imagine you're building a company.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>AWS Account\n│\n├── Developers Group\n│      ├── Alice\n│      ├── Bob\n│\n├── HR Group\n│      ├── Sarah\n│\n├── Finance Group\n│      ├── Mike\n│\n└── Policies\n       ├── EC2 Access\n       ├── S3 Read Only\n       ├── Billing</code></pre></div>\n<p>This is a common IAM structure.</p>\n<hr class=\"divider\" />\n</div><h2>Summary</h2>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Term</th><th>Meaning</th></tr></thead><tbody>\n<tr><td>Root User</td><td>Full control of the AWS account</td></tr>\n<tr><td>IAM</td><td>Identity and Access Management</td></tr>\n<tr><td>User</td><td>Individual identity</td></tr>\n<tr><td>Group</td><td>Collection of users</td></tr>\n<tr><td>Policy</td><td>Set of permissions</td></tr>\n<tr><td>Role</td><td>Temporary identity for AWS services or users</td></tr>\n<tr><td>MFA</td><td>Extra login verification</td></tr>\n<tr><td>Access Key</td><td>Credentials for programmatic access</td></tr>\n<tr><td>CLI</td><td>Command-line tool for AWS</td></tr>\n</tbody></table></div>\n<hr class=\"divider\" />\n<h2>Hands-on Lab (Recommended)</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<aside class=\"cost-safety callout warn\" role=\"note\"><p class=\"callout-title\">Cost safety</p><ul><li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Prefer <strong>Free Tier</strong> / small instance sizes while learning.</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Create a <strong>billing alarm</strong> (CloudWatch or Budgets) on day one.</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\"><strong>Tear down</strong> lab resources when finished (instances, load balancers, NAT gateways).</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">Never put long-lived access keys in code or public repos.</span></li></ul><p class=\"workshop-links\"><strong>Official practice:</strong> <a href=\"https://explore.skillbuilder.aws/\" rel=\"noopener noreferrer\" target=\"_blank\">AWS Skill Builder</a> · <a href=\"https://wellarchitectedlabs.com/\" rel=\"noopener noreferrer\" target=\"_blank\">Well-Architected Labs</a> · <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/free-tier.html\" rel=\"noopener noreferrer\" target=\"_blank\">Free Tier docs</a></p></aside>\n<p>If you don't already have one:</p>\n<ol>\n<li class=\"lab-step\" data-lab-id=\"lab-step-5\"><span class=\"lab-step-text\">Create an AWS account.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-6\"><span class=\"lab-step-text\">Enable MFA on the root user.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-7\"><span class=\"lab-step-text\">Create an IAM administrator user for daily use.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-8\"><span class=\"lab-step-text\">Sign out of the root account.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-9\"><span class=\"lab-step-text\">Sign back in using the IAM user.</span></li>\n</ol>\n<p>These are standard first steps before building anything on AWS.</p>\n<hr class=\"divider\" />\n</div><h2>Mini Quiz</h2>\n<ol>\n<li>Why shouldn't you use the root user for everyday work?</li>\n<li>What is the difference between an IAM user and an IAM role?</li>\n<li>What is the purpose of an IAM policy?</li>\n<li>What does MFA protect against?</li>\n<li>What is the principle of least privilege?</li>\n<li>What's the difference between authentication and authorization?</li>\n<li>When would you use the AWS CLI instead of the console?</li>\n</ol>\n<p>In <strong>Lesson 3</strong>, we'll launch your <strong>first EC2 virtual server</strong>, connect to it over SSH, install software, and host a simple website—the first step toward deploying real applications.</p>\n<aside class=\"accuracy-note\" role=\"note\"><p><strong>Content review:</strong> 2026-07. Curriculum text is adapted from a shared learning roadmap; verify critical details in official AWS docs before production use.</p><p class=\"accuracy-note-label\">References</p><ul><li><a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html\" rel=\"noopener noreferrer\" target=\"_blank\">docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html…</a></li></ul></aside>",
+  "content": "<h2>Lesson 2: AWS Account, Console &amp; IAM</h2>\n<p>This lesson is the start of a hands-on AWS bootcamp: how an account is organized, how you use the console, and how IAM controls access. Get this wrong and every later service becomes insecure.</p>\n<hr class=\"divider\" />\n<h2>1. What happens when you create an AWS account?</h2>\n<p>Imagine you've rented an office building.</p>\n<p>Initially, you receive <strong>one master key</strong>.</p>\n<p>That master key can:</p>\n<ul>\n<li>Open every room</li>\n<li>Delete the entire building</li>\n<li>Change billing information</li>\n<li>Create new employees</li>\n<li>Shut everything down</li>\n</ul>\n<p>This master key is called the <strong>Root User</strong>.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>AWS Account\n      │\n      └── Root User (Master Key)</code></pre></div>\n<hr class=\"divider\" />\n<h2>Never use the Root User daily</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>The root user should only be used for rare account-level tasks such as:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Changing payment methods</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Closing the AWS account</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">Managing certain account settings</span></li>\n</ul>\n<p>Everything else should be done with an IAM user or IAM Identity Center.</p>\n<p>Think of it this way:</p>\n<p>You don't carry the master key to your house everywhere—you use your everyday key.</p>\n<hr class=\"divider\" />\n</div><h2>2. What is the AWS Management Console?</h2>\n<p>The AWS Console is AWS's web dashboard.</p>\n<p>From it, you can:</p>\n<ul>\n<li>Launch servers</li>\n<li>Create databases</li>\n<li>Upload files</li>\n<li>Monitor applications</li>\n<li>View bills</li>\n<li>Configure networking</li>\n</ul>\n<p>Think of it as the control panel for your cloud infrastructure.</p>\n<hr class=\"divider\" />\n<h2>3. AWS Services</h2>\n<p>After signing in, the console shows hundreds of services.</p>\n<p>Don't worry—you only need a handful to become productive.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Compute\n └── EC2\n\nStorage\n └── S3\n\nDatabase\n └── RDS\n\nNetworking\n └── VPC\n\nSecurity\n └── IAM\n\nMonitoring\n └── CloudWatch</code></pre></div>\n<hr class=\"divider\" />\n<h2>4. What is IAM?</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p><strong>IAM = Identity and Access Management</strong></p>\n<p>IAM decides:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Who can log in</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">What they can do</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">What they cannot do</span></li>\n</ul>\n<p>Think of a company office.</p>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Person</th><th>Access</th></tr></thead><tbody>\n<tr><td>CEO</td><td>Everything</td></tr>\n<tr><td>Developer</td><td>Servers</td></tr>\n<tr><td>HR</td><td>Employee systems</td></tr>\n<tr><td>Accountant</td><td>Billing</td></tr>\n<tr><td>Intern</td><td>Limited access</td></tr>\n</tbody></table></div>\n<p>IAM works the same way.</p>\n<hr class=\"divider\" />\n</div><h2>5. IAM Components</h2>\n<p>There are four core concepts.</p>\n<h2>IAM User</h2>\n<p>Represents one person or application.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Arnab\nRahul\nAlice\nBob</code></pre></div>\n<p>Each has their own login.</p>\n<hr class=\"divider\" />\n<h2>IAM Group</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>A group contains multiple users.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Developers\n ├── Alice\n ├── Bob\n └── Charlie</code></pre></div>\n<p>Instead of assigning permissions one by one, assign them to the group.</p>\n<hr class=\"divider\" />\n</div><h2>IAM Policies</h2>\n<p>Policies define permissions.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Can Start EC2\n\nCan Stop EC2\n\nCannot Delete EC2</code></pre></div>\n<p>A policy is just a set of rules.</p>\n<p>Example (simplified):</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>json</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>{\n  \"Allow\": [\n      \"StartEC2\",\n      \"StopEC2\"\n  ]\n}</code></pre></div>\n<p>AWS policies are written in JSON.</p>\n<hr class=\"divider\" />\n<h2>IAM Roles</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Roles are temporary identities.</p>\n<p>Instead of a human logging in, AWS services can \"assume\" a role.</p>\n<p>Example:</p>\n<p>An EC2 server needs to read files from S3.</p>\n<p>Without a role:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Server\n ↓\nUsername + Password</code></pre></div>\n<p>Not secure.</p>\n<p>With a role:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Server\n ↓\nIAM Role\n ↓\nPermission Granted</code></pre></div>\n<p>Much safer.</p>\n<hr class=\"divider\" />\n</div><h2>6. Authentication vs Authorization</h2>\n<p>This is a favorite interview question.</p>\n<h3>Authentication</h3>\n<p><strong>Who are you?</strong></p>\n<p>Example:</p>\n<p>Username + Password</p>\n<p>or</p>\n<p>Fingerprint</p>\n<hr class=\"divider\" />\n<h3>Authorization</h3>\n<p><strong>What are you allowed to do?</strong></p>\n<p>Example:</p>\n<p>Can you:</p>\n<ul>\n<li>Launch EC2?</li>\n<li>Delete S3 buckets?</li>\n<li>Read databases?</li>\n</ul>\n<p>Authentication happens first, then authorization.</p>\n<hr class=\"divider\" />\n<h2>7. Principle of Least Privilege</h2>\n<p>Give only the permissions someone actually needs.</p>\n<p>Example:</p>\n<p>A developer needs to upload files to S3.</p>\n<p>Good:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Allow Upload</code></pre></div>\n<p>Bad:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Administrator Access</code></pre></div>\n<p>This reduces the impact of mistakes or compromised accounts.</p>\n<hr class=\"divider\" />\n<h2>8. Multi-Factor Authentication (MFA)</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>A password alone can be stolen.</p>\n<p>MFA adds another verification step.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Password\n+\nPhone App Code</code></pre></div>\n<p>Even if someone knows your password, they still can't log in without the second factor.</p>\n<p>Always enable MFA for the root user and privileged users.</p>\n<hr class=\"divider\" />\n</div><h2>9. Password Policies</h2>\n<p>A good AWS account enforces:</p>\n<ul>\n<li>Strong passwords</li>\n<li>Password expiration (if required by your organization)</li>\n<li>No password reuse</li>\n<li>Minimum length requirements</li>\n</ul>\n<p>These are managed through IAM settings.</p>\n<hr class=\"divider\" />\n<h2>10. Access Keys</h2>\n<p>Applications can't click the AWS Console.</p>\n<p>They use <strong>Access Keys</strong>.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Access Key ID\n\nSecret Access Key</code></pre></div>\n<p>These are used by tools like the AWS CLI or SDKs.</p>\n<p><strong>Never hard-code or share your secret access key.</strong></p>\n<hr class=\"divider\" />\n<h2>11. AWS CLI</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>The AWS Command Line Interface lets you control AWS from a terminal.</p>\n<p>Instead of clicking buttons:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Launch Server</code></pre></div>\n<p>you can run commands like:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>bash</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>aws ec2 describe-instances</code></pre></div>\n<p>Many engineers use the CLI every day because it's faster and easier to automate.</p>\n<hr class=\"divider\" />\n</div><h2>12. Console vs CLI</h2>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Console</th><th>CLI</th></tr></thead><tbody>\n<tr><td>Point and click</td><td>Terminal commands</td></tr>\n<tr><td>Easier for beginners</td><td>Better for automation</td></tr>\n<tr><td>Good for learning</td><td>Great for scripting</td></tr>\n</tbody></table></div>\n<p>You'll learn both.</p>\n<hr class=\"divider\" />\n<h2>13. Typical AWS Login Flow</h2>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Open Console\n\n↓\n\nEnter Username\n\n↓\n\nEnter Password\n\n↓\n\nMFA\n\n↓\n\nIAM checks permissions\n\n↓\n\nAccess granted</code></pre></div>\n<hr class=\"divider\" />\n<h2>14. Real-World Example</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Imagine you're building a company.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>AWS Account\n│\n├── Developers Group\n│      ├── Alice\n│      ├── Bob\n│\n├── HR Group\n│      ├── Sarah\n│\n├── Finance Group\n│      ├── Mike\n│\n└── Policies\n       ├── EC2 Access\n       ├── S3 Read Only\n       ├── Billing</code></pre></div>\n<p>This is a common IAM structure.</p>\n<hr class=\"divider\" />\n</div><h2>Summary</h2>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Term</th><th>Meaning</th></tr></thead><tbody>\n<tr><td>Root User</td><td>Full control of the AWS account</td></tr>\n<tr><td>IAM</td><td>Identity and Access Management</td></tr>\n<tr><td>User</td><td>Individual identity</td></tr>\n<tr><td>Group</td><td>Collection of users</td></tr>\n<tr><td>Policy</td><td>Set of permissions</td></tr>\n<tr><td>Role</td><td>Temporary identity for AWS services or users</td></tr>\n<tr><td>MFA</td><td>Extra login verification</td></tr>\n<tr><td>Access Key</td><td>Credentials for programmatic access</td></tr>\n<tr><td>CLI</td><td>Command-line tool for AWS</td></tr>\n</tbody></table></div>\n<hr class=\"divider\" />\n<h2>Hands-on Lab (Recommended)</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<aside class=\"cost-safety callout warn\" role=\"note\"><p class=\"callout-title\">Cost safety</p><ul><li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Prefer <strong>Free Tier</strong> / small instance sizes while learning.</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Create a <strong>billing alarm</strong> (CloudWatch or Budgets) on day one.</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\"><strong>Tear down</strong> lab resources when finished (instances, load balancers, NAT gateways).</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">Never put long-lived access keys in code or public repos.</span></li></ul><p class=\"workshop-links\"><strong>Official practice:</strong> <a href=\"https://explore.skillbuilder.aws/\" rel=\"noopener noreferrer\" target=\"_blank\">AWS Skill Builder</a> · <a href=\"https://wellarchitectedlabs.com/\" rel=\"noopener noreferrer\" target=\"_blank\">Well-Architected Labs</a> · <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/free-tier.html\" rel=\"noopener noreferrer\" target=\"_blank\">Free Tier docs</a></p></aside>\n<p>If you don't already have one:</p>\n<ol>\n<li class=\"lab-step\" data-lab-id=\"lab-step-5\"><span class=\"lab-step-text\">Create an AWS account.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-6\"><span class=\"lab-step-text\">Enable MFA on the root user.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-7\"><span class=\"lab-step-text\">Create an IAM administrator user for daily use.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-8\"><span class=\"lab-step-text\">Sign out of the root account.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-9\"><span class=\"lab-step-text\">Sign back in using the IAM user.</span></li>\n</ol>\n<p>These are standard first steps before building anything on AWS.</p>\n<aside class=\"accuracy-note\" role=\"note\"><p><strong>Content review:</strong> 2026-07. Curriculum text is adapted from a shared learning roadmap; verify critical details in official AWS docs before production use.</p><p class=\"accuracy-note-label\">References</p><ul><li class=\"lab-step\" data-lab-id=\"lab-step-10\"><span class=\"lab-step-text\"><a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html\" rel=\"noopener noreferrer\" target=\"_blank\">docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html…</a></span></li></ul></aside></div>",
   "quiz": [
     {
       "q": "The Root User is compared to:",
@@ -128,7 +124,8 @@
         "A Docker volume"
       ],
       "answer": 1,
-      "explain": "Master key: full power over the account."
+      "explain": "Master key: full power over the account.",
+      "style": "scenario"
     },
     {
       "q": "You should use the Root User:",
@@ -139,7 +136,8 @@
         "To disable MFA"
       ],
       "answer": 1,
-      "explain": "Daily work → IAM / Identity Center; root is rare."
+      "explain": "Daily work → IAM / Identity Center; root is rare.",
+      "style": "general"
     },
     {
       "q": "The AWS Management Console is:",
@@ -150,7 +148,8 @@
         "A type of EC2 instance"
       ],
       "answer": 1,
-      "explain": "Web dashboard to manage services."
+      "explain": "Web dashboard to manage services.",
+      "style": "general"
     },
     {
       "q": "IAM stands for:",
@@ -161,7 +160,8 @@
         "Inline Auto Mapping"
       ],
       "answer": 1,
-      "explain": "Identity and Access Management."
+      "explain": "Identity and Access Management.",
+      "style": "general"
     },
     {
       "q": "An IAM User is:",
@@ -172,7 +172,8 @@
         "A load balancer"
       ],
       "answer": 1,
-      "explain": "Users represent people (or apps) with credentials."
+      "explain": "Users represent people (or apps) with credentials.",
+      "style": "general"
     },
     {
       "q": "IAM Groups help you:",
@@ -183,7 +184,8 @@
         "Delete CloudTrail"
       ],
       "answer": 1,
-      "explain": "Groups bundle users sharing permissions."
+      "explain": "Groups bundle users sharing permissions.",
+      "style": "general"
     },
     {
       "q": "IAM Policies are:",
@@ -194,7 +196,8 @@
         "Dockerfiles"
       ],
       "answer": 0,
-      "explain": "Policies define permissions."
+      "explain": "Policies define permissions.",
+      "style": "general"
     },
     {
       "q": "IAM Roles are best for:",
@@ -205,7 +208,8 @@
         "Disabling logging"
       ],
       "answer": 1,
-      "explain": "Roles = temporary credentials via assume-role."
+      "explain": "Roles = temporary credentials via assume-role.",
+      "style": "general"
     },
     {
       "q": "Authentication answers:",
@@ -216,7 +220,8 @@
         "What is latency?"
       ],
       "answer": 1,
-      "explain": "AuthN = identity; AuthZ = permissions."
+      "explain": "AuthN = identity; AuthZ = permissions.",
+      "style": "general"
     },
     {
       "q": "Authorization answers:",
@@ -227,7 +232,8 @@
         "Which city has rain?"
       ],
       "answer": 1,
-      "explain": "AuthZ = permissions."
+      "explain": "AuthZ = permissions.",
+      "style": "general"
     },
     {
       "q": "Principle of Least Privilege means:",
@@ -238,7 +244,8 @@
         "Use only root"
       ],
       "answer": 1,
-      "explain": "Minimal necessary access."
+      "explain": "Minimal necessary access.",
+      "style": "scenario"
     },
     {
       "q": "MFA adds:",
@@ -249,7 +256,8 @@
         "Auto Scaling"
       ],
       "answer": 0,
-      "explain": "Multi-factor authentication."
+      "explain": "Multi-factor authentication.",
+      "style": "general"
     },
     {
       "q": "Access keys are dangerous if:",
@@ -260,7 +268,8 @@
         "Rotated often with least privilege"
       ],
       "answer": 1,
-      "explain": "Leaked static keys are a common breach path."
+      "explain": "Leaked static keys are a common breach path.",
+      "style": "general"
     },
     {
       "q": "AWS CLI lets you:",
@@ -271,7 +280,8 @@
         "Boot Windows on phones only"
       ],
       "answer": 1,
-      "explain": "CLI = programmatic/console alternative."
+      "explain": "CLI = programmatic/console alternative.",
+      "style": "general"
     },
     {
       "q": "Console vs CLI in the lesson spirit:",
@@ -282,7 +292,8 @@
         "CLI deletes Regions"
       ],
       "answer": 1,
-      "explain": "GUI vs automation."
+      "explain": "GUI vs automation.",
+      "style": "general"
     },
     {
       "q": "Typical secure login flow uses:",
@@ -293,7 +304,8 @@
         "Shared one password in Slack"
       ],
       "answer": 1,
-      "explain": "Identity + MFA; avoid daily root."
+      "explain": "Identity + MFA; avoid daily root.",
+      "style": "general"
     },
     {
       "q": "In the office-building analogy, creating employees maps to:",
@@ -304,7 +316,8 @@
         "Closing Netflix"
       ],
       "answer": 0,
-      "explain": "Identities under the account."
+      "explain": "Identities under the account.",
+      "style": "general"
     },
     {
       "q": "Password policies help by:",
@@ -315,7 +328,8 @@
         "Removing roles"
       ],
       "answer": 0,
-      "explain": "Account password requirements."
+      "explain": "Account password requirements.",
+      "style": "general"
     },
     {
       "q": "Services in the console are grouped into areas like:",
@@ -326,7 +340,8 @@
         "Only email clients"
       ],
       "answer": 1,
-      "explain": "Hundreds of services; start with a handful."
+      "explain": "Hundreds of services; start with a handful.",
+      "style": "general"
     },
     {
       "q": "Best security practice emphasized:",
@@ -337,7 +352,8 @@
         "Turn off all logging"
       ],
       "answer": 0,
-      "explain": "Core IAM hygiene from the lesson."
+      "explain": "Core IAM hygiene from the lesson.",
+      "style": "general"
     },
     {
       "q": "If a CI pipeline needs AWS access, prefer:",
@@ -348,7 +364,8 @@
         "Emailing passwords"
       ],
       "answer": 1,
-      "explain": "Roles over long-lived keys."
+      "explain": "Roles over long-lived keys.",
+      "style": "scenario"
     },
     {
       "q": "IAM is required because without it:",
@@ -359,7 +376,8 @@
         "AZs merge"
       ],
       "answer": 0,
-      "explain": "IAM is the permission system for AWS APIs."
+      "explain": "IAM is the permission system for AWS APIs.",
+      "style": "general"
     }
   ]
 }

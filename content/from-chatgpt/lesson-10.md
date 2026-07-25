@@ -2,17 +2,6 @@
 
 Building is not enough—you must operate systems. Juniors ask how to deploy; seniors ask how to know it's healthy and how to debug at 2 AM. That is CloudWatch and CloudTrail.
 
-By the end of this lesson, you will understand:
-
-- Monitoring vs Logging vs Auditing
-- Amazon CloudWatch
-- Metrics
-- Logs
-- Alarms
-- Dashboards
-- Events
-- CloudTrail
-- Troubleshooting production systems
 
 ---
 # Imagine You're Running Netflix
@@ -477,7 +466,9 @@ If you have an AWS account:
 
 ---
 
-# Interview Questions
+# Interview practice prompts
+
+Use these as open-ended prompts (the lesson quiz below is multiple choice).
 
 1. What is Amazon CloudWatch?
 2. What is a metric?

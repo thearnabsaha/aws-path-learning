@@ -5,6 +5,7 @@ import { useProgress } from "@/context/ProgressContext";
 import { getSections } from "@/data/lessons";
 import { SearchBox } from "./SearchBox";
 import { dueReviews } from "@/lib/quizUtils";
+import { getPath } from "@/lib/paths";
 
 export function Sidebar({
   open,
@@ -23,8 +24,18 @@ export function Sidebar({
     minutesRemaining,
     reviewQueue,
     lastSection,
+    learningPath,
+    pathLessons,
   } = useProgress();
-  const sections = getSections();
+  const path = getPath(learningPath);
+  const pathIds = new Set(pathLessons.map((l) => l.id));
+  const sections = getSections()
+    .map(({ section, items }) => ({
+      section,
+      items: items.filter((l) => pathIds.has(l.id)),
+    }))
+    .filter((g) => g.items.length > 0);
+
   const due = dueReviews(reviewQueue).length;
 
   return (
@@ -39,7 +50,7 @@ export function Sidebar({
           <div>
             <h2>Lessons</h2>
             <p className="sidebar-sub">
-              ~{minutesRemaining} min left · self-paced
+              {path.short} · ~{minutesRemaining} min left
             </p>
           </div>
           <button
@@ -66,13 +77,31 @@ export function Sidebar({
           <div className="progress-track">
             <div className="progress-fill" style={{ width: `${percent}%` }} />
           </div>
-          <Link
-            href="/review"
-            className="btn btn-secondary btn-sm btn-block"
-            onClick={onClose}
-          >
-            Spaced review{due ? ` (${due})` : ""}
-          </Link>
+          <div className="sidebar-path-links">
+            <Link
+              href="/"
+              className="btn btn-ghost btn-sm btn-block"
+              onClick={onClose}
+            >
+              Change path
+            </Link>
+            {path.interviewMode && (
+              <Link
+                href="/interview"
+                className="btn btn-secondary btn-sm btn-block"
+                onClick={onClose}
+              >
+                Interview drills
+              </Link>
+            )}
+            <Link
+              href="/review"
+              className="btn btn-secondary btn-sm btn-block"
+              onClick={onClose}
+            >
+              Spaced review{due ? ` (${due})` : ""}
+            </Link>
+          </div>
         </div>
 
         <nav className="lesson-nav">

@@ -7,7 +7,9 @@ import { SearchBox } from "./SearchBox";
 import { ArchitectureMap } from "./ArchitectureMap";
 import { ProgressTools } from "./ProgressTools";
 import { ReviewPractice } from "./ReviewPractice";
+import { PathPicker } from "./PathPicker";
 import { dueReviews } from "@/lib/quizUtils";
+import { getPath } from "@/lib/paths";
 
 export function HomeView({ lessons }: { lessons: LessonSummary[] }) {
   const {
@@ -19,15 +21,16 @@ export function HomeView({ lessons }: { lessons: LessonSummary[] }) {
     lastSection,
     reviewQueue,
     quizScores,
+    learningPath,
+    pathLessons,
   } = useProgress();
 
-  const coreLessons = lessons.filter((l) => Number(l.number) <= 12);
-  const extraLessons = lessons.filter((l) => Number(l.number) > 12);
-  // Prefer continuing the core path before additional SAA topics
-  const next =
-    coreLessons.find((l) => !isDone(l.id)) ||
-    lessons.find((l) => !isDone(l.id)) ||
-    lessons[0];
+  const path = getPath(learningPath);
+  const visible = pathLessons.length ? pathLessons : lessons;
+  const coreInPath = visible.filter((l) => Number(l.number) <= 12);
+  const extraInPath = visible.filter((l) => Number(l.number) > 12);
+
+  const next = visible.find((l) => !isDone(l.id)) || visible[0] || lessons[0];
   const resumeSection = next ? lastSection[next.id] : undefined;
   const continueHref = resumeSection
     ? `/lesson/${next.id}?section=${encodeURIComponent(resumeSection)}`
@@ -44,17 +47,16 @@ export function HomeView({ lessons }: { lessons: LessonSummary[] }) {
       <section className="hero-panel">
         <div className="hero">
           <p className="eyebrow">
-            {coreLessons.length} core · {extraLessons.length} additional ·
-            quizzes · local progress
+            {path.label} · {total} lessons in path · quizzes · local progress
           </p>
           <h1>
             Learn AWS <span>clearly</span>
           </h1>
           <p className="lead">
-            Lessons 1–{coreLessons.length} are the full core path. Lessons{" "}
-            {coreLessons.length + 1}–{lessons.length} add SAA / job-readiness
-            topics (placeholders until content is published)—plus quizzes,
-            spaced review, labs, and progress in your browser.
+            Pick a path: <strong>Fast</strong> foundations, <strong>Full</strong>{" "}
+            core 12, <strong>Interview</strong> drills, or{" "}
+            <strong>Everything</strong> including SAA extras. Progress stays in
+            your browser.
           </p>
           <div className="home-search">
             <SearchBox />
@@ -65,19 +67,25 @@ export function HomeView({ lessons }: { lessons: LessonSummary[] }) {
                 ? resumeSection
                   ? "Continue where you left off"
                   : "Continue"
-                : "Start Lesson 1"}
+                : `Start ${next?.number || "01"}`}
             </Link>
-            <Link className="btn btn-secondary" href="/review">
-              Review{dueCount ? ` (${dueCount})` : ""}
-            </Link>
+            {path.interviewMode ? (
+              <Link className="btn btn-secondary" href="/interview">
+                Interview drills
+              </Link>
+            ) : (
+              <Link className="btn btn-secondary" href="/review">
+                Review{dueCount ? ` (${dueCount})` : ""}
+              </Link>
+            )}
           </div>
         </div>
 
         <aside className="hero-aside" aria-label="Course snapshot">
-          <div className="stats" aria-label="Course stats">
+          <div className="stats" aria-label="Path stats">
             <div className="stat">
-              <strong>{total || lessons.length}</strong>
-              <span>Lessons</span>
+              <strong>{total}</strong>
+              <span>In path</span>
             </div>
             <div className="stat">
               <strong>{completedCount}</strong>
@@ -89,35 +97,59 @@ export function HomeView({ lessons }: { lessons: LessonSummary[] }) {
             </div>
           </div>
           <div className="how-box">
-            <h2>Time remaining</h2>
+            <h2>Time remaining (path)</h2>
             <p className="time-remaining">
-              ~<strong>{hours}</strong> across incomplete lessons
+              ~<strong>{hours}</strong> across incomplete path lessons
             </p>
             <ol>
               <li>
-                <strong>Read</strong> sections (progress tracks opens)
+                <strong>Choose</strong> Fast / Full / Interview / All
               </li>
               <li>
-                <strong>Lab</strong> with checklists & cost safety
+                <strong>Read</strong> + lab checklist
               </li>
               <li>
-                <strong>Quiz</strong> then spaced-review misses
+                <strong>Quiz</strong> then spaced review
               </li>
             </ol>
           </div>
         </aside>
       </section>
 
+      <PathPicker />
+
+      {path.interviewMode && (
+        <section className="path-interview-cta">
+          <div>
+            <h2>Interview path active</h2>
+            <p>
+              Read the core lessons below, then run scenario MCQ drills and open
+              prompts on the interview page.
+            </p>
+          </div>
+          <Link className="btn btn-primary" href="/interview">
+            Open interview drills
+          </Link>
+        </section>
+      )}
+
       <ReviewPractice embedded />
 
       <ArchitectureMap />
 
       <div className="curriculum-head">
-        <h2 className="section-title">Core path (1–{coreLessons.length})</h2>
+        <h2 className="section-title">
+          {path.id === "fast"
+            ? "Fast path lessons"
+            : path.id === "all"
+              ? "Core path"
+              : path.label}
+        </h2>
+        <p className="curriculum-sub">{path.description}</p>
       </div>
 
       <div className="lesson-grid">
-        {coreLessons.map((l) => (
+        {coreInPath.map((l) => (
           <LessonCard
             key={l.id}
             lesson={l}
@@ -128,21 +160,17 @@ export function HomeView({ lessons }: { lessons: LessonSummary[] }) {
         ))}
       </div>
 
-      {extraLessons.length > 0 && (
+      {extraInPath.length > 0 && (
         <>
           <div className="curriculum-head curriculum-head-extra">
-            <h2 className="section-title">
-              Additional · SAA &amp; jobs ({coreLessons.length + 1}–
-              {lessons.length})
-            </h2>
+            <h2 className="section-title">Additional · SAA &amp; jobs</h2>
             <p className="curriculum-sub">
-              Reserved after the core 12. Full write-ups, labs, and quizzes will
-              be added when content is ready — structure is already live so
-              progress stays stable.
+              After the core path. Some topics are placeholders until full
+              content is published.
             </p>
           </div>
           <div className="lesson-grid">
-            {extraLessons.map((l) => (
+            {extraInPath.map((l) => (
               <LessonCard
                 key={l.id}
                 lesson={l}

@@ -2,18 +2,6 @@
 
 Most modern teams do not ship apps by hand onto raw EC2 alone. They package software in containers and run them with ECS, EKS, or Fargate. Docker is the standard packaging model behind that shift.
 
-By the end of this lesson, you will understand:
-
-- What containers are
-- Virtual Machines vs Containers
-- Docker Images
-- Docker Containers
-- Dockerfile
-- Docker Commands
-- Amazon ECR
-- Amazon ECS
-- AWS Fargate
-- Production deployments
 
 ---
 # The Old Way
@@ -722,7 +710,9 @@ On your own computer:
 
 ---
 
-# Interview Questions
+# Interview practice prompts
+
+Use these as open-ended prompts (the lesson quiz below is multiple choice).
 
 1. What is Docker?
 2. What is the difference between an image and a container?

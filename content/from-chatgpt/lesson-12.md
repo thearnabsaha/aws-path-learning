@@ -2,18 +2,6 @@
 
 This skill separates people who click in the console from people who engineer infrastructure. Professionals define AWS environments as code—repeatable, reviewable, and ready for CI/CD—with CloudFormation and Terraform.
 
-By the end of this lesson, you will understand:
-
-- What Infrastructure as Code (IaC) is
-- Why manual deployments are a problem
-- AWS CloudFormation
-- Terraform
-- State files
-- Variables
-- Modules
-- Drift
-- CI/CD integration
-- Which tool to choose
 
 ---
 # The Problem with Manual Infrastructure
@@ -580,7 +568,9 @@ No manual clicking required.
 
 ---
 
-# Interview Questions
+# Interview practice prompts
+
+Use these as open-ended prompts (the lesson quiz below is multiple choice).
 
 1. What is Infrastructure as Code?
 2. Why is Infrastructure as Code important?
