@@ -513,8 +513,10 @@ html[data-theme="dark"] .brand-mark {
   top: 0;
   z-index: 1;
   border-radius: 11px;
-  background: var(--accent-soft);
-  border: 1px solid color-mix(in srgb, var(--accent) 18%, transparent);
+  /* Solid mocha-tinted fill (not translucent) so sticky labels don't show content through */
+  background: color-mix(in srgb, var(--accent) 16%, var(--bg-sidebar));
+  border: 1px solid color-mix(in srgb, var(--accent) 22%, var(--bg-sidebar));
+  box-shadow: 0 1px 0 var(--bg-sidebar);
 }
 
 .nav-link {
