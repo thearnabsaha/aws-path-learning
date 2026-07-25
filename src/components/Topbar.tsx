@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useProgress } from "@/context/ProgressContext";
 import { ThemeToggle } from "./ThemeToggle";
+import { SearchBox } from "./SearchBox";
+import { dueReviews } from "@/lib/quizUtils";
 
 export function Topbar({
   menuOpen,
@@ -11,7 +13,8 @@ export function Topbar({
   menuOpen: boolean;
   onMenuToggle: () => void;
 }) {
-  const { percent, completedCount, total } = useProgress();
+  const { percent, completedCount, total, reviewQueue } = useProgress();
+  const due = dueReviews(reviewQueue).length;
 
   return (
     <header className="topbar">
@@ -50,7 +53,18 @@ export function Topbar({
           <span className="brand-text">AWS Path</span>
         </Link>
 
+        <div className="topbar-search desktop-only">
+          <SearchBox compact />
+        </div>
+
         <div className="topbar-progress" title="Course progress">
+          <Link
+            href="/review"
+            className="review-chip desktop-only"
+            title="Spaced review"
+          >
+            Review{due ? ` ${due}` : ""}
+          </Link>
           <div className="progress-chip desktop-only">
             <span>
               {completedCount}/{total}

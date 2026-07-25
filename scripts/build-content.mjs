@@ -107,8 +107,9 @@ function mdToHtml(md) {
       } else {
         const code = escapeHtmlText(codeBuf.join("\n"));
         const label = escapeHtmlText(codeLang || "text");
-        out.push(`<div class="code-label"><span>${label}</span></div>`);
-        out.push(`<pre><code>${code}</code></pre>`);
+        out.push(
+          `<div class="code-block" data-copyable="true"><div class="code-label"><span>${label}</span><button type="button" class="code-copy-btn" data-copy-code>Copy</button></div><pre><code>${code}</code></pre></div>`
+        );
         inCode = false;
       }
       i += 1;
@@ -145,7 +146,12 @@ function mdToHtml(md) {
       flushTable();
       const level = hm[1].length;
       const tag = level <= 2 ? 2 : level === 3 ? 3 : 4;
-      out.push(`<h${tag}>${mdInline(hm[2])}</h${tag}>`);
+      const headingText = hm[2];
+      out.push(`<h${tag}>${mdInline(headingText)}</h${tag}>`);
+      // Hands-on labs: inject cost-safety callout + workshop links
+      if (/hands-?on\s+lab|lab\s*:/i.test(headingText)) {
+        out.push(costSafetyCallout());
+      }
       i += 1;
       continue;
     }
@@ -237,6 +243,64 @@ function accuracyNote(reviewed, sources) {
   ].join("");
 }
 
+function costSafetyCallout() {
+  return [
+    `<aside class="cost-safety callout warn" role="note">`,
+    `<p class="callout-title">Cost safety</p>`,
+    `<ul>`,
+    `<li>Prefer <strong>Free Tier</strong> / small instance sizes while learning.</li>`,
+    `<li>Create a <strong>billing alarm</strong> (CloudWatch or Budgets) on day one.</li>`,
+    `<li><strong>Tear down</strong> lab resources when finished (instances, load balancers, NAT gateways).</li>`,
+    `<li>Never put long-lived access keys in code or public repos.</li>`,
+    `</ul>`,
+    `<p class="workshop-links"><strong>Official practice:</strong> `,
+    `<a href="https://explore.skillbuilder.aws/" rel="noopener noreferrer" target="_blank">AWS Skill Builder</a>`,
+    ` · `,
+    `<a href="https://wellarchitectedlabs.com/" rel="noopener noreferrer" target="_blank">Well-Architected Labs</a>`,
+    ` · `,
+    `<a href="https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/free-tier.html" rel="noopener noreferrer" target="_blank">Free Tier docs</a>`,
+    `</p>`,
+    `</aside>`,
+  ].join("");
+}
+
+/** Extract accordion parts (h2 titles) for search + section progress */
+function extractParts(html) {
+  const re = /<h2\b[^>]*>([\s\S]*?)<\/h2>/gi;
+  const parts = [];
+  let m;
+  let i = 0;
+  while ((m = re.exec(html))) {
+    i += 1;
+    const title = m[1]
+      .replace(/<[^>]+>/g, " ")
+      .replace(/&amp;/g, "&")
+      .replace(/&#0*39;/g, "'")
+      .replace(/&#x0*27;/gi, "'")
+      .replace(/\s+/g, " ")
+      .trim();
+    parts.push({ id: `part-${i}`, title: title || `Part ${i}` });
+  }
+  return parts;
+}
+
+/** Convert lab-looking ordered/unordered lists under Hands-on into checklist markup */
+function enhanceLabLists(html) {
+  // Mark sections whose h2 contains Lab — wrap following list items
+  return html.replace(
+    /(<h2\b[^>]*>[\s\S]*?(?:Hands-?on\s+Lab|Lab)[\s\S]*?<\/h2>)([\s\S]*?)(?=<h2\b|$)/gi,
+    (full, heading, body) => {
+      let n = 0;
+      const enhanced = body.replace(/<li>([\s\S]*?)<\/li>/gi, (_, inner) => {
+        n += 1;
+        const id = `lab-step-${n}`;
+        return `<li class="lab-step" data-lab-id="${id}"><span class="lab-step-text">${inner}</span></li>`;
+      });
+      return `${heading}<div class="lab-block" data-lab-block="true">${enhanced}</div>`;
+    }
+  );
+}
+
 fs.mkdirSync(lessonsOut, { recursive: true });
 
 const index = [];
@@ -246,15 +310,15 @@ for (const lesson of meta) {
   if (!fs.existsSync(mdPath)) {
     throw new Error(`Missing markdown: ${mdPath}`);
   }
-  let md = fs.readFileSync(mdPath, "utf8");
+  const md = fs.readFileSync(mdPath, "utf8");
 
-  // Accuracy: strip in-body mini-quiz blocks that conflict with site quizzes (optional cleanup for L1 plan already fixed in md)
-  const html =
-    mdToHtml(md) +
-    "\n" +
-    accuracyNote(lesson.reviewed, lesson.sources);
+  let html =
+    mdToHtml(md) + "\n" + accuracyNote(lesson.reviewed, lesson.sources);
+  html = enhanceLabLists(html);
 
+  const parts = extractParts(html);
   const quiz = quizzes[lesson.id] || [];
+
   const full = {
     id: lesson.id,
     number: lesson.number,
@@ -266,6 +330,7 @@ for (const lesson of meta) {
     goals: lesson.goals,
     reviewed: lesson.reviewed,
     sources: lesson.sources,
+    parts,
     content: html,
     quiz,
   };
@@ -285,6 +350,7 @@ for (const lesson of meta) {
     tags: lesson.tags,
     goals: lesson.goals,
     reviewed: lesson.reviewed,
+    parts,
   });
 }
 
@@ -294,5 +360,5 @@ fs.writeFileSync(
 );
 
 console.log(
-  `build-content: ${index.length} lessons → src/data/generated/ (${index.reduce((n, l) => n + (quizzes[l.id]?.length || 0), 0)} quiz questions)`
+  `build-content: ${index.length} lessons → src/data/generated/ (${index.reduce((n, l) => n + (quizzes[l.id]?.length || 0), 0)} quiz questions, ${index.reduce((n, l) => n + (l.parts?.length || 0), 0)} sections)`
 );

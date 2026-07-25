@@ -11,21 +11,49 @@ import {
 import { lessonSummaries } from "@/data/lessons";
 import {
   emptyProgress,
+  exportProgressJson,
+  importProgressJson,
   loadProgress,
   saveProgress,
 } from "@/lib/progress";
-import type { ProgressState } from "@/types/lesson";
+import type { ProgressState, QuizQuestion, ReviewItem } from "@/types/lesson";
+import { upsertMisses } from "@/lib/quizUtils";
 
 type ProgressContextValue = {
   ready: boolean;
   completed: Record<string, number>;
   quizScores: ProgressState["quizScores"];
+  sections: ProgressState["sections"];
+  labs: ProgressState["labs"];
+  lastSection: ProgressState["lastSection"];
+  reviewQueue: ReviewItem[];
   completedCount: number;
   total: number;
   percent: number;
+  minutesRemaining: number;
   isDone: (id: string) => boolean;
   setDone: (id: string, done: boolean) => void;
-  saveQuizScore: (id: string, score: number, total: number) => void;
+  saveQuizScore: (
+    id: string,
+    score: number,
+    total: number,
+    opts?: {
+      weakTopics?: string[];
+      questions?: QuizQuestion[];
+      selected?: Record<number, number>;
+    }
+  ) => void;
+  markSection: (lessonId: string, sectionId: string) => void;
+  setLastSection: (lessonId: string, sectionId: string) => void;
+  isSectionDone: (lessonId: string, sectionId: string) => boolean;
+  sectionProgress: (lessonId: string, totalSections: number) => number;
+  setLabItem: (lessonId: string, itemId: string, checked: boolean) => void;
+  isLabChecked: (lessonId: string, itemId: string) => boolean;
+  removeReview: (id: string) => void;
+  markReviewCorrect: (id: string) => void;
+  markReviewWrong: (id: string) => void;
+  exportJson: () => string;
+  importJson: (text: string) => { ok: true } | { ok: false; error: string };
   reset: () => void;
 };
 
@@ -61,16 +89,160 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
   );
 
   const saveQuizScore = useCallback(
-    (id: string, score: number, total: number) => {
+    (
+      id: string,
+      score: number,
+      total: number,
+      opts?: {
+        weakTopics?: string[];
+        questions?: QuizQuestion[];
+        selected?: Record<number, number>;
+      }
+    ) => {
+      let reviewQueue = state.reviewQueue;
+      if (opts?.questions && opts.selected) {
+        reviewQueue = upsertMisses(
+          state.reviewQueue,
+          id,
+          opts.questions,
+          opts.selected
+        );
+      }
       persist({
         ...state,
+        reviewQueue,
         quizScores: {
           ...state.quizScores,
-          [id]: { score, total, at: Date.now() },
+          [id]: {
+            score,
+            total,
+            at: Date.now(),
+            weakTopics: opts?.weakTopics,
+          },
         },
       });
     },
     [persist, state]
+  );
+
+  const markSection = useCallback(
+    (lessonId: string, sectionId: string) => {
+      const lessonSecs = { ...(state.sections[lessonId] || {}) };
+      if (lessonSecs[sectionId]) {
+        // still update lastSection
+        persist({
+          ...state,
+          lastSection: { ...state.lastSection, [lessonId]: sectionId },
+        });
+        return;
+      }
+      lessonSecs[sectionId] = Date.now();
+      persist({
+        ...state,
+        sections: { ...state.sections, [lessonId]: lessonSecs },
+        lastSection: { ...state.lastSection, [lessonId]: sectionId },
+      });
+    },
+    [persist, state]
+  );
+
+  const setLastSection = useCallback(
+    (lessonId: string, sectionId: string) => {
+      if (state.lastSection[lessonId] === sectionId) return;
+      persist({
+        ...state,
+        lastSection: { ...state.lastSection, [lessonId]: sectionId },
+      });
+    },
+    [persist, state]
+  );
+
+  const isSectionDone = useCallback(
+    (lessonId: string, sectionId: string) =>
+      !!state.sections[lessonId]?.[sectionId],
+    [state.sections]
+  );
+
+  const sectionProgress = useCallback(
+    (lessonId: string, totalSections: number) => {
+      if (!totalSections) return 0;
+      const n = Object.keys(state.sections[lessonId] || {}).length;
+      return Math.min(100, Math.round((n / totalSections) * 100));
+    },
+    [state.sections]
+  );
+
+  const setLabItem = useCallback(
+    (lessonId: string, itemId: string, checked: boolean) => {
+      const lab = { ...(state.labs[lessonId] || {}) };
+      if (checked) lab[itemId] = true;
+      else delete lab[itemId];
+      persist({ ...state, labs: { ...state.labs, [lessonId]: lab } });
+    },
+    [persist, state]
+  );
+
+  const isLabChecked = useCallback(
+    (lessonId: string, itemId: string) => !!state.labs[lessonId]?.[itemId],
+    [state.labs]
+  );
+
+  const removeReview = useCallback(
+    (id: string) => {
+      persist({
+        ...state,
+        reviewQueue: state.reviewQueue.filter((r) => r.id !== id),
+      });
+    },
+    [persist, state]
+  );
+
+  const markReviewCorrect = useCallback(
+    (id: string) => {
+      persist({
+        ...state,
+        reviewQueue: state.reviewQueue.filter((r) => r.id !== id),
+      });
+    },
+    [persist, state]
+  );
+
+  const markReviewWrong = useCallback(
+    (id: string) => {
+      const now = Date.now();
+      persist({
+        ...state,
+        reviewQueue: state.reviewQueue.map((r) => {
+          if (r.id !== id) return r;
+          const timesWrong = r.timesWrong + 1;
+          return {
+            ...r,
+            timesWrong,
+            wrongAt: now,
+            dueAt: now + Math.min(14, timesWrong) * 86400000,
+          };
+        }),
+      });
+    },
+    [persist, state]
+  );
+
+  const exportJson = useCallback(() => exportProgressJson(state), [state]);
+
+  const importJson = useCallback(
+    (text: string) => {
+      try {
+        const next = importProgressJson(text);
+        persist(next);
+        return { ok: true as const };
+      } catch (e) {
+        return {
+          ok: false as const,
+          error: e instanceof Error ? e.message : "Invalid JSON",
+        };
+      }
+    },
+    [persist]
   );
 
   const reset = useCallback(() => {
@@ -85,29 +257,64 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
   const total = lessonSummaries.length;
   const percent = total ? Math.round((completedCount / total) * 100) : 0;
 
+  const minutesRemaining = useMemo(
+    () =>
+      lessonSummaries
+        .filter((l) => !state.completed[l.id])
+        .reduce((n, l) => n + l.minutes, 0),
+    [state.completed]
+  );
+
   const value = useMemo(
     () => ({
       ready,
       completed: state.completed,
       quizScores: state.quizScores,
+      sections: state.sections,
+      labs: state.labs,
+      lastSection: state.lastSection,
+      reviewQueue: state.reviewQueue,
       completedCount,
       total,
       percent,
+      minutesRemaining,
       isDone,
       setDone,
       saveQuizScore,
+      markSection,
+      setLastSection,
+      isSectionDone,
+      sectionProgress,
+      setLabItem,
+      isLabChecked,
+      removeReview,
+      markReviewCorrect,
+      markReviewWrong,
+      exportJson,
+      importJson,
       reset,
     }),
     [
       ready,
-      state.completed,
-      state.quizScores,
+      state,
       completedCount,
       total,
       percent,
+      minutesRemaining,
       isDone,
       setDone,
       saveQuizScore,
+      markSection,
+      setLastSection,
+      isSectionDone,
+      sectionProgress,
+      setLabItem,
+      isLabChecked,
+      removeReview,
+      markReviewCorrect,
+      markReviewWrong,
+      exportJson,
+      importJson,
       reset,
     ]
   );

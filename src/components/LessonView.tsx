@@ -1,9 +1,12 @@
 "use client";
 
 import Link from "next/link";
+import { Suspense } from "react";
 import type { Lesson, LessonSummary } from "@/types/lesson";
 import { LessonAccordion } from "./LessonAccordion";
 import { Quiz } from "./Quiz";
+import { CodeCopyRoot } from "./CodeCopy";
+import { LabChecklist } from "./LabChecklist";
 import { useProgress } from "@/context/ProgressContext";
 
 export function LessonView({
@@ -15,11 +18,20 @@ export function LessonView({
   prev: LessonSummary | null;
   next: LessonSummary | null;
 }) {
-  const { isDone, setDone } = useProgress();
+  const { isDone, setDone, sectionProgress, lastSection } = useProgress();
   const done = isDone(lesson.id);
+  const partsCount = (lesson.parts?.length || 0) + (lesson.goals?.length ? 1 : 0);
+  const secProg = sectionProgress(lesson.id, partsCount || 1);
+  const resume = lastSection[lesson.id];
+  const resumeHref = resume
+    ? `/lesson/${lesson.id}?section=${encodeURIComponent(resume)}`
+    : undefined;
 
   return (
     <article className="lesson">
+      <CodeCopyRoot />
+      <LabChecklist lessonId={lesson.id} />
+
       <header className="lesson-header">
         <p className="lesson-kicker">
           Lesson {lesson.number} · {lesson.section} · ~{lesson.minutes} min
@@ -27,9 +39,32 @@ export function LessonView({
         </p>
         <h1>{lesson.title}</h1>
         <p className="lesson-summary">{lesson.short}</p>
+        <div className="lesson-section-meta">
+          <div className="progress-track section-track" aria-hidden="true">
+            <div className="progress-fill" style={{ width: `${secProg}%` }} />
+          </div>
+          <span className="lesson-section-pct">{secProg}% sections explored</span>
+          {resumeHref && (
+            <a className="resume-link" href={resumeHref}>
+              Continue last section
+            </a>
+          )}
+        </div>
       </header>
 
-      <LessonAccordion contentHtml={lesson.content} goals={lesson.goals} />
+      <Suspense
+        fallback={
+          <div className="lesson-acc">
+            <p className="lesson-acc-hint">Loading sections…</p>
+          </div>
+        }
+      >
+        <LessonAccordion
+          lessonId={lesson.id}
+          contentHtml={lesson.content}
+          goals={lesson.goals}
+        />
+      </Suspense>
 
       <Quiz lessonId={lesson.id} questions={lesson.quiz} />
 

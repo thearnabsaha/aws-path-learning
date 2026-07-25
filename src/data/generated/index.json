@@ -15,7 +15,73 @@
       "List core benefits of AWS",
       "See the full beginner→advanced roadmap"
     ],
-    "reviewed": "2026-07"
+    "reviewed": "2026-07",
+    "parts": [
+      {
+        "id": "part-1",
+        "title": "AWS Roadmap (Beginner → Advanced)"
+      },
+      {
+        "id": "part-2",
+        "title": "Lesson 1: What is Cloud Computing?"
+      },
+      {
+        "id": "part-3",
+        "title": "Traditional vs Cloud"
+      },
+      {
+        "id": "part-4",
+        "title": "What is AWS?"
+      },
+      {
+        "id": "part-5",
+        "title": "Think of AWS Like a City"
+      },
+      {
+        "id": "part-6",
+        "title": "Regions"
+      },
+      {
+        "id": "part-7",
+        "title": "Availability Zones (AZ)"
+      },
+      {
+        "id": "part-8",
+        "title": "Why Multiple AZs?"
+      },
+      {
+        "id": "part-9",
+        "title": "Basic AWS Architecture"
+      },
+      {
+        "id": "part-10",
+        "title": "Meet the Most Important AWS Services"
+      },
+      {
+        "id": "part-11",
+        "title": "Pay-As-You-Go"
+      },
+      {
+        "id": "part-12",
+        "title": "Free Tier"
+      },
+      {
+        "id": "part-13",
+        "title": "AWS Account"
+      },
+      {
+        "id": "part-14",
+        "title": "Important Terminology"
+      },
+      {
+        "id": "part-15",
+        "title": "Mini Quiz"
+      },
+      {
+        "id": "part-16",
+        "title": "Your Learning Plan"
+      }
+    ]
   },
   {
     "id": "iam",
@@ -36,7 +102,101 @@
       "How permissions work",
       "Best security practices"
     ],
-    "reviewed": "2026-07"
+    "reviewed": "2026-07",
+    "parts": [
+      {
+        "id": "part-1",
+        "title": "Lesson 2: AWS Account, Console & IAM"
+      },
+      {
+        "id": "part-2",
+        "title": "1. What happens when you create an AWS account?"
+      },
+      {
+        "id": "part-3",
+        "title": "Never use the Root User daily"
+      },
+      {
+        "id": "part-4",
+        "title": "2. What is the AWS Management Console?"
+      },
+      {
+        "id": "part-5",
+        "title": "3. AWS Services"
+      },
+      {
+        "id": "part-6",
+        "title": "4. What is IAM?"
+      },
+      {
+        "id": "part-7",
+        "title": "5. IAM Components"
+      },
+      {
+        "id": "part-8",
+        "title": "IAM User"
+      },
+      {
+        "id": "part-9",
+        "title": "IAM Group"
+      },
+      {
+        "id": "part-10",
+        "title": "IAM Policies"
+      },
+      {
+        "id": "part-11",
+        "title": "IAM Roles"
+      },
+      {
+        "id": "part-12",
+        "title": "6. Authentication vs Authorization"
+      },
+      {
+        "id": "part-13",
+        "title": "7. Principle of Least Privilege"
+      },
+      {
+        "id": "part-14",
+        "title": "8. Multi-Factor Authentication (MFA)"
+      },
+      {
+        "id": "part-15",
+        "title": "9. Password Policies"
+      },
+      {
+        "id": "part-16",
+        "title": "10. Access Keys"
+      },
+      {
+        "id": "part-17",
+        "title": "11. AWS CLI"
+      },
+      {
+        "id": "part-18",
+        "title": "12. Console vs CLI"
+      },
+      {
+        "id": "part-19",
+        "title": "13. Typical AWS Login Flow"
+      },
+      {
+        "id": "part-20",
+        "title": "14. Real-World Example"
+      },
+      {
+        "id": "part-21",
+        "title": "Summary"
+      },
+      {
+        "id": "part-22",
+        "title": "Hands-on Lab (Recommended)"
+      },
+      {
+        "id": "part-23",
+        "title": "Mini Quiz"
+      }
+    ]
   },
   {
     "id": "ec2",
@@ -59,7 +219,101 @@
       "Key pairs",
       "Launch process and SSH"
     ],
-    "reviewed": "2026-07"
+    "reviewed": "2026-07",
+    "parts": [
+      {
+        "id": "part-1",
+        "title": "Lesson 3: Amazon EC2 (Elastic Compute Cloud)"
+      },
+      {
+        "id": "part-2",
+        "title": "What is EC2?"
+      },
+      {
+        "id": "part-3",
+        "title": "Real-World Example"
+      },
+      {
+        "id": "part-4",
+        "title": "Anatomy of an EC2 Instance"
+      },
+      {
+        "id": "part-5",
+        "title": "EC2 Instance Types"
+      },
+      {
+        "id": "part-6",
+        "title": "AMI (Amazon Machine Image)"
+      },
+      {
+        "id": "part-7",
+        "title": "EBS (Elastic Block Store)"
+      },
+      {
+        "id": "part-8",
+        "title": "Public vs Private IP"
+      },
+      {
+        "id": "part-9",
+        "title": "Security Groups (Virtual Firewall)"
+      },
+      {
+        "id": "part-10",
+        "title": "Common Ports"
+      },
+      {
+        "id": "part-11",
+        "title": "Key Pair"
+      },
+      {
+        "id": "part-12",
+        "title": "Launching an EC2 Instance"
+      },
+      {
+        "id": "part-13",
+        "title": "Connecting to Your Server"
+      },
+      {
+        "id": "part-14",
+        "title": "What Happens After Login?"
+      },
+      {
+        "id": "part-15",
+        "title": "Basic Linux Commands"
+      },
+      {
+        "id": "part-16",
+        "title": "Installing Software"
+      },
+      {
+        "id": "part-17",
+        "title": "Testing Your Website"
+      },
+      {
+        "id": "part-18",
+        "title": "Stopping vs Terminating"
+      },
+      {
+        "id": "part-19",
+        "title": "EC2 Lifecycle"
+      },
+      {
+        "id": "part-20",
+        "title": "Complete Architecture"
+      },
+      {
+        "id": "part-21",
+        "title": "Interview Questions"
+      },
+      {
+        "id": "part-22",
+        "title": "Hands-on Lab"
+      },
+      {
+        "id": "part-23",
+        "title": "What's Next?"
+      }
+    ]
   },
   {
     "id": "s3",
@@ -77,7 +331,101 @@
       "Understand versioning and lifecycle",
       "Host a static website"
     ],
-    "reviewed": "2026-07"
+    "reviewed": "2026-07",
+    "parts": [
+      {
+        "id": "part-1",
+        "title": "Lesson 4: Amazon S3 (Simple Storage Service)"
+      },
+      {
+        "id": "part-2",
+        "title": "What is Amazon S3?"
+      },
+      {
+        "id": "part-3",
+        "title": "What is Object Storage?"
+      },
+      {
+        "id": "part-4",
+        "title": "Bucket"
+      },
+      {
+        "id": "part-5",
+        "title": "Bucket Names"
+      },
+      {
+        "id": "part-6",
+        "title": "Object Key"
+      },
+      {
+        "id": "part-7",
+        "title": "Uploading Files"
+      },
+      {
+        "id": "part-8",
+        "title": "Downloading Files"
+      },
+      {
+        "id": "part-9",
+        "title": "Permissions"
+      },
+      {
+        "id": "part-10",
+        "title": "Static Website Hosting"
+      },
+      {
+        "id": "part-11",
+        "title": "Static vs Dynamic Websites"
+      },
+      {
+        "id": "part-12",
+        "title": "Versioning"
+      },
+      {
+        "id": "part-13",
+        "title": "Storage Classes"
+      },
+      {
+        "id": "part-14",
+        "title": "Lifecycle Rules"
+      },
+      {
+        "id": "part-15",
+        "title": "Encryption"
+      },
+      {
+        "id": "part-16",
+        "title": "Durability vs Availability"
+      },
+      {
+        "id": "part-17",
+        "title": "Real-World Examples"
+      },
+      {
+        "id": "part-18",
+        "title": "EC2 vs S3"
+      },
+      {
+        "id": "part-19",
+        "title": "AWS Architecture Example"
+      },
+      {
+        "id": "part-20",
+        "title": "Hands-on Lab"
+      },
+      {
+        "id": "part-21",
+        "title": "Interview Questions"
+      },
+      {
+        "id": "part-22",
+        "title": "So Far You've Learned"
+      },
+      {
+        "id": "part-23",
+        "title": "Next Lesson: Networking with VPC"
+      }
+    ]
   },
   {
     "id": "vpc",
@@ -96,7 +444,105 @@
       "CIDR, IGW, route tables, NAT",
       "Security groups and NACLs"
     ],
-    "reviewed": "2026-07"
+    "reviewed": "2026-07",
+    "parts": [
+      {
+        "id": "part-1",
+        "title": "Lesson 5: Amazon VPC (Virtual Private Cloud)"
+      },
+      {
+        "id": "part-2",
+        "title": "What is a VPC?"
+      },
+      {
+        "id": "part-3",
+        "title": "Why Do We Need a VPC?"
+      },
+      {
+        "id": "part-4",
+        "title": "CIDR Block"
+      },
+      {
+        "id": "part-5",
+        "title": "Subnets"
+      },
+      {
+        "id": "part-6",
+        "title": "Public Subnet"
+      },
+      {
+        "id": "part-7",
+        "title": "Private Subnet"
+      },
+      {
+        "id": "part-8",
+        "title": "Real Architecture"
+      },
+      {
+        "id": "part-9",
+        "title": "Internet Gateway (IGW)"
+      },
+      {
+        "id": "part-10",
+        "title": "Route Table"
+      },
+      {
+        "id": "part-11",
+        "title": "Public Route Table"
+      },
+      {
+        "id": "part-12",
+        "title": "Private Route Table"
+      },
+      {
+        "id": "part-13",
+        "title": "NAT Gateway"
+      },
+      {
+        "id": "part-14",
+        "title": "Complete Architecture"
+      },
+      {
+        "id": "part-15",
+        "title": "Security Groups"
+      },
+      {
+        "id": "part-16",
+        "title": "Network ACL (NACL)"
+      },
+      {
+        "id": "part-17",
+        "title": "Security Group vs NACL"
+      },
+      {
+        "id": "part-18",
+        "title": "Real Company Example"
+      },
+      {
+        "id": "part-19",
+        "title": "Data Flow"
+      },
+      {
+        "id": "part-20",
+        "title": "Why Put Databases in Private Subnets?"
+      },
+      {
+        "id": "part-21",
+        "title": "Interview Questions"
+      },
+      {
+        "id": "part-22",
+        "title": "Hands-on Lab"
+      },
+      {
+        "id": "part-23",
+        "title": "AWS Services You've Mastered So Far"
+      },
+      {
+        "id": "part-24",
+        "title": "Next Lesson: Amazon RDS (Relational Database Service)"
+      }
+    ]
   },
   {
     "id": "rds",
@@ -114,7 +560,113 @@
       "Multi-AZ vs read replicas",
       "Backups, snapshots, and security basics"
     ],
-    "reviewed": "2026-07"
+    "reviewed": "2026-07",
+    "parts": [
+      {
+        "id": "part-1",
+        "title": "Lesson 6: Amazon RDS (Relational Database Service)"
+      },
+      {
+        "id": "part-2",
+        "title": "What is a Database?"
+      },
+      {
+        "id": "part-3",
+        "title": "Why Not Store Everything in S3?"
+      },
+      {
+        "id": "part-4",
+        "title": "What is Amazon RDS?"
+      },
+      {
+        "id": "part-5",
+        "title": "Supported Database Engines"
+      },
+      {
+        "id": "part-6",
+        "title": "Basic Architecture"
+      },
+      {
+        "id": "part-7",
+        "title": "Tables"
+      },
+      {
+        "id": "part-8",
+        "title": "SQL"
+      },
+      {
+        "id": "part-9",
+        "title": "Primary Database"
+      },
+      {
+        "id": "part-10",
+        "title": "Multi-AZ Deployment"
+      },
+      {
+        "id": "part-11",
+        "title": "Read Replicas"
+      },
+      {
+        "id": "part-12",
+        "title": "Multi-AZ vs Read Replica"
+      },
+      {
+        "id": "part-13",
+        "title": "Storage Scaling"
+      },
+      {
+        "id": "part-14",
+        "title": "Automated Backups"
+      },
+      {
+        "id": "part-15",
+        "title": "Snapshots"
+      },
+      {
+        "id": "part-16",
+        "title": "Security"
+      },
+      {
+        "id": "part-17",
+        "title": "Security Groups"
+      },
+      {
+        "id": "part-18",
+        "title": "Common Database Ports"
+      },
+      {
+        "id": "part-19",
+        "title": "Monitoring"
+      },
+      {
+        "id": "part-20",
+        "title": "Real-World Architecture"
+      },
+      {
+        "id": "part-21",
+        "title": "Example: Shopping Website"
+      },
+      {
+        "id": "part-22",
+        "title": "RDS vs EC2 Database"
+      },
+      {
+        "id": "part-23",
+        "title": "Interview Questions"
+      },
+      {
+        "id": "part-24",
+        "title": "Hands-on Lab"
+      },
+      {
+        "id": "part-25",
+        "title": "AWS Architecture So Far"
+      },
+      {
+        "id": "part-26",
+        "title": "Next Lesson: Elastic Load Balancer (ELB) & Auto Scaling"
+      }
+    ]
   },
   {
     "id": "elb-asg",
@@ -133,7 +685,113 @@
       "Load balancer types and health checks",
       "Auto Scaling groups and policies"
     ],
-    "reviewed": "2026-07"
+    "reviewed": "2026-07",
+    "parts": [
+      {
+        "id": "part-1",
+        "title": "Lesson 7: Elastic Load Balancer (ELB) & Auto Scaling"
+      },
+      {
+        "id": "part-2",
+        "title": "The Problem with One Server"
+      },
+      {
+        "id": "part-3",
+        "title": "Solution: Multiple Servers"
+      },
+      {
+        "id": "part-4",
+        "title": "Enter the Load Balancer"
+      },
+      {
+        "id": "part-5",
+        "title": "What Does a Load Balancer Actually Do?"
+      },
+      {
+        "id": "part-6",
+        "title": "Why Use a Load Balancer?"
+      },
+      {
+        "id": "part-7",
+        "title": "Types of AWS Load Balancers"
+      },
+      {
+        "id": "part-8",
+        "title": "Application Load Balancer (ALB)"
+      },
+      {
+        "id": "part-9",
+        "title": "Health Checks"
+      },
+      {
+        "id": "part-10",
+        "title": "Before and After"
+      },
+      {
+        "id": "part-11",
+        "title": "Auto Scaling"
+      },
+      {
+        "id": "part-12",
+        "title": "Auto Scaling Group (ASG)"
+      },
+      {
+        "id": "part-13",
+        "title": "Desired, Minimum, and Maximum Capacity"
+      },
+      {
+        "id": "part-14",
+        "title": "Scaling Out vs Scaling Up"
+      },
+      {
+        "id": "part-15",
+        "title": "Scaling Policies"
+      },
+      {
+        "id": "part-16",
+        "title": "Launch Template"
+      },
+      {
+        "id": "part-17",
+        "title": "High Availability (HA)"
+      },
+      {
+        "id": "part-18",
+        "title": "Fault Tolerance"
+      },
+      {
+        "id": "part-19",
+        "title": "Production Architecture"
+      },
+      {
+        "id": "part-20",
+        "title": "Example: Black Friday Sale"
+      },
+      {
+        "id": "part-21",
+        "title": "ELB vs Auto Scaling"
+      },
+      {
+        "id": "part-22",
+        "title": "Interview Questions"
+      },
+      {
+        "id": "part-23",
+        "title": "Hands-on Lab"
+      },
+      {
+        "id": "part-24",
+        "title": "Complete AWS Architecture So Far"
+      },
+      {
+        "id": "part-25",
+        "title": "What You've Learned"
+      },
+      {
+        "id": "part-26",
+        "title": "Next Lesson: AWS Lambda (Serverless Computing)"
+      }
+    ]
   },
   {
     "id": "lambda",
@@ -151,7 +809,121 @@
       "Events, API Gateway, cold starts",
       "When to choose Lambda vs EC2"
     ],
-    "reviewed": "2026-07"
+    "reviewed": "2026-07",
+    "parts": [
+      {
+        "id": "part-1",
+        "title": "Lesson 8: AWS Lambda (Serverless Computing)"
+      },
+      {
+        "id": "part-2",
+        "title": "The Old Way"
+      },
+      {
+        "id": "part-3",
+        "title": "The Serverless Way"
+      },
+      {
+        "id": "part-4",
+        "title": "What is Lambda?"
+      },
+      {
+        "id": "part-5",
+        "title": "Event-Driven Computing"
+      },
+      {
+        "id": "part-6",
+        "title": "Common Lambda Triggers"
+      },
+      {
+        "id": "part-7",
+        "title": "Example: Image Processing"
+      },
+      {
+        "id": "part-8",
+        "title": "Example: Sending Emails"
+      },
+      {
+        "id": "part-9",
+        "title": "How Lambda Executes"
+      },
+      {
+        "id": "part-10",
+        "title": "Supported Languages"
+      },
+      {
+        "id": "part-11",
+        "title": "Function Handler"
+      },
+      {
+        "id": "part-12",
+        "title": "Execution Time"
+      },
+      {
+        "id": "part-13",
+        "title": "Memory"
+      },
+      {
+        "id": "part-14",
+        "title": "Stateless"
+      },
+      {
+        "id": "part-15",
+        "title": "IAM Role"
+      },
+      {
+        "id": "part-16",
+        "title": "API Gateway"
+      },
+      {
+        "id": "part-17",
+        "title": "Traditional API vs Serverless API"
+      },
+      {
+        "id": "part-18",
+        "title": "Cold Start"
+      },
+      {
+        "id": "part-19",
+        "title": "Concurrency"
+      },
+      {
+        "id": "part-20",
+        "title": "Lambda Pricing"
+      },
+      {
+        "id": "part-21",
+        "title": "Lambda vs EC2"
+      },
+      {
+        "id": "part-22",
+        "title": "When to Use Lambda"
+      },
+      {
+        "id": "part-23",
+        "title": "Real-World Example"
+      },
+      {
+        "id": "part-24",
+        "title": "Hands-on Lab"
+      },
+      {
+        "id": "part-25",
+        "title": "Interview Questions"
+      },
+      {
+        "id": "part-26",
+        "title": "Architecture So Far"
+      },
+      {
+        "id": "part-27",
+        "title": "What You've Learned"
+      },
+      {
+        "id": "part-28",
+        "title": "Next Lesson: Amazon DynamoDB"
+      }
+    ]
   },
   {
     "id": "dynamodb",
@@ -169,7 +941,133 @@
       "Partition/sort keys and indexes",
       "When to choose DynamoDB vs RDS"
     ],
-    "reviewed": "2026-07"
+    "reviewed": "2026-07",
+    "parts": [
+      {
+        "id": "part-1",
+        "title": "Lesson 9: Amazon DynamoDB (NoSQL Database)"
+      },
+      {
+        "id": "part-2",
+        "title": "Why Do We Need Another Database?"
+      },
+      {
+        "id": "part-3",
+        "title": "What is NoSQL?"
+      },
+      {
+        "id": "part-4",
+        "title": "SQL Example"
+      },
+      {
+        "id": "part-5",
+        "title": "DynamoDB Example"
+      },
+      {
+        "id": "part-6",
+        "title": "SQL vs NoSQL"
+      },
+      {
+        "id": "part-7",
+        "title": "DynamoDB Terminology"
+      },
+      {
+        "id": "part-8",
+        "title": "Table"
+      },
+      {
+        "id": "part-9",
+        "title": "Item"
+      },
+      {
+        "id": "part-10",
+        "title": "Attribute"
+      },
+      {
+        "id": "part-11",
+        "title": "Primary Key"
+      },
+      {
+        "id": "part-12",
+        "title": "Partition Key"
+      },
+      {
+        "id": "part-13",
+        "title": "Sort Key"
+      },
+      {
+        "id": "part-14",
+        "title": "Reading Data"
+      },
+      {
+        "id": "part-15",
+        "title": "Scan vs Query"
+      },
+      {
+        "id": "part-16",
+        "title": "Global Secondary Index (GSI)"
+      },
+      {
+        "id": "part-17",
+        "title": "Local Secondary Index (LSI)"
+      },
+      {
+        "id": "part-18",
+        "title": "Capacity Modes"
+      },
+      {
+        "id": "part-19",
+        "title": "DynamoDB Streams"
+      },
+      {
+        "id": "part-20",
+        "title": "TTL (Time To Live)"
+      },
+      {
+        "id": "part-21",
+        "title": "Security"
+      },
+      {
+        "id": "part-22",
+        "title": "Backup"
+      },
+      {
+        "id": "part-23",
+        "title": "Global Tables"
+      },
+      {
+        "id": "part-24",
+        "title": "Real-World Example"
+      },
+      {
+        "id": "part-25",
+        "title": "RDS vs DynamoDB"
+      },
+      {
+        "id": "part-26",
+        "title": "Architecture"
+      },
+      {
+        "id": "part-27",
+        "title": "Hands-on Lab"
+      },
+      {
+        "id": "part-28",
+        "title": "Interview Questions"
+      },
+      {
+        "id": "part-29",
+        "title": "Architecture So Far"
+      },
+      {
+        "id": "part-30",
+        "title": "AWS Services You've Mastered"
+      },
+      {
+        "id": "part-31",
+        "title": "Next Lesson: Amazon CloudWatch & CloudTrail"
+      }
+    ]
   },
   {
     "id": "observability",
@@ -187,7 +1085,121 @@
       "CloudWatch metrics, logs, and alarms",
       "CloudTrail for API activity"
     ],
-    "reviewed": "2026-07"
+    "reviewed": "2026-07",
+    "parts": [
+      {
+        "id": "part-1",
+        "title": "Lesson 10: Amazon CloudWatch & AWS CloudTrail"
+      },
+      {
+        "id": "part-2",
+        "title": "Imagine You're Running Netflix"
+      },
+      {
+        "id": "part-3",
+        "title": "Monitoring vs Logging vs Auditing"
+      },
+      {
+        "id": "part-4",
+        "title": "What is CloudWatch?"
+      },
+      {
+        "id": "part-5",
+        "title": "Metrics"
+      },
+      {
+        "id": "part-6",
+        "title": "Common EC2 Metrics"
+      },
+      {
+        "id": "part-7",
+        "title": "Example"
+      },
+      {
+        "id": "part-8",
+        "title": "CloudWatch Dashboard"
+      },
+      {
+        "id": "part-9",
+        "title": "CloudWatch Logs"
+      },
+      {
+        "id": "part-10",
+        "title": "EC2 Logs"
+      },
+      {
+        "id": "part-11",
+        "title": "Lambda Logs"
+      },
+      {
+        "id": "part-12",
+        "title": "Searching Logs"
+      },
+      {
+        "id": "part-13",
+        "title": "CloudWatch Alarm"
+      },
+      {
+        "id": "part-14",
+        "title": "Alarm Actions"
+      },
+      {
+        "id": "part-15",
+        "title": "Example Production Scenario"
+      },
+      {
+        "id": "part-16",
+        "title": "CloudWatch Events / EventBridge"
+      },
+      {
+        "id": "part-17",
+        "title": "What is CloudTrail?"
+      },
+      {
+        "id": "part-18",
+        "title": "Example"
+      },
+      {
+        "id": "part-19",
+        "title": "CloudTrail Records"
+      },
+      {
+        "id": "part-20",
+        "title": "Real Example"
+      },
+      {
+        "id": "part-21",
+        "title": "CloudTrail vs CloudWatch"
+      },
+      {
+        "id": "part-22",
+        "title": "Example Architecture"
+      },
+      {
+        "id": "part-23",
+        "title": "Production Example"
+      },
+      {
+        "id": "part-24",
+        "title": "Hands-on Lab"
+      },
+      {
+        "id": "part-25",
+        "title": "Interview Questions"
+      },
+      {
+        "id": "part-26",
+        "title": "AWS Services You've Mastered"
+      },
+      {
+        "id": "part-27",
+        "title": "Final Architecture So Far"
+      },
+      {
+        "id": "part-28",
+        "title": "Next Lesson: Docker & Amazon ECS"
+      }
+    ]
   },
   {
     "id": "containers",
@@ -206,7 +1218,145 @@
       "Amazon ECR as an image registry",
       "ECS services and Fargate vs EC2 launch type"
     ],
-    "reviewed": "2026-07"
+    "reviewed": "2026-07",
+    "parts": [
+      {
+        "id": "part-1",
+        "title": "Lesson 11: Docker, Amazon ECR & Amazon ECS"
+      },
+      {
+        "id": "part-2",
+        "title": "The Old Way"
+      },
+      {
+        "id": "part-3",
+        "title": "The Docker Way"
+      },
+      {
+        "id": "part-4",
+        "title": "Real-Life Analogy"
+      },
+      {
+        "id": "part-5",
+        "title": "Virtual Machine vs Container"
+      },
+      {
+        "id": "part-6",
+        "title": "Virtual Machine"
+      },
+      {
+        "id": "part-7",
+        "title": "Docker Containers"
+      },
+      {
+        "id": "part-8",
+        "title": "Comparison"
+      },
+      {
+        "id": "part-9",
+        "title": "Docker Image"
+      },
+      {
+        "id": "part-10",
+        "title": "Docker Container"
+      },
+      {
+        "id": "part-11",
+        "title": "Dockerfile"
+      },
+      {
+        "id": "part-12",
+        "title": "Docker Build Process"
+      },
+      {
+        "id": "part-13",
+        "title": "Basic Docker Commands"
+      },
+      {
+        "id": "part-14",
+        "title": "Container Lifecycle"
+      },
+      {
+        "id": "part-15",
+        "title": "Ports"
+      },
+      {
+        "id": "part-16",
+        "title": "Volumes"
+      },
+      {
+        "id": "part-17",
+        "title": "Docker Networking"
+      },
+      {
+        "id": "part-18",
+        "title": "Amazon ECR (Elastic Container Registry)"
+      },
+      {
+        "id": "part-19",
+        "title": "Deployment Flow"
+      },
+      {
+        "id": "part-20",
+        "title": "Amazon ECS (Elastic Container Service)"
+      },
+      {
+        "id": "part-21",
+        "title": "ECS Components"
+      },
+      {
+        "id": "part-22",
+        "title": "Cluster"
+      },
+      {
+        "id": "part-23",
+        "title": "Task Definition"
+      },
+      {
+        "id": "part-24",
+        "title": "Task"
+      },
+      {
+        "id": "part-25",
+        "title": "Service"
+      },
+      {
+        "id": "part-26",
+        "title": "ECS Launch Types"
+      },
+      {
+        "id": "part-27",
+        "title": "EC2 vs Fargate"
+      },
+      {
+        "id": "part-28",
+        "title": "Real-World Architecture"
+      },
+      {
+        "id": "part-29",
+        "title": "Complete Deployment Flow"
+      },
+      {
+        "id": "part-30",
+        "title": "Hands-on Lab"
+      },
+      {
+        "id": "part-31",
+        "title": "Interview Questions"
+      },
+      {
+        "id": "part-32",
+        "title": "AWS Architecture with Containers"
+      },
+      {
+        "id": "part-33",
+        "title": "What You've Learned"
+      },
+      {
+        "id": "part-34",
+        "title": "Next Lesson: Infrastructure as Code (IaC) with AWS CloudFormation & Terraform"
+      }
+    ]
   },
   {
     "id": "iac",
@@ -225,6 +1375,128 @@
       "CloudFormation vs Terraform at a high level",
       "Plan/apply workflow and state"
     ],
-    "reviewed": "2026-07"
+    "reviewed": "2026-07",
+    "parts": [
+      {
+        "id": "part-1",
+        "title": "Lesson 12: Infrastructure as Code (IaC) – AWS CloudFormation & Terraform"
+      },
+      {
+        "id": "part-2",
+        "title": "The Problem with Manual Infrastructure"
+      },
+      {
+        "id": "part-3",
+        "title": "Infrastructure as Code"
+      },
+      {
+        "id": "part-4",
+        "title": "Real-World Analogy"
+      },
+      {
+        "id": "part-5",
+        "title": "Two Major IaC Tools"
+      },
+      {
+        "id": "part-6",
+        "title": "CloudFormation"
+      },
+      {
+        "id": "part-7",
+        "title": "CloudFormation Stack"
+      },
+      {
+        "id": "part-8",
+        "title": "Terraform"
+      },
+      {
+        "id": "part-9",
+        "title": "Why Companies Love Terraform"
+      },
+      {
+        "id": "part-10",
+        "title": "Terraform Workflow"
+      },
+      {
+        "id": "part-11",
+        "title": "terraform init"
+      },
+      {
+        "id": "part-12",
+        "title": "terraform plan"
+      },
+      {
+        "id": "part-13",
+        "title": "terraform apply"
+      },
+      {
+        "id": "part-14",
+        "title": "terraform destroy"
+      },
+      {
+        "id": "part-15",
+        "title": "State File"
+      },
+      {
+        "id": "part-16",
+        "title": "Variables"
+      },
+      {
+        "id": "part-17",
+        "title": "Outputs"
+      },
+      {
+        "id": "part-18",
+        "title": "Modules"
+      },
+      {
+        "id": "part-19",
+        "title": "Example Project Structure"
+      },
+      {
+        "id": "part-20",
+        "title": "Drift"
+      },
+      {
+        "id": "part-21",
+        "title": "Idempotency"
+      },
+      {
+        "id": "part-22",
+        "title": "CloudFormation vs Terraform"
+      },
+      {
+        "id": "part-23",
+        "title": "CI/CD Integration"
+      },
+      {
+        "id": "part-24",
+        "title": "Example Architecture"
+      },
+      {
+        "id": "part-25",
+        "title": "Production Workflow"
+      },
+      {
+        "id": "part-26",
+        "title": "Hands-on Lab"
+      },
+      {
+        "id": "part-27",
+        "title": "Interview Questions"
+      },
+      {
+        "id": "part-28",
+        "title": "Complete AWS Architecture"
+      },
+      {
+        "id": "part-29",
+        "title": "What You've Learned"
+      },
+      {
+        "id": "part-30",
+        "title": "What's Next?"
+      }
+    ]
   }
 ]

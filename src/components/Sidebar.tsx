@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useProgress } from "@/context/ProgressContext";
 import { getSections } from "@/data/lessons";
+import { SearchBox } from "./SearchBox";
+import { dueReviews } from "@/lib/quizUtils";
 
 export function Sidebar({
   open,
@@ -13,8 +15,17 @@ export function Sidebar({
   onClose: () => void;
   activeLessonId?: string | null;
 }) {
-  const { completedCount, total, percent, isDone, reset } = useProgress();
+  const {
+    completedCount,
+    total,
+    percent,
+    isDone,
+    minutesRemaining,
+    reviewQueue,
+    lastSection,
+  } = useProgress();
   const sections = getSections();
+  const due = dueReviews(reviewQueue).length;
 
   return (
     <aside
@@ -27,7 +38,9 @@ export function Sidebar({
         <div className="sidebar-head">
           <div>
             <h2>Lessons</h2>
-            <p className="sidebar-sub">Self-paced course</p>
+            <p className="sidebar-sub">
+              ~{minutesRemaining} min left · self-paced
+            </p>
           </div>
           <button
             type="button"
@@ -37,6 +50,10 @@ export function Sidebar({
           >
             ×
           </button>
+        </div>
+
+        <div className="sidebar-search">
+          <SearchBox compact />
         </div>
 
         <div className="sidebar-meta">
@@ -49,21 +66,13 @@ export function Sidebar({
           <div className="progress-track">
             <div className="progress-fill" style={{ width: `${percent}%` }} />
           </div>
-          <button
-            type="button"
-            className="btn btn-ghost btn-sm btn-block"
-            onClick={() => {
-              if (
-                confirm(
-                  "Reset all progress and quiz scores on this browser?"
-                )
-              ) {
-                reset();
-              }
-            }}
+          <Link
+            href="/review"
+            className="btn btn-secondary btn-sm btn-block"
+            onClick={onClose}
           >
-            Reset progress
-          </button>
+            Spaced review{due ? ` (${due})` : ""}
+          </Link>
         </div>
 
         <nav className="lesson-nav">
@@ -73,10 +82,14 @@ export function Sidebar({
               {items.map((l) => {
                 const done = isDone(l.id);
                 const active = l.id === activeLessonId;
+                const resume = lastSection[l.id];
+                const href = resume
+                  ? `/lesson/${l.id}?section=${encodeURIComponent(resume)}`
+                  : `/lesson/${l.id}`;
                 return (
                   <Link
                     key={l.id}
-                    href={`/lesson/${l.id}`}
+                    href={href}
                     className={`nav-link${active ? " active" : ""}${done ? " done" : ""}`}
                     onClick={onClose}
                   >

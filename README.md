@@ -92,6 +92,23 @@ Site quizzes and local progress are extras on top of the chat text.
 - Accordion triggers: `aria-expanded`, `aria-controls`, arrow-key navigation
 - Quiz status uses **icon + text** (not color alone)
 
+## Product features (P1)
+
+| Feature | Where |
+|---------|--------|
+| **Search** lessons & sections (⌘K) | Topbar, home, sidebar |
+| **Section progress** + `?section=` resume | Lesson accordion |
+| **Time remaining** | Home + sidebar |
+| **Export / import progress** JSON | Home footer |
+| **Quiz shuffle** + weak topics | Lesson quiz |
+| **Timed challenge** | Lesson quiz |
+| **Spaced review** of misses | `/review` + home |
+| **Lab checklists** + cost-safety callouts | Hands-on Lab sections |
+| **Copy** on code blocks | Lesson prose |
+| **Architecture so far** (SVG grows) | Home |
+
+Progress storage key: `aws-path-progress-v3` (auto-migrates v2).
+
 ## Deploy
 
 Set `NEXT_PUBLIC_SITE_URL` to the production origin for correct sitemap, robots, and canonical URLs (default fallback: `https://aws-path-learning.vercel.app`).

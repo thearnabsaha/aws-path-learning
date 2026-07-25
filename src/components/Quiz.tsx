@@ -3,6 +3,13 @@
 import { useId, useMemo, useState } from "react";
 import { useProgress } from "@/context/ProgressContext";
 import type { QuizQuestion } from "@/types/lesson";
+import {
+  hashString,
+  inferTopic,
+  shuffleQuestion,
+  weakTopicsFromAnswers,
+  type ShuffledQuestion,
+} from "@/lib/quizUtils";
 
 function statusLabel(status: string) {
   switch (status) {
@@ -36,17 +43,40 @@ function statusIcon(status: string) {
 
 export function Quiz({
   lessonId,
-  questions,
+  questions: rawQuestions,
 }: {
   lessonId: string;
   questions: QuizQuestion[];
 }) {
   const baseId = useId();
   const { saveQuizScore } = useProgress();
+  const [shuffleOn, setShuffleOn] = useState(true);
+  const [timed, setTimed] = useState(false);
+  const [secondsLeft, setSecondsLeft] = useState(0);
+  const [timerId, setTimerId] = useState<ReturnType<typeof setInterval> | null>(
+    null
+  );
   const [openId, setOpenId] = useState<number | null>(0);
   const [selected, setSelected] = useState<Record<number, number>>({});
   const [revealed, setRevealed] = useState<Record<number, boolean>>({});
   const [finished, setFinished] = useState(false);
+  const [sessionSeed] = useState(() => Date.now() % 100000);
+
+  const questions: ShuffledQuestion[] = useMemo(() => {
+    return rawQuestions.map((q, i) => {
+      if (!shuffleOn) {
+        return {
+          ...q,
+          map: q.options.map((_, idx) => idx),
+          originalAnswer: q.answer,
+        };
+      }
+      return shuffleQuestion(
+        q,
+        hashString(`${lessonId}:${i}:${sessionSeed}`)
+      );
+    });
+  }, [rawQuestions, lessonId, shuffleOn, sessionSeed]);
 
   const total = questions.length;
 
@@ -65,6 +95,42 @@ export function Quiz({
     return s;
   }, [questions, selected]);
 
+  const weak = useMemo(() => {
+    if (!finished) return [];
+    // Map selected back is already on shuffled questions
+    return weakTopicsFromAnswers(questions, selected);
+  }, [finished, questions, selected]);
+
+  function clearTimer() {
+    if (timerId) {
+      clearInterval(timerId);
+      setTimerId(null);
+    }
+  }
+
+  function startTimed() {
+    clearTimer();
+    setTimed(true);
+    setFinished(false);
+    setSelected({});
+    setRevealed({});
+    setOpenId(0);
+    const secs = Math.max(60, total * 45);
+    setSecondsLeft(secs);
+    const id = setInterval(() => {
+      setSecondsLeft((s) => {
+        if (s <= 1) {
+          clearInterval(id);
+          // auto-submit
+          setTimeout(() => submitAll(true), 0);
+          return 0;
+        }
+        return s - 1;
+      });
+    }, 1000);
+    setTimerId(id);
+  }
+
   if (!total) return null;
 
   function toggle(qi: number) {
@@ -77,7 +143,8 @@ export function Quiz({
     setRevealed((prev) => ({ ...prev, [qi]: true }));
   }
 
-  function submitAll() {
+  function submitAll(fromTimer = false) {
+    clearTimer();
     let s = 0;
     questions.forEach((item, qi) => {
       if (selected[qi] === item.answer) s += 1;
@@ -88,15 +155,28 @@ export function Quiz({
       all[qi] = true;
     });
     setRevealed(all);
-    saveQuizScore(lessonId, s, total);
+    const weakTopics = weakTopicsFromAnswers(questions, selected).map(
+      (w) => w.topic
+    );
+    // Persist using shuffled options as the question shape for review
+    // (answer index matches shuffled options)
+    saveQuizScore(lessonId, s, total, {
+      weakTopics,
+      questions,
+      selected,
+    });
     setOpenId(0);
+    if (fromTimer) setTimed(false);
   }
 
   function retake() {
+    clearTimer();
     setSelected({});
     setRevealed({});
     setFinished(false);
     setOpenId(0);
+    setTimed(false);
+    setSecondsLeft(0);
   }
 
   function onTriggerKeyDown(
@@ -118,6 +198,8 @@ export function Quiz({
   }
 
   const pass = total > 0 && score / total >= 0.7;
+  const mm = Math.floor(secondsLeft / 60);
+  const ss = String(secondsLeft % 60).padStart(2, "0");
 
   return (
     <section className="quiz" aria-label="Lesson quiz">
@@ -125,14 +207,20 @@ export function Quiz({
         <div>
           <h2>Quiz</h2>
           <p className="quiz-intro">
-            {total} questions from this lesson. Open each item, pick an answer,
-            then submit when ready.
+            {total} questions · options{" "}
+            {shuffleOn ? "shuffled each session" : "in original order"}. Missed
+            items go to spaced review.
           </p>
         </div>
         <div className="quiz-progress-pill" aria-live="polite">
           <span>
             Answered {answeredCount}/{total}
           </span>
+          {timed && !finished && (
+            <strong className={secondsLeft < 30 ? "warn" : "ok"}>
+              ⏱ {mm}:{ss}
+            </strong>
+          )}
           {finished && (
             <strong className={pass ? "ok" : "warn"}>
               {pass ? "Passed" : "Review"} · Score {score}/{total}
@@ -140,6 +228,44 @@ export function Quiz({
           )}
         </div>
       </div>
+
+      {!finished && (
+        <div className="quiz-modes">
+          <label className="quiz-mode">
+            <input
+              type="checkbox"
+              checked={shuffleOn}
+              onChange={(e) => {
+                setShuffleOn(e.target.checked);
+                setSelected({});
+                setRevealed({});
+              }}
+              disabled={answeredCount > 0 || timed}
+            />
+            Shuffle options
+          </label>
+          {!timed ? (
+            <button
+              type="button"
+              className="btn btn-ghost btn-sm"
+              onClick={startTimed}
+            >
+              Timed challenge (~{Math.round((total * 45) / 60)} min)
+            </button>
+          ) : (
+            <button
+              type="button"
+              className="btn btn-ghost btn-sm"
+              onClick={() => {
+                clearTimer();
+                setTimed(false);
+              }}
+            >
+              Cancel timer
+            </button>
+          )}
+        </div>
+      )}
 
       <div className="accordion">
         {questions.map((item, qi) => {
@@ -160,6 +286,7 @@ export function Quiz({
           const panelId = `${baseId}-q-panel-${qi}`;
           const label = statusLabel(status);
           const icon = statusIcon(status);
+          const topic = inferTopic(item);
 
           return (
             <div
@@ -178,7 +305,10 @@ export function Quiz({
                 <span className="acc-num" aria-hidden="true">
                   {qi + 1}
                 </span>
-                <span className="acc-title">{item.q}</span>
+                <span className="acc-title">
+                  <span className="quiz-topic-tag">{topic}</span>
+                  {item.q}
+                </span>
                 <span className="acc-meta">
                   <span className="status-badge" data-status={status}>
                     <span className="status-icon" aria-hidden="true">
@@ -275,7 +405,7 @@ export function Quiz({
           <button
             type="button"
             className="btn btn-primary btn-block"
-            onClick={submitAll}
+            onClick={() => submitAll(false)}
             disabled={answeredCount === 0}
           >
             Submit quiz ({answeredCount}/{total} answered)
@@ -289,11 +419,28 @@ export function Quiz({
               <span className="quiz-result-icon" aria-hidden="true">
                 {pass ? "✓" : "!"}
               </span>
-              Final score: {score} / {total}
-              {pass
-                ? " — strong. You can mark the lesson complete."
-                : " — review items marked “Needs review” and retake."}
+              <span>
+                Final score: {score} / {total}
+                {pass
+                  ? " — strong. You can mark the lesson complete."
+                  : " — review weak topics below and use spaced review."}
+              </span>
             </div>
+            {weak.length > 0 && (
+              <div className="weak-topics" aria-label="Weak topics">
+                <h3>Weak topics</h3>
+                <ul>
+                  {weak.map((w) => (
+                    <li key={w.topic}>
+                      <strong>{w.topic}</strong>
+                      <span>
+                        {w.wrong}/{w.total} missed
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
             <button
               type="button"
               className="btn btn-secondary btn-block"

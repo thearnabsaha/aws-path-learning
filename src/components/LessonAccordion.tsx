@@ -1,16 +1,28 @@
 "use client";
 
 import { useEffect, useId, useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { splitLessonHtml } from "@/lib/splitLessonHtml";
+import { useProgress } from "@/context/ProgressContext";
 
 export function LessonAccordion({
+  lessonId,
   contentHtml,
   goals,
 }: {
+  lessonId: string;
   contentHtml: string;
   goals: string[];
 }) {
   const baseId = useId();
+  const searchParams = useSearchParams();
+  const {
+    markSection,
+    isSectionDone,
+    sectionProgress,
+    lastSection,
+    setLastSection,
+  } = useProgress();
 
   const contentParts = useMemo(
     () => splitLessonHtml(contentHtml),
@@ -33,22 +45,53 @@ export function LessonAccordion({
 
   const [openIds, setOpenIds] = useState<Set<string>>(new Set());
 
+  // Initial open: ?section= → lastSection → first part
   useEffect(() => {
-    const first = parts[0]?.id;
-    setOpenIds(new Set(first ? [first] : []));
-  }, [contentHtml, parts]);
+    const fromQuery = searchParams.get("section");
+    const resume = lastSection[lessonId];
+    const target =
+      (fromQuery && parts.some((p) => p.id === fromQuery) && fromQuery) ||
+      (resume && parts.some((p) => p.id === resume) && resume) ||
+      parts[0]?.id;
+    setOpenIds(new Set(target ? [target] : []));
+    if (target) {
+      markSection(lessonId, target);
+      // scroll after paint
+      requestAnimationFrame(() => {
+        document.getElementById(`${baseId}-trigger-${target}`)?.scrollIntoView({
+          block: "nearest",
+          behavior: "smooth",
+        });
+      });
+    }
+    // only on lesson change / query
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lessonId, contentHtml, searchParams]);
 
   function toggle(id: string) {
     setOpenIds((prev) => {
       const next = new Set(prev);
       if (next.has(id)) next.delete(id);
-      else next.add(id);
+      else {
+        next.add(id);
+        markSection(lessonId, id);
+        setLastSection(lessonId, id);
+        // update URL without full navigation
+        try {
+          const url = new URL(window.location.href);
+          url.searchParams.set("section", id);
+          window.history.replaceState({}, "", url.toString());
+        } catch {
+          /* ignore */
+        }
+      }
       return next;
     });
   }
 
   function expandAll() {
     setOpenIds(new Set(parts.map((p) => p.id)));
+    parts.forEach((p) => markSection(lessonId, p.id));
   }
 
   function collapseAll() {
@@ -76,12 +119,20 @@ export function LessonAccordion({
 
   if (!parts.length) return null;
 
+  const prog = sectionProgress(lessonId, parts.length);
+  const doneCount = parts.filter((p) => isSectionDone(lessonId, p.id)).length;
+
   return (
     <div className="lesson-acc">
       <div className="lesson-acc-toolbar">
-        <p className="lesson-acc-hint">
-          {parts.length} sections · open only what you need
-        </p>
+        <div className="lesson-acc-progress">
+          <p className="lesson-acc-hint">
+            {parts.length} sections · {doneCount} opened · {prog}% explored
+          </p>
+          <div className="progress-track section-track" aria-hidden="true">
+            <div className="progress-fill" style={{ width: `${prog}%` }} />
+          </div>
+        </div>
         <div className="lesson-acc-actions">
           <button type="button" className="btn btn-ghost btn-sm" onClick={expandAll}>
             Expand all
@@ -95,13 +146,14 @@ export function LessonAccordion({
       <div className="accordion lesson-parts" role="list">
         {parts.map((part, index) => {
           const isOpen = openIds.has(part.id);
+          const seen = isSectionDone(lessonId, part.id);
           const triggerId = `${baseId}-trigger-${part.id}`;
           const panelId = `${baseId}-panel-${part.id}`;
 
           return (
             <div
               key={part.id}
-              className={`acc-item lesson-part${isOpen ? " open" : ""}`}
+              className={`acc-item lesson-part${isOpen ? " open" : ""}${seen ? " seen" : ""}`}
               role="listitem"
             >
               <button
@@ -113,9 +165,16 @@ export function LessonAccordion({
                 onClick={() => toggle(part.id)}
                 onKeyDown={(e) => onTriggerKeyDown(e, index)}
               >
-                <span className="acc-num">{index + 1}</span>
+                <span className="acc-num" aria-hidden="true">
+                  {seen ? "✓" : index + 1}
+                </span>
                 <span className="acc-title">{part.title}</span>
                 <span className="acc-meta">
+                  {seen && !isOpen && (
+                    <span className="status-badge" data-status="picked">
+                      <span className="status-text">Opened</span>
+                    </span>
+                  )}
                   <span className="acc-chevron" aria-hidden="true">
                     {isOpen ? "−" : "+"}
                   </span>
