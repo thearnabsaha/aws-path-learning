@@ -1,6 +1,5 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useProgress } from "@/context/ProgressContext";
 import type { LessonSummary } from "@/types/lesson";
@@ -12,14 +11,6 @@ import { PathPicker } from "./PathPicker";
 import { CoachMarks } from "./CoachMarks";
 import { dueReviews } from "@/lib/quizUtils";
 import { getPath } from "@/lib/paths";
-
-const HeroScene = dynamic(
-  () => import("./HeroScene").then((m) => m.HeroScene),
-  {
-    ssr: false,
-    loading: () => <div className="hero-scene hero-scene-fallback" aria-hidden="true" />,
-  }
-);
 
 export function HomeView({ lessons }: { lessons: LessonSummary[] }) {
   const {
@@ -56,12 +47,11 @@ export function HomeView({ lessons }: { lessons: LessonSummary[] }) {
     <div className="home home-landing">
       <CoachMarks />
 
-      {/* ——— Cinematic hero ——— */}
-      <section className="landing-hero" aria-label="Welcome">
-        <div className="landing-hero-canvas">
-          <HeroScene />
-          <div className="landing-hero-glow" aria-hidden="true" />
-          <div className="landing-hero-fade" aria-hidden="true" />
+      <section className="landing-hero landing-hero-static" aria-label="Welcome">
+        <div className="landing-hero-canvas" aria-hidden="true">
+          <div className="hero-scene hero-scene-fallback" />
+          <div className="landing-hero-glow" />
+          <div className="landing-hero-fade" />
         </div>
 
         <div className="landing-hero-inner">
@@ -72,12 +62,12 @@ export function HomeView({ lessons }: { lessons: LessonSummary[] }) {
             </p>
             <h1 className="landing-title">
               Learn AWS
-              <span className="landing-title-accent"> in the cloud</span>
+              <span className="landing-title-accent"> clearly</span>
             </h1>
             <p className="landing-lead">
-              A cinematic, self-paced path from fundamentals through
-              infrastructure as code—with quizzes, spaced review, labs, and
-              progress that stays on this device.
+              Self-paced path from fundamentals through infrastructure as code
+              and SAA extras—with quizzes, spaced review, labs, and progress
+              that stays on this device.
             </p>
 
             <div className="landing-search">
@@ -85,7 +75,10 @@ export function HomeView({ lessons }: { lessons: LessonSummary[] }) {
             </div>
 
             <div className="landing-cta">
-              <Link className="btn btn-primary btn-lg landing-cta-primary" href={continueHref}>
+              <Link
+                className="btn btn-primary btn-lg landing-cta-primary"
+                href={continueHref}
+              >
                 {completedCount
                   ? resumeSection
                     ? "Continue where you left off"
@@ -105,7 +98,7 @@ export function HomeView({ lessons }: { lessons: LessonSummary[] }) {
 
             <ul className="landing-pills" aria-label="Highlights">
               <li>Fast · Full · Interview · All</li>
-              <li>264 quiz questions</li>
+              <li>Quizzes on every lesson</li>
               <li>Offline PWA</li>
             </ul>
           </div>
@@ -119,11 +112,7 @@ export function HomeView({ lessons }: { lessons: LessonSummary[] }) {
                   cx="60"
                   cy="60"
                   r="52"
-                  style={
-                    {
-                      "--p": String(percent),
-                    } as React.CSSProperties
-                  }
+                  style={{ ["--p" as string]: String(percent) }}
                 />
               </svg>
               <div className="landing-glass-pct">
@@ -211,8 +200,8 @@ export function HomeView({ lessons }: { lessons: LessonSummary[] }) {
             <div className="curriculum-head curriculum-head-extra">
               <h2 className="section-title">Additional · SAA &amp; jobs</h2>
               <p className="curriculum-sub">
-                After the core path. Some topics are placeholders until full
-                content is published.
+                Lessons 13–20 deepen identity, security, messaging, edge, cost,
+                and containers for SAA / job readiness.
               </p>
             </div>
             <div className="lesson-grid landing-lesson-grid">

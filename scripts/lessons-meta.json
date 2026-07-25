@@ -14,7 +14,7 @@
     "goals": [
       "Explain cloud computing with a real-world analogy",
       "List core benefits of AWS",
-      "See the full beginner\u2192advanced roadmap"
+      "See the full beginner→advanced roadmap"
     ],
     "reviewed": "2026-07",
     "sources": [
@@ -269,7 +269,7 @@
     "source": "lesson-12.md",
     "number": "12",
     "section": "Automation",
-    "title": "IaC \u2014 CloudFormation & Terraform",
+    "title": "IaC — CloudFormation & Terraform",
     "short": "Declare infra as code, state, modules, CI/CD, tool choice.",
     "minutes": 40,
     "tags": [
@@ -293,215 +293,255 @@
     "id": "identity-center",
     "source": "lesson-13.md",
     "number": "13",
-    "section": "Additional \u00b7 SAA & jobs",
+    "section": "Additional · SAA & jobs",
     "title": "IAM Identity Center (SSO)",
-    "short": "Workforce identity, SSO, permission sets \u2014 modern alternative to long-lived IAM users.",
-    "minutes": 30,
+    "short": "Enterprise SSO, permission sets, Organizations, and temporary credentials instead of long-lived IAM users.",
+    "minutes": 40,
     "tags": [
       "security",
       "sso",
       "identity",
-      "coming-soon"
+      "organizations"
     ],
     "goals": [
-      "Explain IAM Identity Center vs IAM users",
-      "Describe permission sets and account assignments",
-      "Know when orgs choose SSO for workforce access"
+      "enterprises use IAM users",
+      "IAM Identity Center",
+      "Single Sign-On (SSO)",
+      "employees log in to AWS",
+      "What are Permission Sets",
+      "AWS Organizations",
+      "STS",
+      "AssumeRole work"
     ],
     "reviewed": "2026-07",
     "sources": [
       "https://docs.aws.amazon.com/singlesignon/latest/userguide/what-is.html",
-      "Placeholder \u2014 full content to be added"
+      "ChatGPT AWS Learning Roadmap (share 6a64fd27…)"
     ],
-    "comingSoon": true
+    "comingSoon": false
   },
   {
     "id": "kms-secrets",
     "source": "lesson-14.md",
     "number": "14",
-    "section": "Additional \u00b7 SAA & jobs",
+    "section": "Additional · SAA & jobs",
     "title": "KMS & Secrets Manager",
-    "short": "Encrypt with KMS keys; store and rotate secrets without hardcoding passwords.",
-    "minutes": 35,
+    "short": "Encryption keys, envelope encryption, CMKs, and secret storage with rotation.",
+    "minutes": 40,
     "tags": [
       "security",
       "kms",
       "secrets",
-      "coming-soon"
+      "encryption"
     ],
     "goals": [
-      "Customer managed keys vs AWS managed keys",
-      "Envelope encryption at a high level",
-      "Secrets Manager vs Parameter Store use cases"
+      "encryption",
+      "symmetric vs asymmetric encryption",
+      "AWS KMS",
+      "a Customer Managed Key (CMK)",
+      "envelope encryption",
+      "a data key",
+      "S3 encryption work",
+      "Secrets Manager"
     ],
     "reviewed": "2026-07",
     "sources": [
       "https://docs.aws.amazon.com/kms/latest/developerguide/overview.html",
       "https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html",
-      "Placeholder \u2014 full content to be added"
+      "ChatGPT AWS Learning Roadmap (share 6a64fd27…)"
     ],
-    "comingSoon": true
+    "comingSoon": false
   },
   {
     "id": "messaging",
     "source": "lesson-15.md",
     "number": "15",
-    "section": "Additional \u00b7 SAA & jobs",
+    "section": "Additional · SAA & jobs",
     "title": "SQS, SNS & EventBridge",
-    "short": "Queues, pub/sub, and event buses for decoupled, event-driven architectures.",
-    "minutes": 40,
+    "short": "Decouple systems with queues, pub/sub topics, and event buses.",
+    "minutes": 45,
     "tags": [
       "messaging",
       "events",
-      "integration",
-      "coming-soon"
+      "sqs",
+      "sns",
+      "eventbridge"
     ],
     "goals": [
-      "Choose queue vs topic vs event bus",
-      "Standard vs FIFO SQS patterns",
-      "EventBridge rules and common sources/targets"
+      "Why are queues needed",
+      "asynchronous communication",
+      "decoupling",
+      "Amazon SQS",
+      "Standard Queue vs FIFO Queue",
+      "Visibility Timeout",
+      "Long Polling",
+      "Dead Letter Queue (DLQ)"
     ],
     "reviewed": "2026-07",
     "sources": [
       "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html",
       "https://docs.aws.amazon.com/sns/latest/dg/welcome.html",
       "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-what-is.html",
-      "Placeholder \u2014 full content to be added"
+      "ChatGPT AWS Learning Roadmap (share 6a64fd27…)"
     ],
-    "comingSoon": true
+    "comingSoon": false
   },
   {
     "id": "cloudfront",
     "source": "lesson-16.md",
     "number": "16",
-    "section": "Additional \u00b7 SAA & jobs",
+    "section": "Additional · SAA & jobs",
     "title": "CloudFront & OAC",
-    "short": "CDN for low latency; Origin Access Control to keep S3 private.",
-    "minutes": 30,
+    "short": "CDN edge caching, distributions, and Origin Access Control for private S3.",
+    "minutes": 40,
     "tags": [
       "cdn",
       "cloudfront",
       "s3",
-      "coming-soon"
+      "oac"
     ],
     "goals": [
-      "What a CDN edge cache does",
-      "Distributions, origins, and behaviors",
-      "Why OAC is preferred over public S3 website endpoints"
+      "Why CDNs exist",
+      "What latency is",
+      "Edge Locations",
+      "CloudFront Distributions",
+      "Origins",
+      "Cache",
+      "Cache Hit vs Cache Miss",
+      "TTL"
     ],
     "reviewed": "2026-07",
     "sources": [
       "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html",
       "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html",
-      "Placeholder \u2014 full content to be added"
+      "ChatGPT AWS Learning Roadmap (share 6a64fd27…)"
     ],
-    "comingSoon": true
+    "comingSoon": false
   },
   {
     "id": "route53",
     "source": "lesson-17.md",
     "number": "17",
-    "section": "Additional \u00b7 SAA & jobs",
-    "title": "Route 53 basics",
-    "short": "DNS hosted zones, records, and routing policies that keep apps reachable.",
-    "minutes": 25,
+    "section": "Additional · SAA & jobs",
+    "title": "Route 53",
+    "short": "DNS, hosted zones, record types, alias records, and routing policies.",
+    "minutes": 35,
     "tags": [
       "dns",
       "route53",
-      "networking",
-      "coming-soon"
+      "networking"
     ],
     "goals": [
-      "Hosted zones and common record types",
-      "Alias vs CNAME for AWS resources",
-      "Simple routing policies used in interviews"
+      "What DNS is",
+      "Why DNS exists",
+      "What a domain name is",
+      "What an IP address is",
+      "What Route 53 is",
+      "Hosted Zones",
+      "DNS Records",
+      "A, AAAA, CNAME, Alias, MX, TXT, NS records"
     ],
     "reviewed": "2026-07",
     "sources": [
       "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/Welcome.html",
-      "Placeholder \u2014 full content to be added"
+      "ChatGPT AWS Learning Roadmap (share 6a64fd27…)"
     ],
-    "comingSoon": true
+    "comingSoon": false
   },
   {
     "id": "cost-management",
     "source": "lesson-18.md",
     "number": "18",
-    "section": "Additional \u00b7 SAA & jobs",
+    "section": "Additional · SAA & jobs",
     "title": "Cost Explorer & Budgets",
-    "short": "See what you spend, set budgets and alerts \u2014 day-one survival skill.",
-    "minutes": 25,
+    "short": "Pay-as-you-go, Free Tier, Cost Explorer, Budgets, and cost hygiene.",
+    "minutes": 35,
     "tags": [
       "cost",
       "billing",
-      "ops",
-      "coming-soon"
+      "budgets",
+      "ops"
     ],
     "goals": [
-      "Read Cost Explorer trends and group-by dimensions",
-      "Create a budget with alert thresholds",
-      "Name cost-control habits (tags, free tier, tear-down)"
+      "AWS pricing philosophy",
+      "Pay-as-you-go",
+      "Free Tier",
+      "Cost Explorer",
+      "AWS Budgets",
+      "Cost Anomaly Detection",
+      "Cost Allocation Tags",
+      "Savings Plans"
     ],
     "reviewed": "2026-07",
     "sources": [
       "https://docs.aws.amazon.com/cost-management/latest/userguide/ce-what-is.html",
       "https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-managing-costs.html",
-      "Placeholder \u2014 full content to be added"
+      "ChatGPT AWS Learning Roadmap (share 6a64fd27…)"
     ],
-    "comingSoon": true
+    "comingSoon": false
   },
   {
     "id": "security-ops",
     "source": "lesson-19.md",
     "number": "19",
-    "section": "Additional \u00b7 SAA & jobs",
-    "title": "Security Hub & GuardDuty",
-    "short": "Central findings and intelligent threat detection \u2014 ops/security overview.",
-    "minutes": 30,
+    "section": "Additional · SAA & jobs",
+    "title": "Security Hub, GuardDuty & friends",
+    "short": "Shared responsibility, Shield, WAF, GuardDuty, Inspector, and Security Hub overview.",
+    "minutes": 40,
     "tags": [
       "security",
       "guardduty",
       "security-hub",
-      "coming-soon"
+      "waf"
     ],
     "goals": [
-      "What GuardDuty detects at a high level",
-      "How Security Hub aggregates findings",
-      "Where these fit next to CloudTrail and IAM"
+      "AWS Shared Responsibility Model",
+      "Defence in Depth",
+      "AWS Shield",
+      "AWS WAF",
+      "Amazon GuardDuty",
+      "Amazon Inspector",
+      "AWS Security Hub",
+      "Amazon Macie"
     ],
     "reviewed": "2026-07",
     "sources": [
       "https://docs.aws.amazon.com/guardduty/latest/ug/what-is-guardduty.html",
       "https://docs.aws.amazon.com/securityhub/latest/userguide/what-is-securityhub.html",
-      "Placeholder \u2014 full content to be added"
+      "ChatGPT AWS Learning Roadmap (share 6a64fd27…)"
     ],
-    "comingSoon": true
+    "comingSoon": false
   },
   {
     "id": "eks-ecs",
     "source": "lesson-20.md",
     "number": "20",
-    "section": "Additional \u00b7 SAA & jobs",
-    "title": "EKS vs ECS \u2014 when to choose",
-    "short": "Compare managed Kubernetes (EKS) with ECS after you know containers.",
-    "minutes": 30,
+    "section": "Additional · SAA & jobs",
+    "title": "ECS vs EKS",
+    "short": "Container orchestration, ECS components, EKS trade-offs, and when to choose each.",
+    "minutes": 40,
     "tags": [
       "containers",
-      "eks",
       "ecs",
-      "coming-soon"
+      "eks",
+      "orchestration"
     ],
     "goals": [
-      "Contrast orchestration models of ECS and EKS",
-      "List trade-offs: ops burden, portability, ecosystem",
-      "Pick a default for common team situations"
+      "Why container orchestration exists",
+      "What ECS is",
+      "What EKS is",
+      "ECS Cluster",
+      "Task Definition",
+      "Tasks",
+      "Services",
+      "Capacity Providers"
     ],
     "reviewed": "2026-07",
     "sources": [
-      "https://docs.aws.amazon.com/eks/latest/userguide/what-is-eks.html",
       "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/Welcome.html",
-      "Placeholder \u2014 full content to be added"
+      "https://docs.aws.amazon.com/eks/latest/userguide/what-is-eks.html",
+      "ChatGPT AWS Learning Roadmap (share 6a64fd27…)"
     ],
-    "comingSoon": true
+    "comingSoon": false
   }
 ]

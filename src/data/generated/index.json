@@ -1508,57 +1508,174 @@
     "number": "13",
     "section": "Additional · SAA & jobs",
     "title": "IAM Identity Center (SSO)",
-    "short": "Workforce identity, SSO, permission sets — modern alternative to long-lived IAM users.",
-    "minutes": 30,
+    "short": "Enterprise SSO, permission sets, Organizations, and temporary credentials instead of long-lived IAM users.",
+    "minutes": 40,
     "tags": [
       "security",
       "sso",
       "identity",
-      "coming-soon"
+      "organizations"
     ],
     "goals": [
-      "Explain IAM Identity Center vs IAM users",
-      "Describe permission sets and account assignments",
-      "Know when orgs choose SSO for workforce access"
+      "enterprises use IAM users",
+      "IAM Identity Center",
+      "Single Sign-On (SSO)",
+      "employees log in to AWS",
+      "What are Permission Sets",
+      "AWS Organizations",
+      "STS",
+      "AssumeRole work"
     ],
     "reviewed": "2026-07",
-    "comingSoon": true,
+    "comingSoon": false,
     "parts": [
       {
         "id": "part-1",
-        "title": "Lesson 13: IAM Identity Center (SSO)"
+        "title": "Lesson 13 — AWS IAM Identity Center (AWS SSO) & Enterprise Identity Management"
       },
       {
         "id": "part-2",
-        "title": "Why this lesson matters"
+        "title": "Learning Objectives"
       },
       {
         "id": "part-3",
-        "title": "Learning goals (preview)"
+        "title": "Chapter 1 — The Problem AWS Had to Solve"
       },
       {
         "id": "part-4",
-        "title": "Outline (coming soon)"
+        "title": "The Bigger Problem"
       },
       {
         "id": "part-5",
-        "title": "Key terms (placeholder)"
+        "title": "This Is Called Identity Sprawl"
       },
       {
         "id": "part-6",
-        "title": "Architecture sketch (coming soon)"
+        "title": "AWS's Solution"
       },
       {
         "id": "part-7",
-        "title": "Hands-on Lab"
+        "title": "Chapter 2 — Modern Enterprise Identity"
       },
       {
         "id": "part-8",
-        "title": "Official starting points"
+        "title": "Instead of This"
       },
       {
         "id": "part-9",
-        "title": "Next"
+        "title": "Chapter 3 — AWS Organizations"
+      },
+      {
+        "id": "part-10",
+        "title": "Why Multiple Accounts?"
+      },
+      {
+        "id": "part-11",
+        "title": "Organizational Units (OU)"
+      },
+      {
+        "id": "part-12",
+        "title": "Service Control Policies (SCP)"
+      },
+      {
+        "id": "part-13",
+        "title": "Chapter 4 — What is IAM Identity Center?"
+      },
+      {
+        "id": "part-14",
+        "title": "Chapter 5 — The Complete Login Flow"
+      },
+      {
+        "id": "part-15",
+        "title": "Chapter 6 — Identity Provider (IdP)"
+      },
+      {
+        "id": "part-16",
+        "title": "Service Provider (SP)"
+      },
+      {
+        "id": "part-17",
+        "title": "Chapter 7 — Single Sign-On (SSO)"
+      },
+      {
+        "id": "part-18",
+        "title": "Chapter 8 — Permission Sets"
+      },
+      {
+        "id": "part-19",
+        "title": "Permission Set vs IAM Policy"
+      },
+      {
+        "id": "part-20",
+        "title": "Chapter 9 — Groups"
+      },
+      {
+        "id": "part-21",
+        "title": "Chapter 10 — Behind the Scenes"
+      },
+      {
+        "id": "part-22",
+        "title": "Chapter 11 — AWS STS (Security Token Service)"
+      },
+      {
+        "id": "part-23",
+        "title": "Why Temporary Credentials?"
+      },
+      {
+        "id": "part-24",
+        "title": "Chapter 12 — AssumeRole"
+      },
+      {
+        "id": "part-25",
+        "title": "Chapter 13 — Cross-Account Access"
+      },
+      {
+        "id": "part-26",
+        "title": "Chapter 14 — SAML 2.0"
+      },
+      {
+        "id": "part-27",
+        "title": "What is a SAML Assertion?"
+      },
+      {
+        "id": "part-28",
+        "title": "Chapter 15 — OIDC vs OAuth vs SAML"
+      },
+      {
+        "id": "part-29",
+        "title": "Chapter 16 — Active Directory Integration"
+      },
+      {
+        "id": "part-30",
+        "title": "Chapter 17 — AWS CLI with SSO"
+      },
+      {
+        "id": "part-31",
+        "title": "Chapter 18 — Session Duration"
+      },
+      {
+        "id": "part-32",
+        "title": "Chapter 19 — Security Best Practices"
+      },
+      {
+        "id": "part-33",
+        "title": "Chapter 20 — Real Enterprise Example"
+      },
+      {
+        "id": "part-34",
+        "title": "Chapter 21 — Common Interview Questions"
+      },
+      {
+        "id": "part-35",
+        "title": "Chapter 22 — Hands-on Lab"
+      },
+      {
+        "id": "part-36",
+        "title": "Key Takeaways"
+      },
+      {
+        "id": "part-37",
+        "title": "Mental Model"
       }
     ]
   },
@@ -1567,57 +1684,158 @@
     "number": "14",
     "section": "Additional · SAA & jobs",
     "title": "KMS & Secrets Manager",
-    "short": "Encrypt with KMS keys; store and rotate secrets without hardcoding passwords.",
-    "minutes": 35,
+    "short": "Encryption keys, envelope encryption, CMKs, and secret storage with rotation.",
+    "minutes": 40,
     "tags": [
       "security",
       "kms",
       "secrets",
-      "coming-soon"
+      "encryption"
     ],
     "goals": [
-      "Customer managed keys vs AWS managed keys",
-      "Envelope encryption at a high level",
-      "Secrets Manager vs Parameter Store use cases"
+      "encryption",
+      "symmetric vs asymmetric encryption",
+      "AWS KMS",
+      "a Customer Managed Key (CMK)",
+      "envelope encryption",
+      "a data key",
+      "S3 encryption work",
+      "Secrets Manager"
     ],
     "reviewed": "2026-07",
-    "comingSoon": true,
+    "comingSoon": false,
     "parts": [
       {
         "id": "part-1",
-        "title": "Lesson 14: KMS & Secrets Manager"
+        "title": "Lesson 14 — AWS KMS & Secrets Manager (Complete Deep Dive)"
       },
       {
         "id": "part-2",
-        "title": "Why this lesson matters"
+        "title": "Learning Objectives"
       },
       {
         "id": "part-3",
-        "title": "Learning goals (preview)"
+        "title": "Chapter 1 — Why Encryption Exists"
       },
       {
         "id": "part-4",
-        "title": "Outline (coming soon)"
+        "title": "What is Encryption?"
       },
       {
         "id": "part-5",
-        "title": "Key terms (placeholder)"
+        "title": "Chapter 2 — What is a Key?"
       },
       {
         "id": "part-6",
-        "title": "Architecture sketch (coming soon)"
+        "title": "Chapter 3 — Symmetric Encryption"
       },
       {
         "id": "part-7",
-        "title": "Hands-on Lab"
+        "title": "Chapter 4 — Asymmetric Encryption"
       },
       {
         "id": "part-8",
-        "title": "Official starting points"
+        "title": "Chapter 5 — Why AWS Built KMS"
       },
       {
         "id": "part-9",
-        "title": "Next"
+        "title": "Chapter 6 — What is AWS KMS?"
+      },
+      {
+        "id": "part-10",
+        "title": "Chapter 7 — AWS Managed Keys vs Customer Managed Keys"
+      },
+      {
+        "id": "part-11",
+        "title": "AWS Managed Keys"
+      },
+      {
+        "id": "part-12",
+        "title": "Customer Managed Keys (CMKs)"
+      },
+      {
+        "id": "part-13",
+        "title": "Chapter 8 — Key Policies"
+      },
+      {
+        "id": "part-14",
+        "title": "Chapter 9 — How Encryption Actually Happens"
+      },
+      {
+        "id": "part-15",
+        "title": "Chapter 10 — Envelope Encryption"
+      },
+      {
+        "id": "part-16",
+        "title": "Chapter 11 — Data Keys"
+      },
+      {
+        "id": "part-17",
+        "title": "Chapter 12 — Encrypting an S3 Object"
+      },
+      {
+        "id": "part-18",
+        "title": "Chapter 13 — KMS Key States"
+      },
+      {
+        "id": "part-19",
+        "title": "Chapter 14 — Automatic Rotation"
+      },
+      {
+        "id": "part-20",
+        "title": "Chapter 15 — Auditing KMS"
+      },
+      {
+        "id": "part-21",
+        "title": "Chapter 16 — What is AWS Secrets Manager?"
+      },
+      {
+        "id": "part-22",
+        "title": "Chapter 17 — Storing Secrets"
+      },
+      {
+        "id": "part-23",
+        "title": "Chapter 18 — How an Application Uses a Secret"
+      },
+      {
+        "id": "part-24",
+        "title": "Chapter 19 — Automatic Secret Rotation"
+      },
+      {
+        "id": "part-25",
+        "title": "Chapter 20 — Secrets Manager vs Parameter Store"
+      },
+      {
+        "id": "part-26",
+        "title": "Chapter 21 — KMS vs Secrets Manager"
+      },
+      {
+        "id": "part-27",
+        "title": "Chapter 22 — Production Architecture"
+      },
+      {
+        "id": "part-28",
+        "title": "Chapter 23 — Enterprise Architecture"
+      },
+      {
+        "id": "part-29",
+        "title": "Chapter 24 — Best Practices"
+      },
+      {
+        "id": "part-30",
+        "title": "Chapter 25 — Common Mistakes"
+      },
+      {
+        "id": "part-31",
+        "title": "Chapter 26 — Interview Questions"
+      },
+      {
+        "id": "part-32",
+        "title": "Hands-on Lab"
+      },
+      {
+        "id": "part-33",
+        "title": "Final Mental Model"
       }
     ]
   },
@@ -1626,57 +1844,179 @@
     "number": "15",
     "section": "Additional · SAA & jobs",
     "title": "SQS, SNS & EventBridge",
-    "short": "Queues, pub/sub, and event buses for decoupled, event-driven architectures.",
-    "minutes": 40,
+    "short": "Decouple systems with queues, pub/sub topics, and event buses.",
+    "minutes": 45,
     "tags": [
       "messaging",
       "events",
-      "integration",
-      "coming-soon"
+      "sqs",
+      "sns",
+      "eventbridge"
     ],
     "goals": [
-      "Choose queue vs topic vs event bus",
-      "Standard vs FIFO SQS patterns",
-      "EventBridge rules and common sources/targets"
+      "Why are queues needed",
+      "asynchronous communication",
+      "decoupling",
+      "Amazon SQS",
+      "Standard Queue vs FIFO Queue",
+      "Visibility Timeout",
+      "Long Polling",
+      "Dead Letter Queue (DLQ)"
     ],
     "reviewed": "2026-07",
-    "comingSoon": true,
+    "comingSoon": false,
     "parts": [
       {
         "id": "part-1",
-        "title": "Lesson 15: SQS, SNS & EventBridge"
+        "title": "Lesson 15 — Amazon SQS, Amazon SNS & Amazon EventBridge (Complete Deep Dive)"
       },
       {
         "id": "part-2",
-        "title": "Why this lesson matters"
+        "title": "Learning Objectives"
       },
       {
         "id": "part-3",
-        "title": "Learning goals (preview)"
+        "title": "Chapter 1 — The Biggest Problem in Distributed Systems"
       },
       {
         "id": "part-4",
-        "title": "Outline (coming soon)"
+        "title": "Synchronous Architecture"
       },
       {
         "id": "part-5",
-        "title": "Key terms (placeholder)"
+        "title": "This Problem is Called Tight Coupling"
       },
       {
         "id": "part-6",
-        "title": "Architecture sketch (coming soon)"
+        "title": "Modern Solution"
       },
       {
         "id": "part-7",
-        "title": "Hands-on Lab"
+        "title": "Chapter 2 — Synchronous vs Asynchronous"
       },
       {
         "id": "part-8",
-        "title": "Official starting points"
+        "title": "Synchronous"
       },
       {
         "id": "part-9",
-        "title": "Next"
+        "title": "Asynchronous"
+      },
+      {
+        "id": "part-10",
+        "title": "Chapter 3 — What is Amazon SQS?"
+      },
+      {
+        "id": "part-11",
+        "title": "Basic Architecture"
+      },
+      {
+        "id": "part-12",
+        "title": "Chapter 4 — Decoupling"
+      },
+      {
+        "id": "part-13",
+        "title": "Chapter 5 — Producer and Consumer"
+      },
+      {
+        "id": "part-14",
+        "title": "Chapter 6 — Message Lifecycle"
+      },
+      {
+        "id": "part-15",
+        "title": "Chapter 7 — Standard Queue"
+      },
+      {
+        "id": "part-16",
+        "title": "What is Idempotency?"
+      },
+      {
+        "id": "part-17",
+        "title": "Chapter 8 — FIFO Queue"
+      },
+      {
+        "id": "part-18",
+        "title": "When Should You Use FIFO?"
+      },
+      {
+        "id": "part-19",
+        "title": "Chapter 9 — Visibility Timeout"
+      },
+      {
+        "id": "part-20",
+        "title": "Chapter 10 — Long Polling"
+      },
+      {
+        "id": "part-21",
+        "title": "Chapter 11 — Message Retention"
+      },
+      {
+        "id": "part-22",
+        "title": "Chapter 12 — Dead Letter Queue (DLQ)"
+      },
+      {
+        "id": "part-23",
+        "title": "Chapter 13 — Amazon SNS"
+      },
+      {
+        "id": "part-24",
+        "title": "Chapter 14 — Topics"
+      },
+      {
+        "id": "part-25",
+        "title": "Chapter 15 — SNS Subscribers"
+      },
+      {
+        "id": "part-26",
+        "title": "Chapter 16 — Fan-Out Pattern"
+      },
+      {
+        "id": "part-27",
+        "title": "Chapter 17 — What is EventBridge?"
+      },
+      {
+        "id": "part-28",
+        "title": "Chapter 18 — Event Bus"
+      },
+      {
+        "id": "part-29",
+        "title": "Chapter 19 — Rules"
+      },
+      {
+        "id": "part-30",
+        "title": "Chapter 20 — Custom Events"
+      },
+      {
+        "id": "part-31",
+        "title": "Chapter 21 — SQS vs SNS vs EventBridge"
+      },
+      {
+        "id": "part-32",
+        "title": "Chapter 22 — Production Architecture"
+      },
+      {
+        "id": "part-33",
+        "title": "Chapter 23 — EventBridge + Lambda"
+      },
+      {
+        "id": "part-34",
+        "title": "Chapter 24 — Best Practices"
+      },
+      {
+        "id": "part-35",
+        "title": "Chapter 25 — Common Mistakes"
+      },
+      {
+        "id": "part-36",
+        "title": "Chapter 26 — Interview Questions"
+      },
+      {
+        "id": "part-37",
+        "title": "Hands-on Lab"
+      },
+      {
+        "id": "part-38",
+        "title": "Final Mental Model"
       }
     ]
   },
@@ -1685,57 +2025,182 @@
     "number": "16",
     "section": "Additional · SAA & jobs",
     "title": "CloudFront & OAC",
-    "short": "CDN for low latency; Origin Access Control to keep S3 private.",
-    "minutes": 30,
+    "short": "CDN edge caching, distributions, and Origin Access Control for private S3.",
+    "minutes": 40,
     "tags": [
       "cdn",
       "cloudfront",
       "s3",
-      "coming-soon"
+      "oac"
     ],
     "goals": [
-      "What a CDN edge cache does",
-      "Distributions, origins, and behaviors",
-      "Why OAC is preferred over public S3 website endpoints"
+      "Why CDNs exist",
+      "What latency is",
+      "Edge Locations",
+      "CloudFront Distributions",
+      "Origins",
+      "Cache",
+      "Cache Hit vs Cache Miss",
+      "TTL"
     ],
     "reviewed": "2026-07",
-    "comingSoon": true,
+    "comingSoon": false,
     "parts": [
       {
         "id": "part-1",
-        "title": "Lesson 16: CloudFront & OAC"
+        "title": "Lesson 16 — Amazon CloudFront & Origin Access Control (OAC) (Complete Deep Dive)"
       },
       {
         "id": "part-2",
-        "title": "Why this lesson matters"
+        "title": "Learning Objectives"
       },
       {
         "id": "part-3",
-        "title": "Learning goals (preview)"
+        "title": "Chapter 1 — The Internet Isn't Magic"
       },
       {
         "id": "part-4",
-        "title": "Outline (coming soon)"
+        "title": "What is Latency?"
       },
       {
         "id": "part-5",
-        "title": "Key terms (placeholder)"
+        "title": "Problem"
       },
       {
         "id": "part-6",
-        "title": "Architecture sketch (coming soon)"
+        "title": "Chapter 2 — What is a CDN?"
       },
       {
         "id": "part-7",
-        "title": "Hands-on Lab"
+        "title": "Real-World Analogy"
       },
       {
         "id": "part-8",
-        "title": "Official starting points"
+        "title": "Chapter 3 — What is CloudFront?"
       },
       {
         "id": "part-9",
-        "title": "Next"
+        "title": "Chapter 4 — Edge Locations"
+      },
+      {
+        "id": "part-10",
+        "title": "Chapter 5 — Origin"
+      },
+      {
+        "id": "part-11",
+        "title": "Chapter 6 — CloudFront Distribution"
+      },
+      {
+        "id": "part-12",
+        "title": "Chapter 7 — First Request"
+      },
+      {
+        "id": "part-13",
+        "title": "Chapter 8 — Cache Hit"
+      },
+      {
+        "id": "part-14",
+        "title": "Chapter 9 — Cache Miss"
+      },
+      {
+        "id": "part-15",
+        "title": "Cache Hit Ratio"
+      },
+      {
+        "id": "part-16",
+        "title": "Chapter 10 — Time To Live (TTL)"
+      },
+      {
+        "id": "part-17",
+        "title": "Chapter 11 — Cache Invalidation"
+      },
+      {
+        "id": "part-18",
+        "title": "Better Than Invalidation"
+      },
+      {
+        "id": "part-19",
+        "title": "Chapter 12 — Compression"
+      },
+      {
+        "id": "part-20",
+        "title": "Chapter 13 — HTTPS"
+      },
+      {
+        "id": "part-21",
+        "title": "Chapter 14 — Origin Access Control (OAC)"
+      },
+      {
+        "id": "part-22",
+        "title": "The Problem"
+      },
+      {
+        "id": "part-23",
+        "title": "Solution"
+      },
+      {
+        "id": "part-24",
+        "title": "How OAC Works"
+      },
+      {
+        "id": "part-25",
+        "title": "Benefits of OAC"
+      },
+      {
+        "id": "part-26",
+        "title": "Chapter 15 — Signed URLs"
+      },
+      {
+        "id": "part-27",
+        "title": "Example"
+      },
+      {
+        "id": "part-28",
+        "title": "Chapter 16 — Signed Cookies"
+      },
+      {
+        "id": "part-29",
+        "title": "Signed URL vs Signed Cookie"
+      },
+      {
+        "id": "part-30",
+        "title": "Chapter 17 — Geo Restriction"
+      },
+      {
+        "id": "part-31",
+        "title": "Chapter 18 — Price Classes"
+      },
+      {
+        "id": "part-32",
+        "title": "Chapter 19 — Dynamic Content"
+      },
+      {
+        "id": "part-33",
+        "title": "Chapter 20 — CloudFront + S3 Static Website"
+      },
+      {
+        "id": "part-34",
+        "title": "Chapter 21 — Production Architecture"
+      },
+      {
+        "id": "part-35",
+        "title": "Chapter 22 — Best Practices"
+      },
+      {
+        "id": "part-36",
+        "title": "Chapter 23 — Common Mistakes"
+      },
+      {
+        "id": "part-37",
+        "title": "Chapter 24 — Interview Questions"
+      },
+      {
+        "id": "part-38",
+        "title": "Hands-on Lab"
+      },
+      {
+        "id": "part-39",
+        "title": "Final Mental Model"
       }
     ]
   },
@@ -1743,58 +2208,174 @@
     "id": "route53",
     "number": "17",
     "section": "Additional · SAA & jobs",
-    "title": "Route 53 basics",
-    "short": "DNS hosted zones, records, and routing policies that keep apps reachable.",
-    "minutes": 25,
+    "title": "Route 53",
+    "short": "DNS, hosted zones, record types, alias records, and routing policies.",
+    "minutes": 35,
     "tags": [
       "dns",
       "route53",
-      "networking",
-      "coming-soon"
+      "networking"
     ],
     "goals": [
-      "Hosted zones and common record types",
-      "Alias vs CNAME for AWS resources",
-      "Simple routing policies used in interviews"
+      "What DNS is",
+      "Why DNS exists",
+      "What a domain name is",
+      "What an IP address is",
+      "What Route 53 is",
+      "Hosted Zones",
+      "DNS Records",
+      "A, AAAA, CNAME, Alias, MX, TXT, NS records"
     ],
     "reviewed": "2026-07",
-    "comingSoon": true,
+    "comingSoon": false,
     "parts": [
       {
         "id": "part-1",
-        "title": "Lesson 17: Route 53 basics"
+        "title": "Lesson 17 — Amazon Route 53 (Complete Deep Dive)"
       },
       {
         "id": "part-2",
-        "title": "Why this lesson matters"
+        "title": "Learning Objectives"
       },
       {
         "id": "part-3",
-        "title": "Learning goals (preview)"
+        "title": "Chapter 1 — Why DNS Exists"
       },
       {
         "id": "part-4",
-        "title": "Outline (coming soon)"
+        "title": "What is DNS?"
       },
       {
         "id": "part-5",
-        "title": "Key terms (placeholder)"
+        "title": "Chapter 2 — Domain Name"
       },
       {
         "id": "part-6",
-        "title": "Architecture sketch (coming soon)"
+        "title": "Chapter 3 — What Happens When You Type a Website?"
       },
       {
         "id": "part-7",
-        "title": "Hands-on Lab"
+        "title": "Chapter 4 — Recursive Resolver"
       },
       {
         "id": "part-8",
-        "title": "Official starting points"
+        "title": "Chapter 5 — What is Route 53?"
       },
       {
         "id": "part-9",
-        "title": "Next"
+        "title": "Chapter 6 — Domain Registration"
+      },
+      {
+        "id": "part-10",
+        "title": "Chapter 7 — Hosted Zones"
+      },
+      {
+        "id": "part-11",
+        "title": "Chapter 8 — DNS Records"
+      },
+      {
+        "id": "part-12",
+        "title": "Chapter 9 — A Record"
+      },
+      {
+        "id": "part-13",
+        "title": "Chapter 10 — AAAA Record"
+      },
+      {
+        "id": "part-14",
+        "title": "Chapter 11 — CNAME Record"
+      },
+      {
+        "id": "part-15",
+        "title": "CNAME Limitation"
+      },
+      {
+        "id": "part-16",
+        "title": "Chapter 12 — Alias Record"
+      },
+      {
+        "id": "part-17",
+        "title": "Chapter 13 — MX Record"
+      },
+      {
+        "id": "part-18",
+        "title": "Chapter 14 — TXT Record"
+      },
+      {
+        "id": "part-19",
+        "title": "Chapter 15 — NS Record"
+      },
+      {
+        "id": "part-20",
+        "title": "Chapter 16 — TTL (Time To Live)"
+      },
+      {
+        "id": "part-21",
+        "title": "Chapter 17 — Health Checks"
+      },
+      {
+        "id": "part-22",
+        "title": "Chapter 18 — Routing Policies"
+      },
+      {
+        "id": "part-23",
+        "title": "Simple Routing"
+      },
+      {
+        "id": "part-24",
+        "title": "Weighted Routing"
+      },
+      {
+        "id": "part-25",
+        "title": "Chapter 19 — Failover Routing"
+      },
+      {
+        "id": "part-26",
+        "title": "Chapter 20 — Latency Routing"
+      },
+      {
+        "id": "part-27",
+        "title": "Chapter 21 — Geolocation Routing"
+      },
+      {
+        "id": "part-28",
+        "title": "Chapter 22 — Geoproximity Routing (Overview)"
+      },
+      {
+        "id": "part-29",
+        "title": "Chapter 23 — Multi-Region Architecture"
+      },
+      {
+        "id": "part-30",
+        "title": "Chapter 24 — Route 53 + CloudFront"
+      },
+      {
+        "id": "part-31",
+        "title": "Chapter 25 — Route 53 + Load Balancer"
+      },
+      {
+        "id": "part-32",
+        "title": "Chapter 26 — Production Architecture"
+      },
+      {
+        "id": "part-33",
+        "title": "Chapter 27 — Best Practices"
+      },
+      {
+        "id": "part-34",
+        "title": "Chapter 28 — Common Mistakes"
+      },
+      {
+        "id": "part-35",
+        "title": "Chapter 29 — Interview Questions"
+      },
+      {
+        "id": "part-36",
+        "title": "Hands-on Lab"
+      },
+      {
+        "id": "part-37",
+        "title": "Final Mental Model"
       }
     ]
   },
@@ -1803,57 +2384,158 @@
     "number": "18",
     "section": "Additional · SAA & jobs",
     "title": "Cost Explorer & Budgets",
-    "short": "See what you spend, set budgets and alerts — day-one survival skill.",
-    "minutes": 25,
+    "short": "Pay-as-you-go, Free Tier, Cost Explorer, Budgets, and cost hygiene.",
+    "minutes": 35,
     "tags": [
       "cost",
       "billing",
-      "ops",
-      "coming-soon"
+      "budgets",
+      "ops"
     ],
     "goals": [
-      "Read Cost Explorer trends and group-by dimensions",
-      "Create a budget with alert thresholds",
-      "Name cost-control habits (tags, free tier, tear-down)"
+      "AWS pricing philosophy",
+      "Pay-as-you-go",
+      "Free Tier",
+      "Cost Explorer",
+      "AWS Budgets",
+      "Cost Anomaly Detection",
+      "Cost Allocation Tags",
+      "Savings Plans"
     ],
     "reviewed": "2026-07",
-    "comingSoon": true,
+    "comingSoon": false,
     "parts": [
       {
         "id": "part-1",
-        "title": "Lesson 18: Cost Explorer & Budgets"
+        "title": "Lesson 18 — AWS Cost Explorer, AWS Budgets & Cost Optimization (Complete Deep Dive)"
       },
       {
         "id": "part-2",
-        "title": "Why this lesson matters"
+        "title": "Learning Objectives"
       },
       {
         "id": "part-3",
-        "title": "Learning goals (preview)"
+        "title": "Chapter 1 — Why Cloud Pricing Exists"
       },
       {
         "id": "part-4",
-        "title": "Outline (coming soon)"
+        "title": "AWS Pricing Philosophy"
       },
       {
         "id": "part-5",
-        "title": "Key terms (placeholder)"
+        "title": "Chapter 2 — What Does AWS Charge For?"
       },
       {
         "id": "part-6",
-        "title": "Architecture sketch (coming soon)"
+        "title": "Example EC2 Billing"
       },
       {
         "id": "part-7",
-        "title": "Hands-on Lab"
+        "title": "Chapter 3 — The AWS Free Tier"
       },
       {
         "id": "part-8",
-        "title": "Official starting points"
+        "title": "Common Beginner Mistake"
       },
       {
         "id": "part-9",
-        "title": "Next"
+        "title": "Chapter 4 — Cost Explorer"
+      },
+      {
+        "id": "part-10",
+        "title": "Filtering Costs"
+      },
+      {
+        "id": "part-11",
+        "title": "Forecasting"
+      },
+      {
+        "id": "part-12",
+        "title": "Chapter 5 — AWS Budgets"
+      },
+      {
+        "id": "part-13",
+        "title": "Chapter 6 — Cost Anomaly Detection"
+      },
+      {
+        "id": "part-14",
+        "title": "Chapter 7 — Cost Allocation Tags"
+      },
+      {
+        "id": "part-15",
+        "title": "Chapter 8 — On-Demand Instances"
+      },
+      {
+        "id": "part-16",
+        "title": "Chapter 9 — Reserved Instances (RI)"
+      },
+      {
+        "id": "part-17",
+        "title": "Chapter 10 — Savings Plans"
+      },
+      {
+        "id": "part-18",
+        "title": "Chapter 11 — Spot Instances"
+      },
+      {
+        "id": "part-19",
+        "title": "Chapter 12 — Storage Optimisation"
+      },
+      {
+        "id": "part-20",
+        "title": "Chapter 13 — Rightsizing"
+      },
+      {
+        "id": "part-21",
+        "title": "Chapter 14 — Auto Scaling Saves Money"
+      },
+      {
+        "id": "part-22",
+        "title": "Chapter 15 — Lambda vs EC2 Costs"
+      },
+      {
+        "id": "part-23",
+        "title": "Chapter 16 — Data Transfer Costs"
+      },
+      {
+        "id": "part-24",
+        "title": "Chapter 17 — NAT Gateway Costs"
+      },
+      {
+        "id": "part-25",
+        "title": "Chapter 18 — CloudFront Saves Money"
+      },
+      {
+        "id": "part-26",
+        "title": "Chapter 19 — Cost Optimisation Pillar"
+      },
+      {
+        "id": "part-27",
+        "title": "Chapter 20 — Trusted Advisor"
+      },
+      {
+        "id": "part-28",
+        "title": "Chapter 21 — Real Production Example"
+      },
+      {
+        "id": "part-29",
+        "title": "Chapter 22 — Common Cost Mistakes"
+      },
+      {
+        "id": "part-30",
+        "title": "Chapter 23 — Best Practices"
+      },
+      {
+        "id": "part-31",
+        "title": "Chapter 24 — Interview Questions"
+      },
+      {
+        "id": "part-32",
+        "title": "Hands-on Lab"
+      },
+      {
+        "id": "part-33",
+        "title": "Final Mental Model"
       }
     ]
   },
@@ -1861,58 +2543,147 @@
     "id": "security-ops",
     "number": "19",
     "section": "Additional · SAA & jobs",
-    "title": "Security Hub & GuardDuty",
-    "short": "Central findings and intelligent threat detection — ops/security overview.",
-    "minutes": 30,
+    "title": "Security Hub, GuardDuty & friends",
+    "short": "Shared responsibility, Shield, WAF, GuardDuty, Inspector, and Security Hub overview.",
+    "minutes": 40,
     "tags": [
       "security",
       "guardduty",
       "security-hub",
-      "coming-soon"
+      "waf"
     ],
     "goals": [
-      "What GuardDuty detects at a high level",
-      "How Security Hub aggregates findings",
-      "Where these fit next to CloudTrail and IAM"
+      "AWS Shared Responsibility Model",
+      "Defence in Depth",
+      "AWS Shield",
+      "AWS WAF",
+      "Amazon GuardDuty",
+      "Amazon Inspector",
+      "AWS Security Hub",
+      "Amazon Macie"
     ],
     "reviewed": "2026-07",
-    "comingSoon": true,
+    "comingSoon": false,
     "parts": [
       {
         "id": "part-1",
-        "title": "Lesson 19: Security Hub & GuardDuty"
+        "title": "Lesson 19 — AWS Security Services (Complete Deep Dive)"
       },
       {
         "id": "part-2",
-        "title": "Why this lesson matters"
+        "title": "Learning Objectives"
       },
       {
         "id": "part-3",
-        "title": "Learning goals (preview)"
+        "title": "Chapter 1 — Security in the Cloud"
       },
       {
         "id": "part-4",
-        "title": "Outline (coming soon)"
+        "title": "Chapter 2 — Shared Responsibility Model"
       },
       {
         "id": "part-5",
-        "title": "Key terms (placeholder)"
+        "title": "Chapter 3 — Defence in Depth"
       },
       {
         "id": "part-6",
-        "title": "Architecture sketch (coming soon)"
+        "title": "Chapter 4 — AWS Shield"
       },
       {
         "id": "part-7",
-        "title": "Hands-on Lab"
+        "title": "Shield Standard"
       },
       {
         "id": "part-8",
-        "title": "Official starting points"
+        "title": "Shield Advanced"
       },
       {
         "id": "part-9",
-        "title": "Next"
+        "title": "Chapter 5 — AWS WAF"
+      },
+      {
+        "id": "part-10",
+        "title": "Example Attack — SQL Injection"
+      },
+      {
+        "id": "part-11",
+        "title": "Example Attack — Cross-Site Scripting (XSS)"
+      },
+      {
+        "id": "part-12",
+        "title": "WAF Rules"
+      },
+      {
+        "id": "part-13",
+        "title": "Chapter 6 — Amazon GuardDuty"
+      },
+      {
+        "id": "part-14",
+        "title": "Chapter 7 — Amazon Inspector"
+      },
+      {
+        "id": "part-15",
+        "title": "Chapter 8 — AWS Security Hub"
+      },
+      {
+        "id": "part-16",
+        "title": "Chapter 9 — Amazon Macie"
+      },
+      {
+        "id": "part-17",
+        "title": "Chapter 10 — AWS Config"
+      },
+      {
+        "id": "part-18",
+        "title": "Chapter 11 — AWS Firewall Manager"
+      },
+      {
+        "id": "part-19",
+        "title": "Chapter 12 — AWS Detective"
+      },
+      {
+        "id": "part-20",
+        "title": "Chapter 13 — IAM Access Analyzer"
+      },
+      {
+        "id": "part-21",
+        "title": "Chapter 14 — AWS Secrets Manager + KMS"
+      },
+      {
+        "id": "part-22",
+        "title": "Chapter 15 — Security Groups vs WAF vs Shield"
+      },
+      {
+        "id": "part-23",
+        "title": "Chapter 16 — Real Production Architecture"
+      },
+      {
+        "id": "part-24",
+        "title": "Chapter 17 — Security Incident Example"
+      },
+      {
+        "id": "part-25",
+        "title": "Chapter 18 — Compliance"
+      },
+      {
+        "id": "part-26",
+        "title": "Chapter 19 — Best Practices"
+      },
+      {
+        "id": "part-27",
+        "title": "Chapter 20 — Common Mistakes"
+      },
+      {
+        "id": "part-28",
+        "title": "Chapter 21 — Interview Questions"
+      },
+      {
+        "id": "part-29",
+        "title": "Hands-on Lab"
+      },
+      {
+        "id": "part-30",
+        "title": "Final Mental Model"
       }
     ]
   },
@@ -1920,58 +2691,199 @@
     "id": "eks-ecs",
     "number": "20",
     "section": "Additional · SAA & jobs",
-    "title": "EKS vs ECS — when to choose",
-    "short": "Compare managed Kubernetes (EKS) with ECS after you know containers.",
-    "minutes": 30,
+    "title": "ECS vs EKS",
+    "short": "Container orchestration, ECS components, EKS trade-offs, and when to choose each.",
+    "minutes": 40,
     "tags": [
       "containers",
-      "eks",
       "ecs",
-      "coming-soon"
+      "eks",
+      "orchestration"
     ],
     "goals": [
-      "Contrast orchestration models of ECS and EKS",
-      "List trade-offs: ops burden, portability, ecosystem",
-      "Pick a default for common team situations"
+      "Why container orchestration exists",
+      "What ECS is",
+      "What EKS is",
+      "ECS Cluster",
+      "Task Definition",
+      "Tasks",
+      "Services",
+      "Capacity Providers"
     ],
     "reviewed": "2026-07",
-    "comingSoon": true,
+    "comingSoon": false,
     "parts": [
       {
         "id": "part-1",
-        "title": "Lesson 20: EKS vs ECS — when to choose"
+        "title": "Lesson 20 — Amazon ECS vs Amazon EKS & Real Architecture Decisions (Complete Deep Dive)"
       },
       {
         "id": "part-2",
-        "title": "Why this lesson matters"
+        "title": "Learning Objectives"
       },
       {
         "id": "part-3",
-        "title": "Learning goals (preview)"
+        "title": "Chapter 1 — Docker Solves Only One Problem"
       },
       {
         "id": "part-4",
-        "title": "Outline (coming soon)"
+        "title": "Problems Docker Doesn't Solve"
       },
       {
         "id": "part-5",
-        "title": "Key terms (placeholder)"
+        "title": "Solution"
       },
       {
         "id": "part-6",
-        "title": "Architecture sketch (coming soon)"
+        "title": "Chapter 2 — What is Container Orchestration?"
       },
       {
         "id": "part-7",
-        "title": "Hands-on Lab"
+        "title": "Chapter 3 — Amazon ECS"
       },
       {
         "id": "part-8",
-        "title": "Official starting points"
+        "title": "Chapter 4 — ECS Components"
       },
       {
         "id": "part-9",
-        "title": "Next"
+        "title": "ECS Cluster"
+      },
+      {
+        "id": "part-10",
+        "title": "Chapter 5 — Task Definition"
+      },
+      {
+        "id": "part-11",
+        "title": "Chapter 6 — ECS Task"
+      },
+      {
+        "id": "part-12",
+        "title": "Chapter 7 — ECS Service"
+      },
+      {
+        "id": "part-13",
+        "title": "Chapter 8 — Service Discovery"
+      },
+      {
+        "id": "part-14",
+        "title": "Chapter 9 — ECS Launch Types"
+      },
+      {
+        "id": "part-15",
+        "title": "EC2 Launch Type"
+      },
+      {
+        "id": "part-16",
+        "title": "Fargate"
+      },
+      {
+        "id": "part-17",
+        "title": "EC2 vs Fargate"
+      },
+      {
+        "id": "part-18",
+        "title": "Chapter 10 — Auto Scaling in ECS"
+      },
+      {
+        "id": "part-19",
+        "title": "Chapter 11 — Load Balancer Integration"
+      },
+      {
+        "id": "part-20",
+        "title": "Chapter 12 — Rolling Deployments"
+      },
+      {
+        "id": "part-21",
+        "title": "Chapter 13 — Blue/Green Deployment"
+      },
+      {
+        "id": "part-22",
+        "title": "Chapter 14 — Amazon EKS"
+      },
+      {
+        "id": "part-23",
+        "title": "What is Kubernetes?"
+      },
+      {
+        "id": "part-24",
+        "title": "Why Kubernetes?"
+      },
+      {
+        "id": "part-25",
+        "title": "Chapter 15 — Kubernetes Architecture"
+      },
+      {
+        "id": "part-26",
+        "title": "Node"
+      },
+      {
+        "id": "part-27",
+        "title": "Pod"
+      },
+      {
+        "id": "part-28",
+        "title": "Deployment"
+      },
+      {
+        "id": "part-29",
+        "title": "Kubernetes Service"
+      },
+      {
+        "id": "part-30",
+        "title": "Ingress"
+      },
+      {
+        "id": "part-31",
+        "title": "Chapter 16 — ECS vs EKS Concepts"
+      },
+      {
+        "id": "part-32",
+        "title": "Chapter 17 — ECS vs EKS"
+      },
+      {
+        "id": "part-33",
+        "title": "Chapter 18 — When Should You Use ECS?"
+      },
+      {
+        "id": "part-34",
+        "title": "Chapter 19 — When Should You Use EKS?"
+      },
+      {
+        "id": "part-35",
+        "title": "Chapter 20 — Real Production Architecture"
+      },
+      {
+        "id": "part-36",
+        "title": "Chapter 21 — Microservices Architecture"
+      },
+      {
+        "id": "part-37",
+        "title": "Chapter 22 — CI/CD Pipeline"
+      },
+      {
+        "id": "part-38",
+        "title": "Chapter 23 — Best Practices"
+      },
+      {
+        "id": "part-39",
+        "title": "Chapter 24 — Common Mistakes"
+      },
+      {
+        "id": "part-40",
+        "title": "Chapter 25 — Interview Questions"
+      },
+      {
+        "id": "part-41",
+        "title": "Hands-on Lab"
+      },
+      {
+        "id": "part-42",
+        "title": "Final Mental Model"
+      },
+      {
+        "id": "part-43",
+        "title": "🎉 Congratulations!"
       }
     ]
   }

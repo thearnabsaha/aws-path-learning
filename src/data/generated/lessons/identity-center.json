@@ -3,63 +3,421 @@
   "number": "13",
   "section": "Additional · SAA & jobs",
   "title": "IAM Identity Center (SSO)",
-  "short": "Workforce identity, SSO, permission sets — modern alternative to long-lived IAM users.",
-  "minutes": 30,
+  "short": "Enterprise SSO, permission sets, Organizations, and temporary credentials instead of long-lived IAM users.",
+  "minutes": 40,
   "tags": [
     "security",
     "sso",
     "identity",
-    "coming-soon"
+    "organizations"
   ],
   "goals": [
-    "Explain IAM Identity Center vs IAM users",
-    "Describe permission sets and account assignments",
-    "Know when orgs choose SSO for workforce access"
+    "enterprises use IAM users",
+    "IAM Identity Center",
+    "Single Sign-On (SSO)",
+    "employees log in to AWS",
+    "What are Permission Sets",
+    "AWS Organizations",
+    "STS",
+    "AssumeRole work"
   ],
   "reviewed": "2026-07",
   "sources": [
     "https://docs.aws.amazon.com/singlesignon/latest/userguide/what-is.html",
-    "Placeholder — full content to be added"
+    "ChatGPT AWS Learning Roadmap (share 6a64fd27…)"
   ],
-  "comingSoon": true,
+  "comingSoon": false,
   "parts": [
     {
       "id": "part-1",
-      "title": "Lesson 13: IAM Identity Center (SSO)"
+      "title": "Lesson 13 — AWS IAM Identity Center (AWS SSO) & Enterprise Identity Management"
     },
     {
       "id": "part-2",
-      "title": "Why this lesson matters"
+      "title": "Learning Objectives"
     },
     {
       "id": "part-3",
-      "title": "Learning goals (preview)"
+      "title": "Chapter 1 — The Problem AWS Had to Solve"
     },
     {
       "id": "part-4",
-      "title": "Outline (coming soon)"
+      "title": "The Bigger Problem"
     },
     {
       "id": "part-5",
-      "title": "Key terms (placeholder)"
+      "title": "This Is Called Identity Sprawl"
     },
     {
       "id": "part-6",
-      "title": "Architecture sketch (coming soon)"
+      "title": "AWS's Solution"
     },
     {
       "id": "part-7",
-      "title": "Hands-on Lab"
+      "title": "Chapter 2 — Modern Enterprise Identity"
     },
     {
       "id": "part-8",
-      "title": "Official starting points"
+      "title": "Instead of This"
     },
     {
       "id": "part-9",
-      "title": "Next"
+      "title": "Chapter 3 — AWS Organizations"
+    },
+    {
+      "id": "part-10",
+      "title": "Why Multiple Accounts?"
+    },
+    {
+      "id": "part-11",
+      "title": "Organizational Units (OU)"
+    },
+    {
+      "id": "part-12",
+      "title": "Service Control Policies (SCP)"
+    },
+    {
+      "id": "part-13",
+      "title": "Chapter 4 — What is IAM Identity Center?"
+    },
+    {
+      "id": "part-14",
+      "title": "Chapter 5 — The Complete Login Flow"
+    },
+    {
+      "id": "part-15",
+      "title": "Chapter 6 — Identity Provider (IdP)"
+    },
+    {
+      "id": "part-16",
+      "title": "Service Provider (SP)"
+    },
+    {
+      "id": "part-17",
+      "title": "Chapter 7 — Single Sign-On (SSO)"
+    },
+    {
+      "id": "part-18",
+      "title": "Chapter 8 — Permission Sets"
+    },
+    {
+      "id": "part-19",
+      "title": "Permission Set vs IAM Policy"
+    },
+    {
+      "id": "part-20",
+      "title": "Chapter 9 — Groups"
+    },
+    {
+      "id": "part-21",
+      "title": "Chapter 10 — Behind the Scenes"
+    },
+    {
+      "id": "part-22",
+      "title": "Chapter 11 — AWS STS (Security Token Service)"
+    },
+    {
+      "id": "part-23",
+      "title": "Why Temporary Credentials?"
+    },
+    {
+      "id": "part-24",
+      "title": "Chapter 12 — AssumeRole"
+    },
+    {
+      "id": "part-25",
+      "title": "Chapter 13 — Cross-Account Access"
+    },
+    {
+      "id": "part-26",
+      "title": "Chapter 14 — SAML 2.0"
+    },
+    {
+      "id": "part-27",
+      "title": "What is a SAML Assertion?"
+    },
+    {
+      "id": "part-28",
+      "title": "Chapter 15 — OIDC vs OAuth vs SAML"
+    },
+    {
+      "id": "part-29",
+      "title": "Chapter 16 — Active Directory Integration"
+    },
+    {
+      "id": "part-30",
+      "title": "Chapter 17 — AWS CLI with SSO"
+    },
+    {
+      "id": "part-31",
+      "title": "Chapter 18 — Session Duration"
+    },
+    {
+      "id": "part-32",
+      "title": "Chapter 19 — Security Best Practices"
+    },
+    {
+      "id": "part-33",
+      "title": "Chapter 20 — Real Enterprise Example"
+    },
+    {
+      "id": "part-34",
+      "title": "Chapter 21 — Common Interview Questions"
+    },
+    {
+      "id": "part-35",
+      "title": "Chapter 22 — Hands-on Lab"
+    },
+    {
+      "id": "part-36",
+      "title": "Key Takeaways"
+    },
+    {
+      "id": "part-37",
+      "title": "Mental Model"
     }
   ],
-  "content": "<h2>Lesson 13: IAM Identity Center (SSO)</h2>\n<blockquote class=\"callout tip\"><p><strong>Content coming soon.</strong> Full notes, diagrams, labs, and quizzes will be added later. This lesson is reserved after the core 12-lesson path so navigation and progress stay stable when the material lands.</p></blockquote>\n<h2>Why this lesson matters</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Most companies no longer give every human a long-lived IAM user with access keys. Identity Center (successor to AWS SSO) is how workforce users sign in to multiple accounts with temporary credentials.</p>\n</div><h2>Learning goals (preview)</h2>\n<ul>\n<li>Explain IAM Identity Center vs IAM users</li>\n<li>Describe permission sets and account assignments</li>\n<li>Know when orgs choose SSO for workforce access</li>\n</ul>\n<h2>Outline (coming soon)</h2>\n<p>The sections below are planned — detailed explanations will replace this placeholder.</p>\n<ul>\n<li>Workforce identity vs application identity</li>\n<li>Identity Center directory options (built-in, AD, external IdP)</li>\n<li>Permission sets and multi-account access</li>\n<li>AWS access portal experience</li>\n<li>When to still use IAM users/roles</li>\n</ul>\n<h2>Key terms (placeholder)</h2>\n<p>Definitions and comparisons will be filled in with the full curriculum content.</p>\n<h2>Architecture sketch (coming soon)</h2>\n<p>A simple diagram for this topic will be added with the full write-up.</p>\n<h2>Hands-on Lab</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<aside class=\"cost-safety callout warn\" role=\"note\"><p class=\"callout-title\">Cost safety</p><ul><li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Prefer <strong>Free Tier</strong> / small instance sizes while learning.</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Create a <strong>billing alarm</strong> (CloudWatch or Budgets) on day one.</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\"><strong>Tear down</strong> lab resources when finished (instances, load balancers, NAT gateways).</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">Never put long-lived access keys in code or public repos.</span></li></ul><p class=\"workshop-links\"><strong>Official practice:</strong> <a href=\"https://explore.skillbuilder.aws/\" rel=\"noopener noreferrer\" target=\"_blank\">AWS Skill Builder</a> · <a href=\"https://wellarchitectedlabs.com/\" rel=\"noopener noreferrer\" target=\"_blank\">Well-Architected Labs</a> · <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/free-tier.html\" rel=\"noopener noreferrer\" target=\"_blank\">Free Tier docs</a></p></aside>\n<p>Lab steps will be published with the full lesson. Until then:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-5\"><span class=\"lab-step-text\">Prefer Free Tier / smallest resources if you experiment on your own</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-6\"><span class=\"lab-step-text\">Create a billing alarm before long-running services</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-7\"><span class=\"lab-step-text\">Tear down anything you create when finished</span></li>\n</ul>\n</div><h2>Official starting points</h2>\n<p>Read these while waiting for the full lesson:</p>\n<ul>\n<li>https://docs.aws.amazon.com/singlesignon/latest/userguide/what-is.html</li>\n</ul>\n<h2>Next</h2>\n<p>Continue with the remaining additional topics, or revisit earlier core lessons and quizzes for spaced practice.</p>\n<aside class=\"accuracy-note\" role=\"note\"><p><strong>Content review:</strong> 2026-07. Curriculum text is adapted from a shared learning roadmap; verify critical details in official AWS docs before production use.</p><p class=\"accuracy-note-label\">References</p><ul><li><a href=\"https://docs.aws.amazon.com/singlesignon/latest/userguide/what-is.html\" rel=\"noopener noreferrer\" target=\"_blank\">docs.aws.amazon.com/singlesignon/latest/userguide/what-is.ht…</a></li></ul></aside>",
-  "quiz": []
+  "content": "<h2>Lesson 13 — AWS IAM Identity Center (AWS SSO) &amp; Enterprise Identity Management</h2>\n<blockquote class=\"callout tip\"><p><strong>This is a complete lesson.</strong> By the end of it, you should understand not only <em>how</em> IAM Identity Center works, but <em>why</em> AWS built it, what happens behind the scenes during login, and how enterprises manage access across hundreds of AWS accounts.</p></blockquote>\n<hr class=\"divider\" />\n<h2>Learning Objectives</h2>\n<p>After this lesson, you'll be able to answer questions like:</p>\n<ul>\n<li>Why shouldn't enterprises use IAM users?</li>\n<li>What is IAM Identity Center?</li>\n<li>What is Single Sign-On (SSO)?</li>\n<li>How do employees log in to AWS?</li>\n<li>What are Permission Sets?</li>\n<li>What is AWS Organizations?</li>\n<li>What is STS?</li>\n<li>How does AssumeRole work?</li>\n<li>What are temporary credentials?</li>\n<li>What is SAML?</li>\n<li>What is OIDC?</li>\n<li>How does CLI authentication work with SSO?</li>\n<li>How do companies manage thousands of employees securely?</li>\n</ul>\n<hr class=\"divider\" />\n<h2>Chapter 1 — The Problem AWS Had to Solve</h2>\n<p>Let's travel back in time.</p>\n<p>Imagine it's 2014.</p>\n<p>A startup has:</p>\n<ul>\n<li>5 developers</li>\n<li>1 AWS account</li>\n</ul>\n<p>Everything is easy.</p>\n<p>You create:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Alice\nBob\nCharlie\nDavid\nEmma</code></pre></div>\n<p>as IAM users.</p>\n<p>Everyone logs in.</p>\n<p>No problem.</p>\n<hr class=\"divider\" />\n<p>Now imagine it's 2026.</p>\n<p>The same company has become a multinational.</p>\n<p>It now has:</p>\n<ul>\n<li>6,000 employees</li>\n<li>450 AWS accounts</li>\n<li>18 departments</li>\n<li>Multiple countries</li>\n</ul>\n<p>Now imagine using IAM users.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Account A\n-------------\nAlice\nBob\nCharlie\n\nAccount B\n-------------\nAlice\nBob\nCharlie\n\nAccount C\n-------------\nAlice\nBob\nCharlie</code></pre></div>\n<p>Imagine repeating this <strong>450 times.</strong></p>\n<p>Impossible.</p>\n<hr class=\"divider\" />\n<h2>The Bigger Problem</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Suppose Alice joins the company.</p>\n<p>HR says:</p>\n<blockquote class=\"callout tip\"><p>Alice is joining tomorrow.</p></blockquote>\n<p>Someone now has to:</p>\n<p>Create IAM User.</p>\n<p>Assign Password.</p>\n<p>Enable MFA.</p>\n<p>Attach Policies.</p>\n<p>Repeat for:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Development</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Testing</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">Production</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">Analytics</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-5\"><span class=\"lab-step-text\">Shared Services</span></li>\n</ul>\n<p>Now suppose Alice resigns.</p>\n<p>You must remove her from <strong>every AWS account</strong>.</p>\n<p>Miss one account...</p>\n<p>She still has access.</p>\n<p>Huge security problem.</p>\n<hr class=\"divider\" />\n</div><h2>This Is Called Identity Sprawl</h2>\n<p>Identity Sprawl means:</p>\n<p>The same identity exists in many places.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Alice\n\n↓\n\nIAM User\n\n↓\n\nAWS Account 1\n\n↓\n\nAWS Account 2\n\n↓\n\nAWS Account 3\n\n↓\n\nAWS Account 4</code></pre></div>\n<p>One human.</p>\n<p>Many identities.</p>\n<hr class=\"divider\" />\n<h2>AWS's Solution</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>AWS asked:</p>\n<blockquote class=\"callout tip\"><p>What if AWS stopped storing users?</p></blockquote>\n<p>Instead...</p>\n<p>Trust another system.</p>\n<p>That became:</p>\n<p><strong>IAM Identity Center</strong></p>\n<p>(formerly AWS Single Sign-On)</p>\n<hr class=\"divider\" />\n</div><h2>Chapter 2 — Modern Enterprise Identity</h2>\n<p>Today companies already have identity systems.</p>\n<p>Examples:</p>\n<ul>\n<li>Microsoft Entra ID (formerly Azure AD)</li>\n<li>Okta</li>\n<li>Google Workspace</li>\n<li>Active Directory</li>\n<li>Ping Identity</li>\n<li>OneLogin</li>\n</ul>\n<p>Employees already log in there.</p>\n<p>AWS says:</p>\n<blockquote class=\"callout tip\"><p>Great.</p></blockquote>\n<blockquote class=\"callout tip\"><p>Let them keep doing that.</p></blockquote>\n<p>AWS simply trusts those identities.</p>\n<hr class=\"divider\" />\n<h2>Instead of This</h2>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>AWS\n\n↓\n\nIAM User\n\n↓\n\nPassword</code></pre></div>\n<p>You get:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Employee\n\n↓\n\nCorporate Login\n\n↓\n\nAWS</code></pre></div>\n<p>One identity.</p>\n<p>Everything else is trusted.</p>\n<hr class=\"divider\" />\n<h2>Chapter 3 — AWS Organizations</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Before Identity Center, we need AWS Organizations.</p>\n<p>Without Organizations:</p>\n<p>Every AWS account is isolated.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>AWS Account 1\n\nAWS Account 2\n\nAWS Account 3</code></pre></div>\n<p>Nothing connects them.</p>\n<hr class=\"divider\" />\n<p>With Organizations:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Management Account\n        │\n ┌──────┼────────┐\n │      │        │\n ▼      ▼        ▼\n Dev   Test   Production</code></pre></div>\n<p>One organization manages every account.</p>\n<hr class=\"divider\" />\n</div><h2>Why Multiple Accounts?</h2>\n<p>A beginner usually thinks:</p>\n<blockquote class=\"callout tip\"><p>Why not use one AWS account?</p></blockquote>\n<p>Because production must be isolated.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>One Account\n\nEC2\n\nRDS\n\nLambda\n\nS3\n\nEveryone accesses everything.</code></pre></div>\n<p>Dangerous.</p>\n<hr class=\"divider\" />\n<p>Instead:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Development\n\n↓\n\nTesting\n\n↓\n\nProduction</code></pre></div>\n<p>Each has:</p>\n<p>Different permissions.</p>\n<p>Different budgets.</p>\n<p>Different security.</p>\n<p>Different logs.</p>\n<p>Different compliance.</p>\n<hr class=\"divider\" />\n<h2>Organizational Units (OU)</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Large companies create departments.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Root\n\n│\n\n├── Engineering\n\n│     ├── Dev\n\n│     ├── Test\n\n│     └── Prod\n\n│\n\n├── Finance\n\n│\n\n├── Security\n\n│\n\n└── Sandbox</code></pre></div>\n<p>These folders are called:</p>\n<p><strong>Organizational Units (OU)</strong></p>\n<hr class=\"divider\" />\n</div><h2>Service Control Policies (SCP)</h2>\n<p>An SCP limits what an AWS account can ever do.</p>\n<p>Imagine an account has:</p>\n<p>AdministratorAccess</p>\n<p>Normally that means:</p>\n<p>Everything.</p>\n<p>But the Organization applies:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Deny Delete S3 Bucket</code></pre></div>\n<p>Now...</p>\n<p>Even administrators cannot delete S3 buckets.</p>\n<p>Because SCP sits above IAM permissions.</p>\n<p>Think of permission evaluation like this:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>SCP\n   ↓\nIAM Role / IAM Policy\n   ↓\nAllowed?</code></pre></div>\n<p>If the SCP denies an action, no IAM policy can override it.</p>\n<p><strong>Interview Tip:</strong> SCPs don't grant permissions—they only set the maximum allowed permissions for accounts in an Organization.</p>\n<hr class=\"divider\" />\n<h2>Chapter 4 — What is IAM Identity Center?</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>IAM Identity Center is <strong>not a replacement for IAM</strong>.</p>\n<p>It is a <strong>central authentication and access management service</strong> for AWS Organizations.</p>\n<p>It:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Authenticates users</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Assigns permissions</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">Provides Single Sign-On</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">Creates access to multiple AWS accounts</span></li>\n</ul>\n<p>Notice something important:</p>\n<p>It does <strong>not</strong> replace IAM Roles or IAM Policies.</p>\n<p>It uses them.</p>\n<hr class=\"divider\" />\n</div><h2>Chapter 5 — The Complete Login Flow</h2>\n<p>Let's follow Alice.</p>\n<p>She opens:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>https://company.awsapps.com/start</code></pre></div>\n<p>She enters:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>alice@company.com</code></pre></div>\n<p>AWS doesn't immediately log her in.</p>\n<p>Instead:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Alice\n\n↓\n\nIAM Identity Center\n\n↓\n\nIdentity Provider\n\n↓\n\nVerify Password\n\n↓\n\nSuccess\n\n↓\n\nReturn to AWS</code></pre></div>\n<p>Only after authentication succeeds does AWS continue.</p>\n<hr class=\"divider\" />\n<h2>Chapter 6 — Identity Provider (IdP)</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Identity Provider means:</p>\n<p>The system responsible for proving who you are.</p>\n<p>Examples:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Microsoft Entra ID\n\nOkta\n\nGoogle Workspace\n\nActive Directory</code></pre></div>\n<p>AWS trusts them.</p>\n<hr class=\"divider\" />\n</div><h2>Service Provider (SP)</h2>\n<p>Who provides the service?</p>\n<p>AWS.</p>\n<p>So:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Identity Provider\n\n↓\n\nProves Identity\n\n↓\n\nAWS\n\n↓\n\nProvides Services</code></pre></div>\n<hr class=\"divider\" />\n<h2>Chapter 7 — Single Sign-On (SSO)</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Without SSO:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>AWS Account A\n\nLogin\n\nAWS Account B\n\nLogin\n\nAWS Account C\n\nLogin\n\nAWS Account D\n\nLogin</code></pre></div>\n<p>Annoying.</p>\n<hr class=\"divider\" />\n<p>With SSO:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Login Once\n\n↓\n\nDevelopment\n\n↓\n\nTesting\n\n↓\n\nProduction\n\n↓\n\nShared Services\n\n↓\n\nBilling</code></pre></div>\n<p>One login.</p>\n<p>Multiple accounts.</p>\n<hr class=\"divider\" />\n</div><h2>Chapter 8 — Permission Sets</h2>\n<p>This is one of the most misunderstood concepts.</p>\n<p>A Permission Set is <strong>not</strong> an IAM Policy.</p>\n<p>It is a <strong>template</strong> that Identity Center uses to create IAM Roles in target accounts.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Developer Permission Set\n\n↓\n\nRead EC2\n\nCreate Lambda\n\nRead S3</code></pre></div>\n<p>Assign it to:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Engineering Group\n\n↓\n\nDevelopment Account</code></pre></div>\n<p>Identity Center creates an IAM Role in that account with those permissions.</p>\n<hr class=\"divider\" />\n<h2>Permission Set vs IAM Policy</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Permission Set</th><th>IAM Policy</th></tr></thead><tbody>\n<tr><td>Identity Center object</td><td>IAM object</td></tr>\n<tr><td>Assigned to users/groups through Identity Center</td><td>Attached directly to IAM users, groups, or roles</td></tr>\n<tr><td>Provisions IAM Roles</td><td>Defines permissions</td></tr>\n</tbody></table></div>\n<hr class=\"divider\" />\n</div><h2>Chapter 9 — Groups</h2>\n<p>Instead of assigning permissions individually:</p>\n<p>Bad:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Alice\n\nBob\n\nCharlie\n\n↓\n\nAdministrator</code></pre></div>\n<p>Good:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Engineering Group\n\n↓\n\nDeveloper Permission Set\n\n↓\n\n100 Developers</code></pre></div>\n<p>Now onboarding becomes:</p>\n<p>Add Alice to the Engineering group.</p>\n<p>Done.</p>\n<hr class=\"divider\" />\n<h2>Chapter 10 — Behind the Scenes</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Suppose Alice clicks:</p>\n<p>Production Account.</p>\n<p>AWS now does something very important.</p>\n<p>It does <strong>not</strong> use Alice directly.</p>\n<p>Instead:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Alice\n\n↓\n\nIAM Identity Center\n\n↓\n\nSTS\n\n↓\n\nAssume Role\n\n↓\n\nTemporary Credentials\n\n↓\n\nProduction Account</code></pre></div>\n<p>Alice never receives permanent credentials.</p>\n<hr class=\"divider\" />\n</div><h2>Chapter 11 — AWS STS (Security Token Service)</h2>\n<p>STS creates temporary credentials.</p>\n<p>These include:</p>\n<ul>\n<li>Access Key ID</li>\n<li>Secret Access Key</li>\n<li>Session Token</li>\n</ul>\n<p>Unlike long-lived IAM access keys, these expire automatically.</p>\n<hr class=\"divider\" />\n<h2>Why Temporary Credentials?</h2>\n<p>Imagine someone steals them.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>IAM User Key\n\n↓\n\nValid for Years</code></pre></div>\n<p>Dangerous.</p>\n<p>Temporary credentials:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>STS Credentials\n\n↓\n\nValid for Hours\n\n↓\n\nExpire</code></pre></div>\n<p>Even if stolen, the window of misuse is much smaller.</p>\n<hr class=\"divider\" />\n<h2>Chapter 12 — AssumeRole</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>This is one of the most important AWS concepts.</p>\n<p>Suppose:</p>\n<p>Alice belongs to Engineering.</p>\n<p>She wants Production access.</p>\n<p>Instead of becoming an administrator, she temporarily <strong>assumes</strong> a role.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Alice\n\n↓\n\nAssumeRole\n\n↓\n\nProductionAdmin Role\n\n↓\n\nTemporary Credentials</code></pre></div>\n<p>When the session ends, those credentials expire.</p>\n<hr class=\"divider\" />\n</div><h2>Chapter 13 — Cross-Account Access</h2>\n<p>Imagine:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Development\n\nTesting\n\nProduction</code></pre></div>\n<p>Each account contains:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Developer Role</code></pre></div>\n<p>Alice logs in once.</p>\n<p>She can switch accounts because Identity Center obtains temporary credentials for the appropriate role in each account.</p>\n<p>No separate passwords.</p>\n<p>No duplicate IAM users.</p>\n<hr class=\"divider\" />\n<h2>Chapter 14 — SAML 2.0</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>SAML stands for:</p>\n<p><strong>Security Assertion Markup Language</strong></p>\n<p>Don't memorize the name.</p>\n<p>Understand the flow.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>User\n\n↓\n\nAWS\n\n↓\n\nRedirect to Microsoft Entra ID\n\n↓\n\nLogin\n\n↓\n\nSAML Assertion\n\n↓\n\nAWS\n\n↓\n\nAccess Granted</code></pre></div>\n<hr class=\"divider\" />\n</div><h2>What is a SAML Assertion?</h2>\n<p>Think of it like a signed statement.</p>\n<p>It says:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>This person is Alice.\n\nShe authenticated successfully.\n\nShe belongs to Engineering.\n\nShe can access AWS.</code></pre></div>\n<p>AWS trusts the signature and grants access.</p>\n<hr class=\"divider\" />\n<h2>Chapter 15 — OIDC vs OAuth vs SAML</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Many people confuse these.</p>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Technology</th><th>Purpose</th></tr></thead><tbody>\n<tr><td>SAML</td><td>Enterprise browser-based SSO</td></tr>\n<tr><td>OAuth 2.0</td><td>Delegated authorization (\"allow this app to access my data\")</td></tr>\n<tr><td>OIDC</td><td>Authentication layer built on OAuth 2.0</td></tr>\n</tbody></table></div>\n<p>Examples:</p>\n<p>SAML:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Corporate Employee\n\n↓\n\nAWS Console</code></pre></div>\n<p>OIDC:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Sign in with Google</code></pre></div>\n<p>OAuth:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Allow Canva to access Google Drive?</code></pre></div>\n<hr class=\"divider\" />\n</div><h2>Chapter 16 — Active Directory Integration</h2>\n<p>Many banks and large enterprises already use Microsoft Active Directory.</p>\n<p>Architecture:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Employee\n\n↓\n\nActive Directory\n\n↓\n\nIAM Identity Center\n\n↓\n\nAWS</code></pre></div>\n<p>Employees continue using the same corporate credentials.</p>\n<hr class=\"divider\" />\n<h2>Chapter 17 — AWS CLI with SSO</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Old method:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>aws configure</code></pre></div>\n<p>This stores long-lived access keys.</p>\n<p>Modern method:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>bash</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>aws configure sso</code></pre></div>\n<p>The CLI:</p>\n<ol>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Opens a browser.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">You log in through Identity Center.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">The CLI stores a temporary session.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">AWS CLI automatically refreshes it when needed (within the configured flow).</span></li>\n</ol>\n<p>No permanent access keys are stored.</p>\n<hr class=\"divider\" />\n</div><h2>Chapter 18 — Session Duration</h2>\n<p>Companies choose session lengths.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Developer\n\n↓\n\n8 Hours\n\n↓\n\nLogin Again</code></pre></div>\n<p>Finance might use shorter sessions.</p>\n<p>Operations teams may have different policies depending on security requirements.</p>\n<hr class=\"divider\" />\n<h2>Chapter 19 — Security Best Practices</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>A mature AWS organization generally follows these practices:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Don't create IAM users unless necessary.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Use IAM Identity Center for workforce access.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">Enable MFA for all users.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">Prefer temporary credentials over long-lived access keys.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-5\"><span class=\"lab-step-text\">Use least privilege.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-6\"><span class=\"lab-step-text\">Use groups instead of assigning users individually.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-7\"><span class=\"lab-step-text\">Separate Development, Testing, and Production accounts.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-8\"><span class=\"lab-step-text\">Use SCPs to enforce organizational guardrails.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-9\"><span class=\"lab-step-text\">Protect the root user:</span></li>\n<p>- Enable MFA. - Do not create access keys. - Use it only for rare account-level tasks.</p>\n</ul>\n<hr class=\"divider\" />\n</div><h2>Chapter 20 — Real Enterprise Example</h2>\n<p>Imagine a company with:</p>\n<ul>\n<li>8,000 employees</li>\n<li>320 AWS accounts</li>\n<li>25 departments</li>\n</ul>\n<p>The architecture might look like:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Employees\n        │\n        ▼\nMicrosoft Entra ID\n        │\n        ▼\nIAM Identity Center\n        │\n        ▼\nGroups\n        │\n ┌──────┼─────────────┐\n ▼      ▼             ▼\nEngineering  Finance  Security\n │           │          │\n ▼           ▼          ▼\nPermission  Permission Permission\nSet         Set        Set\n │           │          │\n ▼           ▼          ▼\nDevelopment  Billing    Security Accounts\nProduction\nTesting</code></pre></div>\n<p>Notice:</p>\n<ul>\n<li>One identity.</li>\n<li>One login.</li>\n<li>Many AWS accounts.</li>\n<li>No duplicate IAM users.</li>\n</ul>\n<hr class=\"divider\" />\n<h2>Chapter 21 — Common Interview Questions</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<h3>Q1. Why is IAM Identity Center preferred over IAM users?</h3>\n<p>Because it centralizes authentication, integrates with enterprise identity providers, supports SSO, and uses temporary credentials instead of long-lived IAM users.</p>\n<hr class=\"divider\" />\n<h3>Q2. Does IAM Identity Center replace IAM?</h3>\n<p>No.</p>\n<p>It uses IAM Roles and IAM Policies behind the scenes.</p>\n<hr class=\"divider\" />\n<h3>Q3. What is a Permission Set?</h3>\n<p>A Permission Set is an Identity Center configuration that defines permissions and provisions corresponding IAM Roles into target AWS accounts.</p>\n<hr class=\"divider\" />\n<h3>Q4. Why are temporary credentials more secure?</h3>\n<p>They expire automatically, reducing the impact if credentials are exposed.</p>\n<hr class=\"divider\" />\n<h3>Q5. What does STS do?</h3>\n<p>AWS Security Token Service issues temporary security credentials.</p>\n<hr class=\"divider\" />\n<h3>Q6. Difference between IAM User and IAM Identity Center User?</h3>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>IAM User</th><th>Identity Center User</th></tr></thead><tbody>\n<tr><td>Lives inside one AWS account</td><td>Centrally managed for an AWS Organization</td></tr>\n<tr><td>Permanent credentials possible</td><td>Temporary credentials via STS</td></tr>\n<tr><td>Good for limited scenarios</td><td>Recommended for workforce access</td></tr>\n</tbody></table></div>\n<hr class=\"divider\" />\n<h3>Q7. What is AssumeRole?</h3>\n<p>It allows an authenticated identity to obtain temporary credentials for an IAM Role with a specific set of permissions.</p>\n<hr class=\"divider\" />\n<h3>Q8. Difference between SAML and OIDC?</h3>\n<p>SAML is commonly used for enterprise browser-based SSO. OIDC is built on OAuth 2.0 and is widely used by modern web and mobile applications.</p>\n<hr class=\"divider\" />\n</div><h2>Chapter 22 — Hands-on Lab</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<aside class=\"cost-safety callout warn\" role=\"note\"><p class=\"callout-title\">Cost safety</p><ul><li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Prefer <strong>Free Tier</strong> / small instance sizes while learning.</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Create a <strong>billing alarm</strong> (CloudWatch or Budgets) on day one.</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\"><strong>Tear down</strong> lab resources when finished (instances, load balancers, NAT gateways).</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">Never put long-lived access keys in code or public repos.</span></li></ul><p class=\"workshop-links\"><strong>Official practice:</strong> <a href=\"https://explore.skillbuilder.aws/\" rel=\"noopener noreferrer\" target=\"_blank\">AWS Skill Builder</a> · <a href=\"https://wellarchitectedlabs.com/\" rel=\"noopener noreferrer\" target=\"_blank\">Well-Architected Labs</a> · <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/free-tier.html\" rel=\"noopener noreferrer\" target=\"_blank\">Free Tier docs</a></p></aside>\n<p>If you have an AWS account and AWS Organizations available:</p>\n<ol>\n<li class=\"lab-step\" data-lab-id=\"lab-step-5\"><span class=\"lab-step-text\">Create an AWS Organization.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-6\"><span class=\"lab-step-text\">Create three member accounts:</span></li>\n<p>- Development - Testing - Production</p>\n<li class=\"lab-step\" data-lab-id=\"lab-step-7\"><span class=\"lab-step-text\">Enable IAM Identity Center.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-8\"><span class=\"lab-step-text\">Create a user (or connect an external IdP).</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-9\"><span class=\"lab-step-text\">Create an <code>Engineering</code> group.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-10\"><span class=\"lab-step-text\">Create a <code>Developer</code> Permission Set.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-11\"><span class=\"lab-step-text\">Assign:</span></li>\n<p>- Engineering group → Developer Permission Set → Development account.</p>\n<li class=\"lab-step\" data-lab-id=\"lab-step-12\"><span class=\"lab-step-text\">Configure the AWS CLI with:</span></li>\n</ol>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>bash</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>   aws configure sso</code></pre></div>\n<ol>\n<li class=\"lab-step\" data-lab-id=\"lab-step-13\"><span class=\"lab-step-text\">Verify you can access the Development account without creating an IAM user there.</span></li>\n</ol>\n<hr class=\"divider\" />\n</div><h2>Key Takeaways</h2>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Concept</th><th>What to Remember</th></tr></thead><tbody>\n<tr><td>AWS Organizations</td><td>Manages multiple AWS accounts under one organization</td></tr>\n<tr><td>Organizational Units (OUs)</td><td>Group accounts for governance</td></tr>\n<tr><td>SCPs</td><td>Set the maximum permissions accounts can have</td></tr>\n<tr><td>IAM Identity Center</td><td>Central workforce authentication and SSO</td></tr>\n<tr><td>Identity Provider (IdP)</td><td>Authenticates users (Entra ID, Okta, AD, etc.)</td></tr>\n<tr><td>Permission Sets</td><td>Identity Center templates that provision IAM Roles</td></tr>\n<tr><td>IAM Roles</td><td>The permissions actually assumed in target accounts</td></tr>\n<tr><td>STS</td><td>Issues temporary credentials</td></tr>\n<tr><td>AssumeRole</td><td>Obtains temporary access to a role</td></tr>\n<tr><td>SAML</td><td>Enterprise SSO protocol</td></tr>\n<tr><td>OIDC</td><td>Modern authentication protocol built on OAuth 2.0</td></tr>\n<tr><td>Groups</td><td>Simplify permission management</td></tr>\n<tr><td>Temporary Credentials</td><td>More secure than long-lived credentials</td></tr>\n</tbody></table></div>\n<hr class=\"divider\" />\n<h2>Mental Model</h2>\n<p>If you remember only one diagram from this lesson, remember this:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>                 Employee\n                     │\n                     ▼\n      Microsoft Entra ID / Okta / AD\n                     │\n          (Authentication)\n                     │\n                     ▼\n        AWS IAM Identity Center\n                     │\n       (Permission Set Assigned)\n                     │\n                     ▼\n     AWS STS (Temporary Credentials)\n                     │\n         (Assume IAM Role)\n                     │\n                     ▼\n      Development / Testing / Production\n             AWS Accounts (Organizations)</code></pre></div>\n<p>This single flow ties together nearly every concept in enterprise AWS identity management. Once you understand this architecture, you'll recognize the design used by many medium and large organizations running workloads on AWS.</p>\n<aside class=\"accuracy-note\" role=\"note\"><p><strong>Content review:</strong> 2026-07. Curriculum text is adapted from a shared learning roadmap; verify critical details in official AWS docs before production use.</p><p class=\"accuracy-note-label\">References</p><ul><li><a href=\"https://docs.aws.amazon.com/singlesignon/latest/userguide/what-is.html\" rel=\"noopener noreferrer\" target=\"_blank\">docs.aws.amazon.com/singlesignon/latest/userguide/what-is.ht…</a></li></ul></aside>",
+  "quiz": [
+    {
+      "q": "Why is creating long-lived IAM users per person a poor fit for large enterprises?",
+      "options": [
+        "IAM users cannot have MFA",
+        "Identity sprawl across many accounts becomes unmanageable",
+        "IAM users are always free",
+        "SSO is illegal on AWS"
+      ],
+      "answer": 1,
+      "explain": "Repeating users across hundreds of accounts causes identity sprawl; Identity Center centralizes workforce access.",
+      "style": "scenario"
+    },
+    {
+      "q": "IAM Identity Center is primarily designed for:",
+      "options": [
+        "Application API keys only",
+        "Workforce single sign-on across AWS accounts",
+        "Replacing S3 buckets",
+        "Billing invoices"
+      ],
+      "answer": 1,
+      "explain": "It is AWS’s workforce SSO service for human access to accounts and apps.",
+      "style": "general"
+    },
+    {
+      "q": "What does SSO stand for in this context?",
+      "options": [
+        "Server Side Objects",
+        "Single Sign-On",
+        "Secure Storage Only",
+        "Shared Subnet Option"
+      ],
+      "answer": 1,
+      "explain": "Single Sign-On: one login experience for many apps/accounts.",
+      "style": "general"
+    },
+    {
+      "q": "A Permission Set in Identity Center is best described as:",
+      "options": [
+        "A VPC CIDR block",
+        "A reusable bundle of IAM policies assigned to users/groups for accounts",
+        "An EC2 instance type",
+        "A CloudFront cache policy"
+      ],
+      "answer": 1,
+      "explain": "Permission sets define what someone can do and are assigned per account.",
+      "style": "general"
+    },
+    {
+      "q": "AWS Organizations helps enterprises mainly by:",
+      "options": [
+        "Hosting static websites",
+        "Grouping multiple AWS accounts under one organization",
+        "Encrypting disks only",
+        "Replacing DNS"
+      ],
+      "answer": 1,
+      "explain": "Organizations manages multi-account structure used with Identity Center.",
+      "style": "general"
+    },
+    {
+      "q": "Temporary credentials for AWS access are typically issued by:",
+      "options": [
+        "Amazon S3 only",
+        "AWS STS (Security Token Service)",
+        "Route 53",
+        "CloudFront"
+      ],
+      "answer": 1,
+      "explain": "STS issues short-lived credentials after federation/assume-role.",
+      "style": "general"
+    },
+    {
+      "q": "AssumeRole is used to:",
+      "options": [
+        "Delete an account permanently",
+        "Obtain temporary credentials to act under an IAM role",
+        "Create public buckets by default",
+        "Disable MFA"
+      ],
+      "answer": 1,
+      "explain": "Assuming a role returns temporary credentials with that role’s permissions.",
+      "style": "general"
+    },
+    {
+      "q": "Compared with long-lived access keys, temporary credentials are better because they:",
+      "options": [
+        "Never expire and never need rotation",
+        "Expire automatically, reducing risk if leaked",
+        "Only work offline",
+        "Bypass CloudTrail"
+      ],
+      "answer": 1,
+      "explain": "Short TTL limits blast radius of credential leaks.",
+      "style": "general"
+    },
+    {
+      "q": "SAML and OIDC are used in enterprise identity mainly for:",
+      "options": [
+        "Compressing images",
+        "Federating identity providers with AWS/SSO",
+        "Pricing EC2",
+        "VPC peering"
+      ],
+      "answer": 1,
+      "explain": "They are federation protocols linking corporate IdPs to AWS.",
+      "style": "general"
+    },
+    {
+      "q": "CLI access with Identity Center typically relies on:",
+      "options": [
+        "Hardcoding root password in scripts",
+        "SSO login / temporary credentials rather than permanent keys",
+        "Disabling HTTPS",
+        "Public anonymous API calls"
+      ],
+      "answer": 1,
+      "explain": "Modern CLI workflows use SSO sessions and temporary creds.",
+      "style": "general"
+    },
+    {
+      "q": "Identity Center replaces the need for thousands of permanent IAM users primarily by using:",
+      "options": [
+        "One shared root password",
+        "Centralized directory + permission sets + temporary access",
+        "Only security groups",
+        "Only NACLs"
+      ],
+      "answer": 1,
+      "explain": "Central identity + temporary access is the enterprise pattern.",
+      "style": "general"
+    },
+    {
+      "q": "Which is a sign you should move from classic IAM users to Identity Center?",
+      "options": [
+        "You have one laptop and no cloud",
+        "Many employees and many AWS accounts need managed access",
+        "You never use the console",
+        "You only use free tier once"
+      ],
+      "answer": 1,
+      "explain": "Multi-user, multi-account orgs need centralized workforce identity.",
+      "style": "general"
+    },
+    {
+      "q": "During SSO login, the user ultimately receives access based on:",
+      "options": [
+        "Random open security groups",
+        "Their assigned permission sets and account memberships",
+        "Public S3 ACLs only",
+        "Unencrypted keys in email"
+      ],
+      "answer": 1,
+      "explain": "Assignments of permission sets to accounts drive access.",
+      "style": "general"
+    },
+    {
+      "q": "The lesson’s core security theme for workforce access is:",
+      "options": [
+        "Share one IAM user for the whole company",
+        "Prefer centralized identity and temporary credentials",
+        "Disable CloudTrail forever",
+        "Use root user daily"
+      ],
+      "answer": 1,
+      "explain": "Centralized SSO + least privilege temporary access is the point.",
+      "style": "scenario"
+    },
+    {
+      "q": "AWS Identity Center was formerly commonly known as:",
+      "options": [
+        "AWS Glue",
+        "AWS SSO",
+        "AWS Batch",
+        "AWS Outposts"
+      ],
+      "answer": 1,
+      "explain": "The product was rebranded from AWS SSO to IAM Identity Center.",
+      "style": "general"
+    },
+    {
+      "q": "What should enterprises avoid for day-to-day human access?",
+      "options": [
+        "Permission sets",
+        "Long-lived IAM user access keys shared widely",
+        "MFA",
+        "CloudTrail"
+      ],
+      "answer": 1,
+      "explain": "Long-lived shared keys are a major risk; use federated temporary access.",
+      "style": "scenario"
+    },
+    {
+      "q": "Which statement best matches multi-account access design?",
+      "options": [
+        "One IAM user is created identically in every account by hand forever",
+        "Central identity assigns access into accounts via roles/permission sets",
+        "No accounts are allowed",
+        "DNS replaces IAM"
+      ],
+      "answer": 1,
+      "explain": "Central assignment into accounts is the Identity Center model.",
+      "style": "general"
+    },
+    {
+      "q": "Temporary session credentials typically include:",
+      "options": [
+        "Only a public bucket name",
+        "Access key, secret key, and session token (short-lived)",
+        "Only an AMI ID",
+        "Only a Route 53 zone ID"
+      ],
+      "answer": 1,
+      "explain": "STS sessions use key + secret + session token.",
+      "style": "general"
+    },
+    {
+      "q": "A corporate identity provider (IdP) integrates so that employees:",
+      "options": [
+        "Never authenticate",
+        "Use existing company login (e.g. Okta/Azure AD) to reach AWS",
+        "Must create new AWS passwords every hour forever by hand",
+        "Only use FTP"
+      ],
+      "answer": 1,
+      "explain": "Federation lets corporate credentials gate AWS access.",
+      "style": "general"
+    },
+    {
+      "q": "Least privilege with Identity Center means:",
+      "options": [
+        "Everyone is AdministratorAccess in all accounts",
+        "Permission sets grant only what each role needs",
+        "All policies are *:* on *",
+        "Disable policies"
+      ],
+      "answer": 1,
+      "explain": "Permission sets should be scoped to needed actions/resources.",
+      "style": "scenario"
+    }
+  ]
 }

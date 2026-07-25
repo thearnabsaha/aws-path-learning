@@ -1,50 +1,974 @@
-# Lesson 14: KMS & Secrets Manager
+# Lesson 14 — AWS KMS & Secrets Manager (Complete Deep Dive)
 
-> **Content coming soon.** Full notes, diagrams, labs, and quizzes will be added later. This lesson is reserved after the core 12-lesson path so navigation and progress stay stable when the material lands.
+> **Goal:** By the end of this lesson, you'll understand how AWS protects sensitive data, how encryption actually works, how KMS creates and manages cryptographic keys, how Secrets Manager stores passwords securely, and how these services fit into real production architectures.
 
-## Why this lesson matters
+This is one of the most common interview topics because almost every production AWS workload uses **KMS** and many use **Secrets Manager**.
 
-Security interviews and real systems always ask where keys live, who can decrypt, and how app secrets rotate. KMS and Secrets Manager are the default answers on AWS.
+---
 
-## Learning goals (preview)
+# Learning Objectives
 
-- Customer managed keys vs AWS managed keys
-- Envelope encryption at a high level
-- Secrets Manager vs Parameter Store use cases
+After this lesson, you should be able to answer:
 
-## Outline (coming soon)
+- What is encryption?
+- What is symmetric vs asymmetric encryption?
+- What is AWS KMS?
+- What is a Customer Managed Key (CMK)?
+- What is envelope encryption?
+- What is a data key?
+- How does S3 encryption work?
+- What is Secrets Manager?
+- What is Parameter Store?
+- When should you use each?
+- How does automatic secret rotation work?
+- How do Lambda, ECS, and EC2 retrieve secrets?
+- How do enterprises manage encryption?
 
-The sections below are planned — detailed explanations will replace this placeholder.
+---
 
-- CMK vs AWS managed keys
-- Key policies and grants
-- Envelope encryption idea
-- Secrets Manager rotation
-- Parameter Store vs Secrets Manager
+# Chapter 1 — Why Encryption Exists
 
-## Key terms (placeholder)
+Imagine you're sending this message:
 
-Definitions and comparisons will be filled in with the full curriculum content.
+```
+Database Password
 
-## Architecture sketch (coming soon)
+MyPassword@123
+```
 
-A simple diagram for this topic will be added with the full write-up.
+If someone intercepts it:
 
-## Hands-on Lab
+```
+Attacker
 
-Lab steps will be published with the full lesson. Until then:
+↓
 
-- Prefer Free Tier / smallest resources if you experiment on your own
-- Create a billing alarm before long-running services
-- Tear down anything you create when finished
+Reads Password
 
-## Official starting points
+↓
 
-Read these while waiting for the full lesson:
+Logs into Database
+```
 
-- https://docs.aws.amazon.com/kms/latest/developerguide/overview.html
-- https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html
+Game over.
 
-## Next
+---
 
-Continue with the remaining additional topics, or revisit earlier core lessons and quizzes for spaced practice.
+Instead, we encrypt it.
+
+```
+MyPassword@123
+
+↓
+
+Encryption
+
+↓
+
+X9#@KLM$P!8...
+
+↓
+
+Internet
+
+↓
+
+Decrypt
+
+↓
+
+MyPassword@123
+```
+
+The attacker only sees meaningless data.
+
+---
+
+# What is Encryption?
+
+Encryption transforms:
+
+```
+Readable Data
+
+↓
+
+Encryption Algorithm
+
+↓
+
+Unreadable Data
+```
+
+Readable data is called:
+
+**Plaintext**
+
+Unreadable data is called:
+
+**Ciphertext**
+
+Example:
+
+Plaintext
+
+```
+Hello AWS
+```
+
+Ciphertext
+
+```
+9ABF72KQ#M8P...
+```
+
+Without the correct key, recovering the original plaintext should be computationally infeasible.
+
+---
+
+# Chapter 2 — What is a Key?
+
+Encryption always needs a **key**.
+
+Think of it like:
+
+```
+Lock
+
+↓
+
+Key
+
+↓
+
+Open
+```
+
+Without the key:
+
+No access.
+
+---
+
+# Chapter 3 — Symmetric Encryption
+
+One key.
+
+```
+Encrypt
+
+↓
+
+KEY A
+
+↓
+
+Decrypt
+
+↓
+
+KEY A
+```
+
+The same key encrypts and decrypts.
+
+Advantages:
+
+- Very fast
+- Efficient
+- Used for large amounts of data
+
+AWS KMS primarily uses **symmetric keys** for most encryption workloads.
+
+---
+
+# Chapter 4 — Asymmetric Encryption
+
+Two keys.
+
+```
+Public Key
+
+↓
+
+Encrypt
+
+↓
+
+Private Key
+
+↓
+
+Decrypt
+```
+
+Public key:
+
+Can be shared.
+
+Private key:
+
+Must remain secret.
+
+Uses include:
+
+- Digital signatures
+- Certificate-based authentication
+- Secure key exchange
+
+AWS KMS also supports asymmetric keys for specific use cases.
+
+---
+
+# Chapter 5 — Why AWS Built KMS
+
+Imagine thousands of applications.
+
+Each needs:
+
+- Database passwords
+- API keys
+- TLS certificates
+- Customer data encryption
+
+Question:
+
+Where should the encryption keys live?
+
+Hardcoding them into applications is a serious security risk.
+
+AWS created:
+
+**Key Management Service (KMS)**
+
+---
+
+# Chapter 6 — What is AWS KMS?
+
+KMS is a managed service for:
+
+- Creating cryptographic keys
+- Storing them securely
+- Controlling who can use them
+- Auditing key usage
+- Rotating supported keys
+
+Notice:
+
+KMS stores **keys**.
+
+Not passwords.
+
+Not secrets.
+
+Just cryptographic keys.
+
+---
+
+# Chapter 7 — AWS Managed Keys vs Customer Managed Keys
+
+There are two common categories.
+
+## AWS Managed Keys
+
+AWS creates them.
+
+Example:
+
+```
+aws/s3
+
+aws/ebs
+
+aws/rds
+```
+
+AWS manages:
+
+- Creation
+- Rotation (where supported)
+- Lifecycle
+
+Good for simple use cases.
+
+---
+
+## Customer Managed Keys (CMKs)
+
+You create them.
+
+You control:
+
+- Key policy
+- IAM permissions
+- Rotation settings (for supported key types)
+- Enable/disable
+- Deletion scheduling
+- Aliases
+
+Preferred in many enterprise environments because of the additional control.
+
+---
+
+# Chapter 8 — Key Policies
+
+A KMS key has its own **key policy**.
+
+Even if an IAM policy allows access, the key policy must also allow the action.
+
+Think of it like:
+
+```
+IAM Policy
+
+AND
+
+Key Policy
+
+↓
+
+Can Use Key
+```
+
+Both layers matter.
+
+---
+
+# Chapter 9 — How Encryption Actually Happens
+
+Many people think:
+
+```
+Application
+
+↓
+
+KMS
+
+↓
+
+Encrypt Entire 5 GB File
+```
+
+That is **not** how KMS is normally used.
+
+Why?
+
+KMS is designed to protect keys, not to stream-encrypt huge files.
+
+Instead AWS uses:
+
+Envelope Encryption.
+
+---
+
+# Chapter 10 — Envelope Encryption
+
+This is one of the most important AWS security concepts.
+
+Imagine:
+
+You have a 10 GB file.
+
+Instead of sending 10 GB into KMS:
+
+```
+Application
+
+↓
+
+Ask KMS
+
+↓
+
+Generate Data Key
+```
+
+KMS generates:
+
+```
+Data Key
+```
+
+The application uses that **data key** to encrypt the large file locally.
+
+The data key itself is then encrypted by the KMS key.
+
+Flow:
+
+```
+Large File
+
+↓
+
+Data Key
+
+↓
+
+Encrypted File
+
++
+
+Encrypted Data Key
+```
+
+Only KMS can decrypt the encrypted data key.
+
+This design gives you:
+
+- High performance
+- Strong security
+- Scalability
+
+---
+
+# Chapter 11 — Data Keys
+
+A **data key** is:
+
+A temporary encryption key generated by KMS.
+
+Process:
+
+```
+KMS Key
+
+↓
+
+Generate Data Key
+
+↓
+
+Plaintext Data Key
+
++
+
+Encrypted Data Key
+```
+
+The application:
+
+- Uses the plaintext data key immediately.
+- Discards it from memory after use.
+- Stores only the encrypted data key with the encrypted data.
+
+---
+
+# Chapter 12 — Encrypting an S3 Object
+
+Suppose you upload:
+
+```
+salary.xlsx
+```
+
+With SSE-KMS enabled:
+
+```
+Upload
+
+↓
+
+S3
+
+↓
+
+Request KMS
+
+↓
+
+Generate Data Key
+
+↓
+
+Encrypt File
+
+↓
+
+Store Encrypted Object
+```
+
+When downloading:
+
+```
+User
+
+↓
+
+S3
+
+↓
+
+KMS Decrypts Data Key
+
+↓
+
+S3 Decrypts Object
+
+↓
+
+User Receives File
+```
+
+---
+
+# Chapter 13 — KMS Key States
+
+Keys can be:
+
+- Enabled
+- Disabled
+- Pending deletion
+
+If a key is disabled:
+
+Applications depending on it may no longer be able to decrypt existing encrypted data.
+
+This is why key management is critical.
+
+---
+
+# Chapter 14 — Automatic Rotation
+
+Keys shouldn't be reused forever.
+
+For supported customer managed symmetric keys:
+
+```
+Old Key Material
+
+↓
+
+Rotate
+
+↓
+
+New Key Material
+```
+
+AWS handles rotation while maintaining the ability to decrypt previously encrypted data.
+
+---
+
+# Chapter 15 — Auditing KMS
+
+Every API call to KMS can be recorded in CloudTrail.
+
+Example:
+
+```
+Developer
+
+↓
+
+Decrypt
+
+↓
+
+CloudTrail Log
+```
+
+You can answer:
+
+Who used the key?
+
+When?
+
+From where?
+
+---
+
+# Chapter 16 — What is AWS Secrets Manager?
+
+Now imagine:
+
+Your application needs:
+
+```
+Database Password
+```
+
+Should you write:
+
+```python
+password = "Admin123!"
+```
+
+Never.
+
+Instead:
+
+```
+Application
+
+↓
+
+Secrets Manager
+
+↓
+
+Retrieve Password
+```
+
+Secrets Manager stores:
+
+- Database passwords
+- API tokens
+- OAuth client secrets
+- Access credentials
+- Other sensitive application secrets
+
+---
+
+# Chapter 17 — Storing Secrets
+
+Example:
+
+```
+prod/database
+
+↓
+
+username
+
+password
+
+host
+```
+
+Applications retrieve the secret at runtime using AWS SDKs or the AWS CLI.
+
+---
+
+# Chapter 18 — How an Application Uses a Secret
+
+```
+Lambda
+
+↓
+
+Secrets Manager
+
+↓
+
+Database Password
+
+↓
+
+Connect RDS
+```
+
+The password never needs to be hardcoded in source code.
+
+---
+
+# Chapter 19 — Automatic Secret Rotation
+
+Suppose your password changes every month.
+
+Without rotation:
+
+Someone manually changes:
+
+```
+Database
+
+↓
+
+Application
+
+↓
+
+Documentation
+```
+
+Easy to make mistakes.
+
+With Secrets Manager:
+
+```
+Rotate Secret
+
+↓
+
+Lambda
+
+↓
+
+Update Database
+
+↓
+
+Store New Password
+
+↓
+
+Application Uses New Password
+```
+
+Rotation can happen automatically for supported services and custom integrations.
+
+---
+
+# Chapter 20 — Secrets Manager vs Parameter Store
+
+AWS also provides Systems Manager Parameter Store.
+
+Comparison:
+
+| Secrets Manager | Parameter Store |
+|-----------------|-----------------|
+| Designed for secrets | Stores configuration values and optionally secrets |
+| Built-in rotation support | No built-in automatic rotation |
+| Higher cost | Lower cost / standard tier available |
+| Ideal for passwords and API keys | Great for configuration and less dynamic secrets |
+
+Examples of Parameter Store:
+
+```
+Environment
+
+Production
+```
+
+```
+API Endpoint
+
+https://api.company.com
+```
+
+---
+
+# Chapter 21 — KMS vs Secrets Manager
+
+Many beginners confuse these.
+
+| KMS | Secrets Manager |
+|------|-----------------|
+| Stores encryption keys | Stores secrets |
+| Encrypts data | Stores passwords and tokens |
+| Key management | Secret lifecycle management |
+
+Think of it this way:
+
+KMS protects the **key**.
+
+Secrets Manager protects the **secret**.
+
+Secrets Manager itself commonly uses KMS to encrypt stored secrets.
+
+---
+
+# Chapter 22 — Production Architecture
+
+Imagine:
+
+```
+User
+
+↓
+
+Application Load Balancer
+
+↓
+
+ECS
+
+↓
+
+Secrets Manager
+
+↓
+
+Database Password
+
+↓
+
+Amazon RDS
+```
+
+Meanwhile:
+
+```
+Secrets Manager
+
+↓
+
+Encrypted Using
+
+↓
+
+AWS KMS
+```
+
+Everything is encrypted.
+
+Nothing sensitive is hardcoded.
+
+---
+
+# Chapter 23 — Enterprise Architecture
+
+Large companies often have:
+
+```
+Customer Managed KMS Keys
+
+↓
+
+S3
+
+EBS
+
+RDS
+
+Lambda
+
+Secrets Manager
+
+↓
+
+Encrypted Resources
+```
+
+One security team manages the keys.
+
+Applications simply request access when authorised.
+
+---
+
+# Chapter 24 — Best Practices
+
+A mature AWS environment typically follows these practices:
+
+- Never hardcode secrets.
+- Use Secrets Manager for credentials.
+- Use Parameter Store for configuration values.
+- Enable key rotation where appropriate.
+- Use Customer Managed Keys for sensitive workloads requiring more control.
+- Grant least-privilege access to KMS keys.
+- Monitor KMS usage with CloudTrail.
+- Separate encryption responsibilities from application logic.
+
+---
+
+# Chapter 25 — Common Mistakes
+
+❌ Storing passwords in Git.
+
+❌ Hardcoding API keys in source code.
+
+❌ Sharing the same KMS key for unrelated environments without proper governance.
+
+❌ Giving every developer permission to decrypt production secrets.
+
+❌ Disabling a KMS key without understanding which workloads depend on it.
+
+---
+
+# Chapter 26 — Interview Questions
+
+### Q1. What is AWS KMS?
+
+A managed service for creating, managing, and controlling cryptographic keys.
+
+---
+
+### Q2. What is the difference between AWS Managed Keys and Customer Managed Keys?
+
+AWS Managed Keys are created and managed by AWS. Customer Managed Keys are created by you and provide more control over policies, lifecycle, and permissions.
+
+---
+
+### Q3. What is envelope encryption?
+
+Encrypting data with a temporary data key, while encrypting that data key with a KMS key.
+
+---
+
+### Q4. What is a data key?
+
+A temporary symmetric key generated by KMS for encrypting application data.
+
+---
+
+### Q5. Does KMS encrypt a 100 GB file directly?
+
+Typically no. Applications use a data key generated by KMS to encrypt large data locally.
+
+---
+
+### Q6. What is Secrets Manager?
+
+A managed service for securely storing, retrieving, and rotating application secrets.
+
+---
+
+### Q7. Difference between Secrets Manager and Parameter Store?
+
+Secrets Manager focuses on sensitive secrets and supports built-in rotation. Parameter Store is commonly used for configuration values and can also store encrypted parameters.
+
+---
+
+### Q8. Why shouldn't secrets be hardcoded?
+
+Because anyone with access to the code repository can potentially obtain them, making rotation and auditing difficult.
+
+---
+
+### Q9. How are secrets encrypted in Secrets Manager?
+
+Secrets are encrypted at rest using AWS KMS.
+
+---
+
+### Q10. What happens if a KMS key is disabled?
+
+Applications that rely on that key may fail to decrypt data until the key is re-enabled.
+
+---
+
+# Hands-on Lab
+
+1. Create a Customer Managed KMS key.
+2. Create an S3 bucket.
+3. Enable SSE-KMS for the bucket.
+4. Upload a file and verify it is encrypted with your KMS key.
+5. Create a secret in Secrets Manager containing:
+   - Username
+   - Password
+   - Host
+6. Create a small Lambda function that retrieves the secret using the AWS SDK.
+7. Review CloudTrail logs to observe KMS and Secrets Manager API calls.
+
+---
+
+# Final Mental Model
+
+If you remember just one diagram from this lesson, remember this:
+
+```text
+                    Application
+                         │
+         ┌───────────────┴───────────────┐
+         ▼                               ▼
+  Secrets Manager                   AWS KMS
+(Database passwords,              (Encryption keys)
+ API keys, tokens)                      │
+         │                              │
+         └───────────────┬──────────────┘
+                         ▼
+                Encrypted Applications
+                         │
+         ┌───────────────┼───────────────┐
+         ▼               ▼               ▼
+        S3              RDS             EBS
+```
+
+The key idea is simple:
+
+- **KMS manages and protects cryptographic keys.**
+- **Secrets Manager stores sensitive application secrets.**
+- **Secrets Manager relies on KMS to encrypt those secrets.**
+
+Understanding this relationship is fundamental to designing secure AWS applications.

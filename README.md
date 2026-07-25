@@ -91,7 +91,7 @@ src/
 
 ### Additional · SAA & jobs (13–20)
 
-Reserved **after** the core 12. Placeholders live in the site now; full notes/labs/quizzes will replace them later without renumbering.
+Full lessons from ChatGPT share *AWS Learning Roadmap* (follow-up share), with site quizzes.
 
 | # | Id | Topic |
 |---|-----|--------|
@@ -99,12 +99,10 @@ Reserved **after** the core 12. Placeholders live in the site now; full notes/la
 | 14 | kms-secrets | KMS & Secrets Manager |
 | 15 | messaging | SQS, SNS & EventBridge |
 | 16 | cloudfront | CloudFront & OAC |
-| 17 | route53 | Route 53 basics |
+| 17 | route53 | Route 53 |
 | 18 | cost-management | Cost Explorer & Budgets |
-| 19 | security-ops | Security Hub & GuardDuty |
-| 20 | eks-ecs | EKS vs ECS — when to choose |
-
-To publish real content later: edit `content/from-chatgpt/lesson-N.md`, add quizzes under the lesson id in `scripts/quizzes.json`, set `"comingSoon": false` in `scripts/lessons-meta.json`, then `npm run content`.
+| 19 | security-ops | Security Hub, GuardDuty & friends |
+| 20 | eks-ecs | ECS vs EKS |
 
 Site quizzes and local progress are extras on top of the chat text.
 

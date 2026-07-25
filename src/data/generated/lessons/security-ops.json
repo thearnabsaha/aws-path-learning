@@ -2,65 +2,395 @@
   "id": "security-ops",
   "number": "19",
   "section": "Additional · SAA & jobs",
-  "title": "Security Hub & GuardDuty",
-  "short": "Central findings and intelligent threat detection — ops/security overview.",
-  "minutes": 30,
+  "title": "Security Hub, GuardDuty & friends",
+  "short": "Shared responsibility, Shield, WAF, GuardDuty, Inspector, and Security Hub overview.",
+  "minutes": 40,
   "tags": [
     "security",
     "guardduty",
     "security-hub",
-    "coming-soon"
+    "waf"
   ],
   "goals": [
-    "What GuardDuty detects at a high level",
-    "How Security Hub aggregates findings",
-    "Where these fit next to CloudTrail and IAM"
+    "AWS Shared Responsibility Model",
+    "Defence in Depth",
+    "AWS Shield",
+    "AWS WAF",
+    "Amazon GuardDuty",
+    "Amazon Inspector",
+    "AWS Security Hub",
+    "Amazon Macie"
   ],
   "reviewed": "2026-07",
   "sources": [
     "https://docs.aws.amazon.com/guardduty/latest/ug/what-is-guardduty.html",
     "https://docs.aws.amazon.com/securityhub/latest/userguide/what-is-securityhub.html",
-    "Placeholder — full content to be added"
+    "ChatGPT AWS Learning Roadmap (share 6a64fd27…)"
   ],
-  "comingSoon": true,
+  "comingSoon": false,
   "parts": [
     {
       "id": "part-1",
-      "title": "Lesson 19: Security Hub & GuardDuty"
+      "title": "Lesson 19 — AWS Security Services (Complete Deep Dive)"
     },
     {
       "id": "part-2",
-      "title": "Why this lesson matters"
+      "title": "Learning Objectives"
     },
     {
       "id": "part-3",
-      "title": "Learning goals (preview)"
+      "title": "Chapter 1 — Security in the Cloud"
     },
     {
       "id": "part-4",
-      "title": "Outline (coming soon)"
+      "title": "Chapter 2 — Shared Responsibility Model"
     },
     {
       "id": "part-5",
-      "title": "Key terms (placeholder)"
+      "title": "Chapter 3 — Defence in Depth"
     },
     {
       "id": "part-6",
-      "title": "Architecture sketch (coming soon)"
+      "title": "Chapter 4 — AWS Shield"
     },
     {
       "id": "part-7",
-      "title": "Hands-on Lab"
+      "title": "Shield Standard"
     },
     {
       "id": "part-8",
-      "title": "Official starting points"
+      "title": "Shield Advanced"
     },
     {
       "id": "part-9",
-      "title": "Next"
+      "title": "Chapter 5 — AWS WAF"
+    },
+    {
+      "id": "part-10",
+      "title": "Example Attack — SQL Injection"
+    },
+    {
+      "id": "part-11",
+      "title": "Example Attack — Cross-Site Scripting (XSS)"
+    },
+    {
+      "id": "part-12",
+      "title": "WAF Rules"
+    },
+    {
+      "id": "part-13",
+      "title": "Chapter 6 — Amazon GuardDuty"
+    },
+    {
+      "id": "part-14",
+      "title": "Chapter 7 — Amazon Inspector"
+    },
+    {
+      "id": "part-15",
+      "title": "Chapter 8 — AWS Security Hub"
+    },
+    {
+      "id": "part-16",
+      "title": "Chapter 9 — Amazon Macie"
+    },
+    {
+      "id": "part-17",
+      "title": "Chapter 10 — AWS Config"
+    },
+    {
+      "id": "part-18",
+      "title": "Chapter 11 — AWS Firewall Manager"
+    },
+    {
+      "id": "part-19",
+      "title": "Chapter 12 — AWS Detective"
+    },
+    {
+      "id": "part-20",
+      "title": "Chapter 13 — IAM Access Analyzer"
+    },
+    {
+      "id": "part-21",
+      "title": "Chapter 14 — AWS Secrets Manager + KMS"
+    },
+    {
+      "id": "part-22",
+      "title": "Chapter 15 — Security Groups vs WAF vs Shield"
+    },
+    {
+      "id": "part-23",
+      "title": "Chapter 16 — Real Production Architecture"
+    },
+    {
+      "id": "part-24",
+      "title": "Chapter 17 — Security Incident Example"
+    },
+    {
+      "id": "part-25",
+      "title": "Chapter 18 — Compliance"
+    },
+    {
+      "id": "part-26",
+      "title": "Chapter 19 — Best Practices"
+    },
+    {
+      "id": "part-27",
+      "title": "Chapter 20 — Common Mistakes"
+    },
+    {
+      "id": "part-28",
+      "title": "Chapter 21 — Interview Questions"
+    },
+    {
+      "id": "part-29",
+      "title": "Hands-on Lab"
+    },
+    {
+      "id": "part-30",
+      "title": "Final Mental Model"
     }
   ],
-  "content": "<h2>Lesson 19: Security Hub &amp; GuardDuty</h2>\n<blockquote class=\"callout tip\"><p><strong>Content coming soon.</strong> Full notes, diagrams, labs, and quizzes will be added later. This lesson is reserved after the core 12-lesson path so navigation and progress stay stable when the material lands.</p></blockquote>\n<h2>Why this lesson matters</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Beyond IAM basics, job readiness needs awareness of continuous detection: who is scanning you, which accounts are non-compliant, and how findings flow.</p>\n</div><h2>Learning goals (preview)</h2>\n<ul>\n<li>What GuardDuty detects at a high level</li>\n<li>How Security Hub aggregates findings</li>\n<li>Where these fit next to CloudTrail and IAM</li>\n</ul>\n<h2>Outline (coming soon)</h2>\n<p>The sections below are planned — detailed explanations will replace this placeholder.</p>\n<ul>\n<li>Detective controls vs preventive controls</li>\n<li>GuardDuty findings examples</li>\n<li>Security Hub standards and findings</li>\n<li>Multi-account security posture (intro)</li>\n<li>Response loop: find → triage → fix</li>\n</ul>\n<h2>Key terms (placeholder)</h2>\n<p>Definitions and comparisons will be filled in with the full curriculum content.</p>\n<h2>Architecture sketch (coming soon)</h2>\n<p>A simple diagram for this topic will be added with the full write-up.</p>\n<h2>Hands-on Lab</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<aside class=\"cost-safety callout warn\" role=\"note\"><p class=\"callout-title\">Cost safety</p><ul><li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Prefer <strong>Free Tier</strong> / small instance sizes while learning.</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Create a <strong>billing alarm</strong> (CloudWatch or Budgets) on day one.</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\"><strong>Tear down</strong> lab resources when finished (instances, load balancers, NAT gateways).</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">Never put long-lived access keys in code or public repos.</span></li></ul><p class=\"workshop-links\"><strong>Official practice:</strong> <a href=\"https://explore.skillbuilder.aws/\" rel=\"noopener noreferrer\" target=\"_blank\">AWS Skill Builder</a> · <a href=\"https://wellarchitectedlabs.com/\" rel=\"noopener noreferrer\" target=\"_blank\">Well-Architected Labs</a> · <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/free-tier.html\" rel=\"noopener noreferrer\" target=\"_blank\">Free Tier docs</a></p></aside>\n<p>Lab steps will be published with the full lesson. Until then:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-5\"><span class=\"lab-step-text\">Prefer Free Tier / smallest resources if you experiment on your own</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-6\"><span class=\"lab-step-text\">Create a billing alarm before long-running services</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-7\"><span class=\"lab-step-text\">Tear down anything you create when finished</span></li>\n</ul>\n</div><h2>Official starting points</h2>\n<p>Read these while waiting for the full lesson:</p>\n<ul>\n<li>https://docs.aws.amazon.com/guardduty/latest/ug/what-is-guardduty.html</li>\n<li>https://docs.aws.amazon.com/securityhub/latest/userguide/what-is-securityhub.html</li>\n</ul>\n<h2>Next</h2>\n<p>Continue with the remaining additional topics, or revisit earlier core lessons and quizzes for spaced practice.</p>\n<aside class=\"accuracy-note\" role=\"note\"><p><strong>Content review:</strong> 2026-07. Curriculum text is adapted from a shared learning roadmap; verify critical details in official AWS docs before production use.</p><p class=\"accuracy-note-label\">References</p><ul><li><a href=\"https://docs.aws.amazon.com/guardduty/latest/ug/what-is-guardduty.html\" rel=\"noopener noreferrer\" target=\"_blank\">docs.aws.amazon.com/guardduty/latest/ug/what-is-guardduty.ht…</a></li><li><a href=\"https://docs.aws.amazon.com/securityhub/latest/userguide/what-is-securityhub.html\" rel=\"noopener noreferrer\" target=\"_blank\">docs.aws.amazon.com/securityhub/latest/userguide/what-is-sec…</a></li></ul></aside>",
-  "quiz": []
+  "content": "<h2>Lesson 19 — AWS Security Services (Complete Deep Dive)</h2>\n<blockquote class=\"callout tip\"><p><strong>Goal:</strong> By the end of this lesson, you'll understand AWS's major security services, how enterprises protect cloud environments, how threat detection works, how compliance is monitored, and how all the security services work together in a real production environment.</p></blockquote>\n<p>This lesson is one of the most important for interviews.</p>\n<p>A common interview question is:</p>\n<blockquote class=\"callout tip\"><p><strong>\"How would you secure an AWS environment?\"</strong></p></blockquote>\n<p>After this lesson, you'll be able to answer that confidently.</p>\n<hr class=\"divider\" />\n<h2>Learning Objectives</h2>\n<p>After this lesson, you'll understand:</p>\n<ul>\n<li>AWS Shared Responsibility Model</li>\n<li>Defence in Depth</li>\n<li>AWS Shield</li>\n<li>AWS WAF</li>\n<li>Amazon GuardDuty</li>\n<li>Amazon Inspector</li>\n<li>AWS Security Hub</li>\n<li>Amazon Macie</li>\n<li>AWS Config</li>\n<li>AWS Firewall Manager</li>\n<li>AWS Detective</li>\n<li>AWS IAM Access Analyzer</li>\n<li>Real-world security architecture</li>\n</ul>\n<hr class=\"divider\" />\n<h2>Chapter 1 — Security in the Cloud</h2>\n<p>Many beginners think:</p>\n<blockquote class=\"callout tip\"><p>AWS manages security.</p></blockquote>\n<p>Not exactly.</p>\n<p>AWS follows the <strong>Shared Responsibility Model</strong>.</p>\n<hr class=\"divider\" />\n<h2>Chapter 2 — Shared Responsibility Model</h2>\n<p>AWS secures:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Cloud Infrastructure</code></pre></div>\n<p>You secure:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Applications\n\nIAM\n\nData\n\nOperating Systems\n\nConfigurations\n\nEncryption\n\nNetwork Rules</code></pre></div>\n<p>Think of renting a flat.</p>\n<p>The building owner secures:</p>\n<ul>\n<li>Walls</li>\n<li>Roof</li>\n<li>Electricity</li>\n</ul>\n<p>You secure:</p>\n<ul>\n<li>Your belongings</li>\n<li>Your door lock</li>\n<li>Who enters your home</li>\n</ul>\n<p>AWS is the building owner.</p>\n<p>You are responsible for what you deploy.</p>\n<hr class=\"divider\" />\n<h2>Chapter 3 — Defence in Depth</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Never rely on one security layer.</p>\n<p>Instead:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Internet\n\n↓\n\nAWS Shield\n\n↓\n\nAWS WAF\n\n↓\n\nCloudFront\n\n↓\n\nALB\n\n↓\n\nSecurity Groups\n\n↓\n\nApplication\n\n↓\n\nIAM\n\n↓\n\nEncryption</code></pre></div>\n<p>Multiple layers mean one failure doesn't expose everything.</p>\n<p>This is called:</p>\n<p><strong>Defence in Depth</strong></p>\n<hr class=\"divider\" />\n</div><h2>Chapter 4 — AWS Shield</h2>\n<p>Suppose attackers send:</p>\n<p>10 million requests.</p>\n<p>Purpose:</p>\n<p>Crash your website.</p>\n<p>This is called a:</p>\n<p><strong>DDoS Attack</strong></p>\n<p>(Distributed Denial of Service)</p>\n<hr class=\"divider\" />\n<p>Without protection:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Attackers\n\n↓\n\nServer\n\n↓\n\nCrash</code></pre></div>\n<hr class=\"divider\" />\n<p>AWS Shield protects against DDoS attacks.</p>\n<p>Two versions exist.</p>\n<hr class=\"divider\" />\n<h2>Shield Standard</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Included automatically.</p>\n<p>Protects against many common infrastructure-layer DDoS attacks.</p>\n<hr class=\"divider\" />\n</div><h2>Shield Advanced</h2>\n<p>Designed for larger, business-critical workloads.</p>\n<p>Adds:</p>\n<ul>\n<li>Enhanced detection</li>\n<li>Additional response support</li>\n<li>Better visibility</li>\n<li>Integration with AWS DDoS Response Team (DRT)</li>\n</ul>\n<p>Used by:</p>\n<ul>\n<li>Banks</li>\n<li>Government</li>\n<li>E-commerce</li>\n<li>Large enterprises</li>\n</ul>\n<hr class=\"divider\" />\n<h2>Chapter 5 — AWS WAF</h2>\n<p>WAF means:</p>\n<p><strong>Web Application Firewall</strong></p>\n<p>It protects HTTP and HTTPS applications.</p>\n<p>Imagine a request:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>User\n\n↓\n\nWebsite</code></pre></div>\n<p>WAF sits in front.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>User\n\n↓\n\nWAF\n\n↓\n\nApplication</code></pre></div>\n<hr class=\"divider\" />\n<p>Unlike Shield:</p>\n<p>Shield protects infrastructure.</p>\n<p>WAF protects applications.</p>\n<hr class=\"divider\" />\n<h2>Example Attack — SQL Injection</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Suppose attacker sends:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>sql</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>' OR 1=1 --</code></pre></div>\n<p>Instead of normal login credentials.</p>\n<p>Without WAF:</p>\n<p>Application may process the malicious input.</p>\n<p>With WAF:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Request\n\n↓\n\nRule Match\n\n↓\n\nBlocked</code></pre></div>\n<hr class=\"divider\" />\n</div><h2>Example Attack — Cross-Site Scripting (XSS)</h2>\n<p>Attacker submits:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>html</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>&lt;script&gt;alert(\"hack\")&lt;/script&gt;</code></pre></div>\n<p>WAF can detect and block known malicious patterns before they reach your application.</p>\n<hr class=\"divider\" />\n<h2>WAF Rules</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Rules can check:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">IP addresses</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Countries</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">HTTP headers</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">User-Agent</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-5\"><span class=\"lab-step-text\">URI path</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-6\"><span class=\"lab-step-text\">Request size</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-7\"><span class=\"lab-step-text\">Rate limits</span></li>\n</ul>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>More Than 100 Requests\n\n↓\n\n1 Minute\n\n↓\n\nSame IP\n\n↓\n\nBlock</code></pre></div>\n<p>This is rate-based protection.</p>\n<hr class=\"divider\" />\n</div><h2>Chapter 6 — Amazon GuardDuty</h2>\n<p>Imagine:</p>\n<p>Someone steals AWS credentials.</p>\n<p>They log in from another country.</p>\n<p>Start launching cryptocurrency mining instances.</p>\n<p>Would you notice immediately?</p>\n<p>Maybe not.</p>\n<p>GuardDuty would likely notice suspicious behaviour.</p>\n<hr class=\"divider\" />\n<p>GuardDuty analyses signals from services like:</p>\n<ul>\n<li>CloudTrail</li>\n<li>VPC Flow Logs</li>\n<li>DNS logs</li>\n</ul>\n<p>It looks for suspicious activity.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Login\n\n↓\n\nUnusual Country\n\n↓\n\nHigh Risk\n\n↓\n\nFinding</code></pre></div>\n<hr class=\"divider\" />\n<p>GuardDuty does <strong>not</strong> block attacks.</p>\n<p>It detects them.</p>\n<hr class=\"divider\" />\n<h2>Chapter 7 — Amazon Inspector</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>GuardDuty detects threats.</p>\n<p>Inspector looks for vulnerabilities.</p>\n<p>Example:</p>\n<p>EC2 instance:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Ubuntu Server</code></pre></div>\n<p>Running:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Old OpenSSL</code></pre></div>\n<p>Known security issue.</p>\n<p>Inspector reports it.</p>\n<hr class=\"divider\" />\n<p>Inspector checks supported workloads for issues such as:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Software vulnerabilities</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Missing patches</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">Container image vulnerabilities</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">Certain Lambda package vulnerabilities</span></li>\n</ul>\n<hr class=\"divider\" />\n</div><h2>Chapter 8 — AWS Security Hub</h2>\n<p>Imagine using:</p>\n<ul>\n<li>GuardDuty</li>\n<li>Inspector</li>\n<li>IAM Access Analyzer</li>\n<li>Macie</li>\n<li>Config</li>\n</ul>\n<p>Where do you see everything?</p>\n<p>Security Hub.</p>\n<p>It centralises security findings.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>GuardDuty\n\n↓\n\nInspector\n\n↓\n\nMacie\n\n↓\n\nConfig\n\n↓\n\nSecurity Hub</code></pre></div>\n<p>One dashboard.</p>\n<p>One place.</p>\n<hr class=\"divider\" />\n<h2>Chapter 9 — Amazon Macie</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Macie focuses on:</p>\n<p>Sensitive data.</p>\n<p>Suppose your S3 bucket contains:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Passport Numbers\n\nCredit Card Numbers\n\nNational IDs\n\nCustomer Information</code></pre></div>\n<p>Macie scans supported S3 data to help identify sensitive information.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>S3 Bucket\n\n↓\n\nSensitive Data Found\n\n↓\n\nAlert</code></pre></div>\n<p>Very useful for:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">GDPR</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">PCI DSS</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">Data governance</span></li>\n</ul>\n<hr class=\"divider\" />\n</div><h2>Chapter 10 — AWS Config</h2>\n<p>Imagine:</p>\n<p>Yesterday:</p>\n<p>S3 bucket was private.</p>\n<p>Today:</p>\n<p>Someone made it public.</p>\n<p>Who changed it?</p>\n<p>Config knows.</p>\n<hr class=\"divider\" />\n<p>Config continuously records supported AWS resource configurations and changes.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Security Group\n\n↓\n\nYesterday\n\n↓\n\nToday\n\n↓\n\nChanged</code></pre></div>\n<p>You can review the history.</p>\n<hr class=\"divider\" />\n<p>Config Rules</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>S3 Bucket\n\n↓\n\nPublic?\n\n↓\n\nNON-COMPLIANT</code></pre></div>\n<p>Or:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>EBS\n\n↓\n\nEncrypted?\n\n↓\n\nCOMPLIANT</code></pre></div>\n<p>It helps enforce organisational policies.</p>\n<hr class=\"divider\" />\n<h2>Chapter 11 — AWS Firewall Manager</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Large company:</p>\n<p>500 AWS accounts.</p>\n<p>Thousands of WAF rules.</p>\n<p>Managing each account manually is difficult.</p>\n<p>Firewall Manager lets you manage security policies centrally.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Security Team\n\n↓\n\nFirewall Manager\n\n↓\n\nAll AWS Accounts</code></pre></div>\n<p>One policy.</p>\n<p>Applied everywhere.</p>\n<hr class=\"divider\" />\n</div><h2>Chapter 12 — AWS Detective</h2>\n<p>Suppose GuardDuty reports:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Possible Credential Theft</code></pre></div>\n<p>Now what?</p>\n<p>Detective helps investigate.</p>\n<p>It analyses relationships between:</p>\n<ul>\n<li>Users</li>\n<li>Instances</li>\n<li>Network activity</li>\n<li>API calls</li>\n</ul>\n<p>Think of it as:</p>\n<p>Digital forensics.</p>\n<hr class=\"divider\" />\n<h2>Chapter 13 — IAM Access Analyzer</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Imagine:</p>\n<p>Someone accidentally shares:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>S3 Bucket\n\nPublic</code></pre></div>\n<p>Or:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>IAM Role\n\nCross-Account Access</code></pre></div>\n<p>Access Analyzer identifies resources that are accessible outside your organisation or account based on IAM policies.</p>\n<p>Great for finding accidental exposure.</p>\n<hr class=\"divider\" />\n</div><h2>Chapter 14 — AWS Secrets Manager + KMS</h2>\n<p>Remember Lesson 14.</p>\n<p>Applications should never contain:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>python</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>password=\"Admin123!\"</code></pre></div>\n<p>Instead:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Application\n\n↓\n\nSecrets Manager\n\n↓\n\nKMS\n\n↓\n\nDatabase</code></pre></div>\n<p>Everything encrypted.</p>\n<hr class=\"divider\" />\n<h2>Chapter 15 — Security Groups vs WAF vs Shield</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Very common interview question.</p>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Service</th><th>Protects</th></tr></thead><tbody>\n<tr><td>Security Group</td><td>EC2 network traffic</td></tr>\n<tr><td>Network ACL</td><td>Subnet-level traffic</td></tr>\n<tr><td>AWS WAF</td><td>Web application traffic</td></tr>\n<tr><td>AWS Shield</td><td>DDoS attacks</td></tr>\n<tr><td>GuardDuty</td><td>Threat detection</td></tr>\n<tr><td>Inspector</td><td>Vulnerability assessment</td></tr>\n<tr><td>Macie</td><td>Sensitive data</td></tr>\n<tr><td>Config</td><td>Configuration compliance</td></tr>\n<tr><td>Security Hub</td><td>Central security dashboard</td></tr>\n</tbody></table></div>\n<hr class=\"divider\" />\n</div><h2>Chapter 16 — Real Production Architecture</h2>\n<p>Imagine an online bank.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Internet\n      │\n      ▼\n AWS Shield\n      │\n      ▼\n   AWS WAF\n      │\n      ▼\n CloudFront\n      │\n      ▼\n     ALB\n      │\n      ▼\n ECS Services\n      │\n      ▼\n     RDS</code></pre></div>\n<p>Meanwhile:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>CloudTrail\n\n↓\n\nGuardDuty\n\n↓\n\nSecurity Hub\n\n↓\n\nSOC Team</code></pre></div>\n<p>And:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>S3\n\n↓\n\nMacie\n\n↓\n\nSensitive Data Alert</code></pre></div>\n<p>Everything works together.</p>\n<hr class=\"divider\" />\n<h2>Chapter 17 — Security Incident Example</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Suppose:</p>\n<p>Developer accidentally makes an S3 bucket public.</p>\n<p>Sequence:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>S3 Public\n\n↓\n\nConfig Detects\n\n↓\n\nSecurity Hub Receives Finding\n\n↓\n\nAccess Analyzer Detects External Access\n\n↓\n\nSecurity Team Fixes</code></pre></div>\n<p>Another example:</p>\n<p>Attacker logs in using stolen credentials.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>CloudTrail Event\n\n↓\n\nGuardDuty\n\n↓\n\nHigh Severity Finding\n\n↓\n\nSecurity Hub\n\n↓\n\nSOC Investigation\n\n↓\n\nDetective</code></pre></div>\n<hr class=\"divider\" />\n</div><h2>Chapter 18 — Compliance</h2>\n<p>Many companies follow regulations.</p>\n<p>Examples:</p>\n<ul>\n<li>ISO 27001</li>\n<li>SOC 2</li>\n<li>PCI DSS</li>\n<li>GDPR</li>\n<li>HIPAA</li>\n</ul>\n<p>AWS provides services to help organisations meet compliance requirements, but customers remain responsible for configuring and operating their workloads appropriately.</p>\n<hr class=\"divider\" />\n<h2>Chapter 19 — Best Practices</h2>\n<ul>\n<li>Enable MFA for privileged users.</li>\n<li>Follow least privilege IAM.</li>\n<li>Encrypt data using KMS.</li>\n<li>Store secrets in Secrets Manager.</li>\n<li>Enable GuardDuty.</li>\n<li>Enable Security Hub.</li>\n<li>Use AWS Config rules.</li>\n<li>Enable CloudTrail in all regions.</li>\n<li>Use WAF for public web applications.</li>\n<li>Keep operating systems and containers patched.</li>\n<li>Review findings regularly.</li>\n</ul>\n<hr class=\"divider\" />\n<h2>Chapter 20 — Common Mistakes</h2>\n<p>❌ Making S3 buckets public.</p>\n<p>❌ Disabling CloudTrail.</p>\n<p>❌ Sharing root account credentials.</p>\n<p>❌ Hardcoding passwords.</p>\n<p>❌ Allowing <code>0.0.0.0/0</code> SSH access.</p>\n<p>❌ Ignoring GuardDuty findings.</p>\n<p>❌ Forgetting encryption.</p>\n<p>❌ Giving administrator access to everyone.</p>\n<p>❌ Not rotating secrets.</p>\n<hr class=\"divider\" />\n<h2>Chapter 21 — Interview Questions</h2>\n<h3>Q1. What is the Shared Responsibility Model?</h3>\n<p>AWS secures the cloud infrastructure, while customers secure what they deploy in the cloud, including applications, data, identities, and configurations.</p>\n<hr class=\"divider\" />\n<h3>Q2. Difference between AWS Shield and AWS WAF?</h3>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Shield</th><th>WAF</th></tr></thead><tbody>\n<tr><td>Protects against DDoS attacks</td><td>Filters HTTP/HTTPS requests</td></tr>\n<tr><td>Infrastructure-level protection</td><td>Application-layer protection</td></tr>\n</tbody></table></div>\n<hr class=\"divider\" />\n<h3>Q3. What does GuardDuty do?</h3>\n<p>Continuously analyses AWS activity to detect suspicious behaviour and potential threats.</p>\n<hr class=\"divider\" />\n<h3>Q4. What does Inspector do?</h3>\n<p>Scans supported compute resources and container images for vulnerabilities and exposure.</p>\n<hr class=\"divider\" />\n<h3>Q5. What does Security Hub do?</h3>\n<p>Aggregates security findings from multiple AWS security services into a central dashboard.</p>\n<hr class=\"divider\" />\n<h3>Q6. What does Macie do?</h3>\n<p>Discovers and helps protect sensitive data stored in Amazon S3.</p>\n<hr class=\"divider\" />\n<h3>Q7. What does AWS Config do?</h3>\n<p>Records resource configurations, tracks changes, and evaluates compliance against rules.</p>\n<hr class=\"divider\" />\n<h3>Q8. What is AWS Detective?</h3>\n<p>A service that helps investigate and analyse security incidents using collected data.</p>\n<hr class=\"divider\" />\n<h3>Q9. What does IAM Access Analyzer identify?</h3>\n<p>Resources that are accessible from outside the intended AWS account or organisation due to IAM policies.</p>\n<hr class=\"divider\" />\n<h3>Q10. If your company has hundreds of AWS accounts, how would you centrally manage WAF rules?</h3>\n<p>Use <strong>AWS Firewall Manager</strong> together with AWS Organizations.</p>\n<hr class=\"divider\" />\n<h2>Hands-on Lab</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<aside class=\"cost-safety callout warn\" role=\"note\"><p class=\"callout-title\">Cost safety</p><ul><li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Prefer <strong>Free Tier</strong> / small instance sizes while learning.</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Create a <strong>billing alarm</strong> (CloudWatch or Budgets) on day one.</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\"><strong>Tear down</strong> lab resources when finished (instances, load balancers, NAT gateways).</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">Never put long-lived access keys in code or public repos.</span></li></ul><p class=\"workshop-links\"><strong>Official practice:</strong> <a href=\"https://explore.skillbuilder.aws/\" rel=\"noopener noreferrer\" target=\"_blank\">AWS Skill Builder</a> · <a href=\"https://wellarchitectedlabs.com/\" rel=\"noopener noreferrer\" target=\"_blank\">Well-Architected Labs</a> · <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/free-tier.html\" rel=\"noopener noreferrer\" target=\"_blank\">Free Tier docs</a></p></aside>\n<ol>\n<li class=\"lab-step\" data-lab-id=\"lab-step-5\"><span class=\"lab-step-text\">Enable <strong>GuardDuty</strong> in your AWS account.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-6\"><span class=\"lab-step-text\">Enable <strong>Security Hub</strong> and review the initial findings.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-7\"><span class=\"lab-step-text\">Enable <strong>AWS Config</strong> and create a rule requiring S3 bucket encryption.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-8\"><span class=\"lab-step-text\">Create a test S3 bucket and intentionally make it public (only in a sandbox account), then observe findings from Config and IAM Access Analyzer.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-9\"><span class=\"lab-step-text\">Enable <strong>Macie</strong> and allow it to classify a sample S3 bucket.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-10\"><span class=\"lab-step-text\">Attach an AWS Managed Rule Group to an <strong>AWS WAF</strong> web ACL and associate it with a test Application Load Balancer or CloudFront distribution.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-11\"><span class=\"lab-step-text\">Review <strong>CloudTrail</strong> logs to correlate security events.</span></li>\n</ol>\n<hr class=\"divider\" />\n</div><h2>Final Mental Model</h2>\n<p>If you remember only one diagram from this lesson, remember this:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>                     Internet\n                         │\n                  DDoS Attack?\n                         │\n                         ▼\n                   AWS Shield\n                         │\n                  HTTP Request\n                         │\n                         ▼\n                     AWS WAF\n                         │\n                         ▼\n             CloudFront / ALB / API\n                         │\n                         ▼\n                  Application Layer\n                         │\n         ┌───────────────┼───────────────┐\n         ▼               ▼               ▼\n     GuardDuty      Inspector        Macie\n         │               │               │\n         └───────────────┼───────────────┘\n                         ▼\n                  Security Hub\n                         │\n                         ▼\n                  Security Team\n                         │\n        Config + CloudTrail + Detective\n                         │\n                         ▼\n             Investigation &amp; Remediation</code></pre></div>\n<p>The key ideas are:</p>\n<ul>\n<li><strong>Shield</strong> protects against DDoS attacks.</li>\n<li><strong>WAF</strong> filters malicious web traffic.</li>\n<li><strong>GuardDuty</strong> detects suspicious activity.</li>\n<li><strong>Inspector</strong> finds vulnerabilities.</li>\n<li><strong>Macie</strong> identifies sensitive data in S3.</li>\n<li><strong>Config</strong> tracks configuration changes and compliance.</li>\n<li><strong>Security Hub</strong> centralises security findings.</li>\n<li><strong>Detective</strong> helps investigate incidents.</li>\n<li><strong>IAM Access Analyzer</strong> identifies unintended external access.</li>\n</ul>\n<p>Together, these services provide multiple layers of protection, detection, investigation, and governance for production AWS environments.</p>\n<aside class=\"accuracy-note\" role=\"note\"><p><strong>Content review:</strong> 2026-07. Curriculum text is adapted from a shared learning roadmap; verify critical details in official AWS docs before production use.</p><p class=\"accuracy-note-label\">References</p><ul><li><a href=\"https://docs.aws.amazon.com/guardduty/latest/ug/what-is-guardduty.html\" rel=\"noopener noreferrer\" target=\"_blank\">docs.aws.amazon.com/guardduty/latest/ug/what-is-guardduty.ht…</a></li><li><a href=\"https://docs.aws.amazon.com/securityhub/latest/userguide/what-is-securityhub.html\" rel=\"noopener noreferrer\" target=\"_blank\">docs.aws.amazon.com/securityhub/latest/userguide/what-is-sec…</a></li></ul></aside>",
+  "quiz": [
+    {
+      "q": "The Shared Responsibility Model means:",
+      "options": [
+        "AWS is responsible for everything including your app passwords",
+        "AWS secures the cloud; customers secure what they put in the cloud",
+        "Customers secure hardware data centers only",
+        "No one is responsible"
+      ],
+      "answer": 1,
+      "explain": "Classic AWS vs customer security split.",
+      "style": "general"
+    },
+    {
+      "q": "Defence in depth means:",
+      "options": [
+        "One control only",
+        "Multiple layered security controls",
+        "No monitoring",
+        "Public admin ports everywhere"
+      ],
+      "answer": 1,
+      "explain": "Layers reduce single points of failure.",
+      "style": "general"
+    },
+    {
+      "q": "AWS Shield primarily protects against:",
+      "options": [
+        "SQL schema design",
+        "DDoS attacks",
+        "DNS typos only",
+        "Cost overruns only"
+      ],
+      "answer": 1,
+      "explain": "Shield is DDoS protection.",
+      "style": "general"
+    },
+    {
+      "q": "Shield Standard is:",
+      "options": [
+        "A paid enterprise-only physical device",
+        "Baseline DDoS protection included for many AWS customers/services",
+        "A type of EBS volume",
+        "An SQS mode"
+      ],
+      "answer": 1,
+      "explain": "Standard is the included baseline.",
+      "style": "general"
+    },
+    {
+      "q": "Shield Advanced provides:",
+      "options": [
+        "No extra features",
+        "Enhanced DDoS protections/support (paid tier)",
+        "Free unlimited EC2",
+        "Automatic public S3"
+      ],
+      "answer": 1,
+      "explain": "Advanced is the higher paid tier.",
+      "style": "general"
+    },
+    {
+      "q": "AWS WAF is used to:",
+      "options": [
+        "Filter web requests (allow/block/count) based on rules",
+        "Create VPCs",
+        "Issue access keys only",
+        "Host static files only"
+      ],
+      "answer": 0,
+      "explain": "WAF protects web apps at Layer 7.",
+      "style": "general"
+    },
+    {
+      "q": "Amazon GuardDuty is primarily:",
+      "options": [
+        "A CDN",
+        "Threat detection using account/network/DNS findings",
+        "A relational database",
+        "A budget tool"
+      ],
+      "answer": 1,
+      "explain": "GuardDuty detects suspicious activity.",
+      "style": "general"
+    },
+    {
+      "q": "Amazon Inspector focuses on:",
+      "options": [
+        "DNS routing policies",
+        "Vulnerability assessment for workloads",
+        "Message fan-out",
+        "Edge caching"
+      ],
+      "answer": 1,
+      "explain": "Inspector finds software/network exposure issues.",
+      "style": "general"
+    },
+    {
+      "q": "AWS Security Hub aggregates:",
+      "options": [
+        "Only S3 inventory CSVs",
+        "Security findings across accounts/services into a central view",
+        "Only CloudFront logs without analysis",
+        "Only billing PDFs"
+      ],
+      "answer": 1,
+      "explain": "Security Hub is a findings aggregation/posture hub.",
+      "style": "general"
+    },
+    {
+      "q": "Which is a detective control example?",
+      "options": [
+        "Preventing write with IAM deny",
+        "GuardDuty alerting on anomalous API activity",
+        "A locked data center door only (physical)",
+        "TLS only"
+      ],
+      "answer": 1,
+      "explain": "Detective controls find issues after/during activity.",
+      "style": "general"
+    },
+    {
+      "q": "Which is a preventive control example?",
+      "options": [
+        "A CloudWatch alarm after breach only",
+        "IAM least privilege preventing unauthorized actions",
+        "A finding report only",
+        "A post-incident blog"
+      ],
+      "answer": 1,
+      "explain": "Preventive stops unauthorized actions.",
+      "style": "general"
+    },
+    {
+      "q": "WAF rules might block:",
+      "options": [
+        "Healthy TLS handshakes only",
+        "Common web attacks (e.g. SQLi patterns) based on configured rules",
+        "All DNS forever",
+        "All IAM roles automatically"
+      ],
+      "answer": 1,
+      "explain": "WAF targets HTTP(S) attack patterns.",
+      "style": "general"
+    },
+    {
+      "q": "Enabling GuardDuty typically requires:",
+      "options": [
+        "Deleting CloudTrail",
+        "Turning on the service (and related data sources as designed)",
+        "Disabling IAM",
+        "Making all buckets public"
+      ],
+      "answer": 1,
+      "explain": "You enable GuardDuty in accounts/regions.",
+      "style": "general"
+    },
+    {
+      "q": "Security findings should lead to:",
+      "options": [
+        "Ignoring them forever",
+        "Triage and remediation",
+        "Deleting the organization blindly",
+        "Disabling logging always"
+      ],
+      "answer": 1,
+      "explain": "Find → triage → fix is the loop.",
+      "style": "general"
+    },
+    {
+      "q": "Multi-account security posture is improved by:",
+      "options": [
+        "No central visibility",
+        "Central findings (e.g. Security Hub) across accounts",
+        "One shared root user only",
+        "Disabling MFA org-wide"
+      ],
+      "answer": 1,
+      "explain": "Central visibility scales security ops.",
+      "style": "general"
+    },
+    {
+      "q": "Shield alone does not replace:",
+      "options": [
+        "Need for app security, IAM, patching, etc.",
+        "The concept of DDoS",
+        "Edge locations",
+        "DNS"
+      ],
+      "answer": 0,
+      "explain": "DDoS protection is one layer, not full security.",
+      "style": "general"
+    },
+    {
+      "q": "A WAF is commonly associated with:",
+      "options": [
+        "Only SSH port 22 on bastions",
+        "CloudFront/ALB/API Gateway style web entry points",
+        "Only RDS storage",
+        "Only EBS snapshots"
+      ],
+      "answer": 1,
+      "explain": "WAF sits on web fronts.",
+      "style": "general"
+    },
+    {
+      "q": "Inspector findings often relate to:",
+      "options": [
+        "Fashion trends",
+        "CVEs/misconfigurations on assessed targets",
+        "DNS TTL only",
+        "SQS visibility timeout only"
+      ],
+      "answer": 1,
+      "explain": "Vulnerability and exposure findings.",
+      "style": "general"
+    },
+    {
+      "q": "Security Hub standards help by:",
+      "options": [
+        "Randomly deleting users",
+        "Checking accounts against security best-practice frameworks",
+        "Replacing EC2",
+        "Billing only"
+      ],
+      "answer": 1,
+      "explain": "Standards drive posture checks.",
+      "style": "general"
+    },
+    {
+      "q": "The lesson’s overarching theme is:",
+      "options": [
+        "Security is only a firewall product",
+        "Layered AWS security services cover prevent + detect + respond visibility",
+        "No tools exist for detection",
+        "Cost tools replace security"
+      ],
+      "answer": 1,
+      "explain": "Multiple services form a defence-in-depth toolkit.",
+      "style": "general"
+    }
+  ]
 }

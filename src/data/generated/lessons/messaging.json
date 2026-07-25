@@ -3,65 +3,428 @@
   "number": "15",
   "section": "Additional · SAA & jobs",
   "title": "SQS, SNS & EventBridge",
-  "short": "Queues, pub/sub, and event buses for decoupled, event-driven architectures.",
-  "minutes": 40,
+  "short": "Decouple systems with queues, pub/sub topics, and event buses.",
+  "minutes": 45,
   "tags": [
     "messaging",
     "events",
-    "integration",
-    "coming-soon"
+    "sqs",
+    "sns",
+    "eventbridge"
   ],
   "goals": [
-    "Choose queue vs topic vs event bus",
-    "Standard vs FIFO SQS patterns",
-    "EventBridge rules and common sources/targets"
+    "Why are queues needed",
+    "asynchronous communication",
+    "decoupling",
+    "Amazon SQS",
+    "Standard Queue vs FIFO Queue",
+    "Visibility Timeout",
+    "Long Polling",
+    "Dead Letter Queue (DLQ)"
   ],
   "reviewed": "2026-07",
   "sources": [
     "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html",
     "https://docs.aws.amazon.com/sns/latest/dg/welcome.html",
     "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-what-is.html",
-    "Placeholder — full content to be added"
+    "ChatGPT AWS Learning Roadmap (share 6a64fd27…)"
   ],
-  "comingSoon": true,
+  "comingSoon": false,
   "parts": [
     {
       "id": "part-1",
-      "title": "Lesson 15: SQS, SNS & EventBridge"
+      "title": "Lesson 15 — Amazon SQS, Amazon SNS & Amazon EventBridge (Complete Deep Dive)"
     },
     {
       "id": "part-2",
-      "title": "Why this lesson matters"
+      "title": "Learning Objectives"
     },
     {
       "id": "part-3",
-      "title": "Learning goals (preview)"
+      "title": "Chapter 1 — The Biggest Problem in Distributed Systems"
     },
     {
       "id": "part-4",
-      "title": "Outline (coming soon)"
+      "title": "Synchronous Architecture"
     },
     {
       "id": "part-5",
-      "title": "Key terms (placeholder)"
+      "title": "This Problem is Called Tight Coupling"
     },
     {
       "id": "part-6",
-      "title": "Architecture sketch (coming soon)"
+      "title": "Modern Solution"
     },
     {
       "id": "part-7",
-      "title": "Hands-on Lab"
+      "title": "Chapter 2 — Synchronous vs Asynchronous"
     },
     {
       "id": "part-8",
-      "title": "Official starting points"
+      "title": "Synchronous"
     },
     {
       "id": "part-9",
-      "title": "Next"
+      "title": "Asynchronous"
+    },
+    {
+      "id": "part-10",
+      "title": "Chapter 3 — What is Amazon SQS?"
+    },
+    {
+      "id": "part-11",
+      "title": "Basic Architecture"
+    },
+    {
+      "id": "part-12",
+      "title": "Chapter 4 — Decoupling"
+    },
+    {
+      "id": "part-13",
+      "title": "Chapter 5 — Producer and Consumer"
+    },
+    {
+      "id": "part-14",
+      "title": "Chapter 6 — Message Lifecycle"
+    },
+    {
+      "id": "part-15",
+      "title": "Chapter 7 — Standard Queue"
+    },
+    {
+      "id": "part-16",
+      "title": "What is Idempotency?"
+    },
+    {
+      "id": "part-17",
+      "title": "Chapter 8 — FIFO Queue"
+    },
+    {
+      "id": "part-18",
+      "title": "When Should You Use FIFO?"
+    },
+    {
+      "id": "part-19",
+      "title": "Chapter 9 — Visibility Timeout"
+    },
+    {
+      "id": "part-20",
+      "title": "Chapter 10 — Long Polling"
+    },
+    {
+      "id": "part-21",
+      "title": "Chapter 11 — Message Retention"
+    },
+    {
+      "id": "part-22",
+      "title": "Chapter 12 — Dead Letter Queue (DLQ)"
+    },
+    {
+      "id": "part-23",
+      "title": "Chapter 13 — Amazon SNS"
+    },
+    {
+      "id": "part-24",
+      "title": "Chapter 14 — Topics"
+    },
+    {
+      "id": "part-25",
+      "title": "Chapter 15 — SNS Subscribers"
+    },
+    {
+      "id": "part-26",
+      "title": "Chapter 16 — Fan-Out Pattern"
+    },
+    {
+      "id": "part-27",
+      "title": "Chapter 17 — What is EventBridge?"
+    },
+    {
+      "id": "part-28",
+      "title": "Chapter 18 — Event Bus"
+    },
+    {
+      "id": "part-29",
+      "title": "Chapter 19 — Rules"
+    },
+    {
+      "id": "part-30",
+      "title": "Chapter 20 — Custom Events"
+    },
+    {
+      "id": "part-31",
+      "title": "Chapter 21 — SQS vs SNS vs EventBridge"
+    },
+    {
+      "id": "part-32",
+      "title": "Chapter 22 — Production Architecture"
+    },
+    {
+      "id": "part-33",
+      "title": "Chapter 23 — EventBridge + Lambda"
+    },
+    {
+      "id": "part-34",
+      "title": "Chapter 24 — Best Practices"
+    },
+    {
+      "id": "part-35",
+      "title": "Chapter 25 — Common Mistakes"
+    },
+    {
+      "id": "part-36",
+      "title": "Chapter 26 — Interview Questions"
+    },
+    {
+      "id": "part-37",
+      "title": "Hands-on Lab"
+    },
+    {
+      "id": "part-38",
+      "title": "Final Mental Model"
     }
   ],
-  "content": "<h2>Lesson 15: SQS, SNS &amp; EventBridge</h2>\n<blockquote class=\"callout tip\"><p><strong>Content coming soon.</strong> Full notes, diagrams, labs, and quizzes will be added later. This lesson is reserved after the core 12-lesson path so navigation and progress stay stable when the material lands.</p></blockquote>\n<h2>Why this lesson matters</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Modern backends are event-driven. SQS buffers work, SNS fans out notifications, and EventBridge routes events across services — core SAA and job skills.</p>\n</div><h2>Learning goals (preview)</h2>\n<ul>\n<li>Choose queue vs topic vs event bus</li>\n<li>Standard vs FIFO SQS patterns</li>\n<li>EventBridge rules and common sources/targets</li>\n</ul>\n<h2>Outline (coming soon)</h2>\n<p>The sections below are planned — detailed explanations will replace this placeholder.</p>\n<ul>\n<li>Coupling problems in monolithic request/response</li>\n<li>SQS: visibility timeout, DLQ, standard vs FIFO</li>\n<li>SNS: topics, subscriptions, fan-out</li>\n<li>EventBridge: buses, rules, schemas</li>\n<li>Common patterns (order processing, async APIs)</li>\n</ul>\n<h2>Key terms (placeholder)</h2>\n<p>Definitions and comparisons will be filled in with the full curriculum content.</p>\n<h2>Architecture sketch (coming soon)</h2>\n<p>A simple diagram for this topic will be added with the full write-up.</p>\n<h2>Hands-on Lab</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<aside class=\"cost-safety callout warn\" role=\"note\"><p class=\"callout-title\">Cost safety</p><ul><li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Prefer <strong>Free Tier</strong> / small instance sizes while learning.</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Create a <strong>billing alarm</strong> (CloudWatch or Budgets) on day one.</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\"><strong>Tear down</strong> lab resources when finished (instances, load balancers, NAT gateways).</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">Never put long-lived access keys in code or public repos.</span></li></ul><p class=\"workshop-links\"><strong>Official practice:</strong> <a href=\"https://explore.skillbuilder.aws/\" rel=\"noopener noreferrer\" target=\"_blank\">AWS Skill Builder</a> · <a href=\"https://wellarchitectedlabs.com/\" rel=\"noopener noreferrer\" target=\"_blank\">Well-Architected Labs</a> · <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/free-tier.html\" rel=\"noopener noreferrer\" target=\"_blank\">Free Tier docs</a></p></aside>\n<p>Lab steps will be published with the full lesson. Until then:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-5\"><span class=\"lab-step-text\">Prefer Free Tier / smallest resources if you experiment on your own</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-6\"><span class=\"lab-step-text\">Create a billing alarm before long-running services</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-7\"><span class=\"lab-step-text\">Tear down anything you create when finished</span></li>\n</ul>\n</div><h2>Official starting points</h2>\n<p>Read these while waiting for the full lesson:</p>\n<ul>\n<li>https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html</li>\n<li>https://docs.aws.amazon.com/sns/latest/dg/welcome.html</li>\n<li>https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-what-is.html</li>\n</ul>\n<h2>Next</h2>\n<p>Continue with the remaining additional topics, or revisit earlier core lessons and quizzes for spaced practice.</p>\n<aside class=\"accuracy-note\" role=\"note\"><p><strong>Content review:</strong> 2026-07. Curriculum text is adapted from a shared learning roadmap; verify critical details in official AWS docs before production use.</p><p class=\"accuracy-note-label\">References</p><ul><li><a href=\"https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html\" rel=\"noopener noreferrer\" target=\"_blank\">docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDevelope…</a></li><li><a href=\"https://docs.aws.amazon.com/sns/latest/dg/welcome.html\" rel=\"noopener noreferrer\" target=\"_blank\">docs.aws.amazon.com/sns/latest/dg/welcome.html…</a></li><li><a href=\"https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-what-is.html\" rel=\"noopener noreferrer\" target=\"_blank\">docs.aws.amazon.com/eventbridge/latest/userguide/eb-what-is.…</a></li></ul></aside>",
-  "quiz": []
+  "content": "<h2>Lesson 15 — Amazon SQS, Amazon SNS &amp; Amazon EventBridge (Complete Deep Dive)</h2>\n<blockquote class=\"callout tip\"><p><strong>Goal:</strong> By the end of this lesson, you'll understand event-driven architecture, asynchronous communication, decoupling, message queues, publish-subscribe systems, event buses, retries, dead-letter queues, ordering, idempotency, and how modern AWS applications communicate internally.</p></blockquote>\n<p>If you ask senior backend engineers what changed software architecture the most in the last decade, many will answer:</p>\n<blockquote class=\"callout tip\"><p><strong>\"Moving from synchronous systems to event-driven systems.\"</strong></p></blockquote>\n<p>This lesson explains exactly why.</p>\n<hr class=\"divider\" />\n<h2>Learning Objectives</h2>\n<p>After this lesson, you should be able to answer:</p>\n<ul>\n<li>Why are queues needed?</li>\n<li>What is asynchronous communication?</li>\n<li>What is decoupling?</li>\n<li>What is Amazon SQS?</li>\n<li>Standard Queue vs FIFO Queue</li>\n<li>Visibility Timeout</li>\n<li>Long Polling</li>\n<li>Dead Letter Queue (DLQ)</li>\n<li>Message Retention</li>\n<li>What is Amazon SNS?</li>\n<li>What is Pub/Sub?</li>\n<li>What is Fan-Out?</li>\n<li>What is EventBridge?</li>\n<li>SNS vs SQS vs EventBridge</li>\n<li>Real production architectures</li>\n<li>Common interview questions</li>\n</ul>\n<hr class=\"divider\" />\n<h2>Chapter 1 — The Biggest Problem in Distributed Systems</h2>\n<p>Imagine you're building Amazon.</p>\n<p>A customer clicks:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Buy Now</code></pre></div>\n<p>What happens?</p>\n<p>Many beginners imagine:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>User\n\n↓\n\nOrder Service\n\n↓\n\nDone</code></pre></div>\n<p>Reality is very different.</p>\n<p>When someone buys one phone, dozens of systems may need to react.</p>\n<ul>\n<li>Payment</li>\n<li>Inventory</li>\n<li>Invoice</li>\n<li>Warehouse</li>\n<li>Shipping</li>\n<li>Email</li>\n<li>SMS</li>\n<li>Analytics</li>\n<li>Fraud Detection</li>\n<li>Loyalty Points</li>\n</ul>\n<p>One click triggers many independent operations.</p>\n<hr class=\"divider\" />\n<h2>Synchronous Architecture</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Suppose Order Service directly calls every service.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>User\n  │\n  ▼\nOrder Service\n   ├── Payment\n   ├── Inventory\n   ├── Shipping\n   ├── Email\n   ├── Analytics\n   └── Invoice</code></pre></div>\n<p>Everything happens immediately.</p>\n<p>Sounds good.</p>\n<p>But let's see what happens when one service fails.</p>\n<hr class=\"divider\" />\n<p>Suppose Email Service is down.</p>\n<p>Now:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Order\n\n↓\n\nPayment ✓\n\n↓\n\nInventory ✓\n\n↓\n\nShipping ✓\n\n↓\n\nEmail ✗\n\n↓\n\nOrder Failed</code></pre></div>\n<p>Wait...</p>\n<p>The customer already paid.</p>\n<p>Inventory was reduced.</p>\n<p>But the API returned an error because email failed.</p>\n<p>Bad design.</p>\n<hr class=\"divider\" />\n</div><h2>This Problem is Called Tight Coupling</h2>\n<p>Every service depends on every other service.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>A → B → C → D → E</code></pre></div>\n<p>If one breaks...</p>\n<p>Everything may break.</p>\n<p>This is called:</p>\n<p><strong>Tightly Coupled Architecture</strong></p>\n<hr class=\"divider\" />\n<h2>Modern Solution</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Modern systems don't wait.</p>\n<p>Instead:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Order Created\n\n↓\n\nMessage Queue\n\n↓\n\nEveryone processes independently</code></pre></div>\n<p>Now every service works at its own speed.</p>\n<hr class=\"divider\" />\n</div><h2>Chapter 2 — Synchronous vs Asynchronous</h2>\n<h2>Synchronous</h2>\n<p>Think of a phone call.</p>\n<p>You call someone.</p>\n<p>You must wait.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>You\n\n↓\n\nCall\n\n↓\n\nWait\n\n↓\n\nResponse</code></pre></div>\n<hr class=\"divider\" />\n<h2>Asynchronous</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Think of WhatsApp.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Send Message\n\n↓\n\nContinue Living\n\n↓\n\nReply Comes Later</code></pre></div>\n<p>You don't wait.</p>\n<hr class=\"divider\" />\n<p>Cloud architecture prefers asynchronous communication whenever possible.</p>\n<hr class=\"divider\" />\n</div><h2>Chapter 3 — What is Amazon SQS?</h2>\n<p>SQS stands for:</p>\n<p><strong>Simple Queue Service</strong></p>\n<p>Imagine a physical queue.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Customer\n\n↓\n\nTicket\n\n↓\n\nQueue\n\n↓\n\nCounter</code></pre></div>\n<p>Computers do the same thing.</p>\n<p>Instead of customers:</p>\n<p>Messages.</p>\n<hr class=\"divider\" />\n<h2>Basic Architecture</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Application A\n\n↓\n\nSQS Queue\n\n↓\n\nApplication B</code></pre></div>\n<p>Application A doesn't know:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">when</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">where</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">how</span></li>\n</ul>\n<p>Application B processes the message.</p>\n<p>This is called:</p>\n<p><strong>Decoupling</strong></p>\n<hr class=\"divider\" />\n</div><h2>Chapter 4 — Decoupling</h2>\n<p>Imagine:</p>\n<p>Without SQS</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Order Service\n\n↓\n\nEmail Service</code></pre></div>\n<p>If Email crashes...</p>\n<p>Order may fail.</p>\n<p>With SQS</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Order Service\n\n↓\n\nSQS\n\n↓\n\nEmail Worker</code></pre></div>\n<p>Order finishes.</p>\n<p>Email can happen later.</p>\n<p>This is why queues are everywhere.</p>\n<hr class=\"divider\" />\n<h2>Chapter 5 — Producer and Consumer</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>SQS has two main actors.</p>\n<p>Producer</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Creates Message</code></pre></div>\n<p>Consumer</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Reads Message</code></pre></div>\n<p>Architecture:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Producer\n\n↓\n\nQueue\n\n↓\n\nConsumer</code></pre></div>\n<p>Producer and consumer never talk directly.</p>\n<hr class=\"divider\" />\n</div><h2>Chapter 6 — Message Lifecycle</h2>\n<p>Imagine:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Place Order</code></pre></div>\n<p>Producer sends:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>json</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>{\n \"OrderId\":123,\n \"Amount\":500\n}</code></pre></div>\n<p>Flow:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Producer\n\n↓\n\nQueue\n\n↓\n\nConsumer\n\n↓\n\nDelete Message</code></pre></div>\n<p>Notice:</p>\n<p>The consumer <strong>must delete</strong> the message after successful processing.</p>\n<p>Otherwise it may appear again.</p>\n<hr class=\"divider\" />\n<h2>Chapter 7 — Standard Queue</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Default queue.</p>\n<p>Advantages:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Nearly unlimited throughput</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Best performance</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">Highly scalable</span></li>\n</ul>\n<p>Characteristics:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">At-least-once delivery</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-5\"><span class=\"lab-step-text\">Best-effort ordering</span></li>\n</ul>\n<p>Important:</p>\n<p>A message might occasionally be delivered more than once.</p>\n<p>Applications should therefore be <strong>idempotent</strong> (safe to process duplicates).</p>\n<hr class=\"divider\" />\n</div><h2>What is Idempotency?</h2>\n<p>Suppose the same payment message arrives twice.</p>\n<p>Bad implementation:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Receive Message\n\n↓\n\nCharge ₹500\n\n↓\n\nReceive Again\n\n↓\n\nCharge ₹500 Again</code></pre></div>\n<p>Customer pays twice.</p>\n<p>Instead:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Check Order ID\n\n↓\n\nAlready Processed?\n\n↓\n\nYes\n\n↓\n\nIgnore</code></pre></div>\n<p>Same result.</p>\n<p>No duplicate charge.</p>\n<hr class=\"divider\" />\n<h2>Chapter 8 — FIFO Queue</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>FIFO means:</p>\n<p><strong>First In, First Out</strong></p>\n<p>Exactly like standing in line.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>A\n\nB\n\nC</code></pre></div>\n<p>Output:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>A\n\nB\n\nC</code></pre></div>\n<p>Never:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>C\n\nA\n\nB</code></pre></div>\n<hr class=\"divider\" />\n<p>FIFO guarantees:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Ordered processing</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Exactly-once message deduplication within the supported deduplication model</span></li>\n</ul>\n<p>Trade-off:</p>\n<p>Lower throughput than Standard queues.</p>\n<hr class=\"divider\" />\n</div><h2>When Should You Use FIFO?</h2>\n<p>Good examples:</p>\n<ul>\n<li>Banking</li>\n<li>Financial transactions</li>\n<li>Inventory updates</li>\n<li>Order processing</li>\n<li>Airline reservations</li>\n</ul>\n<p>Wrong example:</p>\n<p>Website logs.</p>\n<p>Ordering doesn't matter.</p>\n<hr class=\"divider\" />\n<h2>Chapter 9 — Visibility Timeout</h2>\n<p>One of the most important SQS concepts.</p>\n<p>Suppose:</p>\n<p>Consumer receives a message.</p>\n<p>Should another consumer receive it immediately?</p>\n<p>No.</p>\n<p>Instead:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Queue\n\n↓\n\nConsumer Reads\n\n↓\n\nHidden Temporarily\n\n↓\n\nProcessing\n\n↓\n\nDelete</code></pre></div>\n<p>The message becomes invisible during the visibility timeout.</p>\n<hr class=\"divider\" />\n<p>What if the consumer crashes?</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Read Message\n\n↓\n\nCrash\n\n↓\n\nTimeout Expires\n\n↓\n\nMessage Reappears</code></pre></div>\n<p>Another worker can process it.</p>\n<p>No message is permanently lost.</p>\n<hr class=\"divider\" />\n<h2>Chapter 10 — Long Polling</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Without Long Polling:</p>\n<p>Consumer asks:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Any Messages?\n\n↓\n\nNo\n\n↓\n\nAny Messages?\n\n↓\n\nNo\n\n↓\n\nAny Messages?</code></pre></div>\n<p>Many unnecessary requests.</p>\n<hr class=\"divider\" />\n<p>With Long Polling:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Wait Up To 20 Seconds\n\n↓\n\nMessage Arrives\n\n↓\n\nReturn Immediately</code></pre></div>\n<p>Benefits:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Fewer empty responses</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Lower cost</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">Better efficiency</span></li>\n</ul>\n<hr class=\"divider\" />\n</div><h2>Chapter 11 — Message Retention</h2>\n<p>Messages don't stay forever.</p>\n<p>Retention can be configured (up to the service limit).</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Message\n\n↓\n\nStored\n\n↓\n\nConsumer Offline\n\n↓\n\nComes Back\n\n↓\n\nProcesses Message</code></pre></div>\n<p>After the retention period expires, unprocessed messages are removed.</p>\n<hr class=\"divider\" />\n<h2>Chapter 12 — Dead Letter Queue (DLQ)</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Suppose one message is corrupted.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Queue\n\n↓\n\nWorker\n\n↓\n\nFail\n\n↓\n\nRetry\n\n↓\n\nFail\n\n↓\n\nRetry\n\n↓\n\nFail</code></pre></div>\n<p>Should AWS retry forever?</p>\n<p>No.</p>\n<p>After a configured maximum receive count:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Main Queue\n\n↓\n\nToo Many Failures\n\n↓\n\nDead Letter Queue</code></pre></div>\n<p>Developers inspect the DLQ later.</p>\n<hr class=\"divider\" />\n<p>DLQs are extremely common in production.</p>\n<hr class=\"divider\" />\n</div><h2>Chapter 13 — Amazon SNS</h2>\n<p>SNS stands for:</p>\n<p><strong>Simple Notification Service</strong></p>\n<p>Unlike SQS...</p>\n<p>SNS is <strong>one-to-many</strong>.</p>\n<hr class=\"divider\" />\n<p>Imagine a teacher.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Teacher\n\n↓\n\nAnnouncement\n\n↓\n\nEntire Classroom</code></pre></div>\n<p>Everyone hears it.</p>\n<hr class=\"divider\" />\n<p>Architecture:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>SNS Topic\n\n↓\n\nSubscriber A\n\nSubscriber B\n\nSubscriber C</code></pre></div>\n<p>One publish.</p>\n<p>Many receivers.</p>\n<hr class=\"divider\" />\n<h2>Chapter 14 — Topics</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>SNS doesn't send directly.</p>\n<p>It publishes to a:</p>\n<p><strong>Topic</strong></p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Order Created Topic</code></pre></div>\n<p>Subscribers:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Email Service</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">SMS Service</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">Analytics</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">Warehouse</span></li>\n</ul>\n<p>All receive the same event.</p>\n<hr class=\"divider\" />\n</div><h2>Chapter 15 — SNS Subscribers</h2>\n<p>Subscribers can be:</p>\n<ul>\n<li>Lambda</li>\n<li>SQS</li>\n<li>Email</li>\n<li>SMS</li>\n<li>HTTPS endpoints</li>\n</ul>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>SNS\n\n↓\n\nLambda\n\n↓\n\nSQS\n\n↓\n\nEmail</code></pre></div>\n<p>One message.</p>\n<p>Multiple destinations.</p>\n<hr class=\"divider\" />\n<h2>Chapter 16 — Fan-Out Pattern</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>One of the most popular architectures.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Order Created\n\n↓\n\nSNS\n\n↓\n\nQueue A\n\nQueue B\n\nQueue C</code></pre></div>\n<p>Each queue has its own workers.</p>\n<p>Benefits:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Independent scaling</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Independent retries</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">Better fault isolation</span></li>\n</ul>\n<p>This pattern is called:</p>\n<p><strong>Fan-Out</strong></p>\n<hr class=\"divider\" />\n</div><h2>Chapter 17 — What is EventBridge?</h2>\n<p>SNS broadcasts messages.</p>\n<p>EventBridge routes <strong>events</strong>.</p>\n<p>Difference:</p>\n<p>SNS:</p>\n<blockquote class=\"callout tip\"><p>Deliver this message.</p></blockquote>\n<p>EventBridge:</p>\n<blockquote class=\"callout tip\"><p>When this event happens, send it to the right targets.</p></blockquote>\n<hr class=\"divider\" />\n<p>Architecture:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>EC2 Started\n\n↓\n\nEventBridge\n\n↓\n\nLambda</code></pre></div>\n<p>Or:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>S3 Upload\n\n↓\n\nEventBridge\n\n↓\n\nStep Functions\n\n↓\n\nSlack Notification\n\n↓\n\nAnalytics</code></pre></div>\n<hr class=\"divider\" />\n<h2>Chapter 18 — Event Bus</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Everything enters an Event Bus.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Events\n\n↓\n\nEvent Bus\n\n↓\n\nRules\n\n↓\n\nTargets</code></pre></div>\n<p>Think of it as an airport.</p>\n<p>Events arrive.</p>\n<p>Rules decide where they go.</p>\n<hr class=\"divider\" />\n</div><h2>Chapter 19 — Rules</h2>\n<p>Suppose:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>EC2 Instance Created</code></pre></div>\n<p>Rule:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>If Source = EC2\n\n↓\n\nInvoke Lambda</code></pre></div>\n<p>Or:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>If S3 Upload\n\n↓\n\nStart Image Processing</code></pre></div>\n<p>Rules filter events before routing them.</p>\n<hr class=\"divider\" />\n<h2>Chapter 20 — Custom Events</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Applications can publish their own events.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>json</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>OrderShipped</code></pre></div>\n<p>Now EventBridge can route it.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>OrderShipped\n\n↓\n\nAnalytics\n\n↓\n\nCRM\n\n↓\n\nEmail</code></pre></div>\n<p>No service needs to know about the others.</p>\n<hr class=\"divider\" />\n</div><h2>Chapter 21 — SQS vs SNS vs EventBridge</h2>\n<p>This is one of the most common interview questions.</p>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>SQS</th><th>SNS</th><th>EventBridge</th></tr></thead><tbody>\n<tr><td>Queue</td><td>Pub/Sub</td><td>Event Router</td></tr>\n<tr><td>One consumer per message</td><td>Many subscribers</td><td>Routes events by rules</td></tr>\n<tr><td>Messages wait</td><td>Push immediately</td><td>Rule-based routing</td></tr>\n<tr><td>Decoupling</td><td>Broadcasting</td><td>Event-driven workflows</td></tr>\n</tbody></table></div>\n<hr class=\"divider\" />\n<h2>Chapter 22 — Production Architecture</h2>\n<p>Suppose a customer buys something.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>User\n\n↓\n\nAPI\n\n↓\n\nOrder Service\n\n↓\n\nSNS\n\n↓\n\nInventory Queue\n\n↓\n\nInventory Worker\n\n↓\n\nShipping Queue\n\n↓\n\nShipping Worker\n\n↓\n\nEmail Queue\n\n↓\n\nEmail Worker\n\n↓\n\nAnalytics Queue\n\n↓\n\nAnalytics Worker</code></pre></div>\n<p>Notice:</p>\n<p>Every service is independent.</p>\n<hr class=\"divider\" />\n<h2>Chapter 23 — EventBridge + Lambda</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Cloud-native example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>S3 Upload\n\n↓\n\nEventBridge\n\n↓\n\nLambda\n\n↓\n\nResize Image\n\n↓\n\nStore Thumbnail</code></pre></div>\n<p>No polling.</p>\n<p>No cron jobs.</p>\n<p>Everything reacts to events.</p>\n<hr class=\"divider\" />\n</div><h2>Chapter 24 — Best Practices</h2>\n<ul>\n<li>Make consumers idempotent.</li>\n<li>Use DLQs for failed messages.</li>\n<li>Prefer asynchronous communication when immediate responses aren't required.</li>\n<li>Use Standard queues unless strict ordering is necessary.</li>\n<li>Use FIFO only when ordering or deduplication is essential.</li>\n<li>Use Long Polling to reduce empty requests.</li>\n<li>Keep messages reasonably small and place large payloads in S3 if needed.</li>\n<li>Use SNS fan-out to decouple downstream services.</li>\n<li>Use EventBridge when routing events based on rules or integrating AWS services.</li>\n</ul>\n<hr class=\"divider\" />\n<h2>Chapter 25 — Common Mistakes</h2>\n<p>❌ Calling every service synchronously.</p>\n<p>❌ Forgetting to delete processed SQS messages.</p>\n<p>❌ Not configuring a Dead Letter Queue.</p>\n<p>❌ Assuming Standard queues guarantee ordering.</p>\n<p>❌ Using FIFO everywhere even when unnecessary.</p>\n<p>❌ Writing non-idempotent consumers.</p>\n<hr class=\"divider\" />\n<h2>Chapter 26 — Interview Questions</h2>\n<h3>Q1. What is Amazon SQS?</h3>\n<p>A fully managed message queue service used to decouple applications.</p>\n<hr class=\"divider\" />\n<h3>Q2. Difference between Standard and FIFO queues?</h3>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Standard</th><th>FIFO</th></tr></thead><tbody>\n<tr><td>Maximum throughput</td><td>Ordered processing</td></tr>\n<tr><td>At-least-once delivery</td><td>Ordered with deduplication support</td></tr>\n<tr><td>Best-effort ordering</td><td>First-In, First-Out</td></tr>\n</tbody></table></div>\n<hr class=\"divider\" />\n<h3>Q3. What is Visibility Timeout?</h3>\n<p>The period during which a received message is hidden from other consumers while it is being processed.</p>\n<hr class=\"divider\" />\n<h3>Q4. What is a Dead Letter Queue?</h3>\n<p>A queue that stores messages that repeatedly fail processing after the configured retry limit.</p>\n<hr class=\"divider\" />\n<h3>Q5. What is SNS?</h3>\n<p>A managed publish-subscribe messaging service that delivers messages from one publisher to multiple subscribers.</p>\n<hr class=\"divider\" />\n<h3>Q6. What is Fan-Out?</h3>\n<p>Publishing one message to multiple independent subscribers, often using SNS with multiple SQS queues.</p>\n<hr class=\"divider\" />\n<h3>Q7. What is EventBridge?</h3>\n<p>A serverless event bus that routes events to targets based on configurable rules.</p>\n<hr class=\"divider\" />\n<h3>Q8. When should you use EventBridge instead of SNS?</h3>\n<p>When routing events based on content, integrating many AWS services, or building event-driven workflows with filtering rules.</p>\n<hr class=\"divider\" />\n<h3>Q9. Why is idempotency important?</h3>\n<p>Because distributed systems can deliver duplicate messages, and processing them multiple times should not produce incorrect results.</p>\n<hr class=\"divider\" />\n<h3>Q10. Why are asynchronous systems more resilient?</h3>\n<p>Because producers and consumers are decoupled. A temporary failure in one consumer doesn't necessarily stop the entire workflow.</p>\n<hr class=\"divider\" />\n<h2>Hands-on Lab</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<aside class=\"cost-safety callout warn\" role=\"note\"><p class=\"callout-title\">Cost safety</p><ul><li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Prefer <strong>Free Tier</strong> / small instance sizes while learning.</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Create a <strong>billing alarm</strong> (CloudWatch or Budgets) on day one.</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\"><strong>Tear down</strong> lab resources when finished (instances, load balancers, NAT gateways).</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">Never put long-lived access keys in code or public repos.</span></li></ul><p class=\"workshop-links\"><strong>Official practice:</strong> <a href=\"https://explore.skillbuilder.aws/\" rel=\"noopener noreferrer\" target=\"_blank\">AWS Skill Builder</a> · <a href=\"https://wellarchitectedlabs.com/\" rel=\"noopener noreferrer\" target=\"_blank\">Well-Architected Labs</a> · <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/free-tier.html\" rel=\"noopener noreferrer\" target=\"_blank\">Free Tier docs</a></p></aside>\n<ol>\n<li class=\"lab-step\" data-lab-id=\"lab-step-5\"><span class=\"lab-step-text\">Create an SQS Standard Queue.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-6\"><span class=\"lab-step-text\">Send several test messages through the AWS Console or AWS CLI.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-7\"><span class=\"lab-step-text\">Receive and delete messages manually.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-8\"><span class=\"lab-step-text\">Configure a Dead Letter Queue and attach it to the main queue.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-9\"><span class=\"lab-step-text\">Create an SNS Topic.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-10\"><span class=\"lab-step-text\">Subscribe the SQS queue to the SNS Topic.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-11\"><span class=\"lab-step-text\">Publish a message to the topic and observe it arriving in the queue.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-12\"><span class=\"lab-step-text\">Create an EventBridge rule that reacts to an S3 object upload and invokes a Lambda function.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-13\"><span class=\"lab-step-text\">Upload a file to the S3 bucket and verify the Lambda execution in CloudWatch Logs.</span></li>\n</ol>\n<hr class=\"divider\" />\n</div><h2>Final Mental Model</h2>\n<p>If you remember only one diagram from this lesson, remember this:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>                    Customer\n                        │\n                        ▼\n                  Order Service\n                        │\n              \"Order Created\"\n                        │\n                        ▼\n                   SNS Topic\n        ┌───────────┼───────────┐\n        ▼           ▼           ▼\n Inventory Q   Shipping Q   Email Q\n      │             │            │\n      ▼             ▼            ▼\n Inventory     Shipping      Email Worker\n   Worker        Worker\n\n                 ▲\n                 │\n      AWS Services (S3, EC2, RDS, etc.)\n                 │\n                 ▼\n             EventBridge\n                 │\n           Rules &amp; Filters\n                 │\n                 ▼\n        Lambda / Step Functions / Other Targets</code></pre></div>\n<p>The core idea is:</p>\n<ul>\n<li><strong>SQS</strong> is for <strong>reliable asynchronous processing</strong> between producers and consumers.</li>\n<li><strong>SNS</strong> is for <strong>broadcasting the same message</strong> to multiple subscribers.</li>\n<li><strong>EventBridge</strong> is for <strong>routing events intelligently</strong> across AWS services and custom applications.</li>\n</ul>\n<p>Mastering these three services will help you understand the architecture behind many modern microservices and serverless systems.</p>\n<aside class=\"accuracy-note\" role=\"note\"><p><strong>Content review:</strong> 2026-07. Curriculum text is adapted from a shared learning roadmap; verify critical details in official AWS docs before production use.</p><p class=\"accuracy-note-label\">References</p><ul><li><a href=\"https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html\" rel=\"noopener noreferrer\" target=\"_blank\">docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDevelope…</a></li><li><a href=\"https://docs.aws.amazon.com/sns/latest/dg/welcome.html\" rel=\"noopener noreferrer\" target=\"_blank\">docs.aws.amazon.com/sns/latest/dg/welcome.html…</a></li><li><a href=\"https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-what-is.html\" rel=\"noopener noreferrer\" target=\"_blank\">docs.aws.amazon.com/eventbridge/latest/userguide/eb-what-is.…</a></li></ul></aside>",
+  "quiz": [
+    {
+      "q": "Tight coupling in distributed systems often appears when services:",
+      "options": [
+        "Never call each other",
+        "Call each other synchronously and fail together under load",
+        "Only use DNS",
+        "Only store logs"
+      ],
+      "answer": 1,
+      "explain": "Synchronous chains amplify failures and load.",
+      "style": "general"
+    },
+    {
+      "q": "Asynchronous communication helps by:",
+      "options": [
+        "Removing all networks",
+        "Letting producers and consumers work at different rates via buffers/events",
+        "Forcing one giant server",
+        "Disabling retries"
+      ],
+      "answer": 1,
+      "explain": "Queues/events decouple timing and availability.",
+      "style": "general"
+    },
+    {
+      "q": "Amazon SQS is primarily a:",
+      "options": [
+        "CDN",
+        "Managed message queue",
+        "DNS service",
+        "Object store"
+      ],
+      "answer": 1,
+      "explain": "SQS is a fully managed queue service.",
+      "style": "general"
+    },
+    {
+      "q": "A key benefit of SQS is:",
+      "options": [
+        "Deleting encryption keys",
+        "Decoupling producers from consumers",
+        "Replacing IAM",
+        "Hosting static sites"
+      ],
+      "answer": 1,
+      "explain": "Producers enqueue; consumers process independently.",
+      "style": "general"
+    },
+    {
+      "q": "Standard SQS queues prioritize:",
+      "options": [
+        "Strict exactly-once ordered delivery always",
+        "High throughput with at-least-once delivery (order not strictly guaranteed)",
+        "Only video streaming",
+        "Only email"
+      ],
+      "answer": 1,
+      "explain": "Standard = scale; possible duplicates; best-effort ordering.",
+      "style": "general"
+    },
+    {
+      "q": "FIFO SQS queues are chosen when you need:",
+      "options": [
+        "No ordering ever",
+        "First-in-first-out ordering and exactly-once processing semantics within limits",
+        "Only public websites",
+        "IPv6 only"
+      ],
+      "answer": 1,
+      "explain": "FIFO preserves order and deduplication capabilities.",
+      "style": "general"
+    },
+    {
+      "q": "Visibility timeout means:",
+      "options": [
+        "Messages are never hidden",
+        "After a consumer receives a message, it is hidden for a period while processing",
+        "S3 objects become private",
+        "DNS TTL is zero"
+      ],
+      "answer": 1,
+      "explain": "Prevents other consumers from getting the same message during processing.",
+      "style": "general"
+    },
+    {
+      "q": "A Dead Letter Queue (DLQ) is used for:",
+      "options": [
+        "Faster CloudFront",
+        "Messages that repeatedly fail processing",
+        "Cheaper EC2 only",
+        "Disabling logs"
+      ],
+      "answer": 1,
+      "explain": "DLQs capture poison messages after max receives.",
+      "style": "general"
+    },
+    {
+      "q": "Amazon SNS is best described as:",
+      "options": [
+        "A block storage volume",
+        "A pub/sub notification service",
+        "A relational database",
+        "A container orchestrator"
+      ],
+      "answer": 1,
+      "explain": "SNS publishes to many subscribers.",
+      "style": "general"
+    },
+    {
+      "q": "Fan-out with SNS+SQS typically means:",
+      "options": [
+        "One queue only ever",
+        "One SNS topic delivers to multiple SQS queues/subscribers",
+        "Deleting all topics",
+        "Only email to root"
+      ],
+      "answer": 1,
+      "explain": "One event fans out to many independent consumers.",
+      "style": "general"
+    },
+    {
+      "q": "EventBridge is primarily an:",
+      "options": [
+        "Edge CDN",
+        "Event bus for routing events with rules",
+        "EBS snapshot tool",
+        "SSH bastion"
+      ],
+      "answer": 1,
+      "explain": "EventBridge routes events from sources to targets via rules.",
+      "style": "general"
+    },
+    {
+      "q": "Compared to classic SNS/SQS, EventBridge shines at:",
+      "options": [
+        "Physical hardware delivery",
+        "SaaS/AWS service event integration and content-based routing",
+        "Only storing files",
+        "Only DNS"
+      ],
+      "answer": 1,
+      "explain": "Event buses + rules integrate many event sources/targets.",
+      "style": "scenario"
+    },
+    {
+      "q": "Which pattern reduces synchronous dependency between checkout and email?",
+      "options": [
+        "Checkout waits forever on email API",
+        "Checkout emits an event/message; email service consumes later",
+        "Email runs on the user laptop only",
+        "Disable email forever"
+      ],
+      "answer": 1,
+      "explain": "Async messaging decouples checkout success from email latency.",
+      "style": "general"
+    },
+    {
+      "q": "Long polling in SQS helps by:",
+      "options": [
+        "Making empty receives wait for messages, reducing empty responses",
+        "Deleting queues hourly",
+        "Turning off encryption",
+        "Opening all ports"
+      ],
+      "answer": 0,
+      "explain": "Long poll waits for messages instead of rapid empty short polls.",
+      "style": "scenario"
+    },
+    {
+      "q": "At-least-once delivery implies consumers should be:",
+      "options": [
+        "Stateful only on laptops",
+        "Idempotent when possible (handle duplicates)",
+        "Unable to retry",
+        "Always non-idempotent"
+      ],
+      "answer": 1,
+      "explain": "Duplicates can occur; design for idempotency.",
+      "style": "general"
+    },
+    {
+      "q": "A good default for unreliable downstream processors is:",
+      "options": [
+        "No retries and drop forever silently",
+        "Retries + DLQ for inspection",
+        "Synchronous only with no timeout",
+        "Public anonymous queue access"
+      ],
+      "answer": 1,
+      "explain": "Retries with DLQ improve operability.",
+      "style": "general"
+    },
+    {
+      "q": "SNS subscription endpoints can include:",
+      "options": [
+        "Only floppy disks",
+        "Email, Lambda, SQS, HTTP(S), etc. (depending on setup)",
+        "Only VPC CIDRs",
+        "Only AMIs"
+      ],
+      "answer": 1,
+      "explain": "SNS supports multiple protocol/endpoint types.",
+      "style": "general"
+    },
+    {
+      "q": "EventBridge rules match:",
+      "options": [
+        "Only random noise",
+        "Event patterns and route matching events to targets",
+        "Only security groups",
+        "Only S3 storage classes"
+      ],
+      "answer": 1,
+      "explain": "Rules filter events and invoke targets.",
+      "style": "general"
+    },
+    {
+      "q": "Choosing SQS over direct sync APIs is often about:",
+      "options": [
+        "Worse reliability always",
+        "Absorbing spikes and isolating failures",
+        "Removing encryption",
+        "Avoiding IAM entirely"
+      ],
+      "answer": 1,
+      "explain": "Queues buffer load and isolate producers/consumers.",
+      "style": "general"
+    },
+    {
+      "q": "Which is NOT a primary messaging building block in this lesson trio?",
+      "options": [
+        "SQS",
+        "SNS",
+        "EventBridge",
+        "Amazon Lightsail as a message bus"
+      ],
+      "answer": 3,
+      "explain": "The lesson focuses on SQS, SNS, and EventBridge.",
+      "style": "general"
+    }
+  ]
 }

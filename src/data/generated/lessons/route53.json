@@ -2,64 +2,421 @@
   "id": "route53",
   "number": "17",
   "section": "Additional · SAA & jobs",
-  "title": "Route 53 basics",
-  "short": "DNS hosted zones, records, and routing policies that keep apps reachable.",
-  "minutes": 25,
+  "title": "Route 53",
+  "short": "DNS, hosted zones, record types, alias records, and routing policies.",
+  "minutes": 35,
   "tags": [
     "dns",
     "route53",
-    "networking",
-    "coming-soon"
+    "networking"
   ],
   "goals": [
-    "Hosted zones and common record types",
-    "Alias vs CNAME for AWS resources",
-    "Simple routing policies used in interviews"
+    "What DNS is",
+    "Why DNS exists",
+    "What a domain name is",
+    "What an IP address is",
+    "What Route 53 is",
+    "Hosted Zones",
+    "DNS Records",
+    "A, AAAA, CNAME, Alias, MX, TXT, NS records"
   ],
   "reviewed": "2026-07",
   "sources": [
     "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/Welcome.html",
-    "Placeholder — full content to be added"
+    "ChatGPT AWS Learning Roadmap (share 6a64fd27…)"
   ],
-  "comingSoon": true,
+  "comingSoon": false,
   "parts": [
     {
       "id": "part-1",
-      "title": "Lesson 17: Route 53 basics"
+      "title": "Lesson 17 — Amazon Route 53 (Complete Deep Dive)"
     },
     {
       "id": "part-2",
-      "title": "Why this lesson matters"
+      "title": "Learning Objectives"
     },
     {
       "id": "part-3",
-      "title": "Learning goals (preview)"
+      "title": "Chapter 1 — Why DNS Exists"
     },
     {
       "id": "part-4",
-      "title": "Outline (coming soon)"
+      "title": "What is DNS?"
     },
     {
       "id": "part-5",
-      "title": "Key terms (placeholder)"
+      "title": "Chapter 2 — Domain Name"
     },
     {
       "id": "part-6",
-      "title": "Architecture sketch (coming soon)"
+      "title": "Chapter 3 — What Happens When You Type a Website?"
     },
     {
       "id": "part-7",
-      "title": "Hands-on Lab"
+      "title": "Chapter 4 — Recursive Resolver"
     },
     {
       "id": "part-8",
-      "title": "Official starting points"
+      "title": "Chapter 5 — What is Route 53?"
     },
     {
       "id": "part-9",
-      "title": "Next"
+      "title": "Chapter 6 — Domain Registration"
+    },
+    {
+      "id": "part-10",
+      "title": "Chapter 7 — Hosted Zones"
+    },
+    {
+      "id": "part-11",
+      "title": "Chapter 8 — DNS Records"
+    },
+    {
+      "id": "part-12",
+      "title": "Chapter 9 — A Record"
+    },
+    {
+      "id": "part-13",
+      "title": "Chapter 10 — AAAA Record"
+    },
+    {
+      "id": "part-14",
+      "title": "Chapter 11 — CNAME Record"
+    },
+    {
+      "id": "part-15",
+      "title": "CNAME Limitation"
+    },
+    {
+      "id": "part-16",
+      "title": "Chapter 12 — Alias Record"
+    },
+    {
+      "id": "part-17",
+      "title": "Chapter 13 — MX Record"
+    },
+    {
+      "id": "part-18",
+      "title": "Chapter 14 — TXT Record"
+    },
+    {
+      "id": "part-19",
+      "title": "Chapter 15 — NS Record"
+    },
+    {
+      "id": "part-20",
+      "title": "Chapter 16 — TTL (Time To Live)"
+    },
+    {
+      "id": "part-21",
+      "title": "Chapter 17 — Health Checks"
+    },
+    {
+      "id": "part-22",
+      "title": "Chapter 18 — Routing Policies"
+    },
+    {
+      "id": "part-23",
+      "title": "Simple Routing"
+    },
+    {
+      "id": "part-24",
+      "title": "Weighted Routing"
+    },
+    {
+      "id": "part-25",
+      "title": "Chapter 19 — Failover Routing"
+    },
+    {
+      "id": "part-26",
+      "title": "Chapter 20 — Latency Routing"
+    },
+    {
+      "id": "part-27",
+      "title": "Chapter 21 — Geolocation Routing"
+    },
+    {
+      "id": "part-28",
+      "title": "Chapter 22 — Geoproximity Routing (Overview)"
+    },
+    {
+      "id": "part-29",
+      "title": "Chapter 23 — Multi-Region Architecture"
+    },
+    {
+      "id": "part-30",
+      "title": "Chapter 24 — Route 53 + CloudFront"
+    },
+    {
+      "id": "part-31",
+      "title": "Chapter 25 — Route 53 + Load Balancer"
+    },
+    {
+      "id": "part-32",
+      "title": "Chapter 26 — Production Architecture"
+    },
+    {
+      "id": "part-33",
+      "title": "Chapter 27 — Best Practices"
+    },
+    {
+      "id": "part-34",
+      "title": "Chapter 28 — Common Mistakes"
+    },
+    {
+      "id": "part-35",
+      "title": "Chapter 29 — Interview Questions"
+    },
+    {
+      "id": "part-36",
+      "title": "Hands-on Lab"
+    },
+    {
+      "id": "part-37",
+      "title": "Final Mental Model"
     }
   ],
-  "content": "<h2>Lesson 17: Route 53 basics</h2>\n<blockquote class=\"callout tip\"><p><strong>Content coming soon.</strong> Full notes, diagrams, labs, and quizzes will be added later. This lesson is reserved after the core 12-lesson path so navigation and progress stay stable when the material lands.</p></blockquote>\n<h2>Why this lesson matters</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Every public app needs DNS. Route 53 shows up in almost every architecture diagram and many SAA questions about failover and multi-region.</p>\n</div><h2>Learning goals (preview)</h2>\n<ul>\n<li>Hosted zones and common record types</li>\n<li>Alias vs CNAME for AWS resources</li>\n<li>Simple routing policies used in interviews</li>\n</ul>\n<h2>Outline (coming soon)</h2>\n<p>The sections below are planned — detailed explanations will replace this placeholder.</p>\n<ul>\n<li>DNS resolution path (high level)</li>\n<li>Public hosted zones</li>\n<li>A, AAAA, CNAME, MX, TXT records</li>\n<li>Alias records to AWS resources</li>\n<li>Simple / weighted / failover routing (intro)</li>\n</ul>\n<h2>Key terms (placeholder)</h2>\n<p>Definitions and comparisons will be filled in with the full curriculum content.</p>\n<h2>Architecture sketch (coming soon)</h2>\n<p>A simple diagram for this topic will be added with the full write-up.</p>\n<h2>Hands-on Lab</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<aside class=\"cost-safety callout warn\" role=\"note\"><p class=\"callout-title\">Cost safety</p><ul><li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Prefer <strong>Free Tier</strong> / small instance sizes while learning.</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Create a <strong>billing alarm</strong> (CloudWatch or Budgets) on day one.</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\"><strong>Tear down</strong> lab resources when finished (instances, load balancers, NAT gateways).</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">Never put long-lived access keys in code or public repos.</span></li></ul><p class=\"workshop-links\"><strong>Official practice:</strong> <a href=\"https://explore.skillbuilder.aws/\" rel=\"noopener noreferrer\" target=\"_blank\">AWS Skill Builder</a> · <a href=\"https://wellarchitectedlabs.com/\" rel=\"noopener noreferrer\" target=\"_blank\">Well-Architected Labs</a> · <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/free-tier.html\" rel=\"noopener noreferrer\" target=\"_blank\">Free Tier docs</a></p></aside>\n<p>Lab steps will be published with the full lesson. Until then:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-5\"><span class=\"lab-step-text\">Prefer Free Tier / smallest resources if you experiment on your own</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-6\"><span class=\"lab-step-text\">Create a billing alarm before long-running services</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-7\"><span class=\"lab-step-text\">Tear down anything you create when finished</span></li>\n</ul>\n</div><h2>Official starting points</h2>\n<p>Read these while waiting for the full lesson:</p>\n<ul>\n<li>https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/Welcome.html</li>\n</ul>\n<h2>Next</h2>\n<p>Continue with the remaining additional topics, or revisit earlier core lessons and quizzes for spaced practice.</p>\n<aside class=\"accuracy-note\" role=\"note\"><p><strong>Content review:</strong> 2026-07. Curriculum text is adapted from a shared learning roadmap; verify critical details in official AWS docs before production use.</p><p class=\"accuracy-note-label\">References</p><ul><li><a href=\"https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/Welcome.html\" rel=\"noopener noreferrer\" target=\"_blank\">docs.aws.amazon.com/Route53/latest/DeveloperGuide/Welcome.ht…</a></li></ul></aside>",
-  "quiz": []
+  "content": "<h2>Lesson 17 — Amazon Route 53 (Complete Deep Dive)</h2>\n<blockquote class=\"callout tip\"><p><strong>Goal:</strong> By the end of this lesson, you'll understand how the Internet finds websites, what DNS actually is, how Route 53 works internally, domain registration, hosted zones, DNS records, health checks, routing policies, failover, latency routing, weighted routing, geolocation routing, and how production AWS architectures use Route 53.</p></blockquote>\n<p>Every website you've ever visited—from Google to Netflix to Amazon—depends on DNS. If DNS stops working, the Internet effectively stops working.</p>\n<hr class=\"divider\" />\n<h2>Learning Objectives</h2>\n<p>After this lesson, you'll understand:</p>\n<ul>\n<li>What DNS is</li>\n<li>Why DNS exists</li>\n<li>What a domain name is</li>\n<li>What an IP address is</li>\n<li>What Route 53 is</li>\n<li>Hosted Zones</li>\n<li>DNS Records</li>\n<li>A, AAAA, CNAME, Alias, MX, TXT, NS records</li>\n<li>TTL</li>\n<li>Health Checks</li>\n<li>Routing Policies</li>\n<li>Failover Routing</li>\n<li>Latency Routing</li>\n<li>Weighted Routing</li>\n<li>Geolocation Routing</li>\n<li>Multi-region architectures</li>\n</ul>\n<hr class=\"divider\" />\n<h2>Chapter 1 — Why DNS Exists</h2>\n<p>Imagine there were no domain names.</p>\n<p>To visit Google you would type something like:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>142.250.183.78</code></pre></div>\n<p>To visit Amazon:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>205.251.xxx.xxx</code></pre></div>\n<p>To visit ChatGPT:</p>\n<p>Another IP.</p>\n<p>Can humans remember hundreds of IP addresses?</p>\n<p>No.</p>\n<p>Instead we remember:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>google.com\namazon.com\nopenai.com</code></pre></div>\n<p>Much easier.</p>\n<hr class=\"divider\" />\n<h2>What is DNS?</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>DNS stands for:</p>\n<p><strong>Domain Name System</strong></p>\n<p>Think of it as:</p>\n<blockquote class=\"callout tip\"><p><strong>The Internet's Phone Book</strong></p></blockquote>\n<p>Just like your phone converts:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Mom</code></pre></div>\n<p>into</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>+91 XXXXX XXXXX</code></pre></div>\n<p>DNS converts:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>amazon.com</code></pre></div>\n<p>into</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>54.xx.xx.xx</code></pre></div>\n<hr class=\"divider\" />\n</div><h2>Chapter 2 — Domain Name</h2>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>www.company.com</code></pre></div>\n<p>Let's break it apart.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>www.company.com\n│    │       │\n│    │       └── Top-Level Domain (TLD)\n│    └────────── Domain\n└────────────── Subdomain</code></pre></div>\n<p>Examples of TLDs:</p>\n<ul>\n<li>.com</li>\n<li>.org</li>\n<li>.net</li>\n<li>.io</li>\n<li>.ai</li>\n<li>.dev</li>\n</ul>\n<hr class=\"divider\" />\n<h2>Chapter 3 — What Happens When You Type a Website?</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Suppose you type:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>www.amazon.com</code></pre></div>\n<p>You don't immediately connect to Amazon.</p>\n<p>Instead:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Browser\n\n↓\n\nDNS Lookup\n\n↓\n\nIP Address\n\n↓\n\nAmazon Server\n\n↓\n\nWebsite</code></pre></div>\n<p>DNS is consulted first.</p>\n<hr class=\"divider\" />\n</div><h2>Chapter 4 — Recursive Resolver</h2>\n<p>Your computer doesn't know every website.</p>\n<p>It asks a DNS resolver.</p>\n<p>Usually provided by:</p>\n<ul>\n<li>ISP</li>\n<li>Google DNS (8.8.8.8)</li>\n<li>Cloudflare (1.1.1.1)</li>\n</ul>\n<p>Flow:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Computer\n\n↓\n\nDNS Resolver\n\n↓\n\nInternet\n\n↓\n\nAnswer</code></pre></div>\n<hr class=\"divider\" />\n<h2>Chapter 5 — What is Route 53?</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Route 53 is AWS's managed DNS service.</p>\n<p>It can:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Register domains</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Host DNS records</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">Route traffic</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">Perform health checks</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-5\"><span class=\"lab-step-text\">Support global failover</span></li>\n</ul>\n<p>Why is it called <strong>Route 53</strong>?</p>\n<p>Because DNS traditionally uses <strong>port 53</strong> for communication.</p>\n<hr class=\"divider\" />\n</div><h2>Chapter 6 — Domain Registration</h2>\n<p>Suppose you want:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>arnabsaha.dev</code></pre></div>\n<p>First:</p>\n<p>Check availability.</p>\n<p>If available:</p>\n<p>Register it.</p>\n<p>AWS becomes the domain registrar (or you can register elsewhere and still use Route 53 for DNS).</p>\n<hr class=\"divider\" />\n<h2>Chapter 7 — Hosted Zones</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>A Hosted Zone stores DNS records.</p>\n<p>Imagine:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>company.com</code></pre></div>\n<p>Inside:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>company.com\n\n↓\n\nHosted Zone\n\n↓\n\nAll DNS Records</code></pre></div>\n<p>Think of it as a folder containing DNS information.</p>\n<hr class=\"divider\" />\n<p>There are two types.</p>\n<h3>Public Hosted Zone</h3>\n<p>Visible to the Internet.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>amazon.com</code></pre></div>\n<hr class=\"divider\" />\n<h3>Private Hosted Zone</h3>\n<p>Only visible inside a VPC.</p>\n<p>Useful for:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>database.internal</code></pre></div>\n<p>Only EC2 instances inside the VPC can resolve it.</p>\n<hr class=\"divider\" />\n</div><h2>Chapter 8 — DNS Records</h2>\n<p>A DNS record maps names to destinations.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>www.company.com\n\n↓\n\n52.14.xx.xx</code></pre></div>\n<p>There are many record types.</p>\n<hr class=\"divider\" />\n<h2>Chapter 9 — A Record</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Most common.</p>\n<p>Maps:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Name\n\n↓\n\nIPv4 Address</code></pre></div>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>example.com\n\n↓\n\n54.120.xx.xx</code></pre></div>\n<hr class=\"divider\" />\n</div><h2>Chapter 10 — AAAA Record</h2>\n<p>Same idea.</p>\n<p>But for IPv6.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>example.com\n\n↓\n\n2600:9000:...</code></pre></div>\n<hr class=\"divider\" />\n<h2>Chapter 11 — CNAME Record</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>CNAME means:</p>\n<p><strong>Canonical Name</strong></p>\n<p>Instead of pointing to an IP...</p>\n<p>It points to another DNS name.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>blog.company.com\n\n↓\n\ncompany-blog.example.com</code></pre></div>\n<p>DNS performs another lookup.</p>\n<hr class=\"divider\" />\n</div><h2>CNAME Limitation</h2>\n<p>You cannot create a CNAME for the <strong>zone apex</strong>.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>company.com</code></pre></div>\n<p>Cannot be a CNAME in standard DNS.</p>\n<p>AWS solves this with Alias Records.</p>\n<hr class=\"divider\" />\n<h2>Chapter 12 — Alias Record</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Alias is an AWS-specific feature.</p>\n<p>Instead of:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>company.com\n\n↓\n\nIP Address</code></pre></div>\n<p>It can point directly to:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">CloudFront</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">ALB</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">S3 Website Endpoint</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">API Gateway</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-5\"><span class=\"lab-step-text\">Global Accelerator</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-6\"><span class=\"lab-step-text\">Another Route 53 record</span></li>\n</ul>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>company.com\n\n↓\n\nCloudFront Distribution</code></pre></div>\n<p>No IP management required.</p>\n<p>This is one of Route 53's biggest advantages.</p>\n<hr class=\"divider\" />\n</div><h2>Chapter 13 — MX Record</h2>\n<p>Mail Exchange.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>company.com\n\n↓\n\nGoogle Workspace\n\n↓\n\nEmail</code></pre></div>\n<p>Without MX records:</p>\n<p>Email won't arrive.</p>\n<hr class=\"divider\" />\n<h2>Chapter 14 — TXT Record</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Stores arbitrary text.</p>\n<p>Common uses:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Domain verification</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">SPF</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">DKIM</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">DMARC</span></li>\n</ul>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>\"google-site-verification=...\"</code></pre></div>\n<hr class=\"divider\" />\n</div><h2>Chapter 15 — NS Record</h2>\n<p>NS stands for:</p>\n<p><strong>Name Server</strong></p>\n<p>These records tell the Internet:</p>\n<p>Who is responsible for this domain?</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>company.com\n\n↓\n\nns-123.awsdns.com</code></pre></div>\n<hr class=\"divider\" />\n<h2>Chapter 16 — TTL (Time To Live)</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>DNS isn't looked up every second.</p>\n<p>Results are cached.</p>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>company.com\n\n↓\n\nIP Address\n\n↓\n\nCache 300 Seconds</code></pre></div>\n<p>TTL:</p>\n<p>300 seconds.</p>\n<p>For five minutes:</p>\n<p>Use cached answer.</p>\n<p>After that:</p>\n<p>Query DNS again.</p>\n<hr class=\"divider\" />\n<p>Small TTL:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Faster updates</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">More DNS queries</span></li>\n</ul>\n<p>Large TTL:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\">Better performance</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">Slower propagation of changes</span></li>\n</ul>\n<hr class=\"divider\" />\n</div><h2>Chapter 17 — Health Checks</h2>\n<p>Suppose:</p>\n<p>Your application crashes.</p>\n<p>Should Route 53 still send users there?</p>\n<p>No.</p>\n<p>Health checks continuously test endpoints.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Route 53\n\n↓\n\nHTTP Request\n\n↓\n\nHealthy?</code></pre></div>\n<p>If unhealthy:</p>\n<p>Stop sending traffic.</p>\n<hr class=\"divider\" />\n<h2>Chapter 18 — Routing Policies</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>This is where Route 53 becomes powerful.</p>\n<p>Different users can receive different answers.</p>\n<hr class=\"divider\" />\n</div><h2>Simple Routing</h2>\n<p>Everyone gets:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>company.com\n\n↓\n\nServer A</code></pre></div>\n<hr class=\"divider\" />\n<h2>Weighted Routing</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Suppose:</p>\n<p>New version.</p>\n<p>You don't trust it yet.</p>\n<p>Instead:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>90%\n\n↓\n\nServer A\n\n10%\n\n↓\n\nServer B</code></pre></div>\n<p>Gradually increase:</p>\n<p>10%</p>\n<p>20%</p>\n<p>50%</p>\n<p>100%</p>\n<p>Perfect for deployments.</p>\n<hr class=\"divider\" />\n</div><h2>Chapter 19 — Failover Routing</h2>\n<p>Suppose:</p>\n<p>Primary server dies.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Primary\n\n↓\n\nHealth Check\n\n↓\n\nFailed\n\n↓\n\nSecondary</code></pre></div>\n<p>Users automatically move.</p>\n<p>This is Disaster Recovery.</p>\n<hr class=\"divider\" />\n<h2>Chapter 20 — Latency Routing</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Imagine:</p>\n<p>Users from:</p>\n<p>India</p>\n<p>Germany</p>\n<p>Japan</p>\n<p>USA</p>\n<p>Should everyone use Mumbai?</p>\n<p>No.</p>\n<p>Instead:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>India\n\n↓\n\nMumbai\n\nGermany\n\n↓\n\nFrankfurt\n\nUSA\n\n↓\n\nVirginia</code></pre></div>\n<p>Route 53 returns the endpoint with the lowest network latency.</p>\n<hr class=\"divider\" />\n</div><h2>Chapter 21 — Geolocation Routing</h2>\n<p>This is different.</p>\n<p>Latency Routing asks:</p>\n<blockquote class=\"callout tip\"><p>Fastest?</p></blockquote>\n<p>Geolocation Routing asks:</p>\n<blockquote class=\"callout tip\"><p>Which country?</p></blockquote>\n<p>Example:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>India\n\n↓\n\nIndian Website\n\nUSA\n\n↓\n\nUS Website\n\nGermany\n\n↓\n\nGerman Website</code></pre></div>\n<p>Useful for:</p>\n<ul>\n<li>Language</li>\n<li>Legal requirements</li>\n<li>Regional content</li>\n</ul>\n<hr class=\"divider\" />\n<h2>Chapter 22 — Geoproximity Routing (Overview)</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>AWS also supports geoproximity routing (using Traffic Flow).</p>\n<p>Traffic can be shifted geographically based on configured bias.</p>\n<p>This is a more advanced feature typically used in large global deployments.</p>\n<hr class=\"divider\" />\n</div><h2>Chapter 23 — Multi-Region Architecture</h2>\n<p>Imagine:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>Mumbai\n\nFrankfurt\n\nVirginia</code></pre></div>\n<p>Each runs your application.</p>\n<p>Route 53 decides where users go.</p>\n<p>Architecture:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>User\n\n↓\n\nRoute 53\n\n↓\n\nNearest Healthy Region\n\n↓\n\nALB\n\n↓\n\nApplication</code></pre></div>\n<hr class=\"divider\" />\n<h2>Chapter 24 — Route 53 + CloudFront</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>One of the most common architectures.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>www.company.com\n\n↓\n\nRoute 53\n\n↓\n\nCloudFront\n\n↓\n\nPrivate S3\n\nor\n\nALB</code></pre></div>\n<p>Users never need to know the CloudFront domain name.</p>\n<hr class=\"divider\" />\n</div><h2>Chapter 25 — Route 53 + Load Balancer</h2>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>company.com\n\n↓\n\nAlias Record\n\n↓\n\nApplication Load Balancer\n\n↓\n\nEC2 / ECS</code></pre></div>\n<p>Notice:</p>\n<p>No IP addresses anywhere.</p>\n<hr class=\"divider\" />\n<h2>Chapter 26 — Production Architecture</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>A global application.</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>                 Users\n                   │\n                   ▼\n              Route 53\n                   │\n     ┌─────────────┼─────────────┐\n     ▼             ▼             ▼\n  Mumbai ALB   Frankfurt ALB  Virginia ALB\n       │             │             │\n       ▼             ▼             ▼\n   ECS Service   ECS Service   ECS Service\n       │             │             │\n       ▼             ▼             ▼\n         Regional Databases</code></pre></div>\n<p>Route 53 sends users to the best endpoint according to the selected routing policy.</p>\n<hr class=\"divider\" />\n</div><h2>Chapter 27 — Best Practices</h2>\n<ul>\n<li>Use Alias records for AWS resources whenever possible.</li>\n<li>Use health checks for critical services.</li>\n<li>Use latency routing for global applications.</li>\n<li>Use weighted routing for blue/green and canary deployments.</li>\n<li>Keep TTLs short during migrations and longer during stable operation.</li>\n<li>Separate public and private hosted zones.</li>\n<li>Monitor DNS health and query metrics.</li>\n</ul>\n<hr class=\"divider\" />\n<h2>Chapter 28 — Common Mistakes</h2>\n<p>❌ Confusing Alias and CNAME.</p>\n<p>❌ Using CNAME for the root domain.</p>\n<p>❌ Setting very long TTLs before a migration.</p>\n<p>❌ Forgetting health checks on failover endpoints.</p>\n<p>❌ Using a single region for a global application when low latency is a requirement.</p>\n<hr class=\"divider\" />\n<h2>Chapter 29 — Interview Questions</h2>\n<h3>Q1. What is DNS?</h3>\n<p>A distributed system that translates human-readable domain names into IP addresses.</p>\n<hr class=\"divider\" />\n<h3>Q2. What is Route 53?</h3>\n<p>AWS's managed DNS service for domain registration, DNS hosting, health checks, and traffic routing.</p>\n<hr class=\"divider\" />\n<h3>Q3. Why is it called Route 53?</h3>\n<p>Because DNS traditionally operates over port 53.</p>\n<hr class=\"divider\" />\n<h3>Q4. What is a Hosted Zone?</h3>\n<p>A container that stores DNS records for a domain.</p>\n<hr class=\"divider\" />\n<h3>Q5. Difference between Public and Private Hosted Zones?</h3>\n<p>Public zones are accessible from the Internet. Private zones are only resolvable within associated VPCs.</p>\n<hr class=\"divider\" />\n<h3>Q6. Difference between CNAME and Alias?</h3>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>CNAME</th><th>Alias</th></tr></thead><tbody>\n<tr><td>Standard DNS record</td><td>AWS-specific feature</td></tr>\n<tr><td>Points to another hostname</td><td>Can point directly to AWS resources</td></tr>\n<tr><td>Cannot be used at the root domain</td><td>Can be used at the root domain</td></tr>\n<tr><td>DNS lookup incurs another resolution step</td><td>Route 53 resolves the AWS target transparently</td></tr>\n</tbody></table></div>\n<hr class=\"divider\" />\n<h3>Q7. What is TTL?</h3>\n<p>The duration for which DNS responses may be cached before a fresh lookup is required.</p>\n<hr class=\"divider\" />\n<h3>Q8. What is Weighted Routing?</h3>\n<p>A routing policy that distributes traffic across multiple resources according to assigned weights.</p>\n<hr class=\"divider\" />\n<h3>Q9. What is Latency Routing?</h3>\n<p>A routing policy that sends users to the endpoint with the lowest network latency.</p>\n<hr class=\"divider\" />\n<h3>Q10. What is Failover Routing?</h3>\n<p>A routing policy that directs traffic to a secondary endpoint when the primary endpoint fails its health checks.</p>\n<hr class=\"divider\" />\n<h2>Hands-on Lab</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<aside class=\"cost-safety callout warn\" role=\"note\"><p class=\"callout-title\">Cost safety</p><ul><li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Prefer <strong>Free Tier</strong> / small instance sizes while learning.</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Create a <strong>billing alarm</strong> (CloudWatch or Budgets) on day one.</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\"><strong>Tear down</strong> lab resources when finished (instances, load balancers, NAT gateways).</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">Never put long-lived access keys in code or public repos.</span></li></ul><p class=\"workshop-links\"><strong>Official practice:</strong> <a href=\"https://explore.skillbuilder.aws/\" rel=\"noopener noreferrer\" target=\"_blank\">AWS Skill Builder</a> · <a href=\"https://wellarchitectedlabs.com/\" rel=\"noopener noreferrer\" target=\"_blank\">Well-Architected Labs</a> · <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/free-tier.html\" rel=\"noopener noreferrer\" target=\"_blank\">Free Tier docs</a></p></aside>\n<ol>\n<li class=\"lab-step\" data-lab-id=\"lab-step-5\"><span class=\"lab-step-text\">Register a test domain (or use an existing one).</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-6\"><span class=\"lab-step-text\">Create a Public Hosted Zone.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-7\"><span class=\"lab-step-text\">Create:</span></li>\n<p>- An A record - A CNAME record - A TXT record</p>\n<li class=\"lab-step\" data-lab-id=\"lab-step-8\"><span class=\"lab-step-text\">Create a CloudFront distribution.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-9\"><span class=\"lab-step-text\">Create an Alias record pointing your domain to CloudFront.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-10\"><span class=\"lab-step-text\">Configure an ACM certificate and enable HTTPS.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-11\"><span class=\"lab-step-text\">Create two simple EC2 instances in different regions (or simulate endpoints).</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-12\"><span class=\"lab-step-text\">Configure health checks and a failover routing policy.</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-13\"><span class=\"lab-step-text\">Stop the primary instance and observe Route 53 directing traffic to the secondary endpoint.</span></li>\n</ol>\n<hr class=\"divider\" />\n</div><h2>Final Mental Model</h2>\n<p>If you remember only one diagram from this lesson, remember this:</p>\n<div class=\"code-block\" data-copyable=\"true\"><div class=\"code-label\"><span>text</span><button type=\"button\" class=\"code-copy-btn\" data-copy-code>Copy</button></div><pre><code>                 User\n                   │\n     Types www.company.com\n                   │\n                   ▼\n              DNS Resolver\n                   │\n                   ▼\n               Route 53\n                   │\n         (Routing Policy Decision)\n                   │\n     ┌─────────────┼─────────────┐\n     ▼             ▼             ▼\n CloudFront       ALB        EC2/API\n     │             │             │\n     ▼             ▼             ▼\n   S3 Bucket     ECS/EC2     Application</code></pre></div>\n<p>The key ideas are:</p>\n<ul>\n<li><strong>Route 53 is AWS's managed DNS service.</strong></li>\n<li><strong>DNS translates names into destinations.</strong></li>\n<li><strong>Hosted Zones contain DNS records.</strong></li>\n<li><strong>Alias records integrate directly with AWS resources.</strong></li>\n<li><strong>Routing policies let Route 53 make intelligent traffic decisions based on health, latency, geography, or weights.</strong></li>\n</ul>\n<p>Together with CloudFront from the previous lesson, Route 53 forms the front door of many production AWS architectures.</p>\n<aside class=\"accuracy-note\" role=\"note\"><p><strong>Content review:</strong> 2026-07. Curriculum text is adapted from a shared learning roadmap; verify critical details in official AWS docs before production use.</p><p class=\"accuracy-note-label\">References</p><ul><li><a href=\"https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/Welcome.html\" rel=\"noopener noreferrer\" target=\"_blank\">docs.aws.amazon.com/Route53/latest/DeveloperGuide/Welcome.ht…</a></li></ul></aside>",
+  "quiz": [
+    {
+      "q": "DNS exists mainly to:",
+      "options": [
+        "Encrypt disks",
+        "Translate human-friendly names to IP addresses",
+        "Create EC2 instances",
+        "Bill AWS accounts"
+      ],
+      "answer": 1,
+      "explain": "DNS maps names → addresses (and more).",
+      "style": "general"
+    },
+    {
+      "q": "A domain name is:",
+      "options": [
+        "A physical cable",
+        "A human-readable name for services on the internet",
+        "An IAM policy",
+        "A KMS key ARN only"
+      ],
+      "answer": 1,
+      "explain": "Domains are readable identifiers.",
+      "style": "general"
+    },
+    {
+      "q": "When you type a website name, a typical first step involves:",
+      "options": [
+        "Ignoring DNS",
+        "Resolving the name via DNS resolvers/servers",
+        "Formatting the hard drive",
+        "Disabling TCP"
+      ],
+      "answer": 1,
+      "explain": "Browsers resolve DNS then connect.",
+      "style": "general"
+    },
+    {
+      "q": "Amazon Route 53 is:",
+      "options": [
+        "A CDN only",
+        "AWS’s highly available DNS service",
+        "A message queue",
+        "A container runtime"
+      ],
+      "answer": 1,
+      "explain": "Route 53 provides DNS and related routing features.",
+      "style": "general"
+    },
+    {
+      "q": "A hosted zone contains:",
+      "options": [
+        "Only AMIs",
+        "DNS records for a domain",
+        "Only security groups",
+        "Only budgets"
+      ],
+      "answer": 1,
+      "explain": "Hosted zones hold the record set for a domain.",
+      "style": "general"
+    },
+    {
+      "q": "An A record maps a name to:",
+      "options": [
+        "An IPv6 address only always",
+        "An IPv4 address",
+        "A KMS key",
+        "An SQS URL only"
+      ],
+      "answer": 1,
+      "explain": "A = IPv4 address mapping.",
+      "style": "general"
+    },
+    {
+      "q": "AAAA records map to:",
+      "options": [
+        "IPv6 addresses",
+        "Only MX mail hosts",
+        "Only TXT spam",
+        "Only NS servers"
+      ],
+      "answer": 0,
+      "explain": "AAAA is IPv6.",
+      "style": "general"
+    },
+    {
+      "q": "CNAME records are used to:",
+      "options": [
+        "Alias one name to another name",
+        "Delete VPCs",
+        "Create users",
+        "Encrypt S3"
+      ],
+      "answer": 0,
+      "explain": "CNAME points a name to another name.",
+      "style": "general"
+    },
+    {
+      "q": "Route 53 alias records are special because they can:",
+      "options": [
+        "Only point to non-AWS resources",
+        "Map to certain AWS resources (e.g. CloudFront, ELB) including zone apex cases where CNAME cannot",
+        "Replace HTTPS",
+        "Disable DNSSEC worldwide"
+      ],
+      "answer": 1,
+      "explain": "Alias integrates tightly with AWS resources; useful at apex.",
+      "style": "general"
+    },
+    {
+      "q": "NS records indicate:",
+      "options": [
+        "Name servers for the zone",
+        "Network switches only",
+        "NAT gateways",
+        "NACLs only"
+      ],
+      "answer": 0,
+      "explain": "NS = authoritative name servers.",
+      "style": "general"
+    },
+    {
+      "q": "TTL controls:",
+      "options": [
+        "How long resolvers may cache a DNS answer",
+        "EC2 CPU credits only",
+        "S3 object size",
+        "IAM password length only"
+      ],
+      "answer": 0,
+      "explain": "TTL is DNS cache lifetime.",
+      "style": "general"
+    },
+    {
+      "q": "Simple routing typically means:",
+      "options": [
+        "Complex geo + latency + failover combined always",
+        "A basic single record answer for a name",
+        "No DNS at all",
+        "Only weighted randomness without a record"
+      ],
+      "answer": 1,
+      "explain": "Simple routing is the basic mapping.",
+      "style": "general"
+    },
+    {
+      "q": "Weighted routing is useful to:",
+      "options": [
+        "Split traffic across endpoints by weight",
+        "Encrypt messages",
+        "Create subnets",
+        "Disable health checks forever"
+      ],
+      "answer": 0,
+      "explain": "Weights control traffic distribution.",
+      "style": "general"
+    },
+    {
+      "q": "Failover routing depends on:",
+      "options": [
+        "Ignoring health",
+        "Primary/secondary with health checks",
+        "Only MX records",
+        "Only TXT records"
+      ],
+      "answer": 1,
+      "explain": "Health-based failover between records.",
+      "style": "general"
+    },
+    {
+      "q": "Latency-based routing aims to:",
+      "options": [
+        "Always pick the farthest region",
+        "Send users to the region with lower latency",
+        "Delete the closest region",
+        "Disable anycast"
+      ],
+      "answer": 1,
+      "explain": "Prefer lower latency endpoints.",
+      "style": "scenario"
+    },
+    {
+      "q": "Health checks help Route 53 by:",
+      "options": [
+        "Making unhealthy endpoints still preferred always",
+        "Detecting endpoint health for routing decisions",
+        "Replacing TLS",
+        "Creating KMS keys"
+      ],
+      "answer": 1,
+      "explain": "Unhealthy targets can be avoided.",
+      "style": "general"
+    },
+    {
+      "q": "Public hosted zones are for:",
+      "options": [
+        "Internet-resolvable DNS for your domain",
+        "Only private VPC DNS with no domains",
+        "Only S3 inventory",
+        "Only CloudTrail digests"
+      ],
+      "answer": 0,
+      "explain": "Public zones answer on the public internet.",
+      "style": "general"
+    },
+    {
+      "q": "Private hosted zones associate with:",
+      "options": [
+        "VPCs for internal name resolution",
+        "Only public internet root servers",
+        "Only CloudFront edges",
+        "Only SQS"
+      ],
+      "answer": 0,
+      "explain": "Private zones serve VPC-internal DNS.",
+      "style": "general"
+    },
+    {
+      "q": "If DNS is misconfigured, users often see:",
+      "options": [
+        "Perfect connectivity always",
+        "Site unreachable / wrong IP resolution",
+        "Automatic KMS rotation",
+        "Free EC2 forever"
+      ],
+      "answer": 1,
+      "explain": "DNS errors break reachability.",
+      "style": "general"
+    },
+    {
+      "q": "A core interview takeaway is:",
+      "options": [
+        "DNS is optional for all public apps",
+        "Route 53 maps names to resources and can route intelligently",
+        "Alias records are never useful",
+        "TTL should always be 1 year for everything"
+      ],
+      "answer": 1,
+      "explain": "DNS + smart routing is foundational.",
+      "style": "general"
+    }
+  ]
 }

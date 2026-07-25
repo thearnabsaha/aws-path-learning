@@ -195,6 +195,201 @@
     "lessonTitle": "IaC — CloudFormation & Terraform"
   },
   {
+    "q": "Why is creating long-lived IAM users per person a poor fit for large enterprises?",
+    "options": [
+      "IAM users cannot have MFA",
+      "Identity sprawl across many accounts becomes unmanageable",
+      "IAM users are always free",
+      "SSO is illegal on AWS"
+    ],
+    "answer": 1,
+    "explain": "Repeating users across hundreds of accounts causes identity sprawl; Identity Center centralizes workforce access.",
+    "style": "scenario",
+    "lessonId": "identity-center",
+    "lessonNumber": "13",
+    "lessonTitle": "IAM Identity Center (SSO)"
+  },
+  {
+    "q": "The lesson’s core security theme for workforce access is:",
+    "options": [
+      "Share one IAM user for the whole company",
+      "Prefer centralized identity and temporary credentials",
+      "Disable CloudTrail forever",
+      "Use root user daily"
+    ],
+    "answer": 1,
+    "explain": "Centralized SSO + least privilege temporary access is the point.",
+    "style": "scenario",
+    "lessonId": "identity-center",
+    "lessonNumber": "13",
+    "lessonTitle": "IAM Identity Center (SSO)"
+  },
+  {
+    "q": "What should enterprises avoid for day-to-day human access?",
+    "options": [
+      "Permission sets",
+      "Long-lived IAM user access keys shared widely",
+      "MFA",
+      "CloudTrail"
+    ],
+    "answer": 1,
+    "explain": "Long-lived shared keys are a major risk; use federated temporary access.",
+    "style": "scenario",
+    "lessonId": "identity-center",
+    "lessonNumber": "13",
+    "lessonTitle": "IAM Identity Center (SSO)"
+  },
+  {
+    "q": "Least privilege with Identity Center means:",
+    "options": [
+      "Everyone is AdministratorAccess in all accounts",
+      "Permission sets grant only what each role needs",
+      "All policies are *:* on *",
+      "Disable policies"
+    ],
+    "answer": 1,
+    "explain": "Permission sets should be scoped to needed actions/resources.",
+    "style": "scenario",
+    "lessonId": "identity-center",
+    "lessonNumber": "13",
+    "lessonTitle": "IAM Identity Center (SSO)"
+  },
+  {
+    "q": "Hardcoding production DB passwords in source code is bad because:",
+    "options": [
+      "Git never stores text",
+      "Secrets leak via repos, logs, and images",
+      "AWS forbids databases",
+      "Passwords must be 1 character"
+    ],
+    "answer": 1,
+    "explain": "Secrets in code leak easily; use Secrets Manager/KMS patterns.",
+    "style": "scenario",
+    "lessonId": "kms-secrets",
+    "lessonNumber": "14",
+    "lessonTitle": "KMS & Secrets Manager"
+  },
+  {
+    "q": "Why is envelope encryption efficient for large files?",
+    "options": [
+      "It never encrypts data",
+      "Bulk data is encrypted locally with data keys; KMS only wraps small keys",
+      "It uploads plaintext only",
+      "It disables HTTPS"
+    ],
+    "answer": 1,
+    "explain": "Avoids sending huge payloads to KMS for every byte.",
+    "style": "scenario",
+    "lessonId": "kms-secrets",
+    "lessonNumber": "14",
+    "lessonTitle": "KMS & Secrets Manager"
+  },
+  {
+    "q": "Best practice for app access to secrets is:",
+    "options": [
+      "Embed secrets in Docker images as plain text forever",
+      "Fetch secrets at runtime with IAM role permissions",
+      "Email secrets weekly",
+      "Print secrets in CI logs"
+    ],
+    "answer": 1,
+    "explain": "Runtime fetch via roles keeps secrets out of images/code.",
+    "style": "scenario",
+    "lessonId": "kms-secrets",
+    "lessonNumber": "14",
+    "lessonTitle": "KMS & Secrets Manager"
+  },
+  {
+    "q": "Compared to classic SNS/SQS, EventBridge shines at:",
+    "options": [
+      "Physical hardware delivery",
+      "SaaS/AWS service event integration and content-based routing",
+      "Only storing files",
+      "Only DNS"
+    ],
+    "answer": 1,
+    "explain": "Event buses + rules integrate many event sources/targets.",
+    "style": "scenario",
+    "lessonId": "messaging",
+    "lessonNumber": "15",
+    "lessonTitle": "SQS, SNS & EventBridge"
+  },
+  {
+    "q": "Long polling in SQS helps by:",
+    "options": [
+      "Making empty receives wait for messages, reducing empty responses",
+      "Deleting queues hourly",
+      "Turning off encryption",
+      "Opening all ports"
+    ],
+    "answer": 0,
+    "explain": "Long poll waits for messages instead of rapid empty short polls.",
+    "style": "scenario",
+    "lessonId": "messaging",
+    "lessonNumber": "15",
+    "lessonTitle": "SQS, SNS & EventBridge"
+  },
+  {
+    "q": "Compared with older OAI, OAC is:",
+    "options": [
+      "Unrelated to S3",
+      "The more modern approach for restricting S3 access to CloudFront",
+      "Only for email",
+      "Only for EC2"
+    ],
+    "answer": 1,
+    "explain": "OAC is the current recommended pattern for S3 origins.",
+    "style": "scenario",
+    "lessonId": "cloudfront",
+    "lessonNumber": "16",
+    "lessonTitle": "CloudFront & OAC"
+  },
+  {
+    "q": "Latency-based routing aims to:",
+    "options": [
+      "Always pick the farthest region",
+      "Send users to the region with lower latency",
+      "Delete the closest region",
+      "Disable anycast"
+    ],
+    "answer": 1,
+    "explain": "Prefer lower latency endpoints.",
+    "style": "scenario",
+    "lessonId": "route53",
+    "lessonNumber": "17",
+    "lessonTitle": "Route 53"
+  },
+  {
+    "q": "Compared to ECS, EKS generally has:",
+    "options": [
+      "Zero concepts to learn",
+      "More Kubernetes operational complexity",
+      "No networking",
+      "No IAM integration options"
+    ],
+    "answer": 1,
+    "explain": "K8s power comes with complexity.",
+    "style": "scenario",
+    "lessonId": "eks-ecs",
+    "lessonNumber": "20",
+    "lessonTitle": "ECS vs EKS"
+  },
+  {
+    "q": "The lesson’s decision framework emphasizes:",
+    "options": [
+      "Only price of coffee",
+      "Trade-offs: simplicity vs Kubernetes ecosystem/portability",
+      "Never using load balancers",
+      "Avoiding containers entirely always"
+    ],
+    "answer": 1,
+    "explain": "ECS simplicity vs EKS ecosystem is the core trade-off.",
+    "style": "scenario",
+    "lessonId": "eks-ecs",
+    "lessonNumber": "20",
+    "lessonTitle": "ECS vs EKS"
+  },
+  {
     "q": "In Traditional vs Cloud, scaling is described as:",
     "options": [
       "Difficult traditionally, instant in the cloud",
@@ -3958,5 +4153,2210 @@
     "lessonId": "iac",
     "lessonNumber": "12",
     "lessonTitle": "IaC — CloudFormation & Terraform"
+  },
+  {
+    "q": "IAM Identity Center is primarily designed for:",
+    "options": [
+      "Application API keys only",
+      "Workforce single sign-on across AWS accounts",
+      "Replacing S3 buckets",
+      "Billing invoices"
+    ],
+    "answer": 1,
+    "explain": "It is AWS’s workforce SSO service for human access to accounts and apps.",
+    "style": "general",
+    "lessonId": "identity-center",
+    "lessonNumber": "13",
+    "lessonTitle": "IAM Identity Center (SSO)"
+  },
+  {
+    "q": "What does SSO stand for in this context?",
+    "options": [
+      "Server Side Objects",
+      "Single Sign-On",
+      "Secure Storage Only",
+      "Shared Subnet Option"
+    ],
+    "answer": 1,
+    "explain": "Single Sign-On: one login experience for many apps/accounts.",
+    "style": "general",
+    "lessonId": "identity-center",
+    "lessonNumber": "13",
+    "lessonTitle": "IAM Identity Center (SSO)"
+  },
+  {
+    "q": "A Permission Set in Identity Center is best described as:",
+    "options": [
+      "A VPC CIDR block",
+      "A reusable bundle of IAM policies assigned to users/groups for accounts",
+      "An EC2 instance type",
+      "A CloudFront cache policy"
+    ],
+    "answer": 1,
+    "explain": "Permission sets define what someone can do and are assigned per account.",
+    "style": "general",
+    "lessonId": "identity-center",
+    "lessonNumber": "13",
+    "lessonTitle": "IAM Identity Center (SSO)"
+  },
+  {
+    "q": "AWS Organizations helps enterprises mainly by:",
+    "options": [
+      "Hosting static websites",
+      "Grouping multiple AWS accounts under one organization",
+      "Encrypting disks only",
+      "Replacing DNS"
+    ],
+    "answer": 1,
+    "explain": "Organizations manages multi-account structure used with Identity Center.",
+    "style": "general",
+    "lessonId": "identity-center",
+    "lessonNumber": "13",
+    "lessonTitle": "IAM Identity Center (SSO)"
+  },
+  {
+    "q": "Temporary credentials for AWS access are typically issued by:",
+    "options": [
+      "Amazon S3 only",
+      "AWS STS (Security Token Service)",
+      "Route 53",
+      "CloudFront"
+    ],
+    "answer": 1,
+    "explain": "STS issues short-lived credentials after federation/assume-role.",
+    "style": "general",
+    "lessonId": "identity-center",
+    "lessonNumber": "13",
+    "lessonTitle": "IAM Identity Center (SSO)"
+  },
+  {
+    "q": "AssumeRole is used to:",
+    "options": [
+      "Delete an account permanently",
+      "Obtain temporary credentials to act under an IAM role",
+      "Create public buckets by default",
+      "Disable MFA"
+    ],
+    "answer": 1,
+    "explain": "Assuming a role returns temporary credentials with that role’s permissions.",
+    "style": "general",
+    "lessonId": "identity-center",
+    "lessonNumber": "13",
+    "lessonTitle": "IAM Identity Center (SSO)"
+  },
+  {
+    "q": "Compared with long-lived access keys, temporary credentials are better because they:",
+    "options": [
+      "Never expire and never need rotation",
+      "Expire automatically, reducing risk if leaked",
+      "Only work offline",
+      "Bypass CloudTrail"
+    ],
+    "answer": 1,
+    "explain": "Short TTL limits blast radius of credential leaks.",
+    "style": "general",
+    "lessonId": "identity-center",
+    "lessonNumber": "13",
+    "lessonTitle": "IAM Identity Center (SSO)"
+  },
+  {
+    "q": "SAML and OIDC are used in enterprise identity mainly for:",
+    "options": [
+      "Compressing images",
+      "Federating identity providers with AWS/SSO",
+      "Pricing EC2",
+      "VPC peering"
+    ],
+    "answer": 1,
+    "explain": "They are federation protocols linking corporate IdPs to AWS.",
+    "style": "general",
+    "lessonId": "identity-center",
+    "lessonNumber": "13",
+    "lessonTitle": "IAM Identity Center (SSO)"
+  },
+  {
+    "q": "CLI access with Identity Center typically relies on:",
+    "options": [
+      "Hardcoding root password in scripts",
+      "SSO login / temporary credentials rather than permanent keys",
+      "Disabling HTTPS",
+      "Public anonymous API calls"
+    ],
+    "answer": 1,
+    "explain": "Modern CLI workflows use SSO sessions and temporary creds.",
+    "style": "general",
+    "lessonId": "identity-center",
+    "lessonNumber": "13",
+    "lessonTitle": "IAM Identity Center (SSO)"
+  },
+  {
+    "q": "Identity Center replaces the need for thousands of permanent IAM users primarily by using:",
+    "options": [
+      "One shared root password",
+      "Centralized directory + permission sets + temporary access",
+      "Only security groups",
+      "Only NACLs"
+    ],
+    "answer": 1,
+    "explain": "Central identity + temporary access is the enterprise pattern.",
+    "style": "general",
+    "lessonId": "identity-center",
+    "lessonNumber": "13",
+    "lessonTitle": "IAM Identity Center (SSO)"
+  },
+  {
+    "q": "Which is a sign you should move from classic IAM users to Identity Center?",
+    "options": [
+      "You have one laptop and no cloud",
+      "Many employees and many AWS accounts need managed access",
+      "You never use the console",
+      "You only use free tier once"
+    ],
+    "answer": 1,
+    "explain": "Multi-user, multi-account orgs need centralized workforce identity.",
+    "style": "general",
+    "lessonId": "identity-center",
+    "lessonNumber": "13",
+    "lessonTitle": "IAM Identity Center (SSO)"
+  },
+  {
+    "q": "During SSO login, the user ultimately receives access based on:",
+    "options": [
+      "Random open security groups",
+      "Their assigned permission sets and account memberships",
+      "Public S3 ACLs only",
+      "Unencrypted keys in email"
+    ],
+    "answer": 1,
+    "explain": "Assignments of permission sets to accounts drive access.",
+    "style": "general",
+    "lessonId": "identity-center",
+    "lessonNumber": "13",
+    "lessonTitle": "IAM Identity Center (SSO)"
+  },
+  {
+    "q": "AWS Identity Center was formerly commonly known as:",
+    "options": [
+      "AWS Glue",
+      "AWS SSO",
+      "AWS Batch",
+      "AWS Outposts"
+    ],
+    "answer": 1,
+    "explain": "The product was rebranded from AWS SSO to IAM Identity Center.",
+    "style": "general",
+    "lessonId": "identity-center",
+    "lessonNumber": "13",
+    "lessonTitle": "IAM Identity Center (SSO)"
+  },
+  {
+    "q": "Which statement best matches multi-account access design?",
+    "options": [
+      "One IAM user is created identically in every account by hand forever",
+      "Central identity assigns access into accounts via roles/permission sets",
+      "No accounts are allowed",
+      "DNS replaces IAM"
+    ],
+    "answer": 1,
+    "explain": "Central assignment into accounts is the Identity Center model.",
+    "style": "general",
+    "lessonId": "identity-center",
+    "lessonNumber": "13",
+    "lessonTitle": "IAM Identity Center (SSO)"
+  },
+  {
+    "q": "Temporary session credentials typically include:",
+    "options": [
+      "Only a public bucket name",
+      "Access key, secret key, and session token (short-lived)",
+      "Only an AMI ID",
+      "Only a Route 53 zone ID"
+    ],
+    "answer": 1,
+    "explain": "STS sessions use key + secret + session token.",
+    "style": "general",
+    "lessonId": "identity-center",
+    "lessonNumber": "13",
+    "lessonTitle": "IAM Identity Center (SSO)"
+  },
+  {
+    "q": "A corporate identity provider (IdP) integrates so that employees:",
+    "options": [
+      "Never authenticate",
+      "Use existing company login (e.g. Okta/Azure AD) to reach AWS",
+      "Must create new AWS passwords every hour forever by hand",
+      "Only use FTP"
+    ],
+    "answer": 1,
+    "explain": "Federation lets corporate credentials gate AWS access.",
+    "style": "general",
+    "lessonId": "identity-center",
+    "lessonNumber": "13",
+    "lessonTitle": "IAM Identity Center (SSO)"
+  },
+  {
+    "q": "Encryption primarily protects data by:",
+    "options": [
+      "Deleting it forever",
+      "Making it unreadable without the correct key",
+      "Compressing it only",
+      "Moving it to another region only"
+    ],
+    "answer": 1,
+    "explain": "Encryption transforms data so keys are required to decrypt.",
+    "style": "general",
+    "lessonId": "kms-secrets",
+    "lessonNumber": "14",
+    "lessonTitle": "KMS & Secrets Manager"
+  },
+  {
+    "q": "Symmetric encryption uses:",
+    "options": [
+      "Two different keys always",
+      "The same key for encrypt and decrypt",
+      "No keys",
+      "Only passwords in plaintext"
+    ],
+    "answer": 1,
+    "explain": "Symmetric schemes share one secret key for both operations.",
+    "style": "general",
+    "lessonId": "kms-secrets",
+    "lessonNumber": "14",
+    "lessonTitle": "KMS & Secrets Manager"
+  },
+  {
+    "q": "Asymmetric encryption uses:",
+    "options": [
+      "No cryptography",
+      "A public/private key pair",
+      "Only S3 ACLs",
+      "Security groups only"
+    ],
+    "answer": 1,
+    "explain": "Public encrypt / private decrypt (or vice versa for signing).",
+    "style": "general",
+    "lessonId": "kms-secrets",
+    "lessonNumber": "14",
+    "lessonTitle": "KMS & Secrets Manager"
+  },
+  {
+    "q": "AWS KMS is primarily a service for:",
+    "options": [
+      "DNS routing",
+      "Creating and controlling cryptographic keys",
+      "Container orchestration",
+      "Email marketing"
+    ],
+    "answer": 1,
+    "explain": "KMS manages keys and crypto operations.",
+    "style": "general",
+    "lessonId": "kms-secrets",
+    "lessonNumber": "14",
+    "lessonTitle": "KMS & Secrets Manager"
+  },
+  {
+    "q": "A Customer Managed Key (CMK) is:",
+    "options": [
+      "A key you create and control policies for in KMS",
+      "Always an EC2 instance",
+      "Only available offline",
+      "A free public S3 object"
+    ],
+    "answer": 0,
+    "explain": "CMKs are customer-controlled KMS keys with key policies.",
+    "style": "general",
+    "lessonId": "kms-secrets",
+    "lessonNumber": "14",
+    "lessonTitle": "KMS & Secrets Manager"
+  },
+  {
+    "q": "Envelope encryption means:",
+    "options": [
+      "Putting letters in physical mail",
+      "Encrypting data with a data key, then encrypting that data key with a master key",
+      "Never encrypting data",
+      "Only using HTTPS for web pages"
+    ],
+    "answer": 1,
+    "explain": "Data keys encrypt payloads; KMS protects the data keys.",
+    "style": "general",
+    "lessonId": "kms-secrets",
+    "lessonNumber": "14",
+    "lessonTitle": "KMS & Secrets Manager"
+  },
+  {
+    "q": "A data key is typically used to:",
+    "options": [
+      "Route DNS",
+      "Encrypt bulk application data locally",
+      "Create VPCs",
+      "Scale Auto Scaling groups"
+    ],
+    "answer": 1,
+    "explain": "Data keys encrypt large data; KMS focuses on key management.",
+    "style": "general",
+    "lessonId": "kms-secrets",
+    "lessonNumber": "14",
+    "lessonTitle": "KMS & Secrets Manager"
+  },
+  {
+    "q": "Secrets Manager is best for:",
+    "options": [
+      "Hosting static images at edge",
+      "Storing and rotating secrets like DB passwords and API keys",
+      "Replacing CloudWatch metrics",
+      "Creating subnets"
+    ],
+    "answer": 1,
+    "explain": "It stores secrets with optional automatic rotation.",
+    "style": "general",
+    "lessonId": "kms-secrets",
+    "lessonNumber": "14",
+    "lessonTitle": "KMS & Secrets Manager"
+  },
+  {
+    "q": "Key policies in KMS control:",
+    "options": [
+      "Who can use/manage a key",
+      "Only S3 website indexes",
+      "Only ELB listeners",
+      "Route 53 TTL only"
+    ],
+    "answer": 0,
+    "explain": "Key policies are the primary access control for KMS keys.",
+    "style": "general",
+    "lessonId": "kms-secrets",
+    "lessonNumber": "14",
+    "lessonTitle": "KMS & Secrets Manager"
+  },
+  {
+    "q": "AWS managed keys vs customer managed keys:",
+    "options": [
+      "They are identical in control",
+      "Customer managed keys give more control over policy/rotation/lifecycle",
+      "Customer keys cannot encrypt anything",
+      "AWS managed keys only work offline"
+    ],
+    "answer": 1,
+    "explain": "CMKs provide customer control; AWS managed keys are service-operated.",
+    "style": "general",
+    "lessonId": "kms-secrets",
+    "lessonNumber": "14",
+    "lessonTitle": "KMS & Secrets Manager"
+  },
+  {
+    "q": "Rotation of secrets reduces risk by:",
+    "options": [
+      "Making secrets never change",
+      "Limiting how long a leaked secret remains valid",
+      "Disabling encryption",
+      "Removing IAM"
+    ],
+    "answer": 1,
+    "explain": "Regular rotation shortens the usefulness of stolen secrets.",
+    "style": "general",
+    "lessonId": "kms-secrets",
+    "lessonNumber": "14",
+    "lessonTitle": "KMS & Secrets Manager"
+  },
+  {
+    "q": "Which pair is the typical split of responsibility?",
+    "options": [
+      "KMS for keys; Secrets Manager for secret values",
+      "KMS for DNS; Secrets Manager for VPCs",
+      "Both only for email",
+      "Neither relates to security"
+    ],
+    "answer": 0,
+    "explain": "KMS = keys/crypto ops; Secrets Manager = secret material lifecycle.",
+    "style": "general",
+    "lessonId": "kms-secrets",
+    "lessonNumber": "14",
+    "lessonTitle": "KMS & Secrets Manager"
+  },
+  {
+    "q": "Decrypting with KMS requires:",
+    "options": [
+      "No permissions",
+      "kms:Decrypt (or related) permission on the key",
+      "Only S3 ListBucket",
+      "Root password in the client always"
+    ],
+    "answer": 1,
+    "explain": "Callers need explicit KMS permissions on the key.",
+    "style": "general",
+    "lessonId": "kms-secrets",
+    "lessonNumber": "14",
+    "lessonTitle": "KMS & Secrets Manager"
+  },
+  {
+    "q": "A common anti-pattern is:",
+    "options": [
+      "Storing secrets in Secrets Manager",
+      "Committing production secrets to GitHub",
+      "Using CMKs with least privilege",
+      "Enabling key rotation where appropriate"
+    ],
+    "answer": 1,
+    "explain": "Secrets in git are a classic incident source.",
+    "style": "general",
+    "lessonId": "kms-secrets",
+    "lessonNumber": "14",
+    "lessonTitle": "KMS & Secrets Manager"
+  },
+  {
+    "q": "Parameter Store vs Secrets Manager (high level):",
+    "options": [
+      "They are graphics tools",
+      "Secrets Manager focuses on secrets + rotation; Parameter Store is broader config/parameters",
+      "Both only store AMIs",
+      "Neither is an AWS service"
+    ],
+    "answer": 1,
+    "explain": "Secrets Manager is specialized for secrets lifecycle; SSM Parameter Store is general config.",
+    "style": "general",
+    "lessonId": "kms-secrets",
+    "lessonNumber": "14",
+    "lessonTitle": "KMS & Secrets Manager"
+  },
+  {
+    "q": "Encrypting data at rest means:",
+    "options": [
+      "Data is encrypted while stored on disk/object storage",
+      "Data is never stored",
+      "Only TLS in transit matters",
+      "Only physical locks"
+    ],
+    "answer": 0,
+    "explain": "At-rest encryption protects stored data; in-transit is separate.",
+    "style": "general",
+    "lessonId": "kms-secrets",
+    "lessonNumber": "14",
+    "lessonTitle": "KMS & Secrets Manager"
+  },
+  {
+    "q": "If a CMK is scheduled for deletion, applications that depend on it:",
+    "options": [
+      "Always keep working forever",
+      "Can fail to decrypt until restored/available",
+      "Automatically switch to root keys with no impact",
+      "Delete all VPCs"
+    ],
+    "answer": 1,
+    "explain": "Key deletion/disablement breaks decrypt paths.",
+    "style": "general",
+    "lessonId": "kms-secrets",
+    "lessonNumber": "14",
+    "lessonTitle": "KMS & Secrets Manager"
+  },
+  {
+    "q": "Tight coupling in distributed systems often appears when services:",
+    "options": [
+      "Never call each other",
+      "Call each other synchronously and fail together under load",
+      "Only use DNS",
+      "Only store logs"
+    ],
+    "answer": 1,
+    "explain": "Synchronous chains amplify failures and load.",
+    "style": "general",
+    "lessonId": "messaging",
+    "lessonNumber": "15",
+    "lessonTitle": "SQS, SNS & EventBridge"
+  },
+  {
+    "q": "Asynchronous communication helps by:",
+    "options": [
+      "Removing all networks",
+      "Letting producers and consumers work at different rates via buffers/events",
+      "Forcing one giant server",
+      "Disabling retries"
+    ],
+    "answer": 1,
+    "explain": "Queues/events decouple timing and availability.",
+    "style": "general",
+    "lessonId": "messaging",
+    "lessonNumber": "15",
+    "lessonTitle": "SQS, SNS & EventBridge"
+  },
+  {
+    "q": "Amazon SQS is primarily a:",
+    "options": [
+      "CDN",
+      "Managed message queue",
+      "DNS service",
+      "Object store"
+    ],
+    "answer": 1,
+    "explain": "SQS is a fully managed queue service.",
+    "style": "general",
+    "lessonId": "messaging",
+    "lessonNumber": "15",
+    "lessonTitle": "SQS, SNS & EventBridge"
+  },
+  {
+    "q": "A key benefit of SQS is:",
+    "options": [
+      "Deleting encryption keys",
+      "Decoupling producers from consumers",
+      "Replacing IAM",
+      "Hosting static sites"
+    ],
+    "answer": 1,
+    "explain": "Producers enqueue; consumers process independently.",
+    "style": "general",
+    "lessonId": "messaging",
+    "lessonNumber": "15",
+    "lessonTitle": "SQS, SNS & EventBridge"
+  },
+  {
+    "q": "Standard SQS queues prioritize:",
+    "options": [
+      "Strict exactly-once ordered delivery always",
+      "High throughput with at-least-once delivery (order not strictly guaranteed)",
+      "Only video streaming",
+      "Only email"
+    ],
+    "answer": 1,
+    "explain": "Standard = scale; possible duplicates; best-effort ordering.",
+    "style": "general",
+    "lessonId": "messaging",
+    "lessonNumber": "15",
+    "lessonTitle": "SQS, SNS & EventBridge"
+  },
+  {
+    "q": "FIFO SQS queues are chosen when you need:",
+    "options": [
+      "No ordering ever",
+      "First-in-first-out ordering and exactly-once processing semantics within limits",
+      "Only public websites",
+      "IPv6 only"
+    ],
+    "answer": 1,
+    "explain": "FIFO preserves order and deduplication capabilities.",
+    "style": "general",
+    "lessonId": "messaging",
+    "lessonNumber": "15",
+    "lessonTitle": "SQS, SNS & EventBridge"
+  },
+  {
+    "q": "Visibility timeout means:",
+    "options": [
+      "Messages are never hidden",
+      "After a consumer receives a message, it is hidden for a period while processing",
+      "S3 objects become private",
+      "DNS TTL is zero"
+    ],
+    "answer": 1,
+    "explain": "Prevents other consumers from getting the same message during processing.",
+    "style": "general",
+    "lessonId": "messaging",
+    "lessonNumber": "15",
+    "lessonTitle": "SQS, SNS & EventBridge"
+  },
+  {
+    "q": "A Dead Letter Queue (DLQ) is used for:",
+    "options": [
+      "Faster CloudFront",
+      "Messages that repeatedly fail processing",
+      "Cheaper EC2 only",
+      "Disabling logs"
+    ],
+    "answer": 1,
+    "explain": "DLQs capture poison messages after max receives.",
+    "style": "general",
+    "lessonId": "messaging",
+    "lessonNumber": "15",
+    "lessonTitle": "SQS, SNS & EventBridge"
+  },
+  {
+    "q": "Amazon SNS is best described as:",
+    "options": [
+      "A block storage volume",
+      "A pub/sub notification service",
+      "A relational database",
+      "A container orchestrator"
+    ],
+    "answer": 1,
+    "explain": "SNS publishes to many subscribers.",
+    "style": "general",
+    "lessonId": "messaging",
+    "lessonNumber": "15",
+    "lessonTitle": "SQS, SNS & EventBridge"
+  },
+  {
+    "q": "Fan-out with SNS+SQS typically means:",
+    "options": [
+      "One queue only ever",
+      "One SNS topic delivers to multiple SQS queues/subscribers",
+      "Deleting all topics",
+      "Only email to root"
+    ],
+    "answer": 1,
+    "explain": "One event fans out to many independent consumers.",
+    "style": "general",
+    "lessonId": "messaging",
+    "lessonNumber": "15",
+    "lessonTitle": "SQS, SNS & EventBridge"
+  },
+  {
+    "q": "EventBridge is primarily an:",
+    "options": [
+      "Edge CDN",
+      "Event bus for routing events with rules",
+      "EBS snapshot tool",
+      "SSH bastion"
+    ],
+    "answer": 1,
+    "explain": "EventBridge routes events from sources to targets via rules.",
+    "style": "general",
+    "lessonId": "messaging",
+    "lessonNumber": "15",
+    "lessonTitle": "SQS, SNS & EventBridge"
+  },
+  {
+    "q": "Which pattern reduces synchronous dependency between checkout and email?",
+    "options": [
+      "Checkout waits forever on email API",
+      "Checkout emits an event/message; email service consumes later",
+      "Email runs on the user laptop only",
+      "Disable email forever"
+    ],
+    "answer": 1,
+    "explain": "Async messaging decouples checkout success from email latency.",
+    "style": "general",
+    "lessonId": "messaging",
+    "lessonNumber": "15",
+    "lessonTitle": "SQS, SNS & EventBridge"
+  },
+  {
+    "q": "At-least-once delivery implies consumers should be:",
+    "options": [
+      "Stateful only on laptops",
+      "Idempotent when possible (handle duplicates)",
+      "Unable to retry",
+      "Always non-idempotent"
+    ],
+    "answer": 1,
+    "explain": "Duplicates can occur; design for idempotency.",
+    "style": "general",
+    "lessonId": "messaging",
+    "lessonNumber": "15",
+    "lessonTitle": "SQS, SNS & EventBridge"
+  },
+  {
+    "q": "A good default for unreliable downstream processors is:",
+    "options": [
+      "No retries and drop forever silently",
+      "Retries + DLQ for inspection",
+      "Synchronous only with no timeout",
+      "Public anonymous queue access"
+    ],
+    "answer": 1,
+    "explain": "Retries with DLQ improve operability.",
+    "style": "general",
+    "lessonId": "messaging",
+    "lessonNumber": "15",
+    "lessonTitle": "SQS, SNS & EventBridge"
+  },
+  {
+    "q": "SNS subscription endpoints can include:",
+    "options": [
+      "Only floppy disks",
+      "Email, Lambda, SQS, HTTP(S), etc. (depending on setup)",
+      "Only VPC CIDRs",
+      "Only AMIs"
+    ],
+    "answer": 1,
+    "explain": "SNS supports multiple protocol/endpoint types.",
+    "style": "general",
+    "lessonId": "messaging",
+    "lessonNumber": "15",
+    "lessonTitle": "SQS, SNS & EventBridge"
+  },
+  {
+    "q": "EventBridge rules match:",
+    "options": [
+      "Only random noise",
+      "Event patterns and route matching events to targets",
+      "Only security groups",
+      "Only S3 storage classes"
+    ],
+    "answer": 1,
+    "explain": "Rules filter events and invoke targets.",
+    "style": "general",
+    "lessonId": "messaging",
+    "lessonNumber": "15",
+    "lessonTitle": "SQS, SNS & EventBridge"
+  },
+  {
+    "q": "Choosing SQS over direct sync APIs is often about:",
+    "options": [
+      "Worse reliability always",
+      "Absorbing spikes and isolating failures",
+      "Removing encryption",
+      "Avoiding IAM entirely"
+    ],
+    "answer": 1,
+    "explain": "Queues buffer load and isolate producers/consumers.",
+    "style": "general",
+    "lessonId": "messaging",
+    "lessonNumber": "15",
+    "lessonTitle": "SQS, SNS & EventBridge"
+  },
+  {
+    "q": "Which is NOT a primary messaging building block in this lesson trio?",
+    "options": [
+      "SQS",
+      "SNS",
+      "EventBridge",
+      "Amazon Lightsail as a message bus"
+    ],
+    "answer": 3,
+    "explain": "The lesson focuses on SQS, SNS, and EventBridge.",
+    "style": "general",
+    "lessonId": "messaging",
+    "lessonNumber": "15",
+    "lessonTitle": "SQS, SNS & EventBridge"
+  },
+  {
+    "q": "Latency on the internet is mainly:",
+    "options": [
+      "Always zero",
+      "Delay for data to travel between client and server",
+      "Only disk encryption time",
+      "Only DNSSEC cost"
+    ],
+    "answer": 1,
+    "explain": "Distance and network hops add latency.",
+    "style": "general",
+    "lessonId": "cloudfront",
+    "lessonNumber": "16",
+    "lessonTitle": "CloudFront & OAC"
+  },
+  {
+    "q": "A CDN improves performance by:",
+    "options": [
+      "Removing the internet",
+      "Caching content at edge locations closer to users",
+      "Deleting origins",
+      "Forcing one central data center only"
+    ],
+    "answer": 1,
+    "explain": "Edges serve cached content nearby.",
+    "style": "general",
+    "lessonId": "cloudfront",
+    "lessonNumber": "16",
+    "lessonTitle": "CloudFront & OAC"
+  },
+  {
+    "q": "Amazon CloudFront is AWS’s:",
+    "options": [
+      "Relational database",
+      "Content delivery network (CDN)",
+      "IAM policy language",
+      "Container runtime"
+    ],
+    "answer": 1,
+    "explain": "CloudFront is the AWS CDN.",
+    "style": "general",
+    "lessonId": "cloudfront",
+    "lessonNumber": "16",
+    "lessonTitle": "CloudFront & OAC"
+  },
+  {
+    "q": "An Edge Location is:",
+    "options": [
+      "A single on-prem rack only",
+      "A CloudFront point of presence that can cache content",
+      "A KMS key type",
+      "An SQS queue"
+    ],
+    "answer": 1,
+    "explain": "Edge locations cache and serve content.",
+    "style": "general",
+    "lessonId": "cloudfront",
+    "lessonNumber": "16",
+    "lessonTitle": "CloudFront & OAC"
+  },
+  {
+    "q": "A CloudFront distribution is:",
+    "options": [
+      "A VPC subnet mask",
+      "The configuration that connects viewers to origins via CloudFront",
+      "An EC2 purchase option",
+      "A billing invoice"
+    ],
+    "answer": 1,
+    "explain": "Distributions define how CloudFront serves your content.",
+    "style": "general",
+    "lessonId": "cloudfront",
+    "lessonNumber": "16",
+    "lessonTitle": "CloudFront & OAC"
+  },
+  {
+    "q": "An origin in CloudFront is:",
+    "options": [
+      "The source of content (e.g. S3, ALB, custom HTTP)",
+      "Only a Route 53 name server",
+      "Only a security group",
+      "A Lambda layer only"
+    ],
+    "answer": 0,
+    "explain": "Origins supply the content CloudFront fetches/caches.",
+    "style": "general",
+    "lessonId": "cloudfront",
+    "lessonNumber": "16",
+    "lessonTitle": "CloudFront & OAC"
+  },
+  {
+    "q": "Caching reduces load on origins by:",
+    "options": [
+      "Always bypassing edges",
+      "Serving repeated requests from edge cache when possible",
+      "Deleting all objects daily",
+      "Turning off HTTPS"
+    ],
+    "answer": 1,
+    "explain": "Hits at the edge avoid origin fetches.",
+    "style": "general",
+    "lessonId": "cloudfront",
+    "lessonNumber": "16",
+    "lessonTitle": "CloudFront & OAC"
+  },
+  {
+    "q": "OAC stands for:",
+    "options": [
+      "Object Access Container",
+      "Origin Access Control",
+      "Online Auto Cache",
+      "Outbound ACL"
+    ],
+    "answer": 1,
+    "explain": "Origin Access Control restricts origin access to CloudFront.",
+    "style": "general",
+    "lessonId": "cloudfront",
+    "lessonNumber": "16",
+    "lessonTitle": "CloudFront & OAC"
+  },
+  {
+    "q": "Why keep an S3 origin private with OAC?",
+    "options": [
+      "So anyone can write as admin",
+      "So users must go through CloudFront, not direct public bucket access",
+      "So DNS stops working",
+      "So KMS is disabled"
+    ],
+    "answer": 1,
+    "explain": "Prevents bypassing CDN/security controls via public bucket URLs.",
+    "style": "general",
+    "lessonId": "cloudfront",
+    "lessonNumber": "16",
+    "lessonTitle": "CloudFront & OAC"
+  },
+  {
+    "q": "A cache hit means:",
+    "options": [
+      "Edge had the object and served it",
+      "Origin always regenerated everything",
+      "DNS failed",
+      "TLS failed"
+    ],
+    "answer": 0,
+    "explain": "Hit = served from cache.",
+    "style": "general",
+    "lessonId": "cloudfront",
+    "lessonNumber": "16",
+    "lessonTitle": "CloudFront & OAC"
+  },
+  {
+    "q": "A cache miss typically causes:",
+    "options": [
+      "Immediate account deletion",
+      "CloudFront to fetch from origin (then often cache)",
+      "VPC deletion",
+      "IAM user creation"
+    ],
+    "answer": 1,
+    "explain": "Misses go to origin.",
+    "style": "general",
+    "lessonId": "cloudfront",
+    "lessonNumber": "16",
+    "lessonTitle": "CloudFront & OAC"
+  },
+  {
+    "q": "HTTPS on CloudFront is important because:",
+    "options": [
+      "It slows everything with no benefit",
+      "It encrypts data in transit to viewers",
+      "It replaces all IAM policies",
+      "It disables caching forever"
+    ],
+    "answer": 1,
+    "explain": "TLS protects in-transit traffic.",
+    "style": "general",
+    "lessonId": "cloudfront",
+    "lessonNumber": "16",
+    "lessonTitle": "CloudFront & OAC"
+  },
+  {
+    "q": "Invalidations are used to:",
+    "options": [
+      "Delete AWS accounts",
+      "Remove or refresh cached objects before TTL naturally expires",
+      "Create subnets",
+      "Rotate only RDS passwords"
+    ],
+    "answer": 1,
+    "explain": "Force cache refresh when content changes.",
+    "style": "general",
+    "lessonId": "cloudfront",
+    "lessonNumber": "16",
+    "lessonTitle": "CloudFront & OAC"
+  },
+  {
+    "q": "Behaviors in CloudFront map:",
+    "options": [
+      "Path patterns to origin/cache settings",
+      "Only billing tags",
+      "Only AZ names",
+      "Only AMI IDs"
+    ],
+    "answer": 0,
+    "explain": "Path behaviors control how requests are handled.",
+    "style": "general",
+    "lessonId": "cloudfront",
+    "lessonNumber": "16",
+    "lessonTitle": "CloudFront & OAC"
+  },
+  {
+    "q": "Putting CloudFront in front of a global audience helps most with:",
+    "options": [
+      "Physical shipping",
+      "Latency and offloading origin bandwidth",
+      "Removing need for DNS",
+      "Disabling monitoring"
+    ],
+    "answer": 1,
+    "explain": "Performance and origin protection.",
+    "style": "general",
+    "lessonId": "cloudfront",
+    "lessonNumber": "16",
+    "lessonTitle": "CloudFront & OAC"
+  },
+  {
+    "q": "If the origin is S3 and the bucket is public, a risk is:",
+    "options": [
+      "No one can download",
+      "Users may bypass CloudFront and hit S3 directly",
+      "CloudFront cannot exist",
+      "DNS cannot resolve"
+    ],
+    "answer": 1,
+    "explain": "Public buckets allow direct access unless restricted.",
+    "style": "general",
+    "lessonId": "cloudfront",
+    "lessonNumber": "16",
+    "lessonTitle": "CloudFront & OAC"
+  },
+  {
+    "q": "TTL in caching roughly means:",
+    "options": [
+      "Time to live for cached objects before revalidation/expiry",
+      "Total transfer limit only",
+      "Type of load balancer",
+      "Tag taxonomy language"
+    ],
+    "answer": 0,
+    "explain": "TTL governs how long content may stay cached.",
+    "style": "general",
+    "lessonId": "cloudfront",
+    "lessonNumber": "16",
+    "lessonTitle": "CloudFront & OAC"
+  },
+  {
+    "q": "CloudFront can use custom domains when:",
+    "options": [
+      "You never own a domain",
+      "You configure alternate domain names/certificates appropriately",
+      "You disable TLS forever",
+      "You use only HTTP IP addresses in browsers always"
+    ],
+    "answer": 1,
+    "explain": "CNAMEs/aliases + certs enable branded domains.",
+    "style": "general",
+    "lessonId": "cloudfront",
+    "lessonNumber": "16",
+    "lessonTitle": "CloudFront & OAC"
+  },
+  {
+    "q": "A primary lesson takeaway is:",
+    "options": [
+      "Serve the world from one distant origin with no cache",
+      "Use CDN caching + secure private origins (OAC) for scale and safety",
+      "Never use HTTPS",
+      "Only use FTP"
+    ],
+    "answer": 1,
+    "explain": "CDN + private origin is the modern static/content pattern.",
+    "style": "general",
+    "lessonId": "cloudfront",
+    "lessonNumber": "16",
+    "lessonTitle": "CloudFront & OAC"
+  },
+  {
+    "q": "DNS exists mainly to:",
+    "options": [
+      "Encrypt disks",
+      "Translate human-friendly names to IP addresses",
+      "Create EC2 instances",
+      "Bill AWS accounts"
+    ],
+    "answer": 1,
+    "explain": "DNS maps names → addresses (and more).",
+    "style": "general",
+    "lessonId": "route53",
+    "lessonNumber": "17",
+    "lessonTitle": "Route 53"
+  },
+  {
+    "q": "A domain name is:",
+    "options": [
+      "A physical cable",
+      "A human-readable name for services on the internet",
+      "An IAM policy",
+      "A KMS key ARN only"
+    ],
+    "answer": 1,
+    "explain": "Domains are readable identifiers.",
+    "style": "general",
+    "lessonId": "route53",
+    "lessonNumber": "17",
+    "lessonTitle": "Route 53"
+  },
+  {
+    "q": "When you type a website name, a typical first step involves:",
+    "options": [
+      "Ignoring DNS",
+      "Resolving the name via DNS resolvers/servers",
+      "Formatting the hard drive",
+      "Disabling TCP"
+    ],
+    "answer": 1,
+    "explain": "Browsers resolve DNS then connect.",
+    "style": "general",
+    "lessonId": "route53",
+    "lessonNumber": "17",
+    "lessonTitle": "Route 53"
+  },
+  {
+    "q": "Amazon Route 53 is:",
+    "options": [
+      "A CDN only",
+      "AWS’s highly available DNS service",
+      "A message queue",
+      "A container runtime"
+    ],
+    "answer": 1,
+    "explain": "Route 53 provides DNS and related routing features.",
+    "style": "general",
+    "lessonId": "route53",
+    "lessonNumber": "17",
+    "lessonTitle": "Route 53"
+  },
+  {
+    "q": "A hosted zone contains:",
+    "options": [
+      "Only AMIs",
+      "DNS records for a domain",
+      "Only security groups",
+      "Only budgets"
+    ],
+    "answer": 1,
+    "explain": "Hosted zones hold the record set for a domain.",
+    "style": "general",
+    "lessonId": "route53",
+    "lessonNumber": "17",
+    "lessonTitle": "Route 53"
+  },
+  {
+    "q": "An A record maps a name to:",
+    "options": [
+      "An IPv6 address only always",
+      "An IPv4 address",
+      "A KMS key",
+      "An SQS URL only"
+    ],
+    "answer": 1,
+    "explain": "A = IPv4 address mapping.",
+    "style": "general",
+    "lessonId": "route53",
+    "lessonNumber": "17",
+    "lessonTitle": "Route 53"
+  },
+  {
+    "q": "AAAA records map to:",
+    "options": [
+      "IPv6 addresses",
+      "Only MX mail hosts",
+      "Only TXT spam",
+      "Only NS servers"
+    ],
+    "answer": 0,
+    "explain": "AAAA is IPv6.",
+    "style": "general",
+    "lessonId": "route53",
+    "lessonNumber": "17",
+    "lessonTitle": "Route 53"
+  },
+  {
+    "q": "CNAME records are used to:",
+    "options": [
+      "Alias one name to another name",
+      "Delete VPCs",
+      "Create users",
+      "Encrypt S3"
+    ],
+    "answer": 0,
+    "explain": "CNAME points a name to another name.",
+    "style": "general",
+    "lessonId": "route53",
+    "lessonNumber": "17",
+    "lessonTitle": "Route 53"
+  },
+  {
+    "q": "Route 53 alias records are special because they can:",
+    "options": [
+      "Only point to non-AWS resources",
+      "Map to certain AWS resources (e.g. CloudFront, ELB) including zone apex cases where CNAME cannot",
+      "Replace HTTPS",
+      "Disable DNSSEC worldwide"
+    ],
+    "answer": 1,
+    "explain": "Alias integrates tightly with AWS resources; useful at apex.",
+    "style": "general",
+    "lessonId": "route53",
+    "lessonNumber": "17",
+    "lessonTitle": "Route 53"
+  },
+  {
+    "q": "NS records indicate:",
+    "options": [
+      "Name servers for the zone",
+      "Network switches only",
+      "NAT gateways",
+      "NACLs only"
+    ],
+    "answer": 0,
+    "explain": "NS = authoritative name servers.",
+    "style": "general",
+    "lessonId": "route53",
+    "lessonNumber": "17",
+    "lessonTitle": "Route 53"
+  },
+  {
+    "q": "TTL controls:",
+    "options": [
+      "How long resolvers may cache a DNS answer",
+      "EC2 CPU credits only",
+      "S3 object size",
+      "IAM password length only"
+    ],
+    "answer": 0,
+    "explain": "TTL is DNS cache lifetime.",
+    "style": "general",
+    "lessonId": "route53",
+    "lessonNumber": "17",
+    "lessonTitle": "Route 53"
+  },
+  {
+    "q": "Simple routing typically means:",
+    "options": [
+      "Complex geo + latency + failover combined always",
+      "A basic single record answer for a name",
+      "No DNS at all",
+      "Only weighted randomness without a record"
+    ],
+    "answer": 1,
+    "explain": "Simple routing is the basic mapping.",
+    "style": "general",
+    "lessonId": "route53",
+    "lessonNumber": "17",
+    "lessonTitle": "Route 53"
+  },
+  {
+    "q": "Weighted routing is useful to:",
+    "options": [
+      "Split traffic across endpoints by weight",
+      "Encrypt messages",
+      "Create subnets",
+      "Disable health checks forever"
+    ],
+    "answer": 0,
+    "explain": "Weights control traffic distribution.",
+    "style": "general",
+    "lessonId": "route53",
+    "lessonNumber": "17",
+    "lessonTitle": "Route 53"
+  },
+  {
+    "q": "Failover routing depends on:",
+    "options": [
+      "Ignoring health",
+      "Primary/secondary with health checks",
+      "Only MX records",
+      "Only TXT records"
+    ],
+    "answer": 1,
+    "explain": "Health-based failover between records.",
+    "style": "general",
+    "lessonId": "route53",
+    "lessonNumber": "17",
+    "lessonTitle": "Route 53"
+  },
+  {
+    "q": "Health checks help Route 53 by:",
+    "options": [
+      "Making unhealthy endpoints still preferred always",
+      "Detecting endpoint health for routing decisions",
+      "Replacing TLS",
+      "Creating KMS keys"
+    ],
+    "answer": 1,
+    "explain": "Unhealthy targets can be avoided.",
+    "style": "general",
+    "lessonId": "route53",
+    "lessonNumber": "17",
+    "lessonTitle": "Route 53"
+  },
+  {
+    "q": "Public hosted zones are for:",
+    "options": [
+      "Internet-resolvable DNS for your domain",
+      "Only private VPC DNS with no domains",
+      "Only S3 inventory",
+      "Only CloudTrail digests"
+    ],
+    "answer": 0,
+    "explain": "Public zones answer on the public internet.",
+    "style": "general",
+    "lessonId": "route53",
+    "lessonNumber": "17",
+    "lessonTitle": "Route 53"
+  },
+  {
+    "q": "Private hosted zones associate with:",
+    "options": [
+      "VPCs for internal name resolution",
+      "Only public internet root servers",
+      "Only CloudFront edges",
+      "Only SQS"
+    ],
+    "answer": 0,
+    "explain": "Private zones serve VPC-internal DNS.",
+    "style": "general",
+    "lessonId": "route53",
+    "lessonNumber": "17",
+    "lessonTitle": "Route 53"
+  },
+  {
+    "q": "If DNS is misconfigured, users often see:",
+    "options": [
+      "Perfect connectivity always",
+      "Site unreachable / wrong IP resolution",
+      "Automatic KMS rotation",
+      "Free EC2 forever"
+    ],
+    "answer": 1,
+    "explain": "DNS errors break reachability.",
+    "style": "general",
+    "lessonId": "route53",
+    "lessonNumber": "17",
+    "lessonTitle": "Route 53"
+  },
+  {
+    "q": "A core interview takeaway is:",
+    "options": [
+      "DNS is optional for all public apps",
+      "Route 53 maps names to resources and can route intelligently",
+      "Alias records are never useful",
+      "TTL should always be 1 year for everything"
+    ],
+    "answer": 1,
+    "explain": "DNS + smart routing is foundational.",
+    "style": "general",
+    "lessonId": "route53",
+    "lessonNumber": "17",
+    "lessonTitle": "Route 53"
+  },
+  {
+    "q": "AWS pricing philosophy is best summarized as:",
+    "options": [
+      "Always fixed 5-year contracts only",
+      "Pay for what you use (with options like reserved capacity)",
+      "Everything is free forever without limits",
+      "Only prepaid gold bars"
+    ],
+    "answer": 1,
+    "explain": "Usage-based pricing with multiple purchase models.",
+    "style": "general",
+    "lessonId": "cost-management",
+    "lessonNumber": "18",
+    "lessonTitle": "Cost Explorer & Budgets"
+  },
+  {
+    "q": "Pay-as-you-go means:",
+    "options": [
+      "You pay a flat annual fee for unlimited everything always",
+      "Charges scale with consumed resources/time",
+      "No billing exists",
+      "Only support is billed"
+    ],
+    "answer": 1,
+    "explain": "Usage drives cost.",
+    "style": "general",
+    "lessonId": "cost-management",
+    "lessonNumber": "18",
+    "lessonTitle": "Cost Explorer & Budgets"
+  },
+  {
+    "q": "The Free Tier is:",
+    "options": [
+      "Unlimited free production forever for all services",
+      "Limited free usage for learning/experimentation (with conditions)",
+      "A CDN product",
+      "A type of IAM user"
+    ],
+    "answer": 1,
+    "explain": "Free Tier has limits and eligibility rules.",
+    "style": "general",
+    "lessonId": "cost-management",
+    "lessonNumber": "18",
+    "lessonTitle": "Cost Explorer & Budgets"
+  },
+  {
+    "q": "A common beginner cost mistake is:",
+    "options": [
+      "Turning off unused resources",
+      "Leaving billable resources running (NAT, idle instances, etc.)",
+      "Setting budgets",
+      "Using Cost Explorer"
+    ],
+    "answer": 1,
+    "explain": "Forgotten resources create surprise bills.",
+    "style": "general",
+    "lessonId": "cost-management",
+    "lessonNumber": "18",
+    "lessonTitle": "Cost Explorer & Budgets"
+  },
+  {
+    "q": "AWS Cost Explorer helps you:",
+    "options": [
+      "Deploy Kubernetes only",
+      "Visualize and analyze historical/forecasted spend",
+      "Create VPCs",
+      "Issue SSL certs only"
+    ],
+    "answer": 1,
+    "explain": "Cost Explorer is for cost analysis.",
+    "style": "general",
+    "lessonId": "cost-management",
+    "lessonNumber": "18",
+    "lessonTitle": "Cost Explorer & Budgets"
+  },
+  {
+    "q": "Grouping costs by service in Cost Explorer helps answer:",
+    "options": [
+      "Which AZ has the best coffee",
+      "Which services drive spend",
+      "Who owns GitHub",
+      "Which font to use"
+    ],
+    "answer": 1,
+    "explain": "Service breakdown shows cost drivers.",
+    "style": "general",
+    "lessonId": "cost-management",
+    "lessonNumber": "18",
+    "lessonTitle": "Cost Explorer & Budgets"
+  },
+  {
+    "q": "AWS Budgets are used to:",
+    "options": [
+      "Automatically delete all accounts",
+      "Set cost/usage thresholds and alerts",
+      "Replace CloudWatch logs",
+      "Disable MFA"
+    ],
+    "answer": 1,
+    "explain": "Budgets alert when thresholds are crossed.",
+    "style": "general",
+    "lessonId": "cost-management",
+    "lessonNumber": "18",
+    "lessonTitle": "Cost Explorer & Budgets"
+  },
+  {
+    "q": "Cost Anomaly Detection helps by:",
+    "options": [
+      "Creating random charges",
+      "Flagging unusual spend patterns",
+      "Removing encryption",
+      "Blocking all API calls"
+    ],
+    "answer": 1,
+    "explain": "Anomaly detection highlights unexpected cost changes.",
+    "style": "general",
+    "lessonId": "cost-management",
+    "lessonNumber": "18",
+    "lessonTitle": "Cost Explorer & Budgets"
+  },
+  {
+    "q": "Cost allocation tags are useful for:",
+    "options": [
+      "Decorating consoles only",
+      "Attributing costs to teams/projects",
+      "Speeding DNS",
+      "Replacing IAM"
+    ],
+    "answer": 1,
+    "explain": "Tags enable chargeback/showback.",
+    "style": "general",
+    "lessonId": "cost-management",
+    "lessonNumber": "18",
+    "lessonTitle": "Cost Explorer & Budgets"
+  },
+  {
+    "q": "Rightsizing means:",
+    "options": [
+      "Always using the largest instance",
+      "Matching resource size to actual need",
+      "Turning off monitoring",
+      "Using only root"
+    ],
+    "answer": 1,
+    "explain": "Avoid over-provisioning.",
+    "style": "general",
+    "lessonId": "cost-management",
+    "lessonNumber": "18",
+    "lessonTitle": "Cost Explorer & Budgets"
+  },
+  {
+    "q": "Turning off/deleting unused resources primarily reduces:",
+    "options": [
+      "Latency only",
+      "Ongoing billable charges",
+      "DNS TTL",
+      "AMI count only always"
+    ],
+    "answer": 1,
+    "explain": "Idle resources still cost money.",
+    "style": "general",
+    "lessonId": "cost-management",
+    "lessonNumber": "18",
+    "lessonTitle": "Cost Explorer & Budgets"
+  },
+  {
+    "q": "NAT Gateways are a classic surprise cost because:",
+    "options": [
+      "They are always free",
+      "They can be expensive when left running with traffic/data processing",
+      "They only exist on-prem",
+      "They replace S3"
+    ],
+    "answer": 1,
+    "explain": "NAT can rack up hourly + data charges.",
+    "style": "general",
+    "lessonId": "cost-management",
+    "lessonNumber": "18",
+    "lessonTitle": "Cost Explorer & Budgets"
+  },
+  {
+    "q": "A practical day-one control is:",
+    "options": [
+      "No billing access for anyone ever",
+      "Create a budget alert early",
+      "Disable Cost Explorer",
+      "Share root credentials"
+    ],
+    "answer": 1,
+    "explain": "Early alerts prevent bill shock.",
+    "style": "general",
+    "lessonId": "cost-management",
+    "lessonNumber": "18",
+    "lessonTitle": "Cost Explorer & Budgets"
+  },
+  {
+    "q": "Reserved Instances / Savings Plans generally trade:",
+    "options": [
+      "No commitment for higher flexibility only",
+      "Commitment for lower rates vs on-demand",
+      "Security for cost only",
+      "DNS for storage"
+    ],
+    "answer": 1,
+    "explain": "Commitment discounts stable workloads.",
+    "style": "general",
+    "lessonId": "cost-management",
+    "lessonNumber": "18",
+    "lessonTitle": "Cost Explorer & Budgets"
+  },
+  {
+    "q": "Data transfer costs matter because:",
+    "options": [
+      "All transfers are free always",
+      "Cross-AZ/internet transfer can add charges",
+      "Only CPU is billed",
+      "Only support is billed"
+    ],
+    "answer": 1,
+    "explain": "Transfer is a major hidden cost dimension.",
+    "style": "general",
+    "lessonId": "cost-management",
+    "lessonNumber": "18",
+    "lessonTitle": "Cost Explorer & Budgets"
+  },
+  {
+    "q": "Forecasting in Cost Explorer helps:",
+    "options": [
+      "Predict future spend trends",
+      "Create subnets",
+      "Rotate keys",
+      "Deploy containers"
+    ],
+    "answer": 0,
+    "explain": "Forecasts support planning.",
+    "style": "general",
+    "lessonId": "cost-management",
+    "lessonNumber": "18",
+    "lessonTitle": "Cost Explorer & Budgets"
+  },
+  {
+    "q": "Which is a good cost hygiene habit?",
+    "options": [
+      "Never tag resources",
+      "Review Cost Explorer weekly and clean idle resources",
+      "Leave load balancers forever with no traffic",
+      "Ignore Free Tier limits"
+    ],
+    "answer": 1,
+    "explain": "Regular review + cleanup controls spend.",
+    "style": "general",
+    "lessonId": "cost-management",
+    "lessonNumber": "18",
+    "lessonTitle": "Cost Explorer & Budgets"
+  },
+  {
+    "q": "Budgets can notify via:",
+    "options": [
+      "Only postal mail",
+      "Configured alerts (e.g. SNS/email workflows)",
+      "Only SMS from root with no setup",
+      "Only console popups offline"
+    ],
+    "answer": 1,
+    "explain": "Alerts integrate with notification channels.",
+    "style": "general",
+    "lessonId": "cost-management",
+    "lessonNumber": "18",
+    "lessonTitle": "Cost Explorer & Budgets"
+  },
+  {
+    "q": "If spend spikes unexpectedly, first useful step is:",
+    "options": [
+      "Delete the organization immediately without looking",
+      "Investigate Cost Explorer filters (service/region/usage type)",
+      "Disable CloudTrail and hope",
+      "Share access keys publicly"
+    ],
+    "answer": 1,
+    "explain": "Analyze where the spike comes from.",
+    "style": "general",
+    "lessonId": "cost-management",
+    "lessonNumber": "18",
+    "lessonTitle": "Cost Explorer & Budgets"
+  },
+  {
+    "q": "The lesson’s bottom line for learners is:",
+    "options": [
+      "Cost tools are optional forever",
+      "Visibility (Explorer) + guardrails (Budgets) + hygiene prevent surprise bills",
+      "Only Free Tier matters forever",
+      "Never look at bills"
+    ],
+    "answer": 1,
+    "explain": "See costs, alert early, clean up.",
+    "style": "general",
+    "lessonId": "cost-management",
+    "lessonNumber": "18",
+    "lessonTitle": "Cost Explorer & Budgets"
+  },
+  {
+    "q": "The Shared Responsibility Model means:",
+    "options": [
+      "AWS is responsible for everything including your app passwords",
+      "AWS secures the cloud; customers secure what they put in the cloud",
+      "Customers secure hardware data centers only",
+      "No one is responsible"
+    ],
+    "answer": 1,
+    "explain": "Classic AWS vs customer security split.",
+    "style": "general",
+    "lessonId": "security-ops",
+    "lessonNumber": "19",
+    "lessonTitle": "Security Hub, GuardDuty & friends"
+  },
+  {
+    "q": "Defence in depth means:",
+    "options": [
+      "One control only",
+      "Multiple layered security controls",
+      "No monitoring",
+      "Public admin ports everywhere"
+    ],
+    "answer": 1,
+    "explain": "Layers reduce single points of failure.",
+    "style": "general",
+    "lessonId": "security-ops",
+    "lessonNumber": "19",
+    "lessonTitle": "Security Hub, GuardDuty & friends"
+  },
+  {
+    "q": "AWS Shield primarily protects against:",
+    "options": [
+      "SQL schema design",
+      "DDoS attacks",
+      "DNS typos only",
+      "Cost overruns only"
+    ],
+    "answer": 1,
+    "explain": "Shield is DDoS protection.",
+    "style": "general",
+    "lessonId": "security-ops",
+    "lessonNumber": "19",
+    "lessonTitle": "Security Hub, GuardDuty & friends"
+  },
+  {
+    "q": "Shield Standard is:",
+    "options": [
+      "A paid enterprise-only physical device",
+      "Baseline DDoS protection included for many AWS customers/services",
+      "A type of EBS volume",
+      "An SQS mode"
+    ],
+    "answer": 1,
+    "explain": "Standard is the included baseline.",
+    "style": "general",
+    "lessonId": "security-ops",
+    "lessonNumber": "19",
+    "lessonTitle": "Security Hub, GuardDuty & friends"
+  },
+  {
+    "q": "Shield Advanced provides:",
+    "options": [
+      "No extra features",
+      "Enhanced DDoS protections/support (paid tier)",
+      "Free unlimited EC2",
+      "Automatic public S3"
+    ],
+    "answer": 1,
+    "explain": "Advanced is the higher paid tier.",
+    "style": "general",
+    "lessonId": "security-ops",
+    "lessonNumber": "19",
+    "lessonTitle": "Security Hub, GuardDuty & friends"
+  },
+  {
+    "q": "AWS WAF is used to:",
+    "options": [
+      "Filter web requests (allow/block/count) based on rules",
+      "Create VPCs",
+      "Issue access keys only",
+      "Host static files only"
+    ],
+    "answer": 0,
+    "explain": "WAF protects web apps at Layer 7.",
+    "style": "general",
+    "lessonId": "security-ops",
+    "lessonNumber": "19",
+    "lessonTitle": "Security Hub, GuardDuty & friends"
+  },
+  {
+    "q": "Amazon GuardDuty is primarily:",
+    "options": [
+      "A CDN",
+      "Threat detection using account/network/DNS findings",
+      "A relational database",
+      "A budget tool"
+    ],
+    "answer": 1,
+    "explain": "GuardDuty detects suspicious activity.",
+    "style": "general",
+    "lessonId": "security-ops",
+    "lessonNumber": "19",
+    "lessonTitle": "Security Hub, GuardDuty & friends"
+  },
+  {
+    "q": "Amazon Inspector focuses on:",
+    "options": [
+      "DNS routing policies",
+      "Vulnerability assessment for workloads",
+      "Message fan-out",
+      "Edge caching"
+    ],
+    "answer": 1,
+    "explain": "Inspector finds software/network exposure issues.",
+    "style": "general",
+    "lessonId": "security-ops",
+    "lessonNumber": "19",
+    "lessonTitle": "Security Hub, GuardDuty & friends"
+  },
+  {
+    "q": "AWS Security Hub aggregates:",
+    "options": [
+      "Only S3 inventory CSVs",
+      "Security findings across accounts/services into a central view",
+      "Only CloudFront logs without analysis",
+      "Only billing PDFs"
+    ],
+    "answer": 1,
+    "explain": "Security Hub is a findings aggregation/posture hub.",
+    "style": "general",
+    "lessonId": "security-ops",
+    "lessonNumber": "19",
+    "lessonTitle": "Security Hub, GuardDuty & friends"
+  },
+  {
+    "q": "Which is a detective control example?",
+    "options": [
+      "Preventing write with IAM deny",
+      "GuardDuty alerting on anomalous API activity",
+      "A locked data center door only (physical)",
+      "TLS only"
+    ],
+    "answer": 1,
+    "explain": "Detective controls find issues after/during activity.",
+    "style": "general",
+    "lessonId": "security-ops",
+    "lessonNumber": "19",
+    "lessonTitle": "Security Hub, GuardDuty & friends"
+  },
+  {
+    "q": "Which is a preventive control example?",
+    "options": [
+      "A CloudWatch alarm after breach only",
+      "IAM least privilege preventing unauthorized actions",
+      "A finding report only",
+      "A post-incident blog"
+    ],
+    "answer": 1,
+    "explain": "Preventive stops unauthorized actions.",
+    "style": "general",
+    "lessonId": "security-ops",
+    "lessonNumber": "19",
+    "lessonTitle": "Security Hub, GuardDuty & friends"
+  },
+  {
+    "q": "WAF rules might block:",
+    "options": [
+      "Healthy TLS handshakes only",
+      "Common web attacks (e.g. SQLi patterns) based on configured rules",
+      "All DNS forever",
+      "All IAM roles automatically"
+    ],
+    "answer": 1,
+    "explain": "WAF targets HTTP(S) attack patterns.",
+    "style": "general",
+    "lessonId": "security-ops",
+    "lessonNumber": "19",
+    "lessonTitle": "Security Hub, GuardDuty & friends"
+  },
+  {
+    "q": "Enabling GuardDuty typically requires:",
+    "options": [
+      "Deleting CloudTrail",
+      "Turning on the service (and related data sources as designed)",
+      "Disabling IAM",
+      "Making all buckets public"
+    ],
+    "answer": 1,
+    "explain": "You enable GuardDuty in accounts/regions.",
+    "style": "general",
+    "lessonId": "security-ops",
+    "lessonNumber": "19",
+    "lessonTitle": "Security Hub, GuardDuty & friends"
+  },
+  {
+    "q": "Security findings should lead to:",
+    "options": [
+      "Ignoring them forever",
+      "Triage and remediation",
+      "Deleting the organization blindly",
+      "Disabling logging always"
+    ],
+    "answer": 1,
+    "explain": "Find → triage → fix is the loop.",
+    "style": "general",
+    "lessonId": "security-ops",
+    "lessonNumber": "19",
+    "lessonTitle": "Security Hub, GuardDuty & friends"
+  },
+  {
+    "q": "Multi-account security posture is improved by:",
+    "options": [
+      "No central visibility",
+      "Central findings (e.g. Security Hub) across accounts",
+      "One shared root user only",
+      "Disabling MFA org-wide"
+    ],
+    "answer": 1,
+    "explain": "Central visibility scales security ops.",
+    "style": "general",
+    "lessonId": "security-ops",
+    "lessonNumber": "19",
+    "lessonTitle": "Security Hub, GuardDuty & friends"
+  },
+  {
+    "q": "Shield alone does not replace:",
+    "options": [
+      "Need for app security, IAM, patching, etc.",
+      "The concept of DDoS",
+      "Edge locations",
+      "DNS"
+    ],
+    "answer": 0,
+    "explain": "DDoS protection is one layer, not full security.",
+    "style": "general",
+    "lessonId": "security-ops",
+    "lessonNumber": "19",
+    "lessonTitle": "Security Hub, GuardDuty & friends"
+  },
+  {
+    "q": "A WAF is commonly associated with:",
+    "options": [
+      "Only SSH port 22 on bastions",
+      "CloudFront/ALB/API Gateway style web entry points",
+      "Only RDS storage",
+      "Only EBS snapshots"
+    ],
+    "answer": 1,
+    "explain": "WAF sits on web fronts.",
+    "style": "general",
+    "lessonId": "security-ops",
+    "lessonNumber": "19",
+    "lessonTitle": "Security Hub, GuardDuty & friends"
+  },
+  {
+    "q": "Inspector findings often relate to:",
+    "options": [
+      "Fashion trends",
+      "CVEs/misconfigurations on assessed targets",
+      "DNS TTL only",
+      "SQS visibility timeout only"
+    ],
+    "answer": 1,
+    "explain": "Vulnerability and exposure findings.",
+    "style": "general",
+    "lessonId": "security-ops",
+    "lessonNumber": "19",
+    "lessonTitle": "Security Hub, GuardDuty & friends"
+  },
+  {
+    "q": "Security Hub standards help by:",
+    "options": [
+      "Randomly deleting users",
+      "Checking accounts against security best-practice frameworks",
+      "Replacing EC2",
+      "Billing only"
+    ],
+    "answer": 1,
+    "explain": "Standards drive posture checks.",
+    "style": "general",
+    "lessonId": "security-ops",
+    "lessonNumber": "19",
+    "lessonTitle": "Security Hub, GuardDuty & friends"
+  },
+  {
+    "q": "The lesson’s overarching theme is:",
+    "options": [
+      "Security is only a firewall product",
+      "Layered AWS security services cover prevent + detect + respond visibility",
+      "No tools exist for detection",
+      "Cost tools replace security"
+    ],
+    "answer": 1,
+    "explain": "Multiple services form a defence-in-depth toolkit.",
+    "style": "general",
+    "lessonId": "security-ops",
+    "lessonNumber": "19",
+    "lessonTitle": "Security Hub, GuardDuty & friends"
+  },
+  {
+    "q": "Docker primarily packages:",
+    "options": [
+      "Only physical servers",
+      "Applications and dependencies into containers",
+      "Only DNS zones",
+      "Only IAM policies"
+    ],
+    "answer": 1,
+    "explain": "Containers package app + deps.",
+    "style": "general",
+    "lessonId": "eks-ecs",
+    "lessonNumber": "20",
+    "lessonTitle": "ECS vs EKS"
+  },
+  {
+    "q": "Container orchestration is needed because Docker alone doesn’t fully solve:",
+    "options": [
+      "Image formats",
+      "Scheduling many containers, networking, scaling, self-healing across hosts",
+      "Local hello-world demos",
+      "Writing Dockerfiles"
+    ],
+    "answer": 1,
+    "explain": "Orchestrators run containers at scale.",
+    "style": "general",
+    "lessonId": "eks-ecs",
+    "lessonNumber": "20",
+    "lessonTitle": "ECS vs EKS"
+  },
+  {
+    "q": "Amazon ECS is:",
+    "options": [
+      "A managed container orchestration service on AWS",
+      "A DNS resolver",
+      "A KMS key type",
+      "A budget tool"
+    ],
+    "answer": 0,
+    "explain": "ECS orchestrates containers on AWS.",
+    "style": "general",
+    "lessonId": "eks-ecs",
+    "lessonNumber": "20",
+    "lessonTitle": "ECS vs EKS"
+  },
+  {
+    "q": "An ECS cluster is:",
+    "options": [
+      "A group of resources where tasks/services run",
+      "A single S3 object",
+      "A Route 53 record only",
+      "A CloudFront invalidation"
+    ],
+    "answer": 0,
+    "explain": "Cluster is the compute pool boundary.",
+    "style": "general",
+    "lessonId": "eks-ecs",
+    "lessonNumber": "20",
+    "lessonTitle": "ECS vs EKS"
+  },
+  {
+    "q": "A task definition describes:",
+    "options": [
+      "Only a VPC CIDR",
+      "How containers should run (image, CPU/mem, ports, roles, etc.)",
+      "Only a billing invoice",
+      "Only an AMI marketplace product"
+    ],
+    "answer": 1,
+    "explain": "Task defs are blueprints for tasks.",
+    "style": "general",
+    "lessonId": "eks-ecs",
+    "lessonNumber": "20",
+    "lessonTitle": "ECS vs EKS"
+  },
+  {
+    "q": "An ECS task is roughly:",
+    "options": [
+      "A running instantiation of a task definition",
+      "A stopped S3 bucket",
+      "A DNS NS set",
+      "A KMS grant only"
+    ],
+    "answer": 0,
+    "explain": "Task = running set of containers from the def.",
+    "style": "general",
+    "lessonId": "eks-ecs",
+    "lessonNumber": "20",
+    "lessonTitle": "ECS vs EKS"
+  },
+  {
+    "q": "An ECS service helps by:",
+    "options": [
+      "Deleting clusters randomly",
+      "Maintaining desired count of tasks and integrating with load balancing",
+      "Replacing IAM",
+      "Disabling logs"
+    ],
+    "answer": 1,
+    "explain": "Services keep N tasks healthy.",
+    "style": "general",
+    "lessonId": "eks-ecs",
+    "lessonNumber": "20",
+    "lessonTitle": "ECS vs EKS"
+  },
+  {
+    "q": "Fargate is attractive because:",
+    "options": [
+      "You manage every EC2 host patch yourself always",
+      "AWS runs the underlying compute without you managing servers",
+      "It only works offline",
+      "It removes containers"
+    ],
+    "answer": 1,
+    "explain": "Serverless container compute.",
+    "style": "general",
+    "lessonId": "eks-ecs",
+    "lessonNumber": "20",
+    "lessonTitle": "ECS vs EKS"
+  },
+  {
+    "q": "Amazon EKS is:",
+    "options": [
+      "Managed Kubernetes on AWS",
+      "A pure object store",
+      "A simple queue only",
+      "A CDN only"
+    ],
+    "answer": 0,
+    "explain": "EKS = Elastic Kubernetes Service.",
+    "style": "general",
+    "lessonId": "eks-ecs",
+    "lessonNumber": "20",
+    "lessonTitle": "ECS vs EKS"
+  },
+  {
+    "q": "Kubernetes introduces concepts like:",
+    "options": [
+      "Only Security Groups",
+      "Pods, deployments, services (cluster networking abstractions)",
+      "Only Budgets",
+      "Only Hosted Zones"
+    ],
+    "answer": 1,
+    "explain": "K8s has its own object model.",
+    "style": "general",
+    "lessonId": "eks-ecs",
+    "lessonNumber": "20",
+    "lessonTitle": "ECS vs EKS"
+  },
+  {
+    "q": "A reason teams choose ECS over EKS is often:",
+    "options": [
+      "They want maximum Kubernetes ecosystem complexity always",
+      "Simpler AWS-native model and lower ops overhead",
+      "ECS cannot run containers",
+      "ECS forbids IAM roles"
+    ],
+    "answer": 1,
+    "explain": "ECS is simpler for many AWS-centric apps.",
+    "style": "general",
+    "lessonId": "eks-ecs",
+    "lessonNumber": "20",
+    "lessonTitle": "ECS vs EKS"
+  },
+  {
+    "q": "A reason teams choose EKS is often:",
+    "options": [
+      "They never need portability",
+      "Kubernetes portability/ecosystem and multi-cloud skills",
+      "EKS cannot schedule pods",
+      "EKS forbids containers"
+    ],
+    "answer": 1,
+    "explain": "K8s ecosystem and portability drive EKS.",
+    "style": "general",
+    "lessonId": "eks-ecs",
+    "lessonNumber": "20",
+    "lessonTitle": "ECS vs EKS"
+  },
+  {
+    "q": "If your team already runs Kubernetes everywhere, a natural fit is often:",
+    "options": [
+      "Only classic ASG with no containers",
+      "EKS",
+      "Only S3 static hosting",
+      "Only SQS"
+    ],
+    "answer": 1,
+    "explain": "Existing K8s skills map to EKS.",
+    "style": "general",
+    "lessonId": "eks-ecs",
+    "lessonNumber": "20",
+    "lessonTitle": "ECS vs EKS"
+  },
+  {
+    "q": "If you want the lightest AWS-native container path for many apps, consider:",
+    "options": [
+      "Self-managed K8s on laptops only",
+      "ECS (often with Fargate)",
+      "Only bare metal DNS",
+      "Only manual SSH deploys forever"
+    ],
+    "answer": 1,
+    "explain": "ECS is the simpler AWS path.",
+    "style": "general",
+    "lessonId": "eks-ecs",
+    "lessonNumber": "20",
+    "lessonTitle": "ECS vs EKS"
+  },
+  {
+    "q": "Task roles in ECS are important to:",
+    "options": [
+      "Give containers least-privilege AWS API access",
+      "Make containers root on the host always",
+      "Disable CloudTrail",
+      "Open all ports"
+    ],
+    "answer": 0,
+    "explain": "Task roles replace embedding keys.",
+    "style": "general",
+    "lessonId": "eks-ecs",
+    "lessonNumber": "20",
+    "lessonTitle": "ECS vs EKS"
+  },
+  {
+    "q": "A deployment concern shared by ECS and EKS is:",
+    "options": [
+      "Neither needs images",
+      "Image registry, networking, observability, and IAM",
+      "Only CSS styling",
+      "Only Route 53 private zones without apps"
+    ],
+    "answer": 1,
+    "explain": "Both need solid delivery/ops foundations.",
+    "style": "general",
+    "lessonId": "eks-ecs",
+    "lessonNumber": "20",
+    "lessonTitle": "ECS vs EKS"
+  },
+  {
+    "q": "Self-healing in orchestration means:",
+    "options": [
+      "Tasks/pods are recreated if they fail (per service desired state)",
+      "Clusters never need monitoring",
+      "Images auto-write themselves",
+      "Billing stops automatically"
+    ],
+    "answer": 0,
+    "explain": "Controllers reconcile desired vs actual state.",
+    "style": "general",
+    "lessonId": "eks-ecs",
+    "lessonNumber": "20",
+    "lessonTitle": "ECS vs EKS"
+  },
+  {
+    "q": "Which statement is fairest?",
+    "options": [
+      "ECS and EKS are identical with zero trade-offs",
+      "Choose based on team skills, portability needs, and ops capacity",
+      "Always pick EKS for a single static site",
+      "Always pick ECS for multi-cloud Kubernetes platforms"
+    ],
+    "answer": 1,
+    "explain": "Decision is context-dependent.",
+    "style": "general",
+    "lessonId": "eks-ecs",
+    "lessonNumber": "20",
+    "lessonTitle": "ECS vs EKS"
   }
 ]
