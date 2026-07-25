@@ -1,8 +1,38 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useId, useMemo, useState } from "react";
 import { useProgress } from "@/context/ProgressContext";
 import type { QuizQuestion } from "@/types/lesson";
+
+function statusLabel(status: string) {
+  switch (status) {
+    case "todo":
+      return "Not answered";
+    case "picked":
+      return "Selected";
+    case "correct":
+      return "Correct";
+    case "wrong":
+      return "Needs review";
+    default:
+      return status;
+  }
+}
+
+function statusIcon(status: string) {
+  switch (status) {
+    case "todo":
+      return "○";
+    case "picked":
+      return "●";
+    case "correct":
+      return "✓";
+    case "wrong":
+      return "✕";
+    default:
+      return "—";
+  }
+}
 
 export function Quiz({
   lessonId,
@@ -11,6 +41,7 @@ export function Quiz({
   lessonId: string;
   questions: QuizQuestion[];
 }) {
+  const baseId = useId();
   const { saveQuizScore } = useProgress();
   const [openId, setOpenId] = useState<number | null>(0);
   const [selected, setSelected] = useState<Record<number, number>>({});
@@ -20,7 +51,9 @@ export function Quiz({
   const total = questions.length;
 
   const answeredCount = useMemo(
-    () => Object.keys(selected).filter((k) => selected[Number(k)] !== undefined).length,
+    () =>
+      Object.keys(selected).filter((k) => selected[Number(k)] !== undefined)
+        .length,
     [selected]
   );
 
@@ -66,6 +99,24 @@ export function Quiz({
     setOpenId(0);
   }
 
+  function onTriggerKeyDown(
+    e: React.KeyboardEvent<HTMLButtonElement>,
+    index: number
+  ) {
+    if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+      e.preventDefault();
+      const delta = e.key === "ArrowDown" ? 1 : -1;
+      const next = (index + delta + total) % total;
+      document.getElementById(`${baseId}-q-trigger-${next}`)?.focus();
+    } else if (e.key === "Home") {
+      e.preventDefault();
+      document.getElementById(`${baseId}-q-trigger-0`)?.focus();
+    } else if (e.key === "End") {
+      e.preventDefault();
+      document.getElementById(`${baseId}-q-trigger-${total - 1}`)?.focus();
+    }
+  }
+
   const pass = total > 0 && score / total >= 0.7;
 
   return (
@@ -84,7 +135,7 @@ export function Quiz({
           </span>
           {finished && (
             <strong className={pass ? "ok" : "warn"}>
-              Score {score}/{total}
+              {pass ? "Passed" : "Review"} · Score {score}/{total}
             </strong>
           )}
         </div>
@@ -105,6 +156,11 @@ export function Quiz({
                   : "wrong"
                 : "picked";
 
+          const triggerId = `${baseId}-q-trigger-${qi}`;
+          const panelId = `${baseId}-q-panel-${qi}`;
+          const label = statusLabel(status);
+          const icon = statusIcon(status);
+
           return (
             <div
               key={qi}
@@ -112,59 +168,103 @@ export function Quiz({
             >
               <button
                 type="button"
+                id={triggerId}
                 className="acc-trigger"
                 aria-expanded={isOpen}
+                aria-controls={panelId}
                 onClick={() => toggle(qi)}
+                onKeyDown={(e) => onTriggerKeyDown(e, qi)}
               >
-                <span className="acc-num">{qi + 1}</span>
+                <span className="acc-num" aria-hidden="true">
+                  {qi + 1}
+                </span>
                 <span className="acc-title">{item.q}</span>
                 <span className="acc-meta">
-                  {status === "todo" && "—"}
-                  {status === "picked" && "Selected"}
-                  {status === "correct" && "Correct"}
-                  {status === "wrong" && "Review"}
+                  <span className="status-badge" data-status={status}>
+                    <span className="status-icon" aria-hidden="true">
+                      {icon}
+                    </span>
+                    <span className="status-text">{label}</span>
+                  </span>
                   <span className="acc-chevron" aria-hidden="true">
                     {isOpen ? "−" : "+"}
                   </span>
                 </span>
               </button>
 
-              {isOpen && (
-                <div className="acc-panel">
-                  <div className="quiz-options">
-                    {item.options.map((opt, oi) => {
-                      const letter = String.fromCharCode(65 + oi);
-                      let cls = "quiz-option";
-                      if (!show && choice === oi) cls += " selected";
-                      if (show) {
-                        if (oi === item.answer) cls += " correct";
-                        else if (choice === oi) cls += " wrong";
-                      }
-                      return (
-                        <button
-                          key={oi}
-                          type="button"
-                          className={cls}
-                          disabled={finished}
-                          onClick={() => pick(qi, oi)}
-                        >
-                          <span className="opt-key">{letter}</span>
-                          <span>{opt}</span>
-                        </button>
-                      );
-                    })}
-                  </div>
-                  {show && (
-                    <p className="quiz-feedback">
-                      {choice === undefined
-                        ? `No answer yet. ${item.explain}`
-                        : isCorrect
-                          ? `Correct. ${item.explain}`
-                          : `Not quite. ${item.explain}`}
-                    </p>
-                  )}
-                </div>
-              )}
+              <div
+                id={panelId}
+                role="region"
+                aria-labelledby={triggerId}
+                className="acc-panel"
+                hidden={!isOpen}
+              >
+                {isOpen && (
+                  <>
+                    <div
+                      className="quiz-options"
+                      role="radiogroup"
+                      aria-label={`Options for question ${qi + 1}`}
+                    >
+                      {item.options.map((opt, oi) => {
+                        const letter = String.fromCharCode(65 + oi);
+                        let cls = "quiz-option";
+                        let mark = "";
+                        if (!show && choice === oi) cls += " selected";
+                        if (show) {
+                          if (oi === item.answer) {
+                            cls += " correct";
+                            mark = "✓ ";
+                          } else if (choice === oi) {
+                            cls += " wrong";
+                            mark = "✕ ";
+                          }
+                        }
+                        const selectedNow = choice === oi;
+                        return (
+                          <button
+                            key={oi}
+                            type="button"
+                            role="radio"
+                            aria-checked={selectedNow}
+                            className={cls}
+                            disabled={finished}
+                            onClick={() => pick(qi, oi)}
+                          >
+                            <span className="opt-key" aria-hidden="true">
+                              {letter}
+                            </span>
+                            <span>
+                              {mark}
+                              {opt}
+                              {show && oi === item.answer && (
+                                <span className="sr-only"> (correct answer)</span>
+                              )}
+                              {show &&
+                                choice === oi &&
+                                oi !== item.answer && (
+                                  <span className="sr-only">
+                                    {" "}
+                                    (your answer — incorrect)
+                                  </span>
+                                )}
+                            </span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                    {show && (
+                      <p className="quiz-feedback" role="status">
+                        {choice === undefined
+                          ? `No answer yet. ${item.explain}`
+                          : isCorrect
+                            ? `Correct. ${item.explain}`
+                            : `Not quite. ${item.explain}`}
+                      </p>
+                    )}
+                  </>
+                )}
+              </div>
             </div>
           );
         })}
@@ -186,10 +286,13 @@ export function Quiz({
               className={`quiz-result ${pass ? "pass" : "fail"}`}
               role="status"
             >
+              <span className="quiz-result-icon" aria-hidden="true">
+                {pass ? "✓" : "!"}
+              </span>
               Final score: {score} / {total}
               {pass
                 ? " — strong. You can mark the lesson complete."
-                : " — review the red items in the accordion and retake."}
+                : " — review items marked “Needs review” and retake."}
             </div>
             <button
               type="button"

@@ -1,0 +1,230 @@
+[
+  {
+    "id": "cloud-fundamentals",
+    "number": "01",
+    "section": "Start here",
+    "title": "What is Cloud Computing?",
+    "short": "Cloud vs data centers, why AWS, and the full roadmap.",
+    "minutes": 25,
+    "tags": [
+      "fundamentals",
+      "roadmap"
+    ],
+    "goals": [
+      "Explain cloud computing with a real-world analogy",
+      "List core benefits of AWS",
+      "See the full beginner→advanced roadmap"
+    ],
+    "reviewed": "2026-07"
+  },
+  {
+    "id": "iam",
+    "number": "02",
+    "section": "Foundations",
+    "title": "AWS Account, Console & IAM",
+    "short": "Root user danger, console, IAM users, groups, roles, policies.",
+    "minutes": 30,
+    "tags": [
+      "security",
+      "iam"
+    ],
+    "goals": [
+      "How AWS is organized",
+      "What the AWS Console is",
+      "Why the Root User is dangerous",
+      "What IAM is",
+      "How permissions work",
+      "Best security practices"
+    ],
+    "reviewed": "2026-07"
+  },
+  {
+    "id": "ec2",
+    "number": "03",
+    "section": "Foundations",
+    "title": "Amazon EC2",
+    "short": "Virtual servers, AMIs, security groups, key pairs, SSH.",
+    "minutes": 35,
+    "tags": [
+      "compute",
+      "ec2"
+    ],
+    "goals": [
+      "What EC2 is",
+      "How virtual machines work",
+      "Instance types",
+      "AMIs",
+      "Storage",
+      "Security Groups",
+      "Key pairs",
+      "Launch process and SSH"
+    ],
+    "reviewed": "2026-07"
+  },
+  {
+    "id": "s3",
+    "number": "04",
+    "section": "Foundations",
+    "title": "Amazon S3",
+    "short": "Object storage, buckets, versioning, static sites, storage classes.",
+    "minutes": 30,
+    "tags": [
+      "storage",
+      "s3"
+    ],
+    "goals": [
+      "Store objects in S3 safely",
+      "Understand versioning and lifecycle",
+      "Host a static website"
+    ],
+    "reviewed": "2026-07"
+  },
+  {
+    "id": "vpc",
+    "number": "05",
+    "section": "Foundations",
+    "title": "Amazon VPC",
+    "short": "Subnets, IGW, NAT, route tables, security groups, NACLs.",
+    "minutes": 40,
+    "tags": [
+      "networking",
+      "vpc"
+    ],
+    "goals": [
+      "What a VPC is",
+      "Public vs private subnets",
+      "CIDR, IGW, route tables, NAT",
+      "Security groups and NACLs"
+    ],
+    "reviewed": "2026-07"
+  },
+  {
+    "id": "rds",
+    "number": "06",
+    "section": "Data",
+    "title": "Amazon RDS",
+    "short": "Managed SQL, Multi-AZ, read replicas, backups, security.",
+    "minutes": 30,
+    "tags": [
+      "database",
+      "rds"
+    ],
+    "goals": [
+      "What a database is and why RDS exists",
+      "Multi-AZ vs read replicas",
+      "Backups, snapshots, and security basics"
+    ],
+    "reviewed": "2026-07"
+  },
+  {
+    "id": "elb-asg",
+    "number": "07",
+    "section": "Scale",
+    "title": "ELB & Auto Scaling",
+    "short": "Load balancers, health checks, ASGs, HA and scale-out.",
+    "minutes": 35,
+    "tags": [
+      "scale",
+      "elb",
+      "asg"
+    ],
+    "goals": [
+      "Why one server is not enough",
+      "Load balancer types and health checks",
+      "Auto Scaling groups and policies"
+    ],
+    "reviewed": "2026-07"
+  },
+  {
+    "id": "lambda",
+    "number": "08",
+    "section": "Serverless",
+    "title": "AWS Lambda",
+    "short": "Serverless functions, triggers, API Gateway, cold starts.",
+    "minutes": 35,
+    "tags": [
+      "serverless",
+      "lambda"
+    ],
+    "goals": [
+      "What serverless and Lambda mean",
+      "Events, API Gateway, cold starts",
+      "When to choose Lambda vs EC2"
+    ],
+    "reviewed": "2026-07"
+  },
+  {
+    "id": "dynamodb",
+    "number": "09",
+    "section": "Serverless",
+    "title": "Amazon DynamoDB",
+    "short": "NoSQL keys, GSIs, streams, capacity modes, when to use it.",
+    "minutes": 35,
+    "tags": [
+      "database",
+      "dynamodb"
+    ],
+    "goals": [
+      "SQL vs NoSQL tradeoffs",
+      "Partition/sort keys and indexes",
+      "When to choose DynamoDB vs RDS"
+    ],
+    "reviewed": "2026-07"
+  },
+  {
+    "id": "observability",
+    "number": "10",
+    "section": "Operate",
+    "title": "CloudWatch & CloudTrail",
+    "short": "Metrics, logs, alarms, dashboards, API audit trails.",
+    "minutes": 35,
+    "tags": [
+      "ops",
+      "security"
+    ],
+    "goals": [
+      "Monitoring vs logging vs auditing",
+      "CloudWatch metrics, logs, and alarms",
+      "CloudTrail for API activity"
+    ],
+    "reviewed": "2026-07"
+  },
+  {
+    "id": "containers",
+    "number": "11",
+    "section": "Containers",
+    "title": "Docker, ECR & ECS",
+    "short": "Containers, images, ECR registry, ECS and Fargate.",
+    "minutes": 40,
+    "tags": [
+      "containers",
+      "docker",
+      "ecs"
+    ],
+    "goals": [
+      "Images vs containers and Dockerfiles",
+      "Amazon ECR as an image registry",
+      "ECS services and Fargate vs EC2 launch type"
+    ],
+    "reviewed": "2026-07"
+  },
+  {
+    "id": "iac",
+    "number": "12",
+    "section": "Automation",
+    "title": "IaC — CloudFormation & Terraform",
+    "short": "Declare infra as code, state, modules, CI/CD, tool choice.",
+    "minutes": 40,
+    "tags": [
+      "iac",
+      "terraform",
+      "cloudformation"
+    ],
+    "goals": [
+      "Why infrastructure as code matters",
+      "CloudFormation vs Terraform at a high level",
+      "Plan/apply workflow and state"
+    ],
+    "reviewed": "2026-07"
+  }
+]

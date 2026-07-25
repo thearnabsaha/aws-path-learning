@@ -1,0 +1,268 @@
+{
+  "id": "vpc",
+  "number": "05",
+  "section": "Foundations",
+  "title": "Amazon VPC",
+  "short": "Subnets, IGW, NAT, route tables, security groups, NACLs.",
+  "minutes": 40,
+  "tags": [
+    "networking",
+    "vpc"
+  ],
+  "goals": [
+    "What a VPC is",
+    "Public vs private subnets",
+    "CIDR, IGW, route tables, NAT",
+    "Security groups and NACLs"
+  ],
+  "reviewed": "2026-07",
+  "sources": [
+    "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html",
+    "ChatGPT AWS Learning Roadmap"
+  ],
+  "content": "<h2>Lesson 5: Amazon VPC (Virtual Private Cloud)</h2>\n<p>This is where AWS networking often “clicks.” Once you understand VPC, subnets, gateways, and security layers, most application architectures become much easier to design and interview for.</p>\n<p>By the end of this lesson, you will understand:</p>\n<ul>\n<li>What a VPC is</li>\n<li>Public vs Private Subnets</li>\n<li>CIDR Blocks</li>\n<li>Internet Gateway</li>\n<li>Route Tables</li>\n<li>NAT Gateway</li>\n<li>Security Groups</li>\n<li>Network ACLs</li>\n<li>How everything connects together</li>\n</ul>\n<hr class=\"divider\" />\n<h2>What is a VPC?</h2>\n<p>A <strong>VPC (Virtual Private Cloud)</strong> is your own private network inside AWS.</p>\n<p>Imagine AWS is a giant apartment complex.</p>\n<p>Each customer gets their own apartment.</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>AWS Cloud\n+------------------------------------------------------+\n|                                                      |\n|  Your VPC                    Other Customer's VPC    |\n| +----------------------+     +-------------------+    |\n| |                      |     |                   |    |\n| | Your Servers         |     | Their Servers     |    |\n| | Your Database        |     | Their Database    |    |\n| | Your Network         |     | Their Network     |    |\n| +----------------------+     +-------------------+    |\n|                                                      |\n+------------------------------------------------------+</code></pre>\n<p>Even though you're sharing AWS's infrastructure, your network is isolated from everyone else's.</p>\n<hr class=\"divider\" />\n<h2>Why Do We Need a VPC?</h2>\n<p>Without a VPC:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Everyone's servers\n        │\n        ▼\n One giant network</code></pre>\n<p>Chaos.</p>\n<p>With a VPC:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Company A\n\nOwn Network\n\n----------------\n\nCompany B\n\nOwn Network\n\n----------------\n\nCompany C\n\nOwn Network</code></pre>\n<p>Each company has complete control over its own network.</p>\n<hr class=\"divider\" />\n<h2>CIDR Block</h2>\n<p>Every VPC gets an IP address range.</p>\n<p>Example:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>10.0.0.0/16</code></pre>\n<p>This is called a <strong>CIDR block</strong>.</p>\n<p>Think of it as assigning addresses to houses in a city.</p>\n<p>Example:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>VPC\n\n10.0.0.0/16\n\n↓\n\n10.0.0.1\n\n10.0.0.2\n\n10.0.0.3\n\n...</code></pre>\n<p>The <code>/16</code> tells AWS how large the network is.</p>\n<hr class=\"divider\" />\n<h2>Subnets</h2>\n<p>A VPC is divided into smaller sections called <strong>subnets</strong>.</p>\n<p>Imagine a city.</p>\n<p>The city has neighborhoods.</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>City (VPC)\n\n├── North Area\n├── South Area\n├── East Area\n└── West Area</code></pre>\n<p>Those neighborhoods are subnets.</p>\n<hr class=\"divider\" />\n<h2>Public Subnet</h2>\n<p>A <strong>public subnet</strong> contains resources that need internet access.</p>\n<p>Examples:</p>\n<ul>\n<li>Web servers</li>\n<li>Load Balancers</li>\n<li>Bastion hosts</li>\n</ul>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Internet\n\n↓\n\nPublic Subnet\n\n↓\n\nEC2 Web Server</code></pre>\n<hr class=\"divider\" />\n<h2>Private Subnet</h2>\n<p>A <strong>private subnet</strong> has <strong>no direct internet access</strong>.</p>\n<p>Examples:</p>\n<ul>\n<li>Databases</li>\n<li>Internal APIs</li>\n<li>Backend services</li>\n</ul>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Internet\n\n↓\n\n(No direct access)\n\n↓\n\nPrivate Subnet\n\n↓\n\nDatabase</code></pre>\n<p>This is much safer.</p>\n<hr class=\"divider\" />\n<h2>Real Architecture</h2>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Internet\n\n↓\n\nPublic Subnet\n\n↓\n\nWeb Server\n\n↓\n\nPrivate Subnet\n\n↓\n\nDatabase</code></pre>\n<p>Users reach the web server.</p>\n<p>The web server communicates with the database.</p>\n<p>Users never connect directly to the database.</p>\n<hr class=\"divider\" />\n<h2>Internet Gateway (IGW)</h2>\n<p>A VPC doesn't automatically connect to the internet.</p>\n<p>You attach an <strong>Internet Gateway</strong>.</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Internet\n\n↓\n\nInternet Gateway\n\n↓\n\nVPC</code></pre>\n<p>Without an IGW:</p>\n<p>No internet access.</p>\n<hr class=\"divider\" />\n<h2>Route Table</h2>\n<p>A route table tells AWS where to send network traffic.</p>\n<p>Think of it like Google Maps.</p>\n<p>Example:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Destination: Internet\n\n↓\n\nGo through Internet Gateway</code></pre>\n<p>Without a route table, packets don't know where to go.</p>\n<hr class=\"divider\" />\n<h2>Public Route Table</h2>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>0.0.0.0/0\n\n↓\n\nInternet Gateway</code></pre>\n<p><code>0.0.0.0/0</code> means <strong>all destinations</strong>.</p>\n<hr class=\"divider\" />\n<h2>Private Route Table</h2>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>10.0.0.0/16\n\n↓\n\nLocal Network</code></pre>\n<p>No internet route.</p>\n<p>Only internal communication.</p>\n<hr class=\"divider\" />\n<h2>NAT Gateway</h2>\n<p>Now comes an important question.</p>\n<p>A private server may need internet access to:</p>\n<ul>\n<li>Download software updates</li>\n<li>Install packages</li>\n<li>Access external APIs</li>\n</ul>\n<p>But we don't want the internet to initiate connections to it.</p>\n<p>Solution:</p>\n<p><strong>NAT Gateway</strong></p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Private EC2\n\n↓\n\nNAT Gateway\n\n↓\n\nInternet</code></pre>\n<p>The private server can make outbound requests.</p>\n<p>The internet still cannot directly reach it.</p>\n<hr class=\"divider\" />\n<h2>Complete Architecture</h2>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>                    Internet\n                        │\n                Internet Gateway\n                        │\n          +-----------------------------+\n          |            VPC              |\n          |                             |\n          |  Public Subnet              |\n          |  +----------------------+   |\n          |  | Load Balancer        |   |\n          |  | Web Server (EC2)     |   |\n          |  +----------------------+   |\n          |              │              |\n          |              ▼              |\n          |  Private Subnet             |\n          |  +----------------------+   |\n          |  | App Server (EC2)     |   |\n          |  | Database (RDS)       |   |\n          |  +----------------------+   |\n          |              │              |\n          |              ▼              |\n          |         NAT Gateway         |\n          +-----------------------------+</code></pre>\n<hr class=\"divider\" />\n<h2>Security Groups</h2>\n<p>Think of Security Groups as the <strong>security guard at each building</strong>.</p>\n<p>Example:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Web Server\n\nAllow:\n\nPort 80\n\nPort 443\n\nPort 22</code></pre>\n<p>Everything else is blocked.</p>\n<hr class=\"divider\" />\n<h2>Network ACL (NACL)</h2>\n<p>A Network ACL is another layer of protection.</p>\n<p>Think of it as the <strong>security gate at the neighborhood entrance</strong>.</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>City Gate\n\n↓\n\nNetwork ACL\n\n↓\n\nNeighborhood\n\n↓\n\nSecurity Guard\n\n↓\n\nHouse</code></pre>\n<p>Both Security Groups and NACLs work together.</p>\n<hr class=\"divider\" />\n<h2>Security Group vs NACL</h2>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Security Group</th><th>Network ACL</th></tr></thead><tbody>\n<tr><td>Attached to EC2</td><td>Attached to Subnet</td></tr>\n<tr><td>Stateful</td><td>Stateless</td></tr>\n<tr><td>Usually used more often</td><td>Adds subnet-level control</td></tr>\n<tr><td>Default: deny inbound, allow all outbound unless changed</td><td>Rules evaluated in order, can allow and deny</td></tr>\n</tbody></table></div>\n<h3>What does \"stateful\" mean?</h3>\n<p>If a Security Group allows an incoming connection, the response traffic is automatically allowed back.</p>\n<p>With a stateless NACL, you need explicit rules for both directions.</p>\n<hr class=\"divider\" />\n<h2>Real Company Example</h2>\n<p>Suppose you're building Amazon.</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Customer\n\n↓\n\nLoad Balancer\n\n↓\n\nWeb Server\n\n↓\n\nApplication Server\n\n↓\n\nDatabase</code></pre>\n<p>Where should each component go?</p>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Component</th><th>Location</th></tr></thead><tbody>\n<tr><td>Load Balancer</td><td>Public Subnet</td></tr>\n<tr><td>Web Server</td><td>Public or private (many modern designs use private)</td></tr>\n<tr><td>Application Server</td><td>Private Subnet</td></tr>\n<tr><td>Database</td><td>Private Subnet</td></tr>\n</tbody></table></div>\n<hr class=\"divider\" />\n<h2>Data Flow</h2>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Customer\n\n↓\n\nPublic IP\n\n↓\n\nLoad Balancer\n\n↓\n\nApplication\n\n↓\n\nDatabase\n\n↓\n\nResponse\n\n↓\n\nCustomer</code></pre>\n<p>The customer never talks directly to the database.</p>\n<hr class=\"divider\" />\n<h2>Why Put Databases in Private Subnets?</h2>\n<p>Imagine your bank's database were directly exposed to the internet.</p>\n<p>That would be a huge security risk.</p>\n<p>Instead:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Internet\n\n↓\n\nWebsite\n\n↓\n\nBackend\n\n↓\n\nDatabase</code></pre>\n<p>The database is protected behind multiple layers.</p>\n<hr class=\"divider\" />\n<h2>Interview Questions</h2>\n<p>Try answering these:</p>\n<ol>\n<li>What is a VPC?</li>\n<li>Why do we use subnets?</li>\n<li>What is the difference between a public and a private subnet?</li>\n<li>What does an Internet Gateway do?</li>\n<li>What is a route table?</li>\n<li>Why is a NAT Gateway needed?</li>\n<li>What is the difference between a Security Group and a Network ACL?</li>\n<li>Why should databases be in private subnets?</li>\n</ol>\n<hr class=\"divider\" />\n<h2>Hands-on Lab</h2>\n<p>If you have an AWS account:</p>\n<ol>\n<li>Create a new VPC with CIDR <code>10.0.0.0/16</code>.</li>\n<li>Create:</li>\n<p>- One public subnet (<code>10.0.1.0/24</code>) - One private subnet (<code>10.0.2.0/24</code>)</p>\n<li>Attach an Internet Gateway to the VPC.</li>\n<li>Create a public route table and associate it with the public subnet.</li>\n<li>Launch:</li>\n<p>- An EC2 instance in the public subnet. - (Optional) Another EC2 instance in the private subnet.</p>\n<li>Verify that the public instance can be reached via SSH (if its security group allows it), while the private one cannot be reached directly from the internet.</li>\n</ol>\n<hr class=\"divider\" />\n<h2>AWS Services You've Mastered So Far</h2>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Service</th><th>Purpose</th></tr></thead><tbody>\n<tr><td>IAM</td><td>Identity &amp; Access Management</td></tr>\n<tr><td>EC2</td><td>Virtual servers</td></tr>\n<tr><td>S3</td><td>Object storage</td></tr>\n<tr><td>VPC</td><td>Private networking</td></tr>\n</tbody></table></div>\n<p>These four services are the foundation of most AWS deployments.</p>\n<h2>Next Lesson: Amazon RDS (Relational Database Service)</h2>\n<p>You'll learn:</p>\n<ul>\n<li>Why managed databases are better than running MySQL on EC2</li>\n<li>MySQL, PostgreSQL, MariaDB, SQL Server, and Oracle support</li>\n<li>Multi-AZ deployments</li>\n<li>Read Replicas</li>\n<li>Automated backups</li>\n<li>Failover</li>\n<li>Scaling databases</li>\n<li>Real production architectures</li>\n</ul>\n<p>By the end of that lesson, you'll understand how production applications store and protect their data.</p>\n<aside class=\"accuracy-note\" role=\"note\"><p><strong>Content review:</strong> 2026-07. Curriculum text is adapted from a shared learning roadmap; verify critical details in official AWS docs before production use.</p><p class=\"accuracy-note-label\">References</p><ul><li><a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html\" rel=\"noopener noreferrer\" target=\"_blank\">docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.…</a></li></ul></aside>",
+  "quiz": [
+    {
+      "q": "A VPC is:",
+      "options": [
+        "Your private network in AWS",
+        "A Docker image",
+        "An S3 class",
+        "A billing invoice"
+      ],
+      "answer": 0,
+      "explain": "Virtual Private Cloud."
+    },
+    {
+      "q": "CIDR block defines:",
+      "options": [
+        "IP address range for the VPC/subnets",
+        "IAM password length only",
+        "EBS volume type only",
+        "Lambda timeout only"
+      ],
+      "answer": 0,
+      "explain": "e.g. 10.0.0.0/16 style ranges."
+    },
+    {
+      "q": "A public subnet typically:",
+      "options": [
+        "Has a route to an Internet Gateway for internet access patterns",
+        "Can never have any route table",
+        "Is only for DynamoDB",
+        "Blocks all ENIs"
+      ],
+      "answer": 0,
+      "explain": "IGW route + public addressing patterns."
+    },
+    {
+      "q": "A private subnet typically:",
+      "options": [
+        "Keeps resources off direct internet inbound; egress via NAT if needed",
+        "Must always have public IPs",
+        "Cannot host EC2",
+        "Replaces IAM"
+      ],
+      "answer": 0,
+      "explain": "Private apps/DBs."
+    },
+    {
+      "q": "Internet Gateway provides:",
+      "options": [
+        "VPC ↔ internet connectivity for public resources",
+        "Only S3 inventory",
+        "Only MFA",
+        "Only CloudFormation drift"
+      ],
+      "answer": 0,
+      "explain": "IGW."
+    },
+    {
+      "q": "Route tables decide:",
+      "options": [
+        "Where network traffic is directed",
+        "Which AMI to use",
+        "S3 storage class",
+        "Lambda memory only"
+      ],
+      "answer": 0,
+      "explain": "Routing."
+    },
+    {
+      "q": "NAT Gateway is used so private instances can:",
+      "options": [
+        "Reach the internet outbound (updates) without being publicly inbound",
+        "Become public ALBs",
+        "Disable encryption",
+        "Skip security groups"
+      ],
+      "answer": 0,
+      "explain": "Egress for private subnets."
+    },
+    {
+      "q": "Security Groups are:",
+      "options": [
+        "Stateful firewall rules on ENIs/resources",
+        "Stateless only always",
+        "Only for S3 buckets",
+        "Only for billing"
+      ],
+      "answer": 0,
+      "explain": "SG = stateful allow rules."
+    },
+    {
+      "q": "Network ACLs are:",
+      "options": [
+        "Stateless subnet-level allow/deny rules",
+        "IAM policies",
+        "Docker networks only",
+        "ASG policies"
+      ],
+      "answer": 0,
+      "explain": "NACL vs SG."
+    },
+    {
+      "q": "Why put databases in private subnets?",
+      "options": [
+        "Reduce internet exposure—only app tier reaches them",
+        "Because public subnets cannot have IPs",
+        "Because RDS forbids private subnets",
+        "To avoid backups"
+      ],
+      "answer": 0,
+      "explain": "Security isolation."
+    },
+    {
+      "q": "Public route table often has:",
+      "options": [
+        "0.0.0.0/0 → IGW",
+        "0.0.0.0/0 → DynamoDB only",
+        "No local route ever",
+        "Only IPv6 to S3"
+      ],
+      "answer": 0,
+      "explain": "Internet path."
+    },
+    {
+      "q": "Private route table often has:",
+      "options": [
+        "0.0.0.0/0 → NAT Gateway (if egress needed)",
+        "0.0.0.0/0 → IGW on every private host necessarily",
+        "No VPC local route",
+        "Only CloudTrail"
+      ],
+      "answer": 0,
+      "explain": "NAT for egress."
+    },
+    {
+      "q": "Data flow for a web app often is:",
+      "options": [
+        "Internet → public tier (e.g. LB/web) → private app/db tiers",
+        "DB first on the public internet always",
+        "Only S3 without network",
+        "Only IAM without packets"
+      ],
+      "answer": 0,
+      "explain": "Layered tiers."
+    },
+    {
+      "q": "Security Group vs NACL: SGs are:",
+      "options": [
+        "Stateful and resource-associated",
+        "Only subnet and stateless",
+        "Only global",
+        "Only for DNS"
+      ],
+      "answer": 0,
+      "explain": "Key interview distinction."
+    },
+    {
+      "q": "Without a VPC understanding, the chat says:",
+      "options": [
+        "AWS architecture is hard to understand",
+        "You cannot create accounts",
+        "S3 stops working",
+        "Billing is free"
+      ],
+      "answer": 0,
+      "explain": "Networking is where AWS “clicks.”"
+    },
+    {
+      "q": "Subnets live:",
+      "options": [
+        "Inside a VPC, typically mapped to AZs",
+        "Inside IAM policies only",
+        "Inside AMIs only",
+        "Inside CloudWatch metrics only"
+      ],
+      "answer": 0,
+      "explain": "Subnet per AZ patterns."
+    },
+    {
+      "q": "Real company example theme:",
+      "options": [
+        "Web in public/accessible tier; data private",
+        "Everything public including DB 0.0.0.0/0",
+        "No security groups",
+        "Single flat open network only"
+      ],
+      "answer": 0,
+      "explain": "Least exposure."
+    },
+    {
+      "q": "Overlapping CIDRs later cause:",
+      "options": [
+        "Peering/connectivity pain",
+        "Faster S3",
+        "Free NAT",
+        "Automatic MFA"
+      ],
+      "answer": 0,
+      "explain": "Plan CIDRs carefully."
+    },
+    {
+      "q": "Hands-on lab goal spirit:",
+      "options": [
+        "Build public/private subnets with proper routes",
+        "Delete all Regions",
+        "Disable CloudTrail",
+        "Use only root keys in git"
+      ],
+      "answer": 0,
+      "explain": "Practice the architecture."
+    },
+    {
+      "q": "Interview: traffic from private subnet to internet for yum/apt needs:",
+      "options": [
+        "NAT (or private package mirrors/endpoints strategy)",
+        "Always a public IP on DB",
+        "Disabling route tables",
+        "Turning off SGs entirely"
+      ],
+      "answer": 0,
+      "explain": "Egress pattern."
+    },
+    {
+      "q": "NACLs evaluate:",
+      "options": [
+        "At subnet boundary (stateless rules)",
+        "Only inside Lambda memory",
+        "Only S3 keys",
+        "Only ASG desired count"
+      ],
+      "answer": 0,
+      "explain": "Subnet-level."
+    },
+    {
+      "q": "Complete architecture in the lesson ties together:",
+      "options": [
+        "IGW, public/private subnets, NAT, routes, SGs",
+        "Only EBS snapshots",
+        "Only DynamoDB Streams",
+        "Only Terraform modules"
+      ],
+      "answer": 0,
+      "explain": "Core VPC building blocks."
+    }
+  ]
+}

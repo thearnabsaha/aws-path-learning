@@ -2,9 +2,9 @@
 
 import Link from "next/link";
 import { useProgress } from "@/context/ProgressContext";
-import { lessons } from "@/data/lessons";
+import type { LessonSummary } from "@/types/lesson";
 
-export function HomeView() {
+export function HomeView({ lessons }: { lessons: LessonSummary[] }) {
   const { completedCount, total, percent, isDone } = useProgress();
   const next = lessons.find((l) => !isDone(l.id)) || lessons[0];
 
@@ -12,13 +12,14 @@ export function HomeView() {
     <div className="home">
       <section className="hero-panel">
         <div className="hero">
-          <p className="eyebrow">Full curriculum from the AWS Learning chat</p>
+          <p className="eyebrow">12 lessons · quizzes · local progress</p>
           <h1>
             Learn AWS <span>clearly</span>
           </h1>
           <p className="lead">
-            Lessons 1–12 from the shared AWS bootcamp chat—plus quizzes and local
-            progress tracking. Same teaching style, nothing skipped.
+            Lessons 1–12 from a structured AWS bootcamp roadmap—plus quizzes and
+            progress that stays in your browser. Review notes point to official
+            AWS docs.
           </p>
           <div className="hero-actions">
             <Link className="btn btn-primary" href={`/lesson/${next.id}`}>
@@ -33,7 +34,7 @@ export function HomeView() {
         <aside className="hero-aside" aria-label="Course snapshot">
           <div className="stats" aria-label="Course stats">
             <div className="stat">
-              <strong>{total}</strong>
+              <strong>{total || lessons.length}</strong>
               <span>Lessons</span>
             </div>
             <div className="stat">
@@ -52,7 +53,7 @@ export function HomeView() {
                 <strong>Read</strong> the concepts and examples
               </li>
               <li>
-                <strong>Check</strong> the diagram once more
+                <strong>Check</strong> the diagrams once more
               </li>
               <li>
                 <strong>Quiz</strong> yourself, then mark complete
@@ -81,6 +82,9 @@ export function HomeView() {
                 <p>{l.short}</p>
                 <div className="card-meta">
                   <span className="tag">{l.minutes} min</span>
+                  {l.reviewed && (
+                    <span className="tag">Reviewed {l.reviewed}</span>
+                  )}
                   {l.tags.slice(0, 2).map((t) => (
                     <span className="tag" key={t}>
                       {t}

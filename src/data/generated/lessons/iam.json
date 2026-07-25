@@ -1,0 +1,270 @@
+{
+  "id": "iam",
+  "number": "02",
+  "section": "Foundations",
+  "title": "AWS Account, Console & IAM",
+  "short": "Root user danger, console, IAM users, groups, roles, policies.",
+  "minutes": 30,
+  "tags": [
+    "security",
+    "iam"
+  ],
+  "goals": [
+    "How AWS is organized",
+    "What the AWS Console is",
+    "Why the Root User is dangerous",
+    "What IAM is",
+    "How permissions work",
+    "Best security practices"
+  ],
+  "reviewed": "2026-07",
+  "sources": [
+    "https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html",
+    "ChatGPT AWS Learning Roadmap"
+  ],
+  "content": "<h2>Lesson 2: AWS Account, Console &amp; IAM</h2>\n<p>This lesson is the start of a hands-on AWS bootcamp: how an account is organized, how you use the console, and how IAM controls access. Get this wrong and every later service becomes insecure.</p>\n<p>By the end of this lesson, you will understand:</p>\n<ul>\n<li>How AWS is organized</li>\n<li>What the AWS Console is</li>\n<li>Why the Root User is dangerous</li>\n<li>What IAM is</li>\n<li>How permissions work</li>\n<li>Best security practices</li>\n</ul>\n<hr class=\"divider\" />\n<h2>1. What happens when you create an AWS account?</h2>\n<p>Imagine you've rented an office building.</p>\n<p>Initially, you receive <strong>one master key</strong>.</p>\n<p>That master key can:</p>\n<ul>\n<li>Open every room</li>\n<li>Delete the entire building</li>\n<li>Change billing information</li>\n<li>Create new employees</li>\n<li>Shut everything down</li>\n</ul>\n<p>This master key is called the <strong>Root User</strong>.</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>AWS Account\n      │\n      └── Root User (Master Key)</code></pre>\n<hr class=\"divider\" />\n<h2>Never use the Root User daily</h2>\n<p>The root user should only be used for rare account-level tasks such as:</p>\n<ul>\n<li>Changing payment methods</li>\n<li>Closing the AWS account</li>\n<li>Managing certain account settings</li>\n</ul>\n<p>Everything else should be done with an IAM user or IAM Identity Center.</p>\n<p>Think of it this way:</p>\n<p>You don't carry the master key to your house everywhere—you use your everyday key.</p>\n<hr class=\"divider\" />\n<h2>2. What is the AWS Management Console?</h2>\n<p>The AWS Console is AWS's web dashboard.</p>\n<p>From it, you can:</p>\n<ul>\n<li>Launch servers</li>\n<li>Create databases</li>\n<li>Upload files</li>\n<li>Monitor applications</li>\n<li>View bills</li>\n<li>Configure networking</li>\n</ul>\n<p>Think of it as the control panel for your cloud infrastructure.</p>\n<hr class=\"divider\" />\n<h2>3. AWS Services</h2>\n<p>When you log in, you'll see hundreds of services.</p>\n<p>Don't worry—you only need a handful to become productive.</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Compute\n └── EC2\n\nStorage\n └── S3\n\nDatabase\n └── RDS\n\nNetworking\n └── VPC\n\nSecurity\n └── IAM\n\nMonitoring\n └── CloudWatch</code></pre>\n<hr class=\"divider\" />\n<h2>4. What is IAM?</h2>\n<p><strong>IAM = Identity and Access Management</strong></p>\n<p>IAM decides:</p>\n<ul>\n<li>Who can log in</li>\n<li>What they can do</li>\n<li>What they cannot do</li>\n</ul>\n<p>Think of a company office.</p>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Person</th><th>Access</th></tr></thead><tbody>\n<tr><td>CEO</td><td>Everything</td></tr>\n<tr><td>Developer</td><td>Servers</td></tr>\n<tr><td>HR</td><td>Employee systems</td></tr>\n<tr><td>Accountant</td><td>Billing</td></tr>\n<tr><td>Intern</td><td>Limited access</td></tr>\n</tbody></table></div>\n<p>IAM works the same way.</p>\n<hr class=\"divider\" />\n<h2>5. IAM Components</h2>\n<p>There are four core concepts.</p>\n<h2>IAM User</h2>\n<p>Represents one person or application.</p>\n<p>Example:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Arnab\nRahul\nAlice\nBob</code></pre>\n<p>Each has their own login.</p>\n<hr class=\"divider\" />\n<h2>IAM Group</h2>\n<p>A group contains multiple users.</p>\n<p>Example:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Developers\n ├── Alice\n ├── Bob\n └── Charlie</code></pre>\n<p>Instead of assigning permissions one by one, assign them to the group.</p>\n<hr class=\"divider\" />\n<h2>IAM Policies</h2>\n<p>Policies define permissions.</p>\n<p>Example:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Can Start EC2\n\nCan Stop EC2\n\nCannot Delete EC2</code></pre>\n<p>A policy is just a set of rules.</p>\n<p>Example (simplified):</p>\n<div class=\"code-label\"><span>json</span></div>\n<pre><code>{\n  \"Allow\": [\n      \"StartEC2\",\n      \"StopEC2\"\n  ]\n}</code></pre>\n<p>AWS policies are written in JSON.</p>\n<hr class=\"divider\" />\n<h2>IAM Roles</h2>\n<p>Roles are temporary identities.</p>\n<p>Instead of a human logging in, AWS services can \"assume\" a role.</p>\n<p>Example:</p>\n<p>An EC2 server needs to read files from S3.</p>\n<p>Without a role:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Server\n ↓\nUsername + Password</code></pre>\n<p>Not secure.</p>\n<p>With a role:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Server\n ↓\nIAM Role\n ↓\nPermission Granted</code></pre>\n<p>Much safer.</p>\n<hr class=\"divider\" />\n<h2>6. Authentication vs Authorization</h2>\n<p>This is a favorite interview question.</p>\n<h3>Authentication</h3>\n<p><strong>Who are you?</strong></p>\n<p>Example:</p>\n<p>Username + Password</p>\n<p>or</p>\n<p>Fingerprint</p>\n<hr class=\"divider\" />\n<h3>Authorization</h3>\n<p><strong>What are you allowed to do?</strong></p>\n<p>Example:</p>\n<p>Can you:</p>\n<ul>\n<li>Launch EC2?</li>\n<li>Delete S3 buckets?</li>\n<li>Read databases?</li>\n</ul>\n<p>Authentication happens first, then authorization.</p>\n<hr class=\"divider\" />\n<h2>7. Principle of Least Privilege</h2>\n<p>Give only the permissions someone actually needs.</p>\n<p>Example:</p>\n<p>A developer needs to upload files to S3.</p>\n<p>Good:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Allow Upload</code></pre>\n<p>Bad:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Administrator Access</code></pre>\n<p>This reduces the impact of mistakes or compromised accounts.</p>\n<hr class=\"divider\" />\n<h2>8. Multi-Factor Authentication (MFA)</h2>\n<p>A password alone can be stolen.</p>\n<p>MFA adds another verification step.</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Password\n+\nPhone App Code</code></pre>\n<p>Even if someone knows your password, they still can't log in without the second factor.</p>\n<p>Always enable MFA for the root user and privileged users.</p>\n<hr class=\"divider\" />\n<h2>9. Password Policies</h2>\n<p>A good AWS account enforces:</p>\n<ul>\n<li>Strong passwords</li>\n<li>Password expiration (if required by your organization)</li>\n<li>No password reuse</li>\n<li>Minimum length requirements</li>\n</ul>\n<p>These are managed through IAM settings.</p>\n<hr class=\"divider\" />\n<h2>10. Access Keys</h2>\n<p>Applications can't click the AWS Console.</p>\n<p>They use <strong>Access Keys</strong>.</p>\n<p>Example:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Access Key ID\n\nSecret Access Key</code></pre>\n<p>These are used by tools like the AWS CLI or SDKs.</p>\n<p><strong>Never hard-code or share your secret access key.</strong></p>\n<hr class=\"divider\" />\n<h2>11. AWS CLI</h2>\n<p>The AWS Command Line Interface lets you control AWS from a terminal.</p>\n<p>Instead of clicking buttons:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Launch Server</code></pre>\n<p>you can run commands like:</p>\n<div class=\"code-label\"><span>bash</span></div>\n<pre><code>aws ec2 describe-instances</code></pre>\n<p>Many engineers use the CLI every day because it's faster and easier to automate.</p>\n<hr class=\"divider\" />\n<h2>12. Console vs CLI</h2>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Console</th><th>CLI</th></tr></thead><tbody>\n<tr><td>Point and click</td><td>Terminal commands</td></tr>\n<tr><td>Easier for beginners</td><td>Better for automation</td></tr>\n<tr><td>Good for learning</td><td>Great for scripting</td></tr>\n</tbody></table></div>\n<p>You'll learn both.</p>\n<hr class=\"divider\" />\n<h2>13. Typical AWS Login Flow</h2>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Open Console\n\n↓\n\nEnter Username\n\n↓\n\nEnter Password\n\n↓\n\nMFA\n\n↓\n\nIAM checks permissions\n\n↓\n\nAccess granted</code></pre>\n<hr class=\"divider\" />\n<h2>14. Real-World Example</h2>\n<p>Imagine you're building a company.</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>AWS Account\n│\n├── Developers Group\n│      ├── Alice\n│      ├── Bob\n│\n├── HR Group\n│      ├── Sarah\n│\n├── Finance Group\n│      ├── Mike\n│\n└── Policies\n       ├── EC2 Access\n       ├── S3 Read Only\n       ├── Billing</code></pre>\n<p>This is a common IAM structure.</p>\n<hr class=\"divider\" />\n<h2>Summary</h2>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Term</th><th>Meaning</th></tr></thead><tbody>\n<tr><td>Root User</td><td>Full control of the AWS account</td></tr>\n<tr><td>IAM</td><td>Identity and Access Management</td></tr>\n<tr><td>User</td><td>Individual identity</td></tr>\n<tr><td>Group</td><td>Collection of users</td></tr>\n<tr><td>Policy</td><td>Set of permissions</td></tr>\n<tr><td>Role</td><td>Temporary identity for AWS services or users</td></tr>\n<tr><td>MFA</td><td>Extra login verification</td></tr>\n<tr><td>Access Key</td><td>Credentials for programmatic access</td></tr>\n<tr><td>CLI</td><td>Command-line tool for AWS</td></tr>\n</tbody></table></div>\n<hr class=\"divider\" />\n<h2>Hands-on Lab (Recommended)</h2>\n<p>If you don't already have one:</p>\n<ol>\n<li>Create an AWS account.</li>\n<li>Enable MFA on the root user.</li>\n<li>Create an IAM administrator user for daily use.</li>\n<li>Sign out of the root account.</li>\n<li>Sign back in using the IAM user.</li>\n</ol>\n<p>These are standard first steps before building anything on AWS.</p>\n<hr class=\"divider\" />\n<h2>Mini Quiz</h2>\n<ol>\n<li>Why shouldn't you use the root user for everyday work?</li>\n<li>What is the difference between an IAM user and an IAM role?</li>\n<li>What is the purpose of an IAM policy?</li>\n<li>What does MFA protect against?</li>\n<li>What is the principle of least privilege?</li>\n<li>What's the difference between authentication and authorization?</li>\n<li>When would you use the AWS CLI instead of the console?</li>\n</ol>\n<p>In <strong>Lesson 3</strong>, we'll launch your <strong>first EC2 virtual server</strong>, connect to it over SSH, install software, and host a simple website—the first step toward deploying real applications.</p>\n<aside class=\"accuracy-note\" role=\"note\"><p><strong>Content review:</strong> 2026-07. Curriculum text is adapted from a shared learning roadmap; verify critical details in official AWS docs before production use.</p><p class=\"accuracy-note-label\">References</p><ul><li><a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html\" rel=\"noopener noreferrer\" target=\"_blank\">docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html…</a></li></ul></aside>",
+  "quiz": [
+    {
+      "q": "The Root User is compared to:",
+      "options": [
+        "A guest Wi-Fi password",
+        "A master key to the whole building/account",
+        "A read-only S3 key only",
+        "A Docker volume"
+      ],
+      "answer": 1,
+      "explain": "Master key: full power over the account."
+    },
+    {
+      "q": "You should use the Root User:",
+      "options": [
+        "For daily app deploys",
+        "Only for rare account-level tasks (billing, close account, etc.)",
+        "To store passwords in git",
+        "To disable MFA"
+      ],
+      "answer": 1,
+      "explain": "Daily work → IAM / Identity Center; root is rare."
+    },
+    {
+      "q": "The AWS Management Console is:",
+      "options": [
+        "A physical keyboard",
+        "AWS’s web dashboard/control panel",
+        "Only the CLI",
+        "A type of EC2 instance"
+      ],
+      "answer": 1,
+      "explain": "Web dashboard to manage services."
+    },
+    {
+      "q": "IAM stands for:",
+      "options": [
+        "Internet Access Module",
+        "Identity and Access Management",
+        "Internal AMI Manager",
+        "Inline Auto Mapping"
+      ],
+      "answer": 1,
+      "explain": "Identity and Access Management."
+    },
+    {
+      "q": "An IAM User is:",
+      "options": [
+        "A temporary service identity only",
+        "An identity for a person (or sometimes app) with long-lived credentials option",
+        "A VPC subnet",
+        "A load balancer"
+      ],
+      "answer": 1,
+      "explain": "Users represent people (or apps) with credentials."
+    },
+    {
+      "q": "IAM Groups help you:",
+      "options": [
+        "Encrypt EBS automatically",
+        "Attach the same policies to many users at once",
+        "Create Regions",
+        "Delete CloudTrail"
+      ],
+      "answer": 1,
+      "explain": "Groups bundle users sharing permissions."
+    },
+    {
+      "q": "IAM Policies are:",
+      "options": [
+        "JSON (or managed) permission documents of Allow/Deny",
+        "Only EC2 instance types",
+        "Only invoices",
+        "Dockerfiles"
+      ],
+      "answer": 0,
+      "explain": "Policies define permissions."
+    },
+    {
+      "q": "IAM Roles are best for:",
+      "options": [
+        "Sharing one root password",
+        "Temporary assumed access (services/people/federation)",
+        "Public anonymous admin",
+        "Disabling logging"
+      ],
+      "answer": 1,
+      "explain": "Roles = temporary credentials via assume-role."
+    },
+    {
+      "q": "Authentication answers:",
+      "options": [
+        "What can you do?",
+        "Who are you?",
+        "Which AZ?",
+        "What is latency?"
+      ],
+      "answer": 1,
+      "explain": "AuthN = identity; AuthZ = permissions."
+    },
+    {
+      "q": "Authorization answers:",
+      "options": [
+        "Who are you?",
+        "What are you allowed to do?",
+        "What is your email font?",
+        "Which city has rain?"
+      ],
+      "answer": 1,
+      "explain": "AuthZ = permissions."
+    },
+    {
+      "q": "Principle of Least Privilege means:",
+      "options": [
+        "Give Admin to everyone",
+        "Grant only the permissions needed for the job",
+        "Disable MFA",
+        "Use only root"
+      ],
+      "answer": 1,
+      "explain": "Minimal necessary access."
+    },
+    {
+      "q": "MFA adds:",
+      "options": [
+        "A second factor beyond password",
+        "Unlimited free credits",
+        "Public S3 by default",
+        "Auto Scaling"
+      ],
+      "answer": 0,
+      "explain": "Multi-factor authentication."
+    },
+    {
+      "q": "Access keys are dangerous if:",
+      "options": [
+        "Stored only in IAM role temporary sessions",
+        "Leaked in GitHub or chat—long-lived secrets",
+        "Never created",
+        "Rotated often with least privilege"
+      ],
+      "answer": 1,
+      "explain": "Leaked static keys are a common breach path."
+    },
+    {
+      "q": "AWS CLI lets you:",
+      "options": [
+        "Only draw diagrams",
+        "Manage AWS from the command line using credentials/roles",
+        "Replace the internet",
+        "Boot Windows on phones only"
+      ],
+      "answer": 1,
+      "explain": "CLI = programmatic/console alternative."
+    },
+    {
+      "q": "Console vs CLI in the lesson spirit:",
+      "options": [
+        "CLI is useless",
+        "Console is GUI; CLI is scriptable automation",
+        "They are the same binary",
+        "CLI deletes Regions"
+      ],
+      "answer": 1,
+      "explain": "GUI vs automation."
+    },
+    {
+      "q": "Typical secure login flow uses:",
+      "options": [
+        "Root without MFA for everyone",
+        "IAM user/Identity Center + MFA, not daily root",
+        "Anonymous admin",
+        "Shared one password in Slack"
+      ],
+      "answer": 1,
+      "explain": "Identity + MFA; avoid daily root."
+    },
+    {
+      "q": "In the office-building analogy, creating employees maps to:",
+      "options": [
+        "Creating IAM users/identities",
+        "Deleting VPCs",
+        "Buying laptops only",
+        "Closing Netflix"
+      ],
+      "answer": 0,
+      "explain": "Identities under the account."
+    },
+    {
+      "q": "Password policies help by:",
+      "options": [
+        "Forcing stronger/safer passwords for users",
+        "Making S3 public",
+        "Disabling CloudWatch",
+        "Removing roles"
+      ],
+      "answer": 0,
+      "explain": "Account password requirements."
+    },
+    {
+      "q": "Services in the console are grouped into areas like:",
+      "options": [
+        "Only printers",
+        "Compute, storage, database, networking, etc.",
+        "Only games",
+        "Only email clients"
+      ],
+      "answer": 1,
+      "explain": "Hundreds of services; start with a handful."
+    },
+    {
+      "q": "Best security practice emphasized:",
+      "options": [
+        "Enable MFA, avoid root daily, least privilege, careful with access keys",
+        "Post keys publicly",
+        "Share root with interns",
+        "Turn off all logging"
+      ],
+      "answer": 0,
+      "explain": "Core IAM hygiene from the lesson."
+    },
+    {
+      "q": "If a CI pipeline needs AWS access, prefer:",
+      "options": [
+        "Hard-coded root keys",
+        "A role assumed via OIDC/federation (or short-lived creds)",
+        "No authentication",
+        "Emailing passwords"
+      ],
+      "answer": 1,
+      "explain": "Roles over long-lived keys."
+    },
+    {
+      "q": "IAM is required because without it:",
+      "options": [
+        "You cannot control who can do what on which resources",
+        "S3 stops storing objects forever automatically",
+        "Regions disappear",
+        "AZs merge"
+      ],
+      "answer": 0,
+      "explain": "IAM is the permission system for AWS APIs."
+    }
+  ]
+}

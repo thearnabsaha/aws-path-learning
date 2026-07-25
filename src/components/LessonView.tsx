@@ -1,11 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { useProgress } from "@/context/ProgressContext";
-import { getQuiz } from "@/data/quizzes";
-import type { Lesson } from "@/types/lesson";
+import type { Lesson, LessonSummary } from "@/types/lesson";
 import { LessonAccordion } from "./LessonAccordion";
 import { Quiz } from "./Quiz";
+import { useProgress } from "@/context/ProgressContext";
 
 export function LessonView({
   lesson,
@@ -13,29 +12,26 @@ export function LessonView({
   next,
 }: {
   lesson: Lesson;
-  prev: Lesson | null;
-  next: Lesson | null;
+  prev: LessonSummary | null;
+  next: LessonSummary | null;
 }) {
   const { isDone, setDone } = useProgress();
   const done = isDone(lesson.id);
-  const questions = getQuiz(lesson.id);
 
   return (
     <article className="lesson">
       <header className="lesson-header">
         <p className="lesson-kicker">
           Lesson {lesson.number} · {lesson.section} · ~{lesson.minutes} min
+          {lesson.reviewed ? ` · Reviewed ${lesson.reviewed}` : ""}
         </p>
         <h1>{lesson.title}</h1>
         <p className="lesson-summary">{lesson.short}</p>
       </header>
 
-      <LessonAccordion
-        contentHtml={lesson.content}
-        goals={lesson.goals}
-      />
+      <LessonAccordion contentHtml={lesson.content} goals={lesson.goals} />
 
-      <Quiz lessonId={lesson.id} questions={questions} />
+      <Quiz lessonId={lesson.id} questions={lesson.quiz} />
 
       <footer className="lesson-footer">
         <div className={`complete-row${done ? " done" : ""}`}>

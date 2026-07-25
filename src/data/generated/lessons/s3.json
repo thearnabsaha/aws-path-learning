@@ -1,0 +1,267 @@
+{
+  "id": "s3",
+  "number": "04",
+  "section": "Foundations",
+  "title": "Amazon S3",
+  "short": "Object storage, buckets, versioning, static sites, storage classes.",
+  "minutes": 30,
+  "tags": [
+    "storage",
+    "s3"
+  ],
+  "goals": [
+    "Store objects in S3 safely",
+    "Understand versioning and lifecycle",
+    "Host a static website"
+  ],
+  "reviewed": "2026-07",
+  "sources": [
+    "https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html",
+    "ChatGPT AWS Learning Roadmap"
+  ],
+  "content": "<h2>Lesson 4: Amazon S3 (Simple Storage Service)</h2>\n<p>Almost every company on AWS uses Amazon S3. This lesson covers how cloud object storage works—for files, backups, static sites, logs, and large data—without managing disks yourself.</p>\n<p>By the end of this lesson, you will understand:</p>\n<ul>\n<li>Understand how AWS stores files and how you can use S3 to host websites, store backups, images, videos, logs, and more.</li>\n</ul>\n<hr class=\"divider\" />\n<h2>What is Amazon S3?</h2>\n<p><strong>Amazon S3 (Simple Storage Service)</strong> is an <strong>object storage</strong> service.</p>\n<p>Instead of storing files on your laptop:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Laptop\n ├── photo.jpg\n ├── resume.pdf\n └── video.mp4</code></pre>\n<p>You store them in AWS:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Amazon S3\n ├── photo.jpg\n ├── resume.pdf\n └── video.mp4</code></pre>\n<p>S3 is designed to store virtually unlimited amounts of data with very high durability.</p>\n<hr class=\"divider\" />\n<h2>What is Object Storage?</h2>\n<p>Unlike a traditional hard drive with folders and partitions, S3 stores <strong>objects</strong>.</p>\n<p>An object contains:</p>\n<ul>\n<li>The file itself</li>\n<li>Metadata (information about the file)</li>\n<li>A unique identifier (key)</li>\n</ul>\n<p>Example:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Object\n ├── File: cat.jpg\n ├── Size: 2 MB\n ├── Content-Type: image/jpeg\n └── Key: images/cat.jpg</code></pre>\n<hr class=\"divider\" />\n<h2>Bucket</h2>\n<p>A <strong>bucket</strong> is like a top-level container for your objects.</p>\n<p>Think of it as a storage box.</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Bucket: arnab-portfolio\n\n    ├── resume.pdf\n    ├── profile.jpg\n    ├── index.html\n    └── css/</code></pre>\n<p>Every object must belong to a bucket.</p>\n<hr class=\"divider\" />\n<h2>Bucket Names</h2>\n<p>Bucket names must be globally unique across all AWS accounts.</p>\n<p>Good examples:</p>\n<ul>\n<li><code>arnab-resume-2026</code></li>\n<li><code>my-company-assets</code></li>\n<li><code>photos-backup-india</code></li>\n</ul>\n<p>Bad examples:</p>\n<ul>\n<li><code>bucket</code></li>\n<li><code>test</code></li>\n<li><code>images</code></li>\n</ul>\n<p>Someone else may already own those names.</p>\n<hr class=\"divider\" />\n<h2>Object Key</h2>\n<p>The <strong>key</strong> is the object's full path inside the bucket.</p>\n<p>Example:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Bucket\n│\n├── images/\n│      ├── cat.jpg\n│      └── dog.jpg</code></pre>\n<p>Keys:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>images/cat.jpg\n\nimages/dog.jpg</code></pre>\n<p>S3 doesn't actually use folders the way a file system does—it uses object keys that look like paths.</p>\n<hr class=\"divider\" />\n<h2>Uploading Files</h2>\n<p>You can upload through:</p>\n<ul>\n<li>AWS Console</li>\n<li>AWS CLI</li>\n<li>AWS SDKs (Python, Java, JavaScript, etc.)</li>\n</ul>\n<p>Example with the CLI:</p>\n<div class=\"code-label\"><span>bash</span></div>\n<pre><code>aws s3 cp photo.jpg s3://arnab-portfolio/</code></pre>\n<p>This uploads <code>photo.jpg</code> to the bucket.</p>\n<hr class=\"divider\" />\n<h2>Downloading Files</h2>\n<div class=\"code-label\"><span>bash</span></div>\n<pre><code>aws s3 cp s3://arnab-portfolio/photo.jpg .</code></pre>\n<p>The <code>.</code> means \"download into the current directory.\"</p>\n<hr class=\"divider\" />\n<h2>Permissions</h2>\n<p>By default:</p>\n<p><strong>Everything is private.</strong></p>\n<p>No one on the internet can access your files unless you explicitly allow it.</p>\n<p>This is an important security feature.</p>\n<hr class=\"divider\" />\n<h2>Static Website Hosting</h2>\n<p>S3 can host static websites.</p>\n<p>A static website includes files like:</p>\n<ul>\n<li>HTML</li>\n<li>CSS</li>\n<li>JavaScript</li>\n<li>Images</li>\n</ul>\n<p>Example:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Bucket\n\nindex.html\n\nstyle.css\n\nlogo.png</code></pre>\n<p>Users visit:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Internet\n      ↓\nS3 Bucket\n      ↓\nWebsite</code></pre>\n<p>No EC2 server is required.</p>\n<hr class=\"divider\" />\n<h2>Static vs Dynamic Websites</h2>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Static</th><th>Dynamic</th></tr></thead><tbody>\n<tr><td>HTML/CSS/JS</td><td>Code runs on the server</td></tr>\n<tr><td>No database</td><td>Often uses a database</td></tr>\n<tr><td>Fast</td><td>More flexible</td></tr>\n<tr><td>Low cost</td><td>Higher cost</td></tr>\n</tbody></table></div>\n<p>Examples:</p>\n<p>Static:</p>\n<ul>\n<li>Portfolio</li>\n<li>Resume</li>\n<li>Documentation</li>\n<li>Landing page</li>\n</ul>\n<p>Dynamic:</p>\n<ul>\n<li>Amazon</li>\n<li>Facebook</li>\n<li>Gmail</li>\n</ul>\n<hr class=\"divider\" />\n<h2>Versioning</h2>\n<p>Imagine you accidentally overwrite a file.</p>\n<p>Without versioning:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>resume.pdf\n\n↓\n\nNew upload\n\n↓\n\nOld file lost</code></pre>\n<p>With versioning:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Version 1\n\n↓\n\nVersion 2\n\n↓\n\nVersion 3</code></pre>\n<p>You can restore an earlier version if needed.</p>\n<hr class=\"divider\" />\n<h2>Storage Classes</h2>\n<p>Not all files need the same storage.</p>\n<p>AWS offers different storage classes based on how often you access the data.</p>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Storage Class</th><th>Best For</th></tr></thead><tbody>\n<tr><td>S3 Standard</td><td>Frequently accessed files</td></tr>\n<tr><td>S3 Intelligent-Tiering</td><td>Automatic optimization for changing access patterns</td></tr>\n<tr><td>S3 Standard-IA</td><td>Infrequently accessed files</td></tr>\n<tr><td>S3 Glacier Instant Retrieval</td><td>Archived data that still needs fast retrieval</td></tr>\n<tr><td>S3 Glacier Flexible Retrieval</td><td>Long-term archives</td></tr>\n<tr><td>S3 Glacier Deep Archive</td><td>Rarely accessed data kept for years</td></tr>\n</tbody></table></div>\n<hr class=\"divider\" />\n<h2>Lifecycle Rules</h2>\n<p>Suppose you upload backups every day.</p>\n<p>After:</p>\n<ul>\n<li>30 days → Move to a cheaper storage class.</li>\n<li>180 days → Move to Glacier.</li>\n<li>7 years → Delete.</li>\n</ul>\n<p>AWS can automate this.</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Upload\n   ↓\n30 Days\n   ↓\nCheaper Storage\n   ↓\nArchive\n   ↓\nDelete</code></pre>\n<hr class=\"divider\" />\n<h2>Encryption</h2>\n<p>S3 supports encryption to protect your data.</p>\n<p>Common options include:</p>\n<ul>\n<li><strong>Server-Side Encryption (SSE)</strong> managed by AWS</li>\n<li><strong>AWS KMS</strong> for more control over encryption keys</li>\n<li><strong>Client-Side Encryption</strong> before uploading</li>\n</ul>\n<p>Many organizations enable encryption by default.</p>\n<hr class=\"divider\" />\n<h2>Durability vs Availability</h2>\n<p>These terms are easy to confuse.</p>\n<h3>Durability</h3>\n<p>\"Will my file still exist?\"</p>\n<p>S3 is designed for extremely high durability.</p>\n<hr class=\"divider\" />\n<h3>Availability</h3>\n<p>\"Can I access my file right now?\"</p>\n<p>A service can be highly durable even if it's temporarily unavailable.</p>\n<hr class=\"divider\" />\n<h2>Real-World Examples</h2>\n<h3>Store Images</h3>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Users\n\n↓\n\nUpload Photo\n\n↓\n\nS3</code></pre>\n<hr class=\"divider\" />\n<h3>Website Hosting</h3>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Browser\n\n↓\n\nS3\n\n↓\n\nPortfolio Website</code></pre>\n<hr class=\"divider\" />\n<h3>Backup Storage</h3>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Laptop\n\n↓\n\nNightly Backup\n\n↓\n\nS3</code></pre>\n<hr class=\"divider\" />\n<h3>Application Logs</h3>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>EC2\n\n↓\n\nApplication Logs\n\n↓\n\nS3</code></pre>\n<hr class=\"divider\" />\n<h2>EC2 vs S3</h2>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>EC2</th><th>S3</th></tr></thead><tbody>\n<tr><td>Runs applications</td><td>Stores files</td></tr>\n<tr><td>Has CPU &amp; RAM</td><td>No CPU or RAM</td></tr>\n<tr><td>Operating system</td><td>No operating system</td></tr>\n<tr><td>You manage the server</td><td>AWS manages the storage service</td></tr>\n</tbody></table></div>\n<p>Think of it like this:</p>\n<ul>\n<li><strong>EC2 = Computer</strong></li>\n<li><strong>S3 = Cloud hard drive</strong></li>\n</ul>\n<hr class=\"divider\" />\n<h2>AWS Architecture Example</h2>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Users\n     │\n     ▼\nWebsite\n     │\n     ▼\nEC2\n     │\n     ├── Database (RDS)\n     │\n     └── Images\n           │\n           ▼\n          S3</code></pre>\n<p>The application runs on EC2, stores structured data in a database, and keeps images and documents in S3.</p>\n<hr class=\"divider\" />\n<h2>Hands-on Lab</h2>\n<p>If you have an AWS account:</p>\n<ol>\n<li>Create an S3 bucket with a unique name.</li>\n<li>Upload:</li>\n<p>- A photo - A PDF - A text file</p>\n<li>Enable versioning.</li>\n<li>Replace one of the files with a new version.</li>\n<li>View the version history.</li>\n<li>(Optional) Enable static website hosting and upload a simple <code>index.html</code> file.</li>\n</ol>\n<hr class=\"divider\" />\n<h2>Interview Questions</h2>\n<ol>\n<li>What is an S3 bucket?</li>\n<li>What is an object?</li>\n<li>What is an object key?</li>\n<li>Why are bucket names globally unique?</li>\n<li>What is versioning?</li>\n<li>What is the difference between EC2 and S3?</li>\n<li>What is a lifecycle rule?</li>\n<li>When would you use Glacier instead of Standard storage?</li>\n<li>Why is S3 a good choice for storing images and backups?</li>\n</ol>\n<hr class=\"divider\" />\n<h2>So Far You've Learned</h2>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Service</th><th>Purpose</th></tr></thead><tbody>\n<tr><td>IAM</td><td>Identity and access management</td></tr>\n<tr><td>EC2</td><td>Virtual servers</td></tr>\n<tr><td>S3</td><td>Object storage for files</td></tr>\n</tbody></table></div>\n<p>These three services form the foundation of many AWS architectures.</p>\n<h2>Next Lesson: Networking with VPC</h2>\n<p>This is where you'll learn how AWS networking works, including:</p>\n<ul>\n<li>What a <strong>VPC (Virtual Private Cloud)</strong> is</li>\n<li>Public vs private subnets</li>\n<li>Internet Gateways</li>\n<li>Route Tables</li>\n<li>NAT Gateways</li>\n<li>Security Groups vs Network ACLs</li>\n<li>How EC2, RDS, and S3 communicate securely</li>\n</ul>\n<p>Networking is one of the most important AWS topics for real-world deployments and technical interviews.</p>\n<aside class=\"accuracy-note\" role=\"note\"><p><strong>Content review:</strong> 2026-07. Curriculum text is adapted from a shared learning roadmap; verify critical details in official AWS docs before production use.</p><p class=\"accuracy-note-label\">References</p><ul><li><a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html\" rel=\"noopener noreferrer\" target=\"_blank\">docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html…</a></li></ul></aside>",
+  "quiz": [
+    {
+      "q": "S3 is:",
+      "options": [
+        "A relational database",
+        "Object storage service",
+        "A VPC router",
+        "An EC2 instance family"
+      ],
+      "answer": 1,
+      "explain": "Simple Storage Service = objects."
+    },
+    {
+      "q": "Files live in:",
+      "options": [
+        "Buckets",
+        "Subnets only",
+        "Security groups",
+        "Auto Scaling groups"
+      ],
+      "answer": 0,
+      "explain": "Bucket holds objects."
+    },
+    {
+      "q": "An object key is:",
+      "options": [
+        "The object’s path/name in the bucket",
+        "An IAM password",
+        "An AZ ID",
+        "A Docker tag only"
+      ],
+      "answer": 0,
+      "explain": "Key identifies the object."
+    },
+    {
+      "q": "Bucket names must be:",
+      "options": [
+        "Globally unique (and follow naming rules)",
+        "The same for every account",
+        "Only numbers length 2",
+        "Equal to Region name only"
+      ],
+      "answer": 0,
+      "explain": "Globally unique names."
+    },
+    {
+      "q": "Object storage differs from a laptop filesystem by:",
+      "options": [
+        "Storing objects via API/keys rather than local disk hierarchy as primary model",
+        "Requiring always-on EC2",
+        "Disallowing any files",
+        "Only supporting music"
+      ],
+      "answer": 0,
+      "explain": "Objects in the cloud, not your laptop disk."
+    },
+    {
+      "q": "Static website hosting on S3 is for:",
+      "options": [
+        "HTML/CSS/JS static sites",
+        "Always multiplayer game servers with GPUs",
+        "Only RDS SQL",
+        "Only VPN concentrators"
+      ],
+      "answer": 0,
+      "explain": "Static content hosting feature."
+    },
+    {
+      "q": "Versioning helps when:",
+      "options": [
+        "You overwrite/delete and need prior versions",
+        "You want to disable encryption forever",
+        "You remove all AZs",
+        "You delete the Region"
+      ],
+      "answer": 0,
+      "explain": "Recover from mistakes."
+    },
+    {
+      "q": "Storage classes exist to:",
+      "options": [
+        "Trade cost/access patterns (Standard, IA, Glacier, etc.)",
+        "Change VPC CIDR",
+        "Rename IAM users",
+        "Create load balancers"
+      ],
+      "answer": 0,
+      "explain": "Different durability/access/cost profiles."
+    },
+    {
+      "q": "Lifecycle rules can:",
+      "options": [
+        "Transition/expire objects automatically",
+        "Create EC2 key pairs",
+        "Open security groups",
+        "Disable CloudTrail globally"
+      ],
+      "answer": 0,
+      "explain": "Automate transitions/expiry."
+    },
+    {
+      "q": "Encryption protects:",
+      "options": [
+        "Object data at rest (and options in transit patterns)",
+        "Only DNS names",
+        "Only instance types",
+        "Only Terraform state locks always"
+      ],
+      "answer": 0,
+      "explain": "SSE options etc."
+    },
+    {
+      "q": "Durability vs availability (lesson theme):",
+      "options": [
+        "Related but different properties of storage",
+        "Exactly the same number always",
+        "Irrelevant for S3",
+        "Only for EC2 RAM"
+      ],
+      "answer": 0,
+      "explain": "S3 is famous for high durability; availability is separate concept."
+    },
+    {
+      "q": "EC2 vs S3: S3 is better for:",
+      "options": [
+        "Running a custom kernel module",
+        "Durable object/file storage at scale",
+        "Installing apt packages on a VM",
+        "SSH login"
+      ],
+      "answer": 1,
+      "explain": "Storage service vs compute."
+    },
+    {
+      "q": "Permissions on S3 involve:",
+      "options": [
+        "IAM + bucket policies/public access settings (carefully)",
+        "Only security groups",
+        "Only NACLs",
+        "Only ASG policies"
+      ],
+      "answer": 0,
+      "explain": "Identity + resource policies."
+    },
+    {
+      "q": "Uploading files uses:",
+      "options": [
+        "Put/upload APIs or console/CLI",
+        "Only Route 53",
+        "Only CloudWatch Alarms",
+        "Only NAT Gateways"
+      ],
+      "answer": 0,
+      "explain": "Upload objects to keys."
+    },
+    {
+      "q": "A real-world use from the lesson spirit:",
+      "options": [
+        "Images, backups, logs, static assets",
+        "Replacing IAM entirely",
+        "Being a load balancer",
+        "Being a VPC"
+      ],
+      "answer": 0,
+      "explain": "Common S3 workloads."
+    },
+    {
+      "q": "Making a bucket public by accident is:",
+      "options": [
+        "A serious security risk",
+        "Required for all private apps",
+        "Impossible",
+        "Only a CLI bug"
+      ],
+      "answer": 0,
+      "explain": "Public access is a classic footgun."
+    },
+    {
+      "q": "Static vs dynamic sites: S3 alone fits best with:",
+      "options": [
+        "Static content",
+        "Always server-side session apps needing EC2/Lambda backends",
+        "Only Oracle RAC",
+        "Only VPN"
+      ],
+      "answer": 0,
+      "explain": "Dynamic often needs compute."
+    },
+    {
+      "q": "Architecture example often pairs S3 with:",
+      "options": [
+        "Apps on EC2/CloudFront patterns for content",
+        "Only on-prem tape forever",
+        "Only root MFA",
+        "Only NAT deletion"
+      ],
+      "answer": 0,
+      "explain": "Common designs."
+    },
+    {
+      "q": "Downloading objects requires:",
+      "options": [
+        "Permission + GetObject (or website endpoint if public hosting)",
+        "Always root user",
+        "Always terminating EC2",
+        "Always Multi-AZ RDS"
+      ],
+      "answer": 0,
+      "explain": "Authz to read objects."
+    },
+    {
+      "q": "Interview: why not put a database primary storage only on S3?",
+      "options": [
+        "S3 is object storage—not a relational DB engine for transactional queries the same way",
+        "S3 cannot store any bytes",
+        "S3 is only for IAM",
+        "S3 is only IPv6"
+      ],
+      "answer": 0,
+      "explain": "Use RDS/DynamoDB for DB workloads; S3 for objects."
+    },
+    {
+      "q": "Object storage scales because:",
+      "options": [
+        "AWS manages a massive durable store; you don’t manage disks on servers yourself for each file",
+        "You must buy a server per file",
+        "Keys must be sequential only",
+        "Buckets cannot hold many objects"
+      ],
+      "answer": 0,
+      "explain": "Managed scale."
+    },
+    {
+      "q": "Free-tier/practice caution still applies because:",
+      "options": [
+        "Usage outside free limits or public traffic can cost money",
+        "S3 is always free unlimited",
+        "Bucket names cost $1000 each",
+        "Encryption is illegal"
+      ],
+      "answer": 0,
+      "explain": "Cost awareness."
+    }
+  ]
+}

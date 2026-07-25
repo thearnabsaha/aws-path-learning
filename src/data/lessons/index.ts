@@ -1,34 +1,41 @@
-import type { Lesson } from "@/types/lesson";
-import { part1 } from "./part1";
-import { part2 } from "./part2";
-import { part3 } from "./part3";
+import type { Lesson, LessonSummary } from "@/types/lesson";
+import indexJson from "@/data/generated/index.json";
 
-export const lessons: Lesson[] = [...part1, ...part2, ...part3];
+/** Lightweight index (no HTML body) — safe for home + sidebar. */
+export const lessonSummaries: LessonSummary[] = indexJson as LessonSummary[];
 
-export function getLesson(id: string): Lesson | undefined {
-  return lessons.find((l) => l.id === id);
+/** @deprecated Prefer lessonSummaries — kept name for fewer call-site renames */
+export const lessons = lessonSummaries;
+
+export function getLessonSummary(id: string): LessonSummary | undefined {
+  return lessonSummaries.find((l) => l.id === id);
 }
 
 export function getLessonIndex(id: string): number {
-  return lessons.findIndex((l) => l.id === id);
+  return lessonSummaries.findIndex((l) => l.id === id);
 }
 
-export function getAdjacent(id: string): {
-  prev: Lesson | null;
-  next: Lesson | null;
+export function getAdjacentSummaries(id: string): {
+  prev: LessonSummary | null;
+  next: LessonSummary | null;
 } {
   const idx = getLessonIndex(id);
   if (idx < 0) return { prev: null, next: null };
   return {
-    prev: idx > 0 ? lessons[idx - 1] : null,
-    next: idx < lessons.length - 1 ? lessons[idx + 1] : null,
+    prev: idx > 0 ? lessonSummaries[idx - 1] : null,
+    next: idx < lessonSummaries.length - 1 ? lessonSummaries[idx + 1] : null,
   };
 }
 
-export function getSections(): { section: string; items: Lesson[] }[] {
-  const map = new Map<string, Lesson[]>();
+/** @deprecated use getAdjacentSummaries */
+export function getAdjacent(id: string) {
+  return getAdjacentSummaries(id);
+}
+
+export function getSections(): { section: string; items: LessonSummary[] }[] {
+  const map = new Map<string, LessonSummary[]>();
   const order: string[] = [];
-  for (const lesson of lessons) {
+  for (const lesson of lessonSummaries) {
     if (!map.has(lesson.section)) {
       map.set(lesson.section, []);
       order.push(lesson.section);
@@ -36,4 +43,20 @@ export function getSections(): { section: string; items: Lesson[] }[] {
     map.get(lesson.section)!.push(lesson);
   }
   return order.map((section) => ({ section, items: map.get(section)! }));
+}
+
+/**
+ * Dynamically load one full lesson (content + quiz) — code-split per id.
+ */
+export async function loadLesson(id: string): Promise<Lesson | null> {
+  try {
+    const mod = await import(`@/data/generated/lessons/${id}.json`);
+    return (mod.default ?? mod) as Lesson;
+  } catch {
+    return null;
+  }
+}
+
+export function getAllLessonIds(): string[] {
+  return lessonSummaries.map((l) => l.id);
 }

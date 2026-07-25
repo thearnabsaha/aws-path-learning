@@ -1,0 +1,267 @@
+{
+  "id": "lambda",
+  "number": "08",
+  "section": "Serverless",
+  "title": "AWS Lambda",
+  "short": "Serverless functions, triggers, API Gateway, cold starts.",
+  "minutes": 35,
+  "tags": [
+    "serverless",
+    "lambda"
+  ],
+  "goals": [
+    "What serverless and Lambda mean",
+    "Events, API Gateway, cold starts",
+    "When to choose Lambda vs EC2"
+  ],
+  "reviewed": "2026-07",
+  "sources": [
+    "https://docs.aws.amazon.com/lambda/latest/dg/welcome.html",
+    "ChatGPT AWS Learning Roadmap"
+  ],
+  "content": "<h2>Lesson 8: AWS Lambda (Serverless Computing)</h2>\n<p>This lesson shifts from always-on servers to serverless compute. Lambda is a major mindset change: run code in response to events without managing the underlying machines.</p>\n<p>By the end of this lesson, you will understand:</p>\n<ul>\n<li>What serverless means</li>\n<li>What Lambda is</li>\n<li>How Lambda works</li>\n<li>Events and triggers</li>\n<li>API Gateway</li>\n<li>Execution lifecycle</li>\n<li>Timeouts and memory</li>\n<li>Cold starts</li>\n<li>IAM roles for Lambda</li>\n<li>When to use Lambda vs EC2</li>\n</ul>\n<hr class=\"divider\" />\n<h2>The Old Way</h2>\n<p>Suppose someone visits your website.</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>User\n   │\n   ▼\nEC2 Server\n   │\n   ▼\nApplication Code</code></pre>\n<p>Your EC2 server runs 24×7.</p>\n<p>Even if nobody visits your website at 3 AM...</p>\n<p>You're still paying for the server.</p>\n<hr class=\"divider\" />\n<h2>The Serverless Way</h2>\n<p>With Lambda:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>User\n\n↓\n\nAWS Lambda\n\n↓\n\nYour Code\n\n↓\n\nResponse</code></pre>\n<p>No server to manage.</p>\n<p>No operating system to patch.</p>\n<p>No EC2 instance to monitor.</p>\n<p>AWS handles the infrastructure behind the scenes.</p>\n<blockquote class=\"callout tip\"><p><strong>Important:</strong> \"Serverless\" doesn't mean there are no servers. It means <strong>you don't manage them</strong>—AWS does.</p></blockquote>\n<hr class=\"divider\" />\n<h2>What is Lambda?</h2>\n<p>AWS Lambda is a service that runs your code <strong>only when it's triggered</strong>.</p>\n<p>Imagine a coffee machine.</p>\n<p>Traditional server:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Coffee Machine\n\nON\n\n24 Hours</code></pre>\n<p>Lambda:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Button Pressed\n\n↓\n\nCoffee Machine Turns On\n\n↓\n\nMakes Coffee\n\n↓\n\nTurns Off</code></pre>\n<p>You only use resources when work needs to be done.</p>\n<hr class=\"divider\" />\n<h2>Event-Driven Computing</h2>\n<p>Lambda runs because <strong>something happens</strong>.</p>\n<p>That \"something\" is called an <strong>event</strong>.</p>\n<p>Examples:</p>\n<ul>\n<li>A user uploads a file to S3.</li>\n<li>Someone sends an HTTP request.</li>\n<li>A scheduled time arrives.</li>\n<li>A message appears in a queue.</li>\n<li>A database record changes (depending on the service and integration).</li>\n</ul>\n<hr class=\"divider\" />\n<h2>Common Lambda Triggers</h2>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Trigger</th><th>Example</th></tr></thead><tbody>\n<tr><td>API Gateway</td><td>User opens a web API</td></tr>\n<tr><td>S3</td><td>File uploaded</td></tr>\n<tr><td>EventBridge</td><td>Scheduled task</td></tr>\n<tr><td>SQS</td><td>Message arrives</td></tr>\n<tr><td>SNS</td><td>Notification published</td></tr>\n<tr><td>DynamoDB Streams</td><td>Table data changes</td></tr>\n</tbody></table></div>\n<hr class=\"divider\" />\n<h2>Example: Image Processing</h2>\n<p>User uploads:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>photo.jpg</code></pre>\n<p>Flow:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>User\n\n↓\n\nS3 Bucket\n\n↓\n\nLambda Trigger\n\n↓\n\nResize Image\n\n↓\n\nSave to S3</code></pre>\n<p>No EC2 server required.</p>\n<hr class=\"divider\" />\n<h2>Example: Sending Emails</h2>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Customer Places Order\n\n↓\n\nLambda\n\n↓\n\nSend Email</code></pre>\n<p>The function runs for a few seconds and then finishes.</p>\n<hr class=\"divider\" />\n<h2>How Lambda Executes</h2>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Event\n\n↓\n\nLambda Starts\n\n↓\n\nRun Code\n\n↓\n\nReturn Result\n\n↓\n\nStop</code></pre>\n<p>You pay for the execution time, not for idle time.</p>\n<hr class=\"divider\" />\n<h2>Supported Languages</h2>\n<p>Lambda supports several runtimes, including:</p>\n<ul>\n<li>Python</li>\n<li>Java</li>\n<li>Node.js</li>\n<li>C#</li>\n<li>Go</li>\n<li>Ruby</li>\n</ul>\n<p>Since you work with C#, here's a simple example:</p>\n<div class=\"code-label\"><span>csharp</span></div>\n<pre><code>public string FunctionHandler(string input)\n{\n    return $\"Hello {input}\";\n}</code></pre>\n<p>AWS invokes the handler when the function is triggered.</p>\n<hr class=\"divider\" />\n<h2>Function Handler</h2>\n<p>Every Lambda function has an <strong>entry point</strong>, called a <strong>handler</strong>.</p>\n<p>Think of it as the function AWS calls first.</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Event\n\n↓\n\nHandler\n\n↓\n\nYour Code</code></pre>\n<hr class=\"divider\" />\n<h2>Execution Time</h2>\n<p>A Lambda function doesn't run forever.</p>\n<p>It starts:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Request\n\n↓\n\nStart\n\n↓\n\nExecute\n\n↓\n\nStop</code></pre>\n<p>You configure a maximum timeout (up to 15 minutes).</p>\n<p>If the function exceeds that limit, AWS stops it.</p>\n<hr class=\"divider\" />\n<h2>Memory</h2>\n<p>When creating a Lambda function, you choose its memory allocation.</p>\n<p>Examples:</p>\n<ul>\n<li>128 MB</li>\n<li>512 MB</li>\n<li>1024 MB</li>\n<li>Higher values are available</li>\n</ul>\n<p>More memory generally also gives the function more CPU resources.</p>\n<hr class=\"divider\" />\n<h2>Stateless</h2>\n<p>Lambda is <strong>stateless</strong>.</p>\n<p>This means:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Request 1\n\n↓\n\nLambda\n\n↓\n\nEnds</code></pre>\n<p>Next request:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Request 2\n\n↓\n\nNew Execution</code></pre>\n<p>Don't assume data from one execution will always be available in the next.</p>\n<p>Persistent data should be stored in services like:</p>\n<ul>\n<li>S3</li>\n<li>RDS</li>\n<li>DynamoDB</li>\n</ul>\n<hr class=\"divider\" />\n<h2>IAM Role</h2>\n<p>A Lambda function often needs permission to access AWS services.</p>\n<p>Example:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Lambda\n\n↓\n\nRead S3\n\n↓\n\nAllowed?</code></pre>\n<p>Permissions come from an <strong>IAM role</strong> attached to the function.</p>\n<p>Without the correct role:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Access Denied</code></pre>\n<hr class=\"divider\" />\n<h2>API Gateway</h2>\n<p>Suppose you want people to call your Lambda function over HTTP.</p>\n<p>You use <strong>API Gateway</strong>.</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Browser\n\n↓\n\nAPI Gateway\n\n↓\n\nLambda\n\n↓\n\nResponse</code></pre>\n<p>Example:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>GET /users/123</code></pre>\n<p>API Gateway invokes Lambda and returns the result.</p>\n<hr class=\"divider\" />\n<h2>Traditional API vs Serverless API</h2>\n<p>Traditional:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Browser\n\n↓\n\nLoad Balancer\n\n↓\n\nEC2\n\n↓\n\nApplication\n\n↓\n\nDatabase</code></pre>\n<p>Serverless:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Browser\n\n↓\n\nAPI Gateway\n\n↓\n\nLambda\n\n↓\n\nDatabase</code></pre>\n<p>Fewer infrastructure components for many workloads.</p>\n<hr class=\"divider\" />\n<h2>Cold Start</h2>\n<p>If a Lambda function hasn't been used for some time:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>First Request\n\n↓\n\nAWS Starts Environment\n\n↓\n\nRun Code</code></pre>\n<p>That startup delay is called a <strong>cold start</strong>.</p>\n<p>Later requests often reuse the existing environment:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Second Request\n\n↓\n\nAlready Warm\n\n↓\n\nRuns Faster</code></pre>\n<p>Cold starts are usually small but can matter for latency-sensitive applications.</p>\n<hr class=\"divider\" />\n<h2>Concurrency</h2>\n<p>Imagine:</p>\n<p>10,000 users arrive simultaneously.</p>\n<p>Lambda can create multiple execution environments to process many requests in parallel, subject to your account's concurrency limits.</p>\n<p>Traditional server:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>One Server\n\n↓\n\nQueue Builds</code></pre>\n<p>Lambda:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Request 1\n\n↓\n\nLambda 1\n\nRequest 2\n\n↓\n\nLambda 2\n\nRequest 3\n\n↓\n\nLambda 3</code></pre>\n<hr class=\"divider\" />\n<h2>Lambda Pricing</h2>\n<p>With EC2:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Server Running\n\n↓\n\nPay</code></pre>\n<p>With Lambda:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Function Runs\n\n↓\n\nPay\n\nFunction Stops\n\n↓\n\nNo Compute Charges While Idle</code></pre>\n<p>Lambda pricing is based primarily on the number of requests and execution duration.</p>\n<hr class=\"divider\" />\n<h2>Lambda vs EC2</h2>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Lambda</th><th>EC2</th></tr></thead><tbody>\n<tr><td>No server management</td><td>You manage the server</td></tr>\n<tr><td>Event-driven</td><td>Always available while running</td></tr>\n<tr><td>Automatic scaling</td><td>Configure scaling with Auto Scaling</td></tr>\n<tr><td>Short-lived execution</td><td>Long-running processes supported</td></tr>\n<tr><td>Pay per execution</td><td>Pay while the instance runs</td></tr>\n</tbody></table></div>\n<hr class=\"divider\" />\n<h2>When to Use Lambda</h2>\n<p>Good choices:</p>\n<ul>\n<li>REST APIs</li>\n<li>File processing</li>\n<li>Scheduled jobs</li>\n<li>Notifications</li>\n<li>Data transformations</li>\n<li>Lightweight automation</li>\n</ul>\n<p>Less suitable for:</p>\n<ul>\n<li>Applications needing more than 15 minutes per execution</li>\n<li>Long-running background services</li>\n<li>Software requiring full control of the operating system</li>\n</ul>\n<hr class=\"divider\" />\n<h2>Real-World Example</h2>\n<p>A résumé upload service:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>User Uploads Resume\n\n↓\n\nS3\n\n↓\n\nLambda\n\n↓\n\nExtract Text\n\n↓\n\nStore Metadata in Database\n\n↓\n\nNotify Recruiter</code></pre>\n<p>No EC2 servers needed.</p>\n<hr class=\"divider\" />\n<h2>Hands-on Lab</h2>\n<p>Try this in your AWS account:</p>\n<ol>\n<li>Create a Lambda function using Python or C#.</li>\n<li>Write a simple function that returns <code>\"Hello, AWS!\"</code>.</li>\n<li>Test it from the Lambda console.</li>\n<li>Attach an IAM role with permission to write logs.</li>\n<li>View execution logs in CloudWatch.</li>\n<li>(Optional) Connect it to API Gateway and call it from your browser.</li>\n</ol>\n<hr class=\"divider\" />\n<h2>Interview Questions</h2>\n<ol>\n<li>What does \"serverless\" mean?</li>\n<li>What is AWS Lambda?</li>\n<li>What can trigger a Lambda function?</li>\n<li>Why does Lambda need an IAM role?</li>\n<li>What is a cold start?</li>\n<li>Why is Lambda considered stateless?</li>\n<li>When would you choose Lambda instead of EC2?</li>\n<li>What are the execution time limits of Lambda?</li>\n</ol>\n<hr class=\"divider\" />\n<h2>Architecture So Far</h2>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>                   Internet\n                        │\n                  API Gateway\n                        │\n                     Lambda\n                  ┌─────┴─────┐\n                  ▼           ▼\n                Amazon S3   Amazon RDS</code></pre>\n<p>Or, for a traditional web application:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Internet\n    │\nApplication Load Balancer\n    │\nAuto Scaling Group (EC2)\n    ├──────────┐\n    ▼          ▼\n Amazon RDS   Amazon S3</code></pre>\n<p>A key AWS design skill is knowing <strong>when to use serverless</strong> and <strong>when to use traditional servers</strong>.</p>\n<hr class=\"divider\" />\n<h2>What You've Learned</h2>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Service</th><th>Purpose</th></tr></thead><tbody>\n<tr><td>IAM</td><td>Identity &amp; access management</td></tr>\n<tr><td>EC2</td><td>Virtual machines</td></tr>\n<tr><td>S3</td><td>Object storage</td></tr>\n<tr><td>VPC</td><td>Networking</td></tr>\n<tr><td>RDS</td><td>Managed relational databases</td></tr>\n<tr><td>ELB</td><td>Traffic distribution</td></tr>\n<tr><td>Auto Scaling</td><td>Automatic EC2 scaling</td></tr>\n<tr><td>Lambda</td><td>Event-driven serverless compute</td></tr>\n</tbody></table></div>\n<h2>Next Lesson: Amazon DynamoDB</h2>\n<p>You'll learn AWS's fully managed <strong>NoSQL database</strong>, including:</p>\n<ul>\n<li>NoSQL vs SQL</li>\n<li>Tables, items, and attributes</li>\n<li>Partition keys</li>\n<li>Read/write capacity</li>\n<li>Global Secondary Indexes (GSIs)</li>\n<li>DynamoDB Streams</li>\n<li>TTL (Time to Live)</li>\n<li>When to choose DynamoDB instead of RDS</li>\n</ul>\n<p>By the end of that lesson, you'll understand the two major database models used in AWS: <strong>relational (RDS)</strong> and <strong>NoSQL (DynamoDB)</strong>.</p>\n<aside class=\"accuracy-note\" role=\"note\"><p><strong>Content review:</strong> 2026-07. Curriculum text is adapted from a shared learning roadmap; verify critical details in official AWS docs before production use.</p><p class=\"accuracy-note-label\">References</p><ul><li><a href=\"https://docs.aws.amazon.com/lambda/latest/dg/welcome.html\" rel=\"noopener noreferrer\" target=\"_blank\">docs.aws.amazon.com/lambda/latest/dg/welcome.html…</a></li></ul></aside>",
+  "quiz": [
+    {
+      "q": "Serverless means:",
+      "options": [
+        "You don’t manage servers; you run code on managed compute",
+        "There are literally zero computers in AWS",
+        "No IAM is needed",
+        "No networking exists"
+      ],
+      "answer": 0,
+      "explain": "Mindset shift."
+    },
+    {
+      "q": "Lambda runs code in response to:",
+      "options": [
+        "Events/triggers",
+        "Only monthly cron on your laptop",
+        "Only manual SSH",
+        "Only AMI launches"
+      ],
+      "answer": 0,
+      "explain": "Event-driven."
+    },
+    {
+      "q": "Common triggers include:",
+      "options": [
+        "S3 events, API Gateway, schedules, streams, etc.",
+        "Only mechanical keyboards",
+        "Only IGW attachments",
+        "Only bucket renames by DNS"
+      ],
+      "answer": 0,
+      "explain": "Many event sources."
+    },
+    {
+      "q": "Image processing example:",
+      "options": [
+        "S3 upload triggers Lambda to process",
+        "EC2 must always poll S3 forever only",
+        "NAT deletes images",
+        "ALB stores images in IAM"
+      ],
+      "answer": 0,
+      "explain": "Classic pattern."
+    },
+    {
+      "q": "Lambda execution is billed roughly by:",
+      "options": [
+        "Invocations and duration/memory (GB-seconds)",
+        "Number of VPCs only",
+        "Number of root users only",
+        "Number of AZs only"
+      ],
+      "answer": 0,
+      "explain": "Pricing model theme."
+    },
+    {
+      "q": "Cold start is:",
+      "options": [
+        "Extra latency when environment starts cold",
+        "When S3 freezes permanently",
+        "When VPC freezes",
+        "When MFA expires only"
+      ],
+      "answer": 0,
+      "explain": "Cold start concept."
+    },
+    {
+      "q": "Lambda functions should be treated as:",
+      "options": [
+        "Stateless between invocations (persist elsewhere)",
+        "Always storing forever on local disk only",
+        "A replacement for CloudTrail",
+        "A type of NACL"
+      ],
+      "answer": 0,
+      "explain": "Stateless."
+    },
+    {
+      "q": "IAM role for Lambda grants:",
+      "options": [
+        "Permissions the function needs to call AWS APIs",
+        "Public internet admin by default",
+        "Root privileges always",
+        "No logging ever"
+      ],
+      "answer": 0,
+      "explain": "Execution role."
+    },
+    {
+      "q": "API Gateway often:",
+      "options": [
+        "Exposes HTTP APIs that invoke Lambda",
+        "Replaces EC2 hypervisors",
+        "Stores EBS snapshots",
+        "Creates CIDR blocks"
+      ],
+      "answer": 0,
+      "explain": "Serverless API."
+    },
+    {
+      "q": "Timeouts matter because:",
+      "options": [
+        "Functions can run too long/fail; set realistic limits",
+        "Lambda never stops",
+        "Timeouts disable Regions",
+        "Timeouts create AZs"
+      ],
+      "answer": 0,
+      "explain": "Execution time limits."
+    },
+    {
+      "q": "Memory setting also affects:",
+      "options": [
+        "CPU power available (and cost/performance)",
+        "Only the font size in console",
+        "Only S3 class",
+        "Only ALB idle timeout always"
+      ],
+      "answer": 0,
+      "explain": "Memory/CPU relationship."
+    },
+    {
+      "q": "Lambda vs EC2: Lambda is better when:",
+      "options": [
+        "Short event-driven tasks without server management",
+        "You need custom kernels/GPUs long-running always",
+        "You need permanent SSH hosts only",
+        "You refuse all managed services"
+      ],
+      "answer": 0,
+      "explain": "Tradeoffs."
+    },
+    {
+      "q": "Concurrency refers to:",
+      "options": [
+        "How many executions can run in parallel",
+        "How many VPCs you own",
+        "How many root users",
+        "How many AMIs"
+      ],
+      "answer": 0,
+      "explain": "Scaling executions."
+    },
+    {
+      "q": "Supported languages include (examples):",
+      "options": [
+        "Python, Node.js, and others supported by Lambda",
+        "Only assembly on mainframes required",
+        "Only abacus",
+        "Only SQL in RDS"
+      ],
+      "answer": 0,
+      "explain": "Multiple runtimes."
+    },
+    {
+      "q": "Handler is:",
+      "options": [
+        "Entry function Lambda invokes",
+        "A type of NAT",
+        "A security group only",
+        "An S3 bucket ACL only"
+      ],
+      "answer": 0,
+      "explain": "Function handler."
+    },
+    {
+      "q": "Sending emails example shows:",
+      "options": [
+        "Event triggers function to perform a task",
+        "EC2 must send all emails always",
+        "S3 cannot trigger anything",
+        "CloudWatch cannot metric"
+      ],
+      "answer": 0,
+      "explain": "Event → work."
+    },
+    {
+      "q": "Traditional always-on servers vs Lambda:",
+      "options": [
+        "Pay for idle servers vs pay per use for many workloads",
+        "Lambda always costs more when idle 24/7 identically",
+        "EC2 cannot run code",
+        "Lambda cannot use IAM"
+      ],
+      "answer": 0,
+      "explain": "Economics/ops."
+    },
+    {
+      "q": "When NOT to use Lambda (spirit):",
+      "options": [
+        "Long specialized server workloads needing custom environments",
+        "Short glue code",
+        "S3 event transforms",
+        "Cron microtasks"
+      ],
+      "answer": 0,
+      "explain": "Know limits."
+    },
+    {
+      "q": "Idempotency matters because:",
+      "options": [
+        "Events can retry; handlers should tolerate duplicates",
+        "AWS never retries",
+        "Lambda runs exactly once cosmically guaranteed always",
+        "S3 forbids overwrites"
+      ],
+      "answer": 0,
+      "explain": "At-least-once patterns."
+    },
+    {
+      "q": "Architecture so far adds Lambda as:",
+      "options": [
+        "Event-driven compute alongside EC2 patterns",
+        "A replacement for all networking",
+        "A type of subnet",
+        "A billing currency"
+      ],
+      "answer": 0,
+      "explain": "Service mix."
+    },
+    {
+      "q": "Logs for Lambda typically go to:",
+      "options": [
+        "CloudWatch Logs",
+        "Only EBS",
+        "Only physical printers",
+        "Only IAM access keys"
+      ],
+      "answer": 0,
+      "explain": "Ops integration."
+    },
+    {
+      "q": "Hands-on lab spirit:",
+      "options": [
+        "Create a function, trigger it, inspect logs",
+        "Delete the organization",
+        "Disable MFA",
+        "Commit root keys"
+      ],
+      "answer": 0,
+      "explain": "Practice."
+    }
+  ]
+}

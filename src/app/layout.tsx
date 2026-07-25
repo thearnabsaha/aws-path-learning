@@ -11,15 +11,35 @@ const inter = Inter({
   display: "swap",
 });
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ||
+  "https://aws-path-learning.vercel.app";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
     default: "AWS Path — Learn Cloud the Right Way",
     template: "%s · AWS Path",
   },
   description:
-    "Clean AWS learning platform with lessons, diagrams, quizzes, local progress, and offline PWA support.",
+    "Clean AWS learning path: 12 lessons from cloud fundamentals through infrastructure as code, with quizzes, local progress, and offline PWA support.",
   applicationName: "AWS Path",
   manifest: "/manifest.webmanifest",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: siteUrl,
+    siteName: "AWS Path",
+    title: "AWS Path — Learn Cloud the Right Way",
+    description:
+      "12 lessons · quizzes · local progress. Cream & mocha learning UI for AWS fundamentals through IaC.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "AWS Path — Learn Cloud the Right Way",
+    description:
+      "12 lessons · quizzes · local progress. Learn AWS clearly on any device.",
+  },
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",

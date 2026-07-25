@@ -1,0 +1,269 @@
+{
+  "id": "iac",
+  "number": "12",
+  "section": "Automation",
+  "title": "IaC — CloudFormation & Terraform",
+  "short": "Declare infra as code, state, modules, CI/CD, tool choice.",
+  "minutes": 40,
+  "tags": [
+    "iac",
+    "terraform",
+    "cloudformation"
+  ],
+  "goals": [
+    "Why infrastructure as code matters",
+    "CloudFormation vs Terraform at a high level",
+    "Plan/apply workflow and state"
+  ],
+  "reviewed": "2026-07",
+  "sources": [
+    "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html",
+    "https://developer.hashicorp.com/terraform/intro",
+    "ChatGPT AWS Learning Roadmap"
+  ],
+  "content": "<h2>Lesson 12: Infrastructure as Code (IaC) – AWS CloudFormation &amp; Terraform</h2>\n<p>This skill separates people who click in the console from people who engineer infrastructure. Professionals define AWS environments as code—repeatable, reviewable, and ready for CI/CD—with CloudFormation and Terraform.</p>\n<p>By the end of this lesson, you will understand:</p>\n<ul>\n<li>What Infrastructure as Code (IaC) is</li>\n<li>Why manual deployments are a problem</li>\n<li>AWS CloudFormation</li>\n<li>Terraform</li>\n<li>State files</li>\n<li>Variables</li>\n<li>Modules</li>\n<li>Drift</li>\n<li>CI/CD integration</li>\n<li>Which tool to choose</li>\n</ul>\n<hr class=\"divider\" />\n<h2>The Problem with Manual Infrastructure</h2>\n<p>Suppose your manager says:</p>\n<blockquote class=\"callout tip\"><p>\"Create our production environment.\"</p></blockquote>\n<p>You manually create:</p>\n<ul>\n<li>VPC</li>\n<li>Subnets</li>\n<li>EC2</li>\n<li>RDS</li>\n<li>Security Groups</li>\n<li>IAM Roles</li>\n<li>Load Balancer</li>\n</ul>\n<p>Three months later...</p>\n<blockquote class=\"callout tip\"><p>\"Create the exact same setup for testing.\"</p></blockquote>\n<p>Can you remember every setting?</p>\n<p>Probably not.</p>\n<p>Manual work leads to mistakes.</p>\n<hr class=\"divider\" />\n<h2>Infrastructure as Code</h2>\n<p>Instead of clicking:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>AWS Console\n\n↓\n\nCreate VPC\n\n↓\n\nCreate EC2\n\n↓\n\nCreate RDS</code></pre>\n<p>You write code:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>infrastructure.tf\n\n↓\n\nRun Command\n\n↓\n\nAWS Creates Everything</code></pre>\n<p>Your infrastructure becomes:</p>\n<ul>\n<li>Repeatable</li>\n<li>Version-controlled</li>\n<li>Easier to review</li>\n<li>Easier to automate</li>\n</ul>\n<hr class=\"divider\" />\n<h2>Real-World Analogy</h2>\n<p>Imagine building a house.</p>\n<p>Manual:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Build House\n\n↓\n\nTry to remember everything\n\n↓\n\nBuild Again</code></pre>\n<p>Infrastructure as Code:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Blueprint\n\n↓\n\nBuild House\n\n↓\n\nReuse Blueprint</code></pre>\n<p>The blueprint is your IaC configuration.</p>\n<hr class=\"divider\" />\n<h2>Two Major IaC Tools</h2>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Tool</th><th>Created By</th></tr></thead><tbody>\n<tr><td>AWS CloudFormation</td><td>AWS</td></tr>\n<tr><td>Terraform</td><td>HashiCorp</td></tr>\n</tbody></table></div>\n<hr class=\"divider\" />\n<h2>CloudFormation</h2>\n<p>CloudFormation is AWS's native IaC service.</p>\n<p>You write a template in YAML or JSON.</p>\n<p>Example:</p>\n<div class=\"code-label\"><span>yaml</span></div>\n<pre><code>Resources:\n  MyBucket:\n    Type: AWS::S3::Bucket</code></pre>\n<p>CloudFormation creates the bucket for you.</p>\n<hr class=\"divider\" />\n<h2>CloudFormation Stack</h2>\n<p>A <strong>Stack</strong> is a collection of AWS resources managed together.</p>\n<p>Example:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Stack\n\n↓\n\nVPC\n\n↓\n\nEC2\n\n↓\n\nRDS\n\n↓\n\nS3</code></pre>\n<p>Delete the stack, and CloudFormation deletes the managed resources (subject to resource policies and deletion protection).</p>\n<hr class=\"divider\" />\n<h2>Terraform</h2>\n<p>Terraform works with AWS and many other providers.</p>\n<p>Example:</p>\n<div class=\"code-label\"><span>hcl</span></div>\n<pre><code>resource \"aws_s3_bucket\" \"resume\" {\n  bucket = \"arnab-resume\"\n}</code></pre>\n<p>Run:</p>\n<div class=\"code-label\"><span>bash</span></div>\n<pre><code>terraform apply</code></pre>\n<p>Terraform creates the bucket.</p>\n<hr class=\"divider\" />\n<h2>Why Companies Love Terraform</h2>\n<p>One language can manage:</p>\n<ul>\n<li>AWS</li>\n<li>Azure</li>\n<li>Google Cloud</li>\n<li>GitHub</li>\n<li>Cloudflare</li>\n<li>Datadog</li>\n<li>Kubernetes</li>\n</ul>\n<p>This makes it popular in multi-cloud environments.</p>\n<hr class=\"divider\" />\n<h2>Terraform Workflow</h2>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Write Code\n\n↓\n\nterraform init\n\n↓\n\nterraform plan\n\n↓\n\nterraform apply\n\n↓\n\nInfrastructure Created</code></pre>\n<hr class=\"divider\" />\n<h2>terraform init</h2>\n<p>Downloads the required provider plugins.</p>\n<p>Example:</p>\n<div class=\"code-label\"><span>bash</span></div>\n<pre><code>terraform init</code></pre>\n<p>Run this once when starting a project or after changing providers.</p>\n<hr class=\"divider\" />\n<h2>terraform plan</h2>\n<p>Shows what Terraform intends to do.</p>\n<p>Example:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>+ Create EC2\n\n+ Create S3\n\n+ Create VPC</code></pre>\n<p>Nothing changes yet.</p>\n<hr class=\"divider\" />\n<h2>terraform apply</h2>\n<p>Actually creates or updates infrastructure.</p>\n<div class=\"code-label\"><span>bash</span></div>\n<pre><code>terraform apply</code></pre>\n<hr class=\"divider\" />\n<h2>terraform destroy</h2>\n<p>Deletes managed infrastructure.</p>\n<div class=\"code-label\"><span>bash</span></div>\n<pre><code>terraform destroy</code></pre>\n<p>Use with care.</p>\n<hr class=\"divider\" />\n<h2>State File</h2>\n<p>Terraform keeps track of managed resources using a <strong>state file</strong>.</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Terraform\n\n↓\n\nterraform.tfstate\n\n↓\n\nAWS Resources</code></pre>\n<p>The state file maps your configuration to real infrastructure.</p>\n<p>In production, teams usually store it remotely (for example, in an S3 bucket with locking using supported backends).</p>\n<hr class=\"divider\" />\n<h2>Variables</h2>\n<p>Instead of hardcoding values:</p>\n<div class=\"code-label\"><span>hcl</span></div>\n<pre><code>instance_type = \"t3.micro\"</code></pre>\n<p>Use variables:</p>\n<div class=\"code-label\"><span>hcl</span></div>\n<pre><code>variable \"instance_type\" {}</code></pre>\n<p>Then provide:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>t3.micro\n\nor\n\nt3.small</code></pre>\n<p>This makes configurations reusable.</p>\n<hr class=\"divider\" />\n<h2>Outputs</h2>\n<p>After creating infrastructure:</p>\n<p>Terraform can display useful values.</p>\n<p>Example:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>EC2 Public IP\n\n↓\n\n54.221.15.33</code></pre>\n<p>Outputs are often consumed by other tools or modules.</p>\n<hr class=\"divider\" />\n<h2>Modules</h2>\n<p>Imagine copying the same VPC configuration into ten projects.</p>\n<p>Instead, create a module.</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>VPC Module\n\n↓\n\nProject A\n\nProject B\n\nProject C</code></pre>\n<p>A module is a reusable building block.</p>\n<hr class=\"divider\" />\n<h2>Example Project Structure</h2>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>project/\n\nmain.tf\n\nvariables.tf\n\noutputs.tf\n\nterraform.tfvars</code></pre>\n<p>Each file has a specific purpose.</p>\n<hr class=\"divider\" />\n<h2>Drift</h2>\n<p>Suppose Terraform created an EC2 instance.</p>\n<p>Later someone changes it manually in the AWS Console.</p>\n<p>Now:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Terraform\n\n≠\n\nAWS</code></pre>\n<p>This is called <strong>configuration drift</strong>.</p>\n<p>Running <code>terraform plan</code> helps identify these differences.</p>\n<hr class=\"divider\" />\n<h2>Idempotency</h2>\n<p>One of Terraform's most important concepts.</p>\n<p>Run:</p>\n<div class=\"code-label\"><span>bash</span></div>\n<pre><code>terraform apply</code></pre>\n<p>today.</p>\n<p>Run it again tomorrow.</p>\n<p>If nothing changed:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>No Changes</code></pre>\n<p>Terraform won't recreate everything.</p>\n<p>This predictable behavior is called <strong>idempotency</strong>.</p>\n<hr class=\"divider\" />\n<h2>CloudFormation vs Terraform</h2>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>CloudFormation</th><th>Terraform</th></tr></thead><tbody>\n<tr><td>AWS only</td><td>Multi-cloud</td></tr>\n<tr><td>Managed by AWS</td><td>Open-source with commercial offerings</td></tr>\n<tr><td>YAML/JSON</td><td>HCL</td></tr>\n<tr><td>Deep AWS integration</td><td>Broad provider ecosystem</td></tr>\n</tbody></table></div>\n<hr class=\"divider\" />\n<h2>CI/CD Integration</h2>\n<p>Typical workflow:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Developer\n\n↓\n\nGit Push\n\n↓\n\nGitHub Actions\n\n↓\n\nTerraform Plan\n\n↓\n\nApproval\n\n↓\n\nTerraform Apply\n\n↓\n\nAWS Updated</code></pre>\n<p>This allows infrastructure changes to go through code review just like application code.</p>\n<hr class=\"divider\" />\n<h2>Example Architecture</h2>\n<p>Suppose your Terraform code creates:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>VPC\n\n↓\n\nSubnets\n\n↓\n\nLoad Balancer\n\n↓\n\nECS\n\n↓\n\nRDS\n\n↓\n\nS3</code></pre>\n<p>Entire production environments can be recreated from code.</p>\n<hr class=\"divider\" />\n<h2>Production Workflow</h2>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Developer\n\n↓\n\nGit Repository\n\n↓\n\nTerraform Code\n\n↓\n\nCI/CD Pipeline\n\n↓\n\nAWS Infrastructure</code></pre>\n<p>No manual clicking required.</p>\n<hr class=\"divider\" />\n<h2>Hands-on Lab</h2>\n<ol>\n<li>Install Terraform.</li>\n<li>Configure AWS credentials.</li>\n<li>Create a simple <code>main.tf</code>.</li>\n<li>Create an S3 bucket.</li>\n<li>Run:</li>\n</ol>\n<div class=\"code-label\"><span>bash</span></div>\n<pre><code>   terraform init\n   terraform plan\n   terraform apply</code></pre>\n<ol>\n<li>Verify the bucket exists.</li>\n<li>Run:</li>\n</ol>\n<div class=\"code-label\"><span>bash</span></div>\n<pre><code>   terraform destroy</code></pre>\n<ol>\n<li>Confirm the bucket is removed.</li>\n</ol>\n<hr class=\"divider\" />\n<h2>Interview Questions</h2>\n<ol>\n<li>What is Infrastructure as Code?</li>\n<li>Why is Infrastructure as Code important?</li>\n<li>What is Terraform?</li>\n<li>What is CloudFormation?</li>\n<li>What is a Terraform state file?</li>\n<li>What is configuration drift?</li>\n<li>What is idempotency?</li>\n<li>What is a Terraform module?</li>\n<li>What is the difference between <code>terraform plan</code> and <code>terraform apply</code>?</li>\n<li>Why do companies store infrastructure in Git?</li>\n</ol>\n<hr class=\"divider\" />\n<h2>Complete AWS Architecture</h2>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>                  Internet\n                      │\n          Application Load Balancer\n                      │\n                 ECS Service\n                 ┌─────────┐\n                 ▼         ▼\n          Container 1  Container 2\n                 │         │\n                 └────┬────┘\n                      ▼\n                 Amazon RDS\n                      │\n          ┌───────────┴───────────┐\n          ▼                       ▼\n      Amazon S3              DynamoDB\n\nCloudWatch → Monitoring\nCloudTrail → Auditing\n\nEverything provisioned by Terraform or CloudFormation</code></pre>\n<hr class=\"divider\" />\n<h2>What You've Learned</h2>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Topic</th><th>Status</th></tr></thead><tbody>\n<tr><td>IAM</td><td>✅</td></tr>\n<tr><td>EC2</td><td>✅</td></tr>\n<tr><td>S3</td><td>✅</td></tr>\n<tr><td>VPC</td><td>✅</td></tr>\n<tr><td>RDS</td><td>✅</td></tr>\n<tr><td>ELB</td><td>✅</td></tr>\n<tr><td>Auto Scaling</td><td>✅</td></tr>\n<tr><td>Lambda</td><td>✅</td></tr>\n<tr><td>DynamoDB</td><td>✅</td></tr>\n<tr><td>CloudWatch</td><td>✅</td></tr>\n<tr><td>CloudTrail</td><td>✅</td></tr>\n<tr><td>Docker</td><td>✅</td></tr>\n<tr><td>ECR</td><td>✅</td></tr>\n<tr><td>ECS/Fargate</td><td>✅</td></tr>\n<tr><td>Infrastructure as Code</td><td>✅</td></tr>\n</tbody></table></div>\n<h2>What's Next?</h2>\n<p>At this point you've covered the core AWS building blocks. The next step isn't just learning another service—it's <strong>building complete production-grade systems</strong>.</p>\n<p>A practical progression would be:</p>\n<ol>\n<li><strong>Project 1:</strong> Static portfolio website (S3 + CloudFront + Route 53)</li>\n<li><strong>Project 2:</strong> Three-tier web application (ALB + EC2 + RDS)</li>\n<li><strong>Project 3:</strong> Serverless REST API (API Gateway + Lambda + DynamoDB)</li>\n<li><strong>Project 4:</strong> Containerized application (Docker + ECR + ECS/Fargate)</li>\n<li><strong>Project 5:</strong> Production deployment using Terraform and a CI/CD pipeline</li>\n</ol>\n<p>These projects will teach you how the individual AWS services fit together in real-world architectures and prepare you much better for interviews than memorizing service definitions alone.</p>\n<aside class=\"accuracy-note\" role=\"note\"><p><strong>Content review:</strong> 2026-07. Curriculum text is adapted from a shared learning roadmap; verify critical details in official AWS docs before production use.</p><p class=\"accuracy-note-label\">References</p><ul><li><a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html\" rel=\"noopener noreferrer\" target=\"_blank\">docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welco…</a></li><li><a href=\"https://developer.hashicorp.com/terraform/intro\" rel=\"noopener noreferrer\" target=\"_blank\">developer.hashicorp.com/terraform/intro…</a></li></ul></aside>",
+  "quiz": [
+    {
+      "q": "Manual console clicking at scale is a problem because:",
+      "options": [
+        "Not repeatable/reviewable; easy to drift and make mistakes",
+        "AWS forbids the console entirely",
+        "Console cannot create S3",
+        "Terraform is illegal"
+      ],
+      "answer": 0,
+      "explain": "Problem statement."
+    },
+    {
+      "q": "Infrastructure as Code means:",
+      "options": [
+        "Define infrastructure in files and apply repeatedly",
+        "Only writing JavaScript frontends",
+        "Never using git",
+        "Only drawing whiteboards"
+      ],
+      "answer": 0,
+      "explain": "IaC definition."
+    },
+    {
+      "q": "CloudFormation is:",
+      "options": [
+        "AWS-native IaC service (templates/stacks)",
+        "Only a container runtime",
+        "Only a DNS host",
+        "Only an AMI"
+      ],
+      "answer": 0,
+      "explain": "CloudFormation."
+    },
+    {
+      "q": "A stack is:",
+      "options": [
+        "A deployed collection of resources from a template",
+        "A Docker swarm only",
+        "An S3 storage class",
+        "An AZ"
+      ],
+      "answer": 0,
+      "explain": "Stack."
+    },
+    {
+      "q": "Terraform is:",
+      "options": [
+        "Popular multi-cloud IaC tool using HCL",
+        "Only an AWS console skin",
+        "Only CloudWatch",
+        "Only ECR"
+      ],
+      "answer": 0,
+      "explain": "Terraform."
+    },
+    {
+      "q": "terraform init:",
+      "options": [
+        "Initializes providers/backend/modules",
+        "Destroys all accounts",
+        "Creates root users",
+        "Disables state"
+      ],
+      "answer": 0,
+      "explain": "init."
+    },
+    {
+      "q": "terraform plan:",
+      "options": [
+        "Shows the execution plan/diff before apply",
+        "Always applies immediately without review",
+        "Deletes state only",
+        "Creates only IAM users"
+      ],
+      "answer": 0,
+      "explain": "plan."
+    },
+    {
+      "q": "terraform apply:",
+      "options": [
+        "Applies changes to reach desired state",
+        "Only formats code",
+        "Only logs in to console",
+        "Only opens SSH"
+      ],
+      "answer": 0,
+      "explain": "apply."
+    },
+    {
+      "q": "terraform destroy:",
+      "options": [
+        "Tears down managed resources",
+        "Creates a Region",
+        "Enables MFA",
+        "Uploads Docker only"
+      ],
+      "answer": 0,
+      "explain": "destroy."
+    },
+    {
+      "q": "State file maps:",
+      "options": [
+        "Config addresses to real resource IDs",
+        "Only Docker layers",
+        "Only password hashes in browser",
+        "Only CSS"
+      ],
+      "answer": 0,
+      "explain": "State importance."
+    },
+    {
+      "q": "Variables allow:",
+      "options": [
+        "Parameterizing configurations",
+        "Deleting providers",
+        "Skipping plan forever safely",
+        "Avoiding providers"
+      ],
+      "answer": 0,
+      "explain": "Variables."
+    },
+    {
+      "q": "Outputs expose:",
+      "options": [
+        "Useful values after apply (IDs, endpoints)",
+        "Only errors",
+        "Only plan JSON always private",
+        "Only destroy logs"
+      ],
+      "answer": 0,
+      "explain": "Outputs."
+    },
+    {
+      "q": "Modules help you:",
+      "options": [
+        "Reuse and organize infrastructure code",
+        "Avoid all version control",
+        "Disable drift detection",
+        "Hide state in chat apps"
+      ],
+      "answer": 0,
+      "explain": "Modules."
+    },
+    {
+      "q": "Drift means:",
+      "options": [
+        "Real infra changed outside code",
+        "Terraform is offline",
+        "S3 is full",
+        "DNS is down"
+      ],
+      "answer": 0,
+      "explain": "Drift."
+    },
+    {
+      "q": "Idempotency means:",
+      "options": [
+        "Re-applying desired state safely converges",
+        "Every apply randomly rebuilds everything differently always",
+        "State is optional",
+        "Plan is forbidden"
+      ],
+      "answer": 0,
+      "explain": "Idempotent applies."
+    },
+    {
+      "q": "CloudFormation vs Terraform (high level):",
+      "options": [
+        "CFN AWS-native; Terraform multi-cloud ecosystem—pick by context",
+        "Terraform cannot manage AWS",
+        "CFN cannot create S3",
+        "They cannot version"
+      ],
+      "answer": 0,
+      "explain": "Comparison."
+    },
+    {
+      "q": "CI/CD integration means:",
+      "options": [
+        "Plan/apply in pipelines with reviews—not long-lived keys ideally",
+        "Apply only from root laptop with no review",
+        "Never automate",
+        "Commit state secrets publicly"
+      ],
+      "answer": 0,
+      "explain": "Prod workflow."
+    },
+    {
+      "q": "Production workflow emphasizes:",
+      "options": [
+        "PR → plan → review → apply gated",
+        "Click prod randomly",
+        "Skip plan",
+        "Share state on Twitter"
+      ],
+      "answer": 0,
+      "explain": "Safe delivery."
+    },
+    {
+      "q": "Hands-on lab spirit:",
+      "options": [
+        "Create a small stack/config and apply it",
+        "Delete org trail",
+        "Disable MFA",
+        "Email access keys"
+      ],
+      "answer": 0,
+      "explain": "Practice."
+    },
+    {
+      "q": "Complete architecture as code means:",
+      "options": [
+        "VPC/compute/data/etc. defined and repeatable",
+        "Only screenshots of console",
+        "Only oral tradition",
+        "Only sticky notes"
+      ],
+      "answer": 0,
+      "explain": "End state of course."
+    },
+    {
+      "q": "Protecting state includes:",
+      "options": [
+        "Remote state, locking, encryption, least privilege",
+        "Commit secrets to public git",
+        "Email state to everyone",
+        "Disable all backends"
+      ],
+      "answer": 0,
+      "explain": "State security."
+    },
+    {
+      "q": "Why companies love Terraform (chat theme):",
+      "options": [
+        "Consistent workflow, ecosystem, multi-cloud option, modules",
+        "It deletes AWS accounts randomly",
+        "It replaces application code",
+        "It removes need for IAM"
+      ],
+      "answer": 0,
+      "explain": "Adoption reasons."
+    }
+  ]
+}

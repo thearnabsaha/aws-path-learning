@@ -1,0 +1,272 @@
+{
+  "id": "ec2",
+  "number": "03",
+  "section": "Foundations",
+  "title": "Amazon EC2",
+  "short": "Virtual servers, AMIs, security groups, key pairs, SSH.",
+  "minutes": 35,
+  "tags": [
+    "compute",
+    "ec2"
+  ],
+  "goals": [
+    "What EC2 is",
+    "How virtual machines work",
+    "Instance types",
+    "AMIs",
+    "Storage",
+    "Security Groups",
+    "Key pairs",
+    "Launch process and SSH"
+  ],
+  "reviewed": "2026-07",
+  "sources": [
+    "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html",
+    "ChatGPT AWS Learning Roadmap"
+  ],
+  "content": "<h2>Lesson 3: Amazon EC2 (Elastic Compute Cloud)</h2>\n<p>Now you launch compute: your first cloud server. EC2 is the foundation for understanding virtual machines, networking to a host, and running software in AWS.</p>\n<p>By the end of this lesson, you will understand:</p>\n<ul>\n<li>What EC2 is</li>\n<li>How virtual machines work</li>\n<li>Instance types</li>\n<li>AMIs</li>\n<li>Storage</li>\n<li>Security Groups</li>\n<li>Key Pairs</li>\n<li>The complete EC2 launch process</li>\n<li>How to SSH into your server</li>\n</ul>\n<hr class=\"divider\" />\n<h2>What is EC2?</h2>\n<p><strong>EC2 (Elastic Compute Cloud)</strong> is a virtual computer running inside an AWS data center.</p>\n<p>Instead of buying a physical computer, AWS creates one for you in minutes.</p>\n<p>Think of it like this:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Your Laptop\n      ↓\nRemote Computer (EC2)\n      ↓\nRuns 24×7</code></pre>\n<p>That remote computer can:</p>\n<ul>\n<li>Host websites</li>\n<li>Run APIs</li>\n<li>Process data</li>\n<li>Train AI models</li>\n<li>Run databases (though managed databases often use RDS)</li>\n</ul>\n<hr class=\"divider\" />\n<h2>Real-World Example</h2>\n<p>Suppose you build a website.</p>\n<p>Instead of keeping your laptop on all day:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Visitors\n     ↓\nYour Laptop</code></pre>\n<p>you deploy it to EC2:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Visitors\n     ↓\nInternet\n     ↓\nAWS EC2 Server</code></pre>\n<p>Now it's available even when your laptop is turned off.</p>\n<hr class=\"divider\" />\n<h2>Anatomy of an EC2 Instance</h2>\n<p>An EC2 instance has several components:</p>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Component</th><th>Purpose</th></tr></thead><tbody>\n<tr><td>CPU</td><td>Processes instructions</td></tr>\n<tr><td>RAM</td><td>Temporary working memory</td></tr>\n<tr><td>Storage</td><td>Stores files</td></tr>\n<tr><td>Operating System</td><td>Ubuntu, Amazon Linux, Windows, etc.</td></tr>\n<tr><td>Network</td><td>Connects to the internet or other AWS resources</td></tr>\n</tbody></table></div>\n<hr class=\"divider\" />\n<h2>EC2 Instance Types</h2>\n<p>AWS offers different \"sizes\" of computers.</p>\n<p>Examples:</p>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Type</th><th>Best For</th></tr></thead><tbody>\n<tr><td>t3.micro / t4g.micro</td><td>Learning, small websites</td></tr>\n<tr><td>t3.small</td><td>Small applications</td></tr>\n<tr><td>m7i</td><td>General-purpose workloads</td></tr>\n<tr><td>c7i</td><td>CPU-intensive tasks</td></tr>\n<tr><td>r7i</td><td>Memory-intensive workloads</td></tr>\n<tr><td>g5</td><td>GPU workloads like AI and graphics</td></tr>\n</tbody></table></div>\n<p>Think of it like renting cars:</p>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Car</th><th>Use</th></tr></thead><tbody>\n<tr><td>Hatchback</td><td>Daily commute</td></tr>\n<tr><td>SUV</td><td>Family trip</td></tr>\n<tr><td>Truck</td><td>Heavy cargo</td></tr>\n</tbody></table></div>\n<p>Choose the instance type based on your workload.</p>\n<hr class=\"divider\" />\n<h2>AMI (Amazon Machine Image)</h2>\n<p>An <strong>AMI</strong> is a preconfigured template for your server.</p>\n<p>It's like choosing which operating system to install.</p>\n<p>Popular choices include:</p>\n<ul>\n<li>Ubuntu</li>\n<li>Amazon Linux</li>\n<li>Windows Server</li>\n<li>Red Hat Enterprise Linux</li>\n</ul>\n<p>When you launch an EC2 instance, AWS copies the selected AMI to create your server.</p>\n<hr class=\"divider\" />\n<h2>EBS (Elastic Block Store)</h2>\n<p>Every computer needs a hard drive.</p>\n<p>EC2 uses <strong>EBS</strong> volumes for persistent storage.</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>EC2\n │\n └── EBS Volume</code></pre>\n<p>Your operating system, installed software, and files live here.</p>\n<p>Even if you stop the instance, the EBS volume usually remains attached and retains your data (unless configured otherwise).</p>\n<hr class=\"divider\" />\n<h2>Public vs Private IP</h2>\n<p>Every server gets IP addresses.</p>\n<h3>Public IP</h3>\n<p>Accessible from the internet.</p>\n<p>Example:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>54.201.10.22</code></pre>\n<p>People use this to reach your website or SSH into the server.</p>\n<hr class=\"divider\" />\n<h3>Private IP</h3>\n<p>Used only inside your AWS network.</p>\n<p>Example:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>172.31.x.x</code></pre>\n<p>Other AWS resources communicate with your server using private IPs when possible.</p>\n<hr class=\"divider\" />\n<h2>Security Groups (Virtual Firewall)</h2>\n<p>A <strong>Security Group</strong> controls which traffic can reach your instance.</p>\n<p>Example rules:</p>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Port</th><th>Protocol</th><th>Purpose</th></tr></thead><tbody>\n<tr><td>22</td><td>SSH</td><td>Remote login</td></tr>\n<tr><td>80</td><td>HTTP</td><td>Website</td></tr>\n<tr><td>443</td><td>HTTPS</td><td>Secure website</td></tr>\n</tbody></table></div>\n<p>Imagine your server is a house.</p>\n<p>The Security Group is the security guard deciding who gets in.</p>\n<p>If port 22 isn't allowed, SSH won't work.</p>\n<hr class=\"divider\" />\n<h2>Common Ports</h2>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Port</th><th>Service</th></tr></thead><tbody>\n<tr><td>22</td><td>SSH</td></tr>\n<tr><td>80</td><td>HTTP</td></tr>\n<tr><td>443</td><td>HTTPS</td></tr>\n<tr><td>3306</td><td>MySQL</td></tr>\n<tr><td>5432</td><td>PostgreSQL</td></tr>\n</tbody></table></div>\n<p>You'll use these frequently.</p>\n<hr class=\"divider\" />\n<h2>Key Pair</h2>\n<p>AWS does <strong>not</strong> give you a default password for most Linux instances.</p>\n<p>Instead, it uses <strong>SSH key pairs</strong>.</p>\n<p>When you create a key pair:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Private Key (.pem)\n        +\nPublic Key</code></pre>\n<ul>\n<li>AWS stores the <strong>public key</strong> on the instance.</li>\n<li>You download and keep the <strong>private key</strong> safely.</li>\n</ul>\n<p>Never share your private key.</p>\n<hr class=\"divider\" />\n<h2>Launching an EC2 Instance</h2>\n<p>The launch wizard typically asks for:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Choose AMI\n      ↓\nChoose Instance Type\n      ↓\nChoose Key Pair\n      ↓\nConfigure Network\n      ↓\nConfigure Security Group\n      ↓\nConfigure Storage\n      ↓\nLaunch</code></pre>\n<hr class=\"divider\" />\n<h2>Connecting to Your Server</h2>\n<p>On macOS or Linux:</p>\n<div class=\"code-label\"><span>bash</span></div>\n<pre><code>ssh -i mykey.pem ubuntu@YOUR_PUBLIC_IP</code></pre>\n<p>Example:</p>\n<div class=\"code-label\"><span>bash</span></div>\n<pre><code>ssh -i arnab.pem ubuntu@54.221.12.18</code></pre>\n<p>If you're using Windows, you can use:</p>\n<ul>\n<li>Windows Terminal with OpenSSH</li>\n<li>PuTTY (older approach)</li>\n<li>VS Code Remote SSH extension</li>\n</ul>\n<hr class=\"divider\" />\n<h2>What Happens After Login?</h2>\n<p>You'll see something like:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>ubuntu@ip-172-31-15-40:~$</code></pre>\n<p>You're now controlling a computer that's running in an AWS data center.</p>\n<hr class=\"divider\" />\n<h2>Basic Linux Commands</h2>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Command</th><th>Meaning</th></tr></thead><tbody>\n<tr><td><code>pwd</code></td><td>Show current directory</td></tr>\n<tr><td><code>ls</code></td><td>List files</td></tr>\n<tr><td><code>cd folder</code></td><td>Change directory</td></tr>\n<tr><td><code>mkdir demo</code></td><td>Create directory</td></tr>\n<tr><td><code>touch app.txt</code></td><td>Create file</td></tr>\n<tr><td><code>cat app.txt</code></td><td>Display file contents</td></tr>\n<tr><td><code>rm app.txt</code></td><td>Delete file</td></tr>\n</tbody></table></div>\n<p>These commands are essential for working with Linux servers.</p>\n<hr class=\"divider\" />\n<h2>Installing Software</h2>\n<p>Ubuntu:</p>\n<div class=\"code-label\"><span>bash</span></div>\n<pre><code>sudo apt update\nsudo apt install nginx -y</code></pre>\n<p>This installs <strong>Nginx</strong>, a popular web server.</p>\n<hr class=\"divider\" />\n<h2>Testing Your Website</h2>\n<p>After Nginx is running:</p>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Browser\n      ↓\nhttp://YOUR_PUBLIC_IP\n      ↓\nWelcome to Nginx!</code></pre>\n<p>Congratulations—you've deployed your first web server.</p>\n<hr class=\"divider\" />\n<h2>Stopping vs Terminating</h2>\n<p>This is important:</p>\n<div class=\"table-wrap\"><table>\n<thead><tr><th>Action</th><th>Result</th></tr></thead><tbody>\n<tr><td>Stop</td><td>Instance shuts down but can usually be started again</td></tr>\n<tr><td>Start</td><td>Boots the stopped instance</td></tr>\n<tr><td>Reboot</td><td>Restarts the operating system</td></tr>\n<tr><td>Terminate</td><td>Permanently deletes the instance</td></tr>\n</tbody></table></div>\n<p>Always double-check before terminating an instance.</p>\n<hr class=\"divider\" />\n<h2>EC2 Lifecycle</h2>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Launch\n   ↓\nRunning\n   ↓\nStop\n   ↓\nStart\n   ↓\nTerminate</code></pre>\n<hr class=\"divider\" />\n<h2>Complete Architecture</h2>\n<div class=\"code-label\"><span>text</span></div>\n<pre><code>Internet\n     │\n     ▼\nSecurity Group\n     │\n     ▼\nEC2 Instance\n     │\n     ▼\nUbuntu\n     │\n     ▼\nNginx\n     │\n     ▼\nYour Website</code></pre>\n<hr class=\"divider\" />\n<h2>Interview Questions</h2>\n<p>Try answering these:</p>\n<ol>\n<li>What is an EC2 instance?</li>\n<li>What is an AMI?</li>\n<li>What is an EBS volume?</li>\n<li>What is the purpose of a Security Group?</li>\n<li>What is the difference between a public IP and a private IP?</li>\n<li>Why are SSH key pairs used instead of passwords on many Linux instances?</li>\n<li>What is the difference between stopping and terminating an EC2 instance?</li>\n</ol>\n<hr class=\"divider\" />\n<h2>Hands-on Lab</h2>\n<p>If you have an AWS account:</p>\n<ol>\n<li>Launch a <strong>t3.micro</strong> (or <strong>t4g.micro</strong> if using an ARM-compatible AMI) Ubuntu instance.</li>\n<li>Create a new key pair.</li>\n<li>Allow:</li>\n<p>- SSH (22) from <strong>your IP only</strong> (safer than allowing everyone). - HTTP (80) from anywhere.</p>\n<li>Connect using SSH.</li>\n<li>Install Nginx:</li>\n</ol>\n<div class=\"code-label\"><span>bash</span></div>\n<pre><code>   sudo apt update\n   sudo apt install nginx -y</code></pre>\n<ol>\n<li>Open the public IP in your browser.</li>\n<li>Verify the Nginx welcome page appears.</li>\n<li>Stop the instance when you're done to avoid unnecessary charges.</li>\n</ol>\n<hr class=\"divider\" />\n<h2>What's Next?</h2>\n<p><strong>Lesson 4: Amazon S3 (Simple Storage Service)</strong></p>\n<p>You'll learn:</p>\n<ul>\n<li>Object storage vs file systems</li>\n<li>Buckets and objects</li>\n<li>Uploading files</li>\n<li>Permissions</li>\n<li>Static website hosting</li>\n<li>Versioning</li>\n<li>Lifecycle rules</li>\n<li>Storage classes</li>\n<li>Real-world architectures</li>\n</ul>\n<p>After Lesson 4, you'll have enough knowledge to build a simple static website entirely on AWS.</p>\n<aside class=\"accuracy-note\" role=\"note\"><p><strong>Content review:</strong> 2026-07. Curriculum text is adapted from a shared learning roadmap; verify critical details in official AWS docs before production use.</p><p class=\"accuracy-note-label\">References</p><ul><li><a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html\" rel=\"noopener noreferrer\" target=\"_blank\">docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html…</a></li></ul></aside>",
+  "quiz": [
+    {
+      "q": "EC2 provides:",
+      "options": [
+        "Only DNS",
+        "Virtual servers (instances) in AWS data centers",
+        "Only object storage",
+        "Only audit logs"
+      ],
+      "answer": 1,
+      "explain": "Elastic Compute Cloud = virtual machines."
+    },
+    {
+      "q": "AMI is:",
+      "options": [
+        "A billing alarm",
+        "Amazon Machine Image—template to launch instances",
+        "A load balancer rule",
+        "A DynamoDB key"
+      ],
+      "answer": 1,
+      "explain": "Boot image for instances."
+    },
+    {
+      "q": "EBS is:",
+      "options": [
+        "Elastic Block Store—network disk for instances",
+        "Email Backup Service",
+        "Edge Browser Store",
+        "EventBridge Schema"
+      ],
+      "answer": 0,
+      "explain": "Block storage attached to EC2."
+    },
+    {
+      "q": "Security Groups act as:",
+      "options": [
+        "Object versioning",
+        "A virtual firewall for instance traffic",
+        "A CDN",
+        "A Terraform backend"
+      ],
+      "answer": 1,
+      "explain": "Control allowed ports/protocols/sources."
+    },
+    {
+      "q": "A common SSH port is:",
+      "options": [
+        "80",
+        "22",
+        "443 only for SSH",
+        "3306 for SSH"
+      ],
+      "answer": 1,
+      "explain": "SSH typically port 22."
+    },
+    {
+      "q": "HTTP commonly uses port:",
+      "options": [
+        "22",
+        "80",
+        "5432",
+        "25 only"
+      ],
+      "answer": 1,
+      "explain": "HTTP = 80."
+    },
+    {
+      "q": "HTTPS commonly uses port:",
+      "options": [
+        "443",
+        "22",
+        "3389 only",
+        "53 only"
+      ],
+      "answer": 0,
+      "explain": "HTTPS = 443."
+    },
+    {
+      "q": "Key pairs are used to:",
+      "options": [
+        "Bill the account",
+        "Securely authenticate (e.g. SSH) to Linux instances",
+        "Create VPCs",
+        "Encrypt only Glacier"
+      ],
+      "answer": 1,
+      "explain": "Public key on instance; private key with you."
+    },
+    {
+      "q": "Stopping an instance vs terminating:",
+      "options": [
+        "Identical always",
+        "Stop can be restarted; terminate deletes the instance (careful with data)",
+        "Terminate is free always forever",
+        "Stop deletes the AMI"
+      ],
+      "answer": 1,
+      "explain": "Lifecycle: stop ≠ terminate."
+    },
+    {
+      "q": "Public IP means:",
+      "options": [
+        "Only reachable inside VPC",
+        "Addressable from the internet (with routes/SG allow)",
+        "Always free Elastic IP",
+        "Same as private IP"
+      ],
+      "answer": 1,
+      "explain": "Public addressing + proper networking."
+    },
+    {
+      "q": "Private IP is for:",
+      "options": [
+        "Only CloudFront",
+        "Communication inside the VPC/private network",
+        "Global anycast only",
+        "Root login only"
+      ],
+      "answer": 1,
+      "explain": "Internal addressing."
+    },
+    {
+      "q": "Instance types choose:",
+      "options": [
+        "CPU/RAM/network profile (and more) for the VM",
+        "Only the IAM user name",
+        "Only the Region flag emoji",
+        "S3 storage class"
+      ],
+      "answer": 0,
+      "explain": "Size/family of the virtual machine."
+    },
+    {
+      "q": "After SSH login you typically:",
+      "options": [
+        "Cannot install anything",
+        "Use Linux commands, install software, run services",
+        "Must use only PowerPoint",
+        "Disable the network forever"
+      ],
+      "answer": 1,
+      "explain": "Lab: install web server etc."
+    },
+    {
+      "q": "Hosting a simple website on EC2 requires roughly:",
+      "options": [
+        "Instance + OS + web server + open ports in SG",
+        "Only an S3 bucket policy",
+        "Only CloudTrail",
+        "Only MFA on root"
+      ],
+      "answer": 0,
+      "explain": "Compute + software + network allow."
+    },
+    {
+      "q": "Visitors reach your site when:",
+      "options": [
+        "Laptop must stay on always",
+        "App is deployed on EC2 reachable via network",
+        "Only localhost",
+        "Only offline mode"
+      ],
+      "answer": 1,
+      "explain": "Server stays available in the cloud."
+    },
+    {
+      "q": "CPU on EC2 is for:",
+      "options": [
+        "Processing instructions",
+        "Only storing objects forever",
+        "Only DNS",
+        "Only billing"
+      ],
+      "answer": 0,
+      "explain": "Anatomy table: CPU processes."
+    },
+    {
+      "q": "RAM is:",
+      "options": [
+        "Long-term archive only",
+        "Temporary working memory",
+        "A Region name",
+        "A policy language"
+      ],
+      "answer": 1,
+      "explain": "Working memory."
+    },
+    {
+      "q": "Interview-style: security group default posture is about:",
+      "options": [
+        "Allowing all traffic by default always",
+        "You define allow rules; be careful opening 0.0.0.0/0",
+        "They replace NACLs completely always",
+        "They store AMIs"
+      ],
+      "answer": 1,
+      "explain": "Know allow-list behavior and least exposure."
+    },
+    {
+      "q": "Elastic in EC2 hints at:",
+      "options": [
+        "You can resize/scale compute relatively flexibly",
+        "Disks never attach",
+        "No APIs exist",
+        "Only one instance type forever"
+      ],
+      "answer": 0,
+      "explain": "Elastic capacity."
+    },
+    {
+      "q": "A complete simple architecture in the lesson includes:",
+      "options": [
+        "Users → internet → EC2 (with SG) and storage components",
+        "Only IAM without compute",
+        "Only Terraform state",
+        "Only CloudWatch without servers"
+      ],
+      "answer": 0,
+      "explain": "End-to-end path to the instance."
+    },
+    {
+      "q": "Amazon Linux / Ubuntu examples are:",
+      "options": [
+        "AMIs / OS choices",
+        "Load balancer types",
+        "S3 classes",
+        "RDS engines only"
+      ],
+      "answer": 0,
+      "explain": "OS images via AMI."
+    },
+    {
+      "q": "Leaving SSH open to the whole internet is:",
+      "options": [
+        "Best practice always",
+        "Risky—prefer restricted CIDR or SSM instead",
+        "Required by AWS",
+        "The only way to use EC2"
+      ],
+      "answer": 1,
+      "explain": "Common mistake called out in good teaching."
+    }
+  ]
+}

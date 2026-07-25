@@ -8,7 +8,7 @@ import {
   useMemo,
   useState,
 } from "react";
-import { lessons } from "@/data/lessons";
+import { lessonSummaries } from "@/data/lessons";
 import {
   emptyProgress,
   loadProgress,
@@ -78,11 +78,11 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
   }, [persist]);
 
   const completedCount = useMemo(
-    () => lessons.filter((l) => state.completed[l.id]).length,
+    () => lessonSummaries.filter((l) => state.completed[l.id]).length,
     [state.completed]
   );
 
-  const total = lessons.length;
+  const total = lessonSummaries.length;
   const percent = total ? Math.round((completedCount / total) * 100) : 0;
 
   const value = useMemo(

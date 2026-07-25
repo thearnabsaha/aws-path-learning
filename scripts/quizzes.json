@@ -1,6 +1,4 @@
-import type { QuizQuestion } from "@/types/lesson";
-
-export const quizzesByLessonId: Record<string, QuizQuestion[]> = {
+{
   "cloud-fundamentals": [
     {
       "q": "According to the chat, cloud computing is best compared to:",
@@ -2929,8 +2927,4 @@ export const quizzesByLessonId: Record<string, QuizQuestion[]> = {
       "explain": "Adoption reasons."
     }
   ]
-};
-
-export function getQuiz(lessonId: string): QuizQuestion[] {
-  return quizzesByLessonId[lessonId] ?? [];
 }

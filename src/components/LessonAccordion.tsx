@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useId, useMemo, useState } from "react";
 import { splitLessonHtml } from "@/lib/splitLessonHtml";
 
 export function LessonAccordion({
@@ -10,6 +10,8 @@ export function LessonAccordion({
   contentHtml: string;
   goals: string[];
 }) {
+  const baseId = useId();
+
   const contentParts = useMemo(
     () => splitLessonHtml(contentHtml),
     [contentHtml]
@@ -53,6 +55,25 @@ export function LessonAccordion({
     setOpenIds(new Set());
   }
 
+  function onTriggerKeyDown(
+    e: React.KeyboardEvent<HTMLButtonElement>,
+    index: number
+  ) {
+    const triggers = parts.map((p) => `${baseId}-trigger-${p.id}`);
+    if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+      e.preventDefault();
+      const delta = e.key === "ArrowDown" ? 1 : -1;
+      const next = (index + delta + parts.length) % parts.length;
+      document.getElementById(triggers[next])?.focus();
+    } else if (e.key === "Home") {
+      e.preventDefault();
+      document.getElementById(triggers[0])?.focus();
+    } else if (e.key === "End") {
+      e.preventDefault();
+      document.getElementById(triggers[parts.length - 1])?.focus();
+    }
+  }
+
   if (!parts.length) return null;
 
   return (
@@ -74,6 +95,9 @@ export function LessonAccordion({
       <div className="accordion lesson-parts" role="list">
         {parts.map((part, index) => {
           const isOpen = openIds.has(part.id);
+          const triggerId = `${baseId}-trigger-${part.id}`;
+          const panelId = `${baseId}-panel-${part.id}`;
+
           return (
             <div
               key={part.id}
@@ -82,9 +106,12 @@ export function LessonAccordion({
             >
               <button
                 type="button"
+                id={triggerId}
                 className="acc-trigger"
                 aria-expanded={isOpen}
+                aria-controls={panelId}
                 onClick={() => toggle(part.id)}
+                onKeyDown={(e) => onTriggerKeyDown(e, index)}
               >
                 <span className="acc-num">{index + 1}</span>
                 <span className="acc-title">{part.title}</span>
@@ -94,9 +121,15 @@ export function LessonAccordion({
                   </span>
                 </span>
               </button>
-              {isOpen && (
-                <div className="acc-panel">
-                  {part.goals ? (
+              <div
+                id={panelId}
+                role="region"
+                aria-labelledby={triggerId}
+                className="acc-panel"
+                hidden={!isOpen}
+              >
+                {isOpen &&
+                  (part.goals ? (
                     <ul className="goals-list">
                       {part.goals.map((g) => (
                         <li key={g}>{g}</li>
@@ -107,9 +140,8 @@ export function LessonAccordion({
                       className="prose"
                       dangerouslySetInnerHTML={{ __html: part.html || "" }}
                     />
-                  )}
-                </div>
-              )}
+                  ))}
+              </div>
             </div>
           );
         })}

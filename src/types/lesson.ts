@@ -5,7 +5,7 @@ export type QuizQuestion = {
   explain: string;
 };
 
-export type Lesson = {
+export type LessonSummary = {
   id: string;
   number: string;
   section: string;
@@ -14,8 +14,13 @@ export type Lesson = {
   minutes: number;
   tags: string[];
   goals: string[];
+  reviewed?: string;
+};
+
+export type Lesson = LessonSummary & {
   content: string;
   quiz: QuizQuestion[];
+  sources?: string[];
 };
 
 export type ProgressState = {

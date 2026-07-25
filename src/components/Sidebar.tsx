@@ -21,6 +21,7 @@ export function Sidebar({
       className={`sidebar${open ? " open" : ""}`}
       id="sidebar"
       aria-label="Curriculum"
+      tabIndex={-1}
     >
       <div className="sidebar-inner">
         <div className="sidebar-head">

@@ -301,17 +301,17 @@ If you can answer these, you've understood the fundamentals.
 
 Here's the sequence I'd recommend:
 
-- **Lesson 1:** Cloud fundamentals (today)
-- **Lesson 2:** Creating an AWS account and navigating the console
-- **Lesson 3:** IAM (users, groups, roles, permissions)
-- **Lesson 4:** EC2 (launch your first Linux server)
-- **Lesson 5:** Linux basics and SSH
-- **Lesson 6:** S3 (store files and host a static website)
-- **Lesson 7:** Networking (VPC, subnets, security groups)
-- **Lesson 8:** RDS databases
-- **Lesson 9:** Load balancers and Auto Scaling
-- **Lesson 10:** Lambda and serverless applications
-- **Lesson 11:** Docker and deploying containers on AWS
-- **Lesson 12:** A complete production-style web application deployment
+- **Lesson 1:** Cloud fundamentals (this lesson)
+- **Lesson 2:** AWS account, console, and IAM
+- **Lesson 3:** EC2 (virtual servers)
+- **Lesson 4:** S3 (object storage)
+- **Lesson 5:** VPC (networking)
+- **Lesson 6:** RDS (managed SQL databases)
+- **Lesson 7:** ELB and Auto Scaling
+- **Lesson 8:** Lambda (serverless)
+- **Lesson 9:** DynamoDB (NoSQL)
+- **Lesson 10:** CloudWatch and CloudTrail
+- **Lesson 11:** Docker, ECR, and ECS
+- **Lesson 12:** Infrastructure as Code (CloudFormation and Terraform)
 
 We'll build knowledge step by step, with hands-on labs after every lesson so you gain practical experience, not just theory.
