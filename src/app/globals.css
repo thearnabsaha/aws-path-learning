@@ -2253,28 +2253,57 @@ tbody tr:hover td {
   color: var(--text-muted);
   font-size: 0.88rem;
 }
-.arch-map-svg-wrap {
+.arch-map-scroll {
   overflow-x: auto;
+  overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  max-width: 100%;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--bg-soft);
+  /* edge fade hints for scroll */
+  background-image:
+    linear-gradient(to right, var(--bg-soft), transparent 16px),
+    linear-gradient(to left, var(--bg-soft), transparent 16px);
+  background-position: left center, right center;
+  background-repeat: no-repeat;
+  background-size: 20px 100%, 20px 100%;
+  background-attachment: local, local;
+  scrollbar-width: thin;
 }
 .arch-map-svg {
+  display: block;
   width: 100%;
-  min-width: 320px;
+  max-width: 100%;
+  min-width: min(100%, 420px);
   height: auto;
   color: var(--text);
-  display: block;
+  /* keep map compact on large screens; scroll only when needed */
+  aspect-ratio: 440 / 290;
+}
+@media (max-width: 520px) {
+  .arch-map-svg {
+    min-width: 400px; /* enable gentle horizontal scroll on phones */
+    width: 400px;
+    max-width: none;
+  }
 }
 .arch-edge {
-  stroke-width: 1.5;
-  opacity: 0.12;
+  stroke-width: 1.35;
+  opacity: 0.14;
 }
 .arch-edge.on {
-  opacity: 0.45;
+  opacity: 0.5;
+  stroke-width: 1.6;
 }
 .arch-vpc-label {
   fill: currentColor;
   opacity: 0.45;
   font-weight: 650;
+}
+.arch-node rect {
+  transition: opacity 0.2s ease, fill 0.2s ease;
 }
 .arch-legend {
   display: flex;
