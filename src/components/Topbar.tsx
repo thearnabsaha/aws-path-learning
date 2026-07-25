@@ -29,7 +29,23 @@ export function Topbar({
 
         <Link href="/" className="brand">
           <span className="brand-mark" aria-hidden="true">
-            A
+            <svg
+              className="brand-mark-svg"
+              viewBox="0 0 32 32"
+              width="100%"
+              height="100%"
+              focusable="false"
+            >
+              <text
+                x="16"
+                y="16"
+                textAnchor="middle"
+                dominantBaseline="central"
+                className="brand-mark-letter"
+              >
+                A
+              </text>
+            </svg>
           </span>
           <span className="brand-text">AWS Path</span>
         </Link>
