@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Caveat, Inter } from "next/font/google";
+import { Inter } from "next/font/google";
 import { ProgressProvider } from "@/context/ProgressContext";
 import { ThemeProvider } from "@/context/ThemeContext";
 import { PwaRegister } from "@/components/PwaRegister";
@@ -8,12 +8,6 @@ import "./globals.css";
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
-  display: "swap",
-});
-
-const caveat = Caveat({
-  subsets: ["latin"],
-  variable: "--font-sketch",
   display: "swap",
 });
 
@@ -82,7 +76,7 @@ export default function RootLayout({
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
-      <body className={`${inter.variable} ${caveat.variable} ${inter.className}`}>
+      <body className={`${inter.variable} ${inter.className}`}>
         <ThemeProvider>
           <ProgressProvider>
             <PwaRegister />

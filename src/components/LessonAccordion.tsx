@@ -2,16 +2,13 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { splitLessonHtml } from "@/lib/splitLessonHtml";
-import { NotebookSketch } from "./NotebookSketch";
 
 export function LessonAccordion({
   contentHtml,
   goals,
-  lessonId,
 }: {
   contentHtml: string;
   goals: string[];
-  lessonId: string;
 }) {
   const contentParts = useMemo(
     () => splitLessonHtml(contentHtml),
@@ -62,7 +59,7 @@ export function LessonAccordion({
     <div className="lesson-acc">
       <div className="lesson-acc-toolbar">
         <p className="lesson-acc-hint">
-          {parts.length} sections · each with a notebook sketch
+          {parts.length} sections · open only what you need
         </p>
         <div className="lesson-acc-actions">
           <button type="button" className="btn btn-ghost btn-sm" onClick={expandAll}>
@@ -99,11 +96,6 @@ export function LessonAccordion({
               </button>
               {isOpen && (
                 <div className="acc-panel">
-                  <NotebookSketch
-                    title={part.title}
-                    lessonId={lessonId}
-                    size="md"
-                  />
                   {part.goals ? (
                     <ul className="goals-list">
                       {part.goals.map((g) => (

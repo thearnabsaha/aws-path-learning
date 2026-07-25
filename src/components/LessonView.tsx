@@ -5,7 +5,6 @@ import { useProgress } from "@/context/ProgressContext";
 import { getQuiz } from "@/data/quizzes";
 import type { Lesson } from "@/types/lesson";
 import { LessonAccordion } from "./LessonAccordion";
-import { NotebookSketch } from "./NotebookSketch";
 import { Quiz } from "./Quiz";
 
 export function LessonView({
@@ -29,17 +28,11 @@ export function LessonView({
         </p>
         <h1>{lesson.title}</h1>
         <p className="lesson-summary">{lesson.short}</p>
-        <NotebookSketch
-          title={lesson.title}
-          lessonId={lesson.id}
-          size="lg"
-        />
       </header>
 
       <LessonAccordion
         contentHtml={lesson.content}
         goals={lesson.goals}
-        lessonId={lesson.id}
       />
 
       <Quiz lessonId={lesson.id} questions={questions} />
