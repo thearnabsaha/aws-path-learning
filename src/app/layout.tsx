@@ -3,6 +3,8 @@ import { Inter } from "next/font/google";
 import { ProgressProvider } from "@/context/ProgressContext";
 import { ThemeProvider } from "@/context/ThemeContext";
 import { PwaRegister } from "@/components/PwaRegister";
+import { InstallPrompt } from "@/components/InstallPrompt";
+import { Analytics } from "@/components/Analytics";
 import "./globals.css";
 
 const inter = Inter({
@@ -60,8 +62,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f7f1e8" },
-    { media: "(prefers-color-scheme: dark)", color: "#14110e" },
+    { media: "(prefers-color-scheme: light)", color: "#f4ebe0" },
+    { media: "(prefers-color-scheme: dark)", color: "#12100e" },
   ],
   width: "device-width",
   initialScale: 1,
@@ -100,6 +102,8 @@ export default function RootLayout({
         <ThemeProvider>
           <ProgressProvider>
             <PwaRegister />
+            <InstallPrompt />
+            <Analytics />
             {children}
           </ProgressProvider>
         </ThemeProvider>

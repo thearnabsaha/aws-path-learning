@@ -4,6 +4,7 @@ import { useEffect, useId, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { splitLessonHtml } from "@/lib/splitLessonHtml";
 import { useProgress } from "@/context/ProgressContext";
+import { trackEvent } from "@/lib/analytics";
 
 export function LessonAccordion({
   lessonId,
@@ -76,6 +77,7 @@ export function LessonAccordion({
         next.add(id);
         markSection(lessonId, id);
         setLastSection(lessonId, id);
+        trackEvent("section_open", { lessonId, sectionId: id });
         // update URL without full navigation
         try {
           const url = new URL(window.location.href);

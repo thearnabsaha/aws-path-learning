@@ -1,7 +1,10 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+import { OfflineCacheList } from "@/components/OfflineCacheList";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Offline",
+  description: "AWS Path offline fallback and cached lessons list.",
 };
 
 export default function OfflinePage() {
@@ -11,12 +14,15 @@ export default function OfflinePage() {
         <p className="eyebrow">AWS Path · PWA</p>
         <h1>You are offline</h1>
         <p>
-          This page is not in the cache yet. Reconnect and open AWS Path again —
-          visited lessons will work offline after you load them once.
+          This page is the offline fallback. Lessons you already opened while
+          online may still open from the service worker cache.
         </p>
-        <Link className="btn btn-primary" href="/">
-          Try home
-        </Link>
+        <div className="hero-actions" style={{ marginBottom: "1rem" }}>
+          <Link className="btn btn-primary" href="/">
+            Try home
+          </Link>
+        </div>
+        <OfflineCacheList />
       </div>
     </div>
   );

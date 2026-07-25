@@ -2577,3 +2577,95 @@ tbody tr:hover td {
 .interview-prompts .quiz-intro {
   margin-bottom: 0.75rem;
 }
+
+/* P3 — install prompt + offline cache */
+.install-prompt {
+  position: fixed;
+  z-index: 300;
+  left: 0.75rem;
+  right: 0.75rem;
+  bottom: calc(0.75rem + var(--safe-b));
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1rem;
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--bg-elevated);
+  box-shadow: var(--shadow);
+}
+.install-prompt-body strong {
+  display: block;
+  font-size: 0.95rem;
+}
+.install-prompt-body p {
+  margin: 0.2rem 0 0;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  max-width: 36ch;
+}
+.install-prompt-actions {
+  display: flex;
+  gap: 0.4rem;
+  flex-shrink: 0;
+}
+@media (min-width: 768px) {
+  .install-prompt {
+    left: auto;
+    right: 1.25rem;
+    bottom: 1.25rem;
+    max-width: 26rem;
+  }
+}
+
+.offline-cache {
+  margin-top: 1.25rem;
+  text-align: left;
+  border-top: 1px solid var(--border);
+  padding-top: 1rem;
+}
+.offline-cache h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+}
+.offline-status {
+  margin: 0 0 0.65rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+.offline-hint {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+.offline-lesson-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.offline-lesson-list a {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.45rem 0.55rem;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--border);
+  background: var(--bg-soft);
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+.offline-lesson-list a:hover {
+  border-color: var(--border-strong);
+}
+.offline-num {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  min-width: 1.5rem;
+}

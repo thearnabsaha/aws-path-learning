@@ -6,10 +6,12 @@ import type { QuizQuestion } from "@/types/lesson";
 import {
   hashString,
   inferTopic,
+  scoreQuiz,
   shuffleQuestion,
   weakTopicsFromAnswers,
   type ShuffledQuestion,
 } from "@/lib/quizUtils";
+import { trackEvent } from "@/lib/analytics";
 
 function statusLabel(status: string) {
   switch (status) {
@@ -87,13 +89,10 @@ export function Quiz({
     [selected]
   );
 
-  const score = useMemo(() => {
-    let s = 0;
-    questions.forEach((item, qi) => {
-      if (selected[qi] === item.answer) s += 1;
-    });
-    return s;
-  }, [questions, selected]);
+  const score = useMemo(
+    () => scoreQuiz(questions, selected),
+    [questions, selected]
+  );
 
   const weak = useMemo(() => {
     if (!finished) return [];
@@ -145,10 +144,7 @@ export function Quiz({
 
   function submitAll(fromTimer = false) {
     clearTimer();
-    let s = 0;
-    questions.forEach((item, qi) => {
-      if (selected[qi] === item.answer) s += 1;
-    });
+    const s = scoreQuiz(questions, selected);
     setFinished(true);
     const all: Record<number, boolean> = {};
     questions.forEach((_, qi) => {
@@ -158,12 +154,16 @@ export function Quiz({
     const weakTopics = weakTopicsFromAnswers(questions, selected).map(
       (w) => w.topic
     );
-    // Persist using shuffled options as the question shape for review
-    // (answer index matches shuffled options)
     saveQuizScore(lessonId, s, total, {
       weakTopics,
       questions,
       selected,
+    });
+    trackEvent("quiz_complete", {
+      lessonId,
+      score: s,
+      total,
+      timed: fromTimer || timed,
     });
     setOpenId(0);
     if (fromTimer) setTimed(false);

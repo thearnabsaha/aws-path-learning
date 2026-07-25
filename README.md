@@ -24,6 +24,11 @@ Open [http://localhost:3000](http://localhost:3000).
 | `npm run build` | Production build; runs content first |
 | `npm start` | Serve production build |
 | `npm run lint` | ESLint |
+| `npm run test` | Unit tests (Vitest) |
+| `npm run test:e2e` | Playwright smoke (needs prior `npm run build`) |
+| `npm run test:all` | Unit + build + e2e |
+
+CI (GitHub Actions): lint → unit tests → build → Playwright on every push/PR to `main`.
 
 ## Content pipeline
 
@@ -143,6 +148,17 @@ Path choice is stored in progress (`learningPath`). Stats (done %, time left) fo
 - Interview sections kept as open **practice prompts**
 
 Progress storage key: `aws-path-progress-v3` (auto-migrates v2).
+
+## Engineering quality (P3)
+
+| Area | Implementation |
+|------|----------------|
+| **Unit tests** | `splitLessonHtml`, progress import/export, quiz score/shuffle/review, paths |
+| **E2E** | Playwright: home → lesson → accordion → quiz |
+| **CI** | `.github/workflows/ci.yml` — lint, test, build, e2e |
+| **Repo hygiene** | Generated `sw.js` / workbox gitignored; default CRA SVGs removed |
+| **PWA** | Install prompt, lesson precache, offline cached-lesson list, cream `#f4ebe0` theme-color |
+| **Analytics** | Vercel Analytics (prod) + privacy-friendly custom events (no lesson body / PII) |
 
 ## Deploy
 

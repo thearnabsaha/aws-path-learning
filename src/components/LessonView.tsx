@@ -1,13 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 import type { Lesson, LessonSummary } from "@/types/lesson";
 import { LessonAccordion } from "./LessonAccordion";
 import { Quiz } from "./Quiz";
 import { CodeCopyRoot } from "./CodeCopy";
 import { LabChecklist } from "./LabChecklist";
 import { useProgress } from "@/context/ProgressContext";
+import { trackEvent } from "@/lib/analytics";
 
 export function LessonView({
   lesson,
@@ -20,6 +21,13 @@ export function LessonView({
 }) {
   const { isDone, setDone, sectionProgress, lastSection } = useProgress();
   const done = isDone(lesson.id);
+
+  useEffect(() => {
+    trackEvent("lesson_open", {
+      lessonId: lesson.id,
+      number: lesson.number,
+    });
+  }, [lesson.id, lesson.number]);
   const partsCount = (lesson.parts?.length || 0) + (lesson.goals?.length ? 1 : 0);
   const secProg = sectionProgress(lesson.id, partsCount || 1);
   const resume = lastSection[lesson.id];
@@ -86,7 +94,16 @@ export function LessonView({
           <button
             type="button"
             className={`btn ${done ? "btn-secondary" : "btn-primary"}`}
-            onClick={() => setDone(lesson.id, !done)}
+            onClick={() => {
+              const nextDone = !done;
+              setDone(lesson.id, nextDone);
+              if (nextDone) {
+                trackEvent("lesson_complete", {
+                  lessonId: lesson.id,
+                  number: lesson.number,
+                });
+              }
+            }}
           >
             {done ? "Undo complete" : "Mark complete"}
           </button>

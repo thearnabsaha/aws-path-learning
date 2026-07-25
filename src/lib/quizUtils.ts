@@ -52,8 +52,9 @@ const TOPIC_RULES: { re: RegExp; topic: string }[] = [
   { re: /\b(root user|mfa|multi-factor)\b/i, topic: "Root & MFA" },
   { re: /\b(iam role|assume role|instance profile)\b/i, topic: "IAM roles" },
   { re: /\b(policy|policies|allow|deny|json)\b/i, topic: "IAM policies" },
-  { re: /\b(user|group|permission)\b/i, topic: "IAM users & groups" },
+  // Security Group before bare "group" (IAM users & groups)
   { re: /\b(security group|sg\b|port 22|inbound)\b/i, topic: "Security groups" },
+  { re: /\b(user|group|permission)\b/i, topic: "IAM users & groups" },
   { re: /\b(ami|image)\b/i, topic: "AMIs" },
   { re: /\b(ebs|volume|snapshot)\b/i, topic: "EBS storage" },
   { re: /\b(ssh|key pair|pem)\b/i, topic: "SSH & key pairs" },
@@ -86,6 +87,18 @@ export function inferTopic(
     if (rule.re.test(text)) return rule.topic;
   }
   return fallback;
+}
+
+/** Count correct answers for a quiz attempt. */
+export function scoreQuiz(
+  questions: QuizQuestion[],
+  selected: Record<number, number>
+): number {
+  let s = 0;
+  questions.forEach((item, qi) => {
+    if (selected[qi] === item.answer) s += 1;
+  });
+  return s;
 }
 
 export function weakTopicsFromAnswers(

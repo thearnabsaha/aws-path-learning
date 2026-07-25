@@ -3,6 +3,7 @@
 import { LEARNING_PATHS } from "@/lib/paths";
 import type { LearningPathId } from "@/types/lesson";
 import { useProgress } from "@/context/ProgressContext";
+import { trackEvent } from "@/lib/analytics";
 
 export function PathPicker({ compact = false }: { compact?: boolean }) {
   const { learningPath, setLearningPath } = useProgress();
@@ -31,7 +32,10 @@ export function PathPicker({ compact = false }: { compact?: boolean }) {
               type="button"
               className={`path-option${active ? " active" : ""}`}
               aria-pressed={active}
-              onClick={() => setLearningPath(p.id as LearningPathId)}
+              onClick={() => {
+                setLearningPath(p.id as LearningPathId);
+                trackEvent("path_change", { path: p.id });
+              }}
             >
               <span className="path-option-label">{p.label}</span>
               <span className="path-option-short">{p.short}</span>
