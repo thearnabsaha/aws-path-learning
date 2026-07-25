@@ -19,6 +19,7 @@
     "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html",
     "ChatGPT AWS Learning Roadmap"
   ],
+  "comingSoon": false,
   "parts": [
     {
       "id": "part-1",

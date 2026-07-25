@@ -16,6 +16,7 @@
       "See the full beginner→advanced roadmap"
     ],
     "reviewed": "2026-07",
+    "comingSoon": false,
     "parts": [
       {
         "id": "part-1",
@@ -103,6 +104,7 @@
       "Best security practices"
     ],
     "reviewed": "2026-07",
+    "comingSoon": false,
     "parts": [
       {
         "id": "part-1",
@@ -220,6 +222,7 @@
       "Launch process and SSH"
     ],
     "reviewed": "2026-07",
+    "comingSoon": false,
     "parts": [
       {
         "id": "part-1",
@@ -332,6 +335,7 @@
       "Host a static website"
     ],
     "reviewed": "2026-07",
+    "comingSoon": false,
     "parts": [
       {
         "id": "part-1",
@@ -445,6 +449,7 @@
       "Security groups and NACLs"
     ],
     "reviewed": "2026-07",
+    "comingSoon": false,
     "parts": [
       {
         "id": "part-1",
@@ -561,6 +566,7 @@
       "Backups, snapshots, and security basics"
     ],
     "reviewed": "2026-07",
+    "comingSoon": false,
     "parts": [
       {
         "id": "part-1",
@@ -686,6 +692,7 @@
       "Auto Scaling groups and policies"
     ],
     "reviewed": "2026-07",
+    "comingSoon": false,
     "parts": [
       {
         "id": "part-1",
@@ -810,6 +817,7 @@
       "When to choose Lambda vs EC2"
     ],
     "reviewed": "2026-07",
+    "comingSoon": false,
     "parts": [
       {
         "id": "part-1",
@@ -942,6 +950,7 @@
       "When to choose DynamoDB vs RDS"
     ],
     "reviewed": "2026-07",
+    "comingSoon": false,
     "parts": [
       {
         "id": "part-1",
@@ -1086,6 +1095,7 @@
       "CloudTrail for API activity"
     ],
     "reviewed": "2026-07",
+    "comingSoon": false,
     "parts": [
       {
         "id": "part-1",
@@ -1219,6 +1229,7 @@
       "ECS services and Fargate vs EC2 launch type"
     ],
     "reviewed": "2026-07",
+    "comingSoon": false,
     "parts": [
       {
         "id": "part-1",
@@ -1376,6 +1387,7 @@
       "Plan/apply workflow and state"
     ],
     "reviewed": "2026-07",
+    "comingSoon": false,
     "parts": [
       {
         "id": "part-1",
@@ -1496,6 +1508,478 @@
       {
         "id": "part-30",
         "title": "What's Next?"
+      }
+    ]
+  },
+  {
+    "id": "identity-center",
+    "number": "13",
+    "section": "Additional · SAA & jobs",
+    "title": "IAM Identity Center (SSO)",
+    "short": "Workforce identity, SSO, permission sets — modern alternative to long-lived IAM users.",
+    "minutes": 30,
+    "tags": [
+      "security",
+      "sso",
+      "identity",
+      "coming-soon"
+    ],
+    "goals": [
+      "Explain IAM Identity Center vs IAM users",
+      "Describe permission sets and account assignments",
+      "Know when orgs choose SSO for workforce access"
+    ],
+    "reviewed": "2026-07",
+    "comingSoon": true,
+    "parts": [
+      {
+        "id": "part-1",
+        "title": "Lesson 13: IAM Identity Center (SSO)"
+      },
+      {
+        "id": "part-2",
+        "title": "Why this lesson matters"
+      },
+      {
+        "id": "part-3",
+        "title": "Learning goals (preview)"
+      },
+      {
+        "id": "part-4",
+        "title": "Outline (coming soon)"
+      },
+      {
+        "id": "part-5",
+        "title": "Key terms (placeholder)"
+      },
+      {
+        "id": "part-6",
+        "title": "Architecture sketch (coming soon)"
+      },
+      {
+        "id": "part-7",
+        "title": "Hands-on Lab"
+      },
+      {
+        "id": "part-8",
+        "title": "Official starting points"
+      },
+      {
+        "id": "part-9",
+        "title": "Next"
+      }
+    ]
+  },
+  {
+    "id": "kms-secrets",
+    "number": "14",
+    "section": "Additional · SAA & jobs",
+    "title": "KMS & Secrets Manager",
+    "short": "Encrypt with KMS keys; store and rotate secrets without hardcoding passwords.",
+    "minutes": 35,
+    "tags": [
+      "security",
+      "kms",
+      "secrets",
+      "coming-soon"
+    ],
+    "goals": [
+      "Customer managed keys vs AWS managed keys",
+      "Envelope encryption at a high level",
+      "Secrets Manager vs Parameter Store use cases"
+    ],
+    "reviewed": "2026-07",
+    "comingSoon": true,
+    "parts": [
+      {
+        "id": "part-1",
+        "title": "Lesson 14: KMS & Secrets Manager"
+      },
+      {
+        "id": "part-2",
+        "title": "Why this lesson matters"
+      },
+      {
+        "id": "part-3",
+        "title": "Learning goals (preview)"
+      },
+      {
+        "id": "part-4",
+        "title": "Outline (coming soon)"
+      },
+      {
+        "id": "part-5",
+        "title": "Key terms (placeholder)"
+      },
+      {
+        "id": "part-6",
+        "title": "Architecture sketch (coming soon)"
+      },
+      {
+        "id": "part-7",
+        "title": "Hands-on Lab"
+      },
+      {
+        "id": "part-8",
+        "title": "Official starting points"
+      },
+      {
+        "id": "part-9",
+        "title": "Next"
+      }
+    ]
+  },
+  {
+    "id": "messaging",
+    "number": "15",
+    "section": "Additional · SAA & jobs",
+    "title": "SQS, SNS & EventBridge",
+    "short": "Queues, pub/sub, and event buses for decoupled, event-driven architectures.",
+    "minutes": 40,
+    "tags": [
+      "messaging",
+      "events",
+      "integration",
+      "coming-soon"
+    ],
+    "goals": [
+      "Choose queue vs topic vs event bus",
+      "Standard vs FIFO SQS patterns",
+      "EventBridge rules and common sources/targets"
+    ],
+    "reviewed": "2026-07",
+    "comingSoon": true,
+    "parts": [
+      {
+        "id": "part-1",
+        "title": "Lesson 15: SQS, SNS & EventBridge"
+      },
+      {
+        "id": "part-2",
+        "title": "Why this lesson matters"
+      },
+      {
+        "id": "part-3",
+        "title": "Learning goals (preview)"
+      },
+      {
+        "id": "part-4",
+        "title": "Outline (coming soon)"
+      },
+      {
+        "id": "part-5",
+        "title": "Key terms (placeholder)"
+      },
+      {
+        "id": "part-6",
+        "title": "Architecture sketch (coming soon)"
+      },
+      {
+        "id": "part-7",
+        "title": "Hands-on Lab"
+      },
+      {
+        "id": "part-8",
+        "title": "Official starting points"
+      },
+      {
+        "id": "part-9",
+        "title": "Next"
+      }
+    ]
+  },
+  {
+    "id": "cloudfront",
+    "number": "16",
+    "section": "Additional · SAA & jobs",
+    "title": "CloudFront & OAC",
+    "short": "CDN for low latency; Origin Access Control to keep S3 private.",
+    "minutes": 30,
+    "tags": [
+      "cdn",
+      "cloudfront",
+      "s3",
+      "coming-soon"
+    ],
+    "goals": [
+      "What a CDN edge cache does",
+      "Distributions, origins, and behaviors",
+      "Why OAC is preferred over public S3 website endpoints"
+    ],
+    "reviewed": "2026-07",
+    "comingSoon": true,
+    "parts": [
+      {
+        "id": "part-1",
+        "title": "Lesson 16: CloudFront & OAC"
+      },
+      {
+        "id": "part-2",
+        "title": "Why this lesson matters"
+      },
+      {
+        "id": "part-3",
+        "title": "Learning goals (preview)"
+      },
+      {
+        "id": "part-4",
+        "title": "Outline (coming soon)"
+      },
+      {
+        "id": "part-5",
+        "title": "Key terms (placeholder)"
+      },
+      {
+        "id": "part-6",
+        "title": "Architecture sketch (coming soon)"
+      },
+      {
+        "id": "part-7",
+        "title": "Hands-on Lab"
+      },
+      {
+        "id": "part-8",
+        "title": "Official starting points"
+      },
+      {
+        "id": "part-9",
+        "title": "Next"
+      }
+    ]
+  },
+  {
+    "id": "route53",
+    "number": "17",
+    "section": "Additional · SAA & jobs",
+    "title": "Route 53 basics",
+    "short": "DNS hosted zones, records, and routing policies that keep apps reachable.",
+    "minutes": 25,
+    "tags": [
+      "dns",
+      "route53",
+      "networking",
+      "coming-soon"
+    ],
+    "goals": [
+      "Hosted zones and common record types",
+      "Alias vs CNAME for AWS resources",
+      "Simple routing policies used in interviews"
+    ],
+    "reviewed": "2026-07",
+    "comingSoon": true,
+    "parts": [
+      {
+        "id": "part-1",
+        "title": "Lesson 17: Route 53 basics"
+      },
+      {
+        "id": "part-2",
+        "title": "Why this lesson matters"
+      },
+      {
+        "id": "part-3",
+        "title": "Learning goals (preview)"
+      },
+      {
+        "id": "part-4",
+        "title": "Outline (coming soon)"
+      },
+      {
+        "id": "part-5",
+        "title": "Key terms (placeholder)"
+      },
+      {
+        "id": "part-6",
+        "title": "Architecture sketch (coming soon)"
+      },
+      {
+        "id": "part-7",
+        "title": "Hands-on Lab"
+      },
+      {
+        "id": "part-8",
+        "title": "Official starting points"
+      },
+      {
+        "id": "part-9",
+        "title": "Next"
+      }
+    ]
+  },
+  {
+    "id": "cost-management",
+    "number": "18",
+    "section": "Additional · SAA & jobs",
+    "title": "Cost Explorer & Budgets",
+    "short": "See what you spend, set budgets and alerts — day-one survival skill.",
+    "minutes": 25,
+    "tags": [
+      "cost",
+      "billing",
+      "ops",
+      "coming-soon"
+    ],
+    "goals": [
+      "Read Cost Explorer trends and group-by dimensions",
+      "Create a budget with alert thresholds",
+      "Name cost-control habits (tags, free tier, tear-down)"
+    ],
+    "reviewed": "2026-07",
+    "comingSoon": true,
+    "parts": [
+      {
+        "id": "part-1",
+        "title": "Lesson 18: Cost Explorer & Budgets"
+      },
+      {
+        "id": "part-2",
+        "title": "Why this lesson matters"
+      },
+      {
+        "id": "part-3",
+        "title": "Learning goals (preview)"
+      },
+      {
+        "id": "part-4",
+        "title": "Outline (coming soon)"
+      },
+      {
+        "id": "part-5",
+        "title": "Key terms (placeholder)"
+      },
+      {
+        "id": "part-6",
+        "title": "Architecture sketch (coming soon)"
+      },
+      {
+        "id": "part-7",
+        "title": "Hands-on Lab"
+      },
+      {
+        "id": "part-8",
+        "title": "Official starting points"
+      },
+      {
+        "id": "part-9",
+        "title": "Next"
+      }
+    ]
+  },
+  {
+    "id": "security-ops",
+    "number": "19",
+    "section": "Additional · SAA & jobs",
+    "title": "Security Hub & GuardDuty",
+    "short": "Central findings and intelligent threat detection — ops/security overview.",
+    "minutes": 30,
+    "tags": [
+      "security",
+      "guardduty",
+      "security-hub",
+      "coming-soon"
+    ],
+    "goals": [
+      "What GuardDuty detects at a high level",
+      "How Security Hub aggregates findings",
+      "Where these fit next to CloudTrail and IAM"
+    ],
+    "reviewed": "2026-07",
+    "comingSoon": true,
+    "parts": [
+      {
+        "id": "part-1",
+        "title": "Lesson 19: Security Hub & GuardDuty"
+      },
+      {
+        "id": "part-2",
+        "title": "Why this lesson matters"
+      },
+      {
+        "id": "part-3",
+        "title": "Learning goals (preview)"
+      },
+      {
+        "id": "part-4",
+        "title": "Outline (coming soon)"
+      },
+      {
+        "id": "part-5",
+        "title": "Key terms (placeholder)"
+      },
+      {
+        "id": "part-6",
+        "title": "Architecture sketch (coming soon)"
+      },
+      {
+        "id": "part-7",
+        "title": "Hands-on Lab"
+      },
+      {
+        "id": "part-8",
+        "title": "Official starting points"
+      },
+      {
+        "id": "part-9",
+        "title": "Next"
+      }
+    ]
+  },
+  {
+    "id": "eks-ecs",
+    "number": "20",
+    "section": "Additional · SAA & jobs",
+    "title": "EKS vs ECS — when to choose",
+    "short": "Compare managed Kubernetes (EKS) with ECS after you know containers.",
+    "minutes": 30,
+    "tags": [
+      "containers",
+      "eks",
+      "ecs",
+      "coming-soon"
+    ],
+    "goals": [
+      "Contrast orchestration models of ECS and EKS",
+      "List trade-offs: ops burden, portability, ecosystem",
+      "Pick a default for common team situations"
+    ],
+    "reviewed": "2026-07",
+    "comingSoon": true,
+    "parts": [
+      {
+        "id": "part-1",
+        "title": "Lesson 20: EKS vs ECS — when to choose"
+      },
+      {
+        "id": "part-2",
+        "title": "Why this lesson matters"
+      },
+      {
+        "id": "part-3",
+        "title": "Learning goals (preview)"
+      },
+      {
+        "id": "part-4",
+        "title": "Outline (coming soon)"
+      },
+      {
+        "id": "part-5",
+        "title": "Key terms (placeholder)"
+      },
+      {
+        "id": "part-6",
+        "title": "Architecture sketch (coming soon)"
+      },
+      {
+        "id": "part-7",
+        "title": "Hands-on Lab"
+      },
+      {
+        "id": "part-8",
+        "title": "Official starting points"
+      },
+      {
+        "id": "part-9",
+        "title": "Next"
       }
     ]
   }

@@ -22,6 +22,7 @@
     "https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html",
     "ChatGPT AWS Learning Roadmap"
   ],
+  "comingSoon": false,
   "parts": [
     {
       "id": "part-1",

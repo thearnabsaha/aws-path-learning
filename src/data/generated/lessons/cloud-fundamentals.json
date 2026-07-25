@@ -19,6 +19,7 @@
     "https://docs.aws.amazon.com/whitepapers/latest/aws-overview/what-is-cloud-computing.html",
     "ChatGPT AWS Learning Roadmap (primary curriculum text)"
   ],
+  "comingSoon": false,
   "parts": [
     {
       "id": "part-1",

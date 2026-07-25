@@ -17,6 +17,8 @@ export type LessonSummary = {
   tags: string[];
   goals: string[];
   reviewed?: string;
+  /** True when full notes/quiz are not written yet (placeholder after core path) */
+  comingSoon?: boolean;
   /** Section titles from content (for search / progress) */
   parts?: { id: string; title: string }[];
 };

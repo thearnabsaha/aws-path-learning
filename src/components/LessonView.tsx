@@ -36,8 +36,16 @@ export function LessonView({
         <p className="lesson-kicker">
           Lesson {lesson.number} · {lesson.section} · ~{lesson.minutes} min
           {lesson.reviewed ? ` · Reviewed ${lesson.reviewed}` : ""}
+          {lesson.comingSoon ? " · Placeholder" : ""}
         </p>
         <h1>{lesson.title}</h1>
+        {lesson.comingSoon && (
+          <p className="coming-soon-banner" role="status">
+            Full content coming soon. This slot is reserved after the core
+            12-lesson path — notes, labs, and quizzes will be filled in later
+            without renumbering.
+          </p>
+        )}
         <p className="lesson-summary">{lesson.short}</p>
         <div className="lesson-section-meta">
           <div className="progress-track section-track" aria-hidden="true">

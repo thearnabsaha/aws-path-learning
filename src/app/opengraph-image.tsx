@@ -69,7 +69,7 @@ export default function OgImage() {
             lineHeight: 1.35,
           }}
         >
-          12 lessons · quizzes · local progress · cream & mocha
+          Core path + SAA extras · quizzes · cream & mocha
         </div>
       </div>
     ),

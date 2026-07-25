@@ -1,0 +1,66 @@
+{
+  "id": "security-ops",
+  "number": "19",
+  "section": "Additional · SAA & jobs",
+  "title": "Security Hub & GuardDuty",
+  "short": "Central findings and intelligent threat detection — ops/security overview.",
+  "minutes": 30,
+  "tags": [
+    "security",
+    "guardduty",
+    "security-hub",
+    "coming-soon"
+  ],
+  "goals": [
+    "What GuardDuty detects at a high level",
+    "How Security Hub aggregates findings",
+    "Where these fit next to CloudTrail and IAM"
+  ],
+  "reviewed": "2026-07",
+  "sources": [
+    "https://docs.aws.amazon.com/guardduty/latest/ug/what-is-guardduty.html",
+    "https://docs.aws.amazon.com/securityhub/latest/userguide/what-is-securityhub.html",
+    "Placeholder — full content to be added"
+  ],
+  "comingSoon": true,
+  "parts": [
+    {
+      "id": "part-1",
+      "title": "Lesson 19: Security Hub & GuardDuty"
+    },
+    {
+      "id": "part-2",
+      "title": "Why this lesson matters"
+    },
+    {
+      "id": "part-3",
+      "title": "Learning goals (preview)"
+    },
+    {
+      "id": "part-4",
+      "title": "Outline (coming soon)"
+    },
+    {
+      "id": "part-5",
+      "title": "Key terms (placeholder)"
+    },
+    {
+      "id": "part-6",
+      "title": "Architecture sketch (coming soon)"
+    },
+    {
+      "id": "part-7",
+      "title": "Hands-on Lab"
+    },
+    {
+      "id": "part-8",
+      "title": "Official starting points"
+    },
+    {
+      "id": "part-9",
+      "title": "Next"
+    }
+  ],
+  "content": "<h2>Lesson 19: Security Hub &amp; GuardDuty</h2>\n<blockquote class=\"callout tip\"><p><strong>Content coming soon.</strong> Full notes, diagrams, labs, and quizzes will be added later. This lesson is reserved after the core 12-lesson path so navigation and progress stay stable when the material lands.</p></blockquote>\n<h2>Why this lesson matters</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<p>Beyond IAM basics, job readiness needs awareness of continuous detection: who is scanning you, which accounts are non-compliant, and how findings flow.</p>\n</div><h2>Learning goals (preview)</h2>\n<ul>\n<li>What GuardDuty detects at a high level</li>\n<li>How Security Hub aggregates findings</li>\n<li>Where these fit next to CloudTrail and IAM</li>\n</ul>\n<h2>Outline (coming soon)</h2>\n<p>The sections below are planned — detailed explanations will replace this placeholder.</p>\n<ul>\n<li>Detective controls vs preventive controls</li>\n<li>GuardDuty findings examples</li>\n<li>Security Hub standards and findings</li>\n<li>Multi-account security posture (intro)</li>\n<li>Response loop: find → triage → fix</li>\n</ul>\n<h2>Key terms (placeholder)</h2>\n<p>Definitions and comparisons will be filled in with the full curriculum content.</p>\n<h2>Architecture sketch (coming soon)</h2>\n<p>A simple diagram for this topic will be added with the full write-up.</p>\n<h2>Hands-on Lab</h2><div class=\"lab-block\" data-lab-block=\"true\">\n<aside class=\"cost-safety callout warn\" role=\"note\"><p class=\"callout-title\">Cost safety</p><ul><li class=\"lab-step\" data-lab-id=\"lab-step-1\"><span class=\"lab-step-text\">Prefer <strong>Free Tier</strong> / small instance sizes while learning.</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-2\"><span class=\"lab-step-text\">Create a <strong>billing alarm</strong> (CloudWatch or Budgets) on day one.</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-3\"><span class=\"lab-step-text\"><strong>Tear down</strong> lab resources when finished (instances, load balancers, NAT gateways).</span></li><li class=\"lab-step\" data-lab-id=\"lab-step-4\"><span class=\"lab-step-text\">Never put long-lived access keys in code or public repos.</span></li></ul><p class=\"workshop-links\"><strong>Official practice:</strong> <a href=\"https://explore.skillbuilder.aws/\" rel=\"noopener noreferrer\" target=\"_blank\">AWS Skill Builder</a> · <a href=\"https://wellarchitectedlabs.com/\" rel=\"noopener noreferrer\" target=\"_blank\">Well-Architected Labs</a> · <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/free-tier.html\" rel=\"noopener noreferrer\" target=\"_blank\">Free Tier docs</a></p></aside>\n<p>Lab steps will be published with the full lesson. Until then:</p>\n<ul>\n<li class=\"lab-step\" data-lab-id=\"lab-step-5\"><span class=\"lab-step-text\">Prefer Free Tier / smallest resources if you experiment on your own</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-6\"><span class=\"lab-step-text\">Create a billing alarm before long-running services</span></li>\n<li class=\"lab-step\" data-lab-id=\"lab-step-7\"><span class=\"lab-step-text\">Tear down anything you create when finished</span></li>\n</ul>\n</div><h2>Official starting points</h2>\n<p>Read these while waiting for the full lesson:</p>\n<ul>\n<li>https://docs.aws.amazon.com/guardduty/latest/ug/what-is-guardduty.html</li>\n<li>https://docs.aws.amazon.com/securityhub/latest/userguide/what-is-securityhub.html</li>\n</ul>\n<h2>Next</h2>\n<p>Continue with the remaining additional topics, or revisit earlier core lessons and quizzes for spaced practice.</p>\n<aside class=\"accuracy-note\" role=\"note\"><p><strong>Content review:</strong> 2026-07. Curriculum text is adapted from a shared learning roadmap; verify critical details in official AWS docs before production use.</p><p class=\"accuracy-note-label\">References</p><ul><li><a href=\"https://docs.aws.amazon.com/guardduty/latest/ug/what-is-guardduty.html\" rel=\"noopener noreferrer\" target=\"_blank\">docs.aws.amazon.com/guardduty/latest/ug/what-is-guardduty.ht…</a></li><li><a href=\"https://docs.aws.amazon.com/securityhub/latest/userguide/what-is-securityhub.html\" rel=\"noopener noreferrer\" target=\"_blank\">docs.aws.amazon.com/securityhub/latest/userguide/what-is-sec…</a></li></ul></aside>",
+  "quiz": []
+}

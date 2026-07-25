@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     template: "%s · AWS Path",
   },
   description:
-    "Clean AWS learning path: 12 lessons from cloud fundamentals through infrastructure as code, with quizzes, local progress, and offline PWA support.",
+    "AWS learning path: 12 core lessons plus additional SAA/job-readiness topics, quizzes, local progress, and offline PWA support.",
   applicationName: "AWS Path",
   manifest: "/manifest.webmanifest",
   openGraph: {
@@ -32,13 +32,13 @@ export const metadata: Metadata = {
     siteName: "AWS Path",
     title: "AWS Path — Learn Cloud the Right Way",
     description:
-      "12 lessons · quizzes · local progress. Cream & mocha learning UI for AWS fundamentals through IaC.",
+      "Core path + SAA extras · quizzes · local progress. Cream & mocha learning UI.",
   },
   twitter: {
     card: "summary_large_image",
     title: "AWS Path — Learn Cloud the Right Way",
     description:
-      "12 lessons · quizzes · local progress. Learn AWS clearly on any device.",
+      "Core path + SAA extras · quizzes · local progress. Learn AWS clearly on any device.",
   },
   appleWebApp: {
     capable: true,

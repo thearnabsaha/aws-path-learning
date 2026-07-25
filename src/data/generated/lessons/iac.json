@@ -21,6 +21,7 @@
     "https://developer.hashicorp.com/terraform/intro",
     "ChatGPT AWS Learning Roadmap"
   ],
+  "comingSoon": false,
   "parts": [
     {
       "id": "part-1",

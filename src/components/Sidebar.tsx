@@ -96,7 +96,12 @@ export function Sidebar({
                     <span className={done ? "nav-check" : "nav-num"}>
                       {done ? "✓" : l.number}
                     </span>
-                    <span className="nav-title">{l.title}</span>
+                    <span className="nav-title">
+                      {l.title}
+                      {l.comingSoon ? (
+                        <span className="nav-soon"> soon</span>
+                      ) : null}
+                    </span>
                   </Link>
                 );
               })}

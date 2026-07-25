@@ -21,7 +21,13 @@ export function HomeView({ lessons }: { lessons: LessonSummary[] }) {
     quizScores,
   } = useProgress();
 
-  const next = lessons.find((l) => !isDone(l.id)) || lessons[0];
+  const coreLessons = lessons.filter((l) => Number(l.number) <= 12);
+  const extraLessons = lessons.filter((l) => Number(l.number) > 12);
+  // Prefer continuing the core path before additional SAA topics
+  const next =
+    coreLessons.find((l) => !isDone(l.id)) ||
+    lessons.find((l) => !isDone(l.id)) ||
+    lessons[0];
   const resumeSection = next ? lastSection[next.id] : undefined;
   const continueHref = resumeSection
     ? `/lesson/${next.id}?section=${encodeURIComponent(resumeSection)}`
@@ -37,13 +43,18 @@ export function HomeView({ lessons }: { lessons: LessonSummary[] }) {
     <div className="home">
       <section className="hero-panel">
         <div className="hero">
-          <p className="eyebrow">12 lessons · quizzes · local progress</p>
+          <p className="eyebrow">
+            {coreLessons.length} core · {extraLessons.length} additional ·
+            quizzes · local progress
+          </p>
           <h1>
             Learn AWS <span>clearly</span>
           </h1>
           <p className="lead">
-            Lessons 1–12 from a structured AWS bootcamp roadmap—plus quizzes,
-            spaced review, labs, and progress that stays in your browser.
+            Lessons 1–{coreLessons.length} are the full core path. Lessons{" "}
+            {coreLessons.length + 1}–{lessons.length} add SAA / job-readiness
+            topics (placeholders until content is published)—plus quizzes,
+            spaced review, labs, and progress in your browser.
           </p>
           <div className="home-search">
             <SearchBox />
@@ -102,51 +113,98 @@ export function HomeView({ lessons }: { lessons: LessonSummary[] }) {
       <ArchitectureMap />
 
       <div className="curriculum-head">
-        <h2 className="section-title">Curriculum</h2>
+        <h2 className="section-title">Core path (1–{coreLessons.length})</h2>
       </div>
 
       <div className="lesson-grid">
-        {lessons.map((l) => {
-          const complete = isDone(l.id);
-          const score = quizScores[l.id];
-          const resume = lastSection[l.id];
-          const href = resume
-            ? `/lesson/${l.id}?section=${encodeURIComponent(resume)}`
-            : `/lesson/${l.id}`;
-          return (
-            <Link
-              key={l.id}
-              className={`lesson-card${complete ? " done" : ""}`}
-              href={href}
-            >
-              <div className="card-num">{complete ? "✓" : l.number}</div>
-              <div className="card-body">
-                <h3>{l.title}</h3>
-                <p>{l.short}</p>
-                <div className="card-meta">
-                  <span className="tag">{l.minutes} min</span>
-                  {l.parts && (
-                    <span className="tag">{l.parts.length} sections</span>
-                  )}
-                  {score && (
-                    <span className="tag">
-                      Quiz {score.score}/{score.total}
-                    </span>
-                  )}
-                  {l.tags.slice(0, 1).map((t) => (
-                    <span className="tag" key={t}>
-                      {t}
-                    </span>
-                  ))}
-                  {complete && <span className="tag done-tag">Done</span>}
-                </div>
-              </div>
-            </Link>
-          );
-        })}
+        {coreLessons.map((l) => (
+          <LessonCard
+            key={l.id}
+            lesson={l}
+            complete={isDone(l.id)}
+            score={quizScores[l.id]}
+            resume={lastSection[l.id]}
+          />
+        ))}
       </div>
+
+      {extraLessons.length > 0 && (
+        <>
+          <div className="curriculum-head curriculum-head-extra">
+            <h2 className="section-title">
+              Additional · SAA &amp; jobs ({coreLessons.length + 1}–
+              {lessons.length})
+            </h2>
+            <p className="curriculum-sub">
+              Reserved after the core 12. Full write-ups, labs, and quizzes will
+              be added when content is ready — structure is already live so
+              progress stays stable.
+            </p>
+          </div>
+          <div className="lesson-grid">
+            {extraLessons.map((l) => (
+              <LessonCard
+                key={l.id}
+                lesson={l}
+                complete={isDone(l.id)}
+                score={quizScores[l.id]}
+                resume={lastSection[l.id]}
+              />
+            ))}
+          </div>
+        </>
+      )}
 
       <ProgressTools />
     </div>
+  );
+}
+
+function LessonCard({
+  lesson: l,
+  complete,
+  score,
+  resume,
+}: {
+  lesson: LessonSummary;
+  complete: boolean;
+  score?: { score: number; total: number };
+  resume?: string;
+}) {
+  const href = resume
+    ? `/lesson/${l.id}?section=${encodeURIComponent(resume)}`
+    : `/lesson/${l.id}`;
+  return (
+    <Link
+      className={`lesson-card${complete ? " done" : ""}${l.comingSoon ? " coming-soon" : ""}`}
+      href={href}
+    >
+      <div className="card-num">{complete ? "✓" : l.number}</div>
+      <div className="card-body">
+        <h3>{l.title}</h3>
+        <p>{l.short}</p>
+        <div className="card-meta">
+          <span className="tag">{l.minutes} min</span>
+          {l.comingSoon && <span className="tag soon-tag">Coming soon</span>}
+          {l.parts && !l.comingSoon && (
+            <span className="tag">{l.parts.length} sections</span>
+          )}
+          {score && score.total > 0 && (
+            <span className="tag">
+              Quiz {score.score}/{score.total}
+            </span>
+          )}
+          {l.tags
+            .filter((t) => t !== "coming-soon")
+            .slice(0, 1)
+            .map((t) => (
+              <span className="tag" key={t}>
+                {t}
+              </span>
+            ))}
+          {complete && <span className="tag done-tag">Done</span>}
+        </div>
+      </div>
+    </Link>
   );
 }

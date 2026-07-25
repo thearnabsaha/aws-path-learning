@@ -7,11 +7,14 @@
     "title": "What is Cloud Computing?",
     "short": "Cloud vs data centers, why AWS, and the full roadmap.",
     "minutes": 25,
-    "tags": ["fundamentals", "roadmap"],
+    "tags": [
+      "fundamentals",
+      "roadmap"
+    ],
     "goals": [
       "Explain cloud computing with a real-world analogy",
       "List core benefits of AWS",
-      "See the full beginner→advanced roadmap"
+      "See the full beginner\u2192advanced roadmap"
     ],
     "reviewed": "2026-07",
     "sources": [
@@ -27,7 +30,10 @@
     "title": "AWS Account, Console & IAM",
     "short": "Root user danger, console, IAM users, groups, roles, policies.",
     "minutes": 30,
-    "tags": ["security", "iam"],
+    "tags": [
+      "security",
+      "iam"
+    ],
     "goals": [
       "How AWS is organized",
       "What the AWS Console is",
@@ -50,7 +56,10 @@
     "title": "Amazon EC2",
     "short": "Virtual servers, AMIs, security groups, key pairs, SSH.",
     "minutes": 35,
-    "tags": ["compute", "ec2"],
+    "tags": [
+      "compute",
+      "ec2"
+    ],
     "goals": [
       "What EC2 is",
       "How virtual machines work",
@@ -75,7 +84,10 @@
     "title": "Amazon S3",
     "short": "Object storage, buckets, versioning, static sites, storage classes.",
     "minutes": 30,
-    "tags": ["storage", "s3"],
+    "tags": [
+      "storage",
+      "s3"
+    ],
     "goals": [
       "Store objects in S3 safely",
       "Understand versioning and lifecycle",
@@ -95,7 +107,10 @@
     "title": "Amazon VPC",
     "short": "Subnets, IGW, NAT, route tables, security groups, NACLs.",
     "minutes": 40,
-    "tags": ["networking", "vpc"],
+    "tags": [
+      "networking",
+      "vpc"
+    ],
     "goals": [
       "What a VPC is",
       "Public vs private subnets",
@@ -116,7 +131,10 @@
     "title": "Amazon RDS",
     "short": "Managed SQL, Multi-AZ, read replicas, backups, security.",
     "minutes": 30,
-    "tags": ["database", "rds"],
+    "tags": [
+      "database",
+      "rds"
+    ],
     "goals": [
       "What a database is and why RDS exists",
       "Multi-AZ vs read replicas",
@@ -136,7 +154,11 @@
     "title": "ELB & Auto Scaling",
     "short": "Load balancers, health checks, ASGs, HA and scale-out.",
     "minutes": 35,
-    "tags": ["scale", "elb", "asg"],
+    "tags": [
+      "scale",
+      "elb",
+      "asg"
+    ],
     "goals": [
       "Why one server is not enough",
       "Load balancer types and health checks",
@@ -156,7 +178,10 @@
     "title": "AWS Lambda",
     "short": "Serverless functions, triggers, API Gateway, cold starts.",
     "minutes": 35,
-    "tags": ["serverless", "lambda"],
+    "tags": [
+      "serverless",
+      "lambda"
+    ],
     "goals": [
       "What serverless and Lambda mean",
       "Events, API Gateway, cold starts",
@@ -176,7 +201,10 @@
     "title": "Amazon DynamoDB",
     "short": "NoSQL keys, GSIs, streams, capacity modes, when to use it.",
     "minutes": 35,
-    "tags": ["database", "dynamodb"],
+    "tags": [
+      "database",
+      "dynamodb"
+    ],
     "goals": [
       "SQL vs NoSQL tradeoffs",
       "Partition/sort keys and indexes",
@@ -196,7 +224,10 @@
     "title": "CloudWatch & CloudTrail",
     "short": "Metrics, logs, alarms, dashboards, API audit trails.",
     "minutes": 35,
-    "tags": ["ops", "security"],
+    "tags": [
+      "ops",
+      "security"
+    ],
     "goals": [
       "Monitoring vs logging vs auditing",
       "CloudWatch metrics, logs, and alarms",
@@ -217,7 +248,11 @@
     "title": "Docker, ECR & ECS",
     "short": "Containers, images, ECR registry, ECS and Fargate.",
     "minutes": 40,
-    "tags": ["containers", "docker", "ecs"],
+    "tags": [
+      "containers",
+      "docker",
+      "ecs"
+    ],
     "goals": [
       "Images vs containers and Dockerfiles",
       "Amazon ECR as an image registry",
@@ -234,10 +269,14 @@
     "source": "lesson-12.md",
     "number": "12",
     "section": "Automation",
-    "title": "IaC — CloudFormation & Terraform",
+    "title": "IaC \u2014 CloudFormation & Terraform",
     "short": "Declare infra as code, state, modules, CI/CD, tool choice.",
     "minutes": 40,
-    "tags": ["iac", "terraform", "cloudformation"],
+    "tags": [
+      "iac",
+      "terraform",
+      "cloudformation"
+    ],
     "goals": [
       "Why infrastructure as code matters",
       "CloudFormation vs Terraform at a high level",
@@ -249,5 +288,220 @@
       "https://developer.hashicorp.com/terraform/intro",
       "ChatGPT AWS Learning Roadmap"
     ]
+  },
+  {
+    "id": "identity-center",
+    "source": "lesson-13.md",
+    "number": "13",
+    "section": "Additional \u00b7 SAA & jobs",
+    "title": "IAM Identity Center (SSO)",
+    "short": "Workforce identity, SSO, permission sets \u2014 modern alternative to long-lived IAM users.",
+    "minutes": 30,
+    "tags": [
+      "security",
+      "sso",
+      "identity",
+      "coming-soon"
+    ],
+    "goals": [
+      "Explain IAM Identity Center vs IAM users",
+      "Describe permission sets and account assignments",
+      "Know when orgs choose SSO for workforce access"
+    ],
+    "reviewed": "2026-07",
+    "sources": [
+      "https://docs.aws.amazon.com/singlesignon/latest/userguide/what-is.html",
+      "Placeholder \u2014 full content to be added"
+    ],
+    "comingSoon": true
+  },
+  {
+    "id": "kms-secrets",
+    "source": "lesson-14.md",
+    "number": "14",
+    "section": "Additional \u00b7 SAA & jobs",
+    "title": "KMS & Secrets Manager",
+    "short": "Encrypt with KMS keys; store and rotate secrets without hardcoding passwords.",
+    "minutes": 35,
+    "tags": [
+      "security",
+      "kms",
+      "secrets",
+      "coming-soon"
+    ],
+    "goals": [
+      "Customer managed keys vs AWS managed keys",
+      "Envelope encryption at a high level",
+      "Secrets Manager vs Parameter Store use cases"
+    ],
+    "reviewed": "2026-07",
+    "sources": [
+      "https://docs.aws.amazon.com/kms/latest/developerguide/overview.html",
+      "https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html",
+      "Placeholder \u2014 full content to be added"
+    ],
+    "comingSoon": true
+  },
+  {
+    "id": "messaging",
+    "source": "lesson-15.md",
+    "number": "15",
+    "section": "Additional \u00b7 SAA & jobs",
+    "title": "SQS, SNS & EventBridge",
+    "short": "Queues, pub/sub, and event buses for decoupled, event-driven architectures.",
+    "minutes": 40,
+    "tags": [
+      "messaging",
+      "events",
+      "integration",
+      "coming-soon"
+    ],
+    "goals": [
+      "Choose queue vs topic vs event bus",
+      "Standard vs FIFO SQS patterns",
+      "EventBridge rules and common sources/targets"
+    ],
+    "reviewed": "2026-07",
+    "sources": [
+      "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html",
+      "https://docs.aws.amazon.com/sns/latest/dg/welcome.html",
+      "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-what-is.html",
+      "Placeholder \u2014 full content to be added"
+    ],
+    "comingSoon": true
+  },
+  {
+    "id": "cloudfront",
+    "source": "lesson-16.md",
+    "number": "16",
+    "section": "Additional \u00b7 SAA & jobs",
+    "title": "CloudFront & OAC",
+    "short": "CDN for low latency; Origin Access Control to keep S3 private.",
+    "minutes": 30,
+    "tags": [
+      "cdn",
+      "cloudfront",
+      "s3",
+      "coming-soon"
+    ],
+    "goals": [
+      "What a CDN edge cache does",
+      "Distributions, origins, and behaviors",
+      "Why OAC is preferred over public S3 website endpoints"
+    ],
+    "reviewed": "2026-07",
+    "sources": [
+      "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html",
+      "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html",
+      "Placeholder \u2014 full content to be added"
+    ],
+    "comingSoon": true
+  },
+  {
+    "id": "route53",
+    "source": "lesson-17.md",
+    "number": "17",
+    "section": "Additional \u00b7 SAA & jobs",
+    "title": "Route 53 basics",
+    "short": "DNS hosted zones, records, and routing policies that keep apps reachable.",
+    "minutes": 25,
+    "tags": [
+      "dns",
+      "route53",
+      "networking",
+      "coming-soon"
+    ],
+    "goals": [
+      "Hosted zones and common record types",
+      "Alias vs CNAME for AWS resources",
+      "Simple routing policies used in interviews"
+    ],
+    "reviewed": "2026-07",
+    "sources": [
+      "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/Welcome.html",
+      "Placeholder \u2014 full content to be added"
+    ],
+    "comingSoon": true
+  },
+  {
+    "id": "cost-management",
+    "source": "lesson-18.md",
+    "number": "18",
+    "section": "Additional \u00b7 SAA & jobs",
+    "title": "Cost Explorer & Budgets",
+    "short": "See what you spend, set budgets and alerts \u2014 day-one survival skill.",
+    "minutes": 25,
+    "tags": [
+      "cost",
+      "billing",
+      "ops",
+      "coming-soon"
+    ],
+    "goals": [
+      "Read Cost Explorer trends and group-by dimensions",
+      "Create a budget with alert thresholds",
+      "Name cost-control habits (tags, free tier, tear-down)"
+    ],
+    "reviewed": "2026-07",
+    "sources": [
+      "https://docs.aws.amazon.com/cost-management/latest/userguide/ce-what-is.html",
+      "https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-managing-costs.html",
+      "Placeholder \u2014 full content to be added"
+    ],
+    "comingSoon": true
+  },
+  {
+    "id": "security-ops",
+    "source": "lesson-19.md",
+    "number": "19",
+    "section": "Additional \u00b7 SAA & jobs",
+    "title": "Security Hub & GuardDuty",
+    "short": "Central findings and intelligent threat detection \u2014 ops/security overview.",
+    "minutes": 30,
+    "tags": [
+      "security",
+      "guardduty",
+      "security-hub",
+      "coming-soon"
+    ],
+    "goals": [
+      "What GuardDuty detects at a high level",
+      "How Security Hub aggregates findings",
+      "Where these fit next to CloudTrail and IAM"
+    ],
+    "reviewed": "2026-07",
+    "sources": [
+      "https://docs.aws.amazon.com/guardduty/latest/ug/what-is-guardduty.html",
+      "https://docs.aws.amazon.com/securityhub/latest/userguide/what-is-securityhub.html",
+      "Placeholder \u2014 full content to be added"
+    ],
+    "comingSoon": true
+  },
+  {
+    "id": "eks-ecs",
+    "source": "lesson-20.md",
+    "number": "20",
+    "section": "Additional \u00b7 SAA & jobs",
+    "title": "EKS vs ECS \u2014 when to choose",
+    "short": "Compare managed Kubernetes (EKS) with ECS after you know containers.",
+    "minutes": 30,
+    "tags": [
+      "containers",
+      "eks",
+      "ecs",
+      "coming-soon"
+    ],
+    "goals": [
+      "Contrast orchestration models of ECS and EKS",
+      "List trade-offs: ops burden, portability, ecosystem",
+      "Pick a default for common team situations"
+    ],
+    "reviewed": "2026-07",
+    "sources": [
+      "https://docs.aws.amazon.com/eks/latest/userguide/what-is-eks.html",
+      "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/Welcome.html",
+      "Placeholder \u2014 full content to be added"
+    ],
+    "comingSoon": true
   }
 ]

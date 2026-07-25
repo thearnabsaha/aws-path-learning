@@ -330,6 +330,7 @@ for (const lesson of meta) {
     goals: lesson.goals,
     reviewed: lesson.reviewed,
     sources: lesson.sources,
+    comingSoon: !!lesson.comingSoon,
     parts,
     content: html,
     quiz,
@@ -350,6 +351,7 @@ for (const lesson of meta) {
     tags: lesson.tags,
     goals: lesson.goals,
     reviewed: lesson.reviewed,
+    comingSoon: !!lesson.comingSoon,
     parts,
   });
 }

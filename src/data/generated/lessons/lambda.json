@@ -19,6 +19,7 @@
     "https://docs.aws.amazon.com/lambda/latest/dg/welcome.html",
     "ChatGPT AWS Learning Roadmap"
   ],
+  "comingSoon": false,
   "parts": [
     {
       "id": "part-1",

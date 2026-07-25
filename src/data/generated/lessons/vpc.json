@@ -20,6 +20,7 @@
     "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html",
     "ChatGPT AWS Learning Roadmap"
   ],
+  "comingSoon": false,
   "parts": [
     {
       "id": "part-1",

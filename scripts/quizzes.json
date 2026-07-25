@@ -9,7 +9,7 @@
         "Never using the internet"
       ],
       "answer": 1,
-      "explain": "The lesson says you rent computers over the internet—like Uber: pay when you ride."
+      "explain": "The lesson says you rent computers over the internet\u2014like Uber: pay when you ride."
     },
     {
       "q": "In Traditional vs Cloud, scaling is described as:",
@@ -59,7 +59,7 @@
       "q": "Why does the chat say multiple Availability Zones matter?",
       "options": [
         "They make billing free",
-        "High availability—if one AZ fails, others can continue",
+        "High availability\u2014if one AZ fails, others can continue",
         "They replace IAM",
         "They disable S3"
       ],
@@ -92,12 +92,12 @@
       "q": "In the roadmap table, Phase 1 is:",
       "options": [
         "Interview only",
-        "Cloud Fundamentals (2–3 days)",
+        "Cloud Fundamentals (2\u20133 days)",
         "Only Terraform",
         "Only Kubernetes"
       ],
       "answer": 1,
-      "explain": "Phase 1 = Cloud Fundamentals, 2–3 days."
+      "explain": "Phase 1 = Cloud Fundamentals, 2\u20133 days."
     },
     {
       "q": "DevOps & Containers appear in which roadmap phase?",
@@ -125,7 +125,7 @@
       "q": "The chat teaches AWS primarily to:",
       "options": [
         "Only pass trivia night",
-        "Build real industry skills for career growth—not only certification",
+        "Build real industry skills for career growth\u2014not only certification",
         "Avoid all labs",
         "Use root daily"
       ],
@@ -155,7 +155,7 @@
       "explain": "Fundamentals: services, regions, AZs, architecture basics."
     },
     {
-      "q": "Compared to buying a ₹10 lakh server, the cloud approach is:",
+      "q": "Compared to buying a \u20b910 lakh server, the cloud approach is:",
       "options": [
         "Always more expensive no matter what",
         "Pay AWS for what you use instead of huge upfront hardware",
@@ -229,7 +229,7 @@
         "Only mice"
       ],
       "answer": 1,
-      "explain": "Lesson lists servers, drives, networking, cooling, security, power—you rent instead."
+      "explain": "Lesson lists servers, drives, networking, cooling, security, power\u2014you rent instead."
     },
     {
       "q": "AWS has servers:",
@@ -264,13 +264,13 @@
         "To disable MFA"
       ],
       "answer": 1,
-      "explain": "Daily work → IAM / Identity Center; root is rare."
+      "explain": "Daily work \u2192 IAM / Identity Center; root is rare."
     },
     {
       "q": "The AWS Management Console is:",
       "options": [
         "A physical keyboard",
-        "AWS’s web dashboard/control panel",
+        "AWS\u2019s web dashboard/control panel",
         "Only the CLI",
         "A type of EC2 instance"
       ],
@@ -380,7 +380,7 @@
       "q": "Access keys are dangerous if:",
       "options": [
         "Stored only in IAM role temporary sessions",
-        "Leaked in GitHub or chat—long-lived secrets",
+        "Leaked in GitHub or chat\u2014long-lived secrets",
         "Never created",
         "Rotated often with least privilege"
       ],
@@ -503,7 +503,7 @@
       "q": "AMI is:",
       "options": [
         "A billing alarm",
-        "Amazon Machine Image—template to launch instances",
+        "Amazon Machine Image\u2014template to launch instances",
         "A load balancer rule",
         "A DynamoDB key"
       ],
@@ -513,7 +513,7 @@
     {
       "q": "EBS is:",
       "options": [
-        "Elastic Block Store—network disk for instances",
+        "Elastic Block Store\u2014network disk for instances",
         "Email Backup Service",
         "Edge Browser Store",
         "EventBridge Schema"
@@ -585,7 +585,7 @@
         "Stop deletes the AMI"
       ],
       "answer": 1,
-      "explain": "Lifecycle: stop ≠ terminate."
+      "explain": "Lifecycle: stop \u2260 terminate."
     },
     {
       "q": "Public IP means:",
@@ -700,7 +700,7 @@
     {
       "q": "A complete simple architecture in the lesson includes:",
       "options": [
-        "Users → internet → EC2 (with SG) and storage components",
+        "Users \u2192 internet \u2192 EC2 (with SG) and storage components",
         "Only IAM without compute",
         "Only Terraform state",
         "Only CloudWatch without servers"
@@ -723,7 +723,7 @@
       "q": "Leaving SSH open to the whole internet is:",
       "options": [
         "Best practice always",
-        "Risky—prefer restricted CIDR or SSM instead",
+        "Risky\u2014prefer restricted CIDR or SSM instead",
         "Required by AWS",
         "The only way to use EC2"
       ],
@@ -757,7 +757,7 @@
     {
       "q": "An object key is:",
       "options": [
-        "The object’s path/name in the bucket",
+        "The object\u2019s path/name in the bucket",
         "An IAM password",
         "An AZ ID",
         "A Docker tag only"
@@ -944,7 +944,7 @@
     {
       "q": "Interview: why not put a database primary storage only on S3?",
       "options": [
-        "S3 is object storage—not a relational DB engine for transactional queries the same way",
+        "S3 is object storage\u2014not a relational DB engine for transactional queries the same way",
         "S3 cannot store any bytes",
         "S3 is only for IAM",
         "S3 is only IPv6"
@@ -955,7 +955,7 @@
     {
       "q": "Object storage scales because:",
       "options": [
-        "AWS manages a massive durable store; you don’t manage disks on servers yourself for each file",
+        "AWS manages a massive durable store; you don\u2019t manage disks on servers yourself for each file",
         "You must buy a server per file",
         "Keys must be sequential only",
         "Buckets cannot hold many objects"
@@ -1023,7 +1023,7 @@
     {
       "q": "Internet Gateway provides:",
       "options": [
-        "VPC ↔ internet connectivity for public resources",
+        "VPC \u2194 internet connectivity for public resources",
         "Only S3 inventory",
         "Only MFA",
         "Only CloudFormation drift"
@@ -1078,7 +1078,7 @@
     {
       "q": "Why put databases in private subnets?",
       "options": [
-        "Reduce internet exposure—only app tier reaches them",
+        "Reduce internet exposure\u2014only app tier reaches them",
         "Because public subnets cannot have IPs",
         "Because RDS forbids private subnets",
         "To avoid backups"
@@ -1089,8 +1089,8 @@
     {
       "q": "Public route table often has:",
       "options": [
-        "0.0.0.0/0 → IGW",
-        "0.0.0.0/0 → DynamoDB only",
+        "0.0.0.0/0 \u2192 IGW",
+        "0.0.0.0/0 \u2192 DynamoDB only",
         "No local route ever",
         "Only IPv6 to S3"
       ],
@@ -1100,8 +1100,8 @@
     {
       "q": "Private route table often has:",
       "options": [
-        "0.0.0.0/0 → NAT Gateway (if egress needed)",
-        "0.0.0.0/0 → IGW on every private host necessarily",
+        "0.0.0.0/0 \u2192 NAT Gateway (if egress needed)",
+        "0.0.0.0/0 \u2192 IGW on every private host necessarily",
         "No VPC local route",
         "Only CloudTrail"
       ],
@@ -1111,7 +1111,7 @@
     {
       "q": "Data flow for a web app often is:",
       "options": [
-        "Internet → public tier (e.g. LB/web) → private app/db tiers",
+        "Internet \u2192 public tier (e.g. LB/web) \u2192 private app/db tiers",
         "DB first on the public internet always",
         "Only S3 without network",
         "Only IAM without packets"
@@ -1139,7 +1139,7 @@
         "Billing is free"
       ],
       "answer": 0,
-      "explain": "Networking is where AWS “clicks.”"
+      "explain": "Networking is where AWS \u201cclicks.\u201d"
     },
     {
       "q": "Subnets live:",
@@ -1289,7 +1289,7 @@
     {
       "q": "Multi-AZ vs Read Replica:",
       "options": [
-        "HA vs read scaling—different goals",
+        "HA vs read scaling\u2014different goals",
         "Identical features always",
         "Both are S3 classes",
         "Both are IAM roles"
@@ -1610,7 +1610,7 @@
     {
       "q": "ELB vs Auto Scaling:",
       "options": [
-        "LB distributes traffic; ASG changes capacity—they work together",
+        "LB distributes traffic; ASG changes capacity\u2014they work together",
         "They are identical services",
         "ASG replaces HTTPS",
         "ELB stores databases"
@@ -1621,10 +1621,10 @@
     {
       "q": "Production architecture often is:",
       "options": [
-        "Users → LB → ASG instances across AZs",
-        "Users → single laptop",
-        "Users → root user only",
-        "Users → only CloudFormation UI"
+        "Users \u2192 LB \u2192 ASG instances across AZs",
+        "Users \u2192 single laptop",
+        "Users \u2192 root user only",
+        "Users \u2192 only CloudFormation UI"
       ],
       "answer": 0,
       "explain": "Standard web tier."
@@ -1711,7 +1711,7 @@
     {
       "q": "Serverless means:",
       "options": [
-        "You don’t manage servers; you run code on managed compute",
+        "You don\u2019t manage servers; you run code on managed compute",
         "There are literally zero computers in AWS",
         "No IAM is needed",
         "No networking exists"
@@ -1882,7 +1882,7 @@
         "CloudWatch cannot metric"
       ],
       "answer": 0,
-      "explain": "Event → work."
+      "explain": "Event \u2192 work."
     },
     {
       "q": "Traditional always-on servers vs Lambda:",
@@ -1977,7 +1977,7 @@
     {
       "q": "SQL vs NoSQL in the lesson:",
       "options": [
-        "Different models/tradeoffs—not always identical replacements",
+        "Different models/tradeoffs\u2014not always identical replacements",
         "Always identical",
         "SQL cannot store text",
         "NoSQL cannot store numbers"
@@ -2065,7 +2065,7 @@
     {
       "q": "GSI is:",
       "options": [
-        "Global Secondary Index—alternate query pattern",
+        "Global Secondary Index\u2014alternate query pattern",
         "Gateway Security Interface",
         "Green Storage Instance",
         "Group Scaling Interval"
@@ -2199,7 +2199,7 @@
     {
       "q": "Juniors ask how to deploy; seniors also ask:",
       "options": [
-        "How do I know it’s healthy and debug at 2 AM?",
+        "How do I know it\u2019s healthy and debug at 2 AM?",
         "How do I delete CloudWatch?",
         "How do I avoid all logs?",
         "How do I share root?"
@@ -2232,7 +2232,7 @@
     {
       "q": "Auditing is about:",
       "options": [
-        "Who did what (control plane) — CloudTrail theme",
+        "Who did what (control plane) \u2014 CloudTrail theme",
         "Only ALB latency",
         "Only Docker tags",
         "Only EBS type"
@@ -2373,7 +2373,7 @@
       "explain": "Log search."
     },
     {
-      "q": "Example: spike in errors → you check:",
+      "q": "Example: spike in errors \u2192 you check:",
       "options": [
         "Metrics/alarms/logs and recent changes via trail as needed",
         "Only the office plant",
@@ -2428,7 +2428,7 @@
       "explain": "Alarms that page matter."
     },
     {
-      "q": "EC2 logs may need agents/config to ship to CloudWatch—theme is:",
+      "q": "EC2 logs may need agents/config to ship to CloudWatch\u2014theme is:",
       "options": [
         "Centralize logs for search/ops",
         "Never log anything",
@@ -2531,7 +2531,7 @@
     {
       "q": "Deployment flow often is:",
       "options": [
-        "Build image → push ECR → run on ECS",
+        "Build image \u2192 push ECR \u2192 run on ECS",
         "Push random zip to IAM",
         "Store images only in Security Groups",
         "Run containers inside CloudTrail events only"
@@ -2542,7 +2542,7 @@
     {
       "q": "ECS is:",
       "options": [
-        "Elastic Container Service—orchestrates containers on AWS",
+        "Elastic Container Service\u2014orchestrates containers on AWS",
         "Only a database",
         "Only S3 hosting",
         "Only MFA"
@@ -2597,7 +2597,7 @@
     {
       "q": "Fargate means:",
       "options": [
-        "Serverless containers—less EC2 management",
+        "Serverless containers\u2014less EC2 management",
         "You must manage every EC2 host always",
         "No Docker allowed",
         "No IAM roles"
@@ -2674,7 +2674,7 @@
     {
       "q": "Complete architecture with containers often includes:",
       "options": [
-        "ALB → ECS service tasks from ECR images in private subnets",
+        "ALB \u2192 ECS service tasks from ECR images in private subnets",
         "Public root SSH to host every container always",
         "No load balancer ever for HTTP APIs always",
         "Storing images only in /tmp on laptops"
@@ -2852,7 +2852,7 @@
     {
       "q": "CloudFormation vs Terraform (high level):",
       "options": [
-        "CFN AWS-native; Terraform multi-cloud ecosystem—pick by context",
+        "CFN AWS-native; Terraform multi-cloud ecosystem\u2014pick by context",
         "Terraform cannot manage AWS",
         "CFN cannot create S3",
         "They cannot version"
@@ -2863,7 +2863,7 @@
     {
       "q": "CI/CD integration means:",
       "options": [
-        "Plan/apply in pipelines with reviews—not long-lived keys ideally",
+        "Plan/apply in pipelines with reviews\u2014not long-lived keys ideally",
         "Apply only from root laptop with no review",
         "Never automate",
         "Commit state secrets publicly"
@@ -2874,7 +2874,7 @@
     {
       "q": "Production workflow emphasizes:",
       "options": [
-        "PR → plan → review → apply gated",
+        "PR \u2192 plan \u2192 review \u2192 apply gated",
         "Click prod randomly",
         "Skip plan",
         "Share state on Twitter"
@@ -2926,5 +2926,13 @@
       "answer": 0,
       "explain": "Adoption reasons."
     }
-  ]
+  ],
+  "identity-center": [],
+  "kms-secrets": [],
+  "messaging": [],
+  "cloudfront": [],
+  "route53": [],
+  "cost-management": [],
+  "security-ops": [],
+  "eks-ecs": []
 }
