@@ -149,6 +149,17 @@ Path choice is stored in progress (`learningPath`). Stats (done %, time left) fo
 
 Progress storage key: `aws-path-progress-v3` (auto-migrates v2).
 
+## Design polish (P4)
+
+| Item | Where |
+|------|--------|
+| Sticky **prev/next** lesson bar | Lesson pages (mobile + desktop) |
+| **Shiki** syntax highlight + Copy | Lesson code blocks (theme-aware) |
+| Sticky **table** header + first column | `.table-wrap` horizontal scroll |
+| First-run **coach marks** | Home tour (localStorage `aws-path-coach-v1`) |
+| **Reduced motion** | Global + landing/hero/coach |
+| Mocha **SVG favicon** | `/icons/favicon.svg` |
+
 ## Engineering quality (P3)
 
 | Area | Implementation |

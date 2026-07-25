@@ -9,6 +9,7 @@ import { ArchitectureMap } from "./ArchitectureMap";
 import { ProgressTools } from "./ProgressTools";
 import { ReviewPractice } from "./ReviewPractice";
 import { PathPicker } from "./PathPicker";
+import { CoachMarks } from "./CoachMarks";
 import { dueReviews } from "@/lib/quizUtils";
 import { getPath } from "@/lib/paths";
 
@@ -53,6 +54,8 @@ export function HomeView({ lessons }: { lessons: LessonSummary[] }) {
 
   return (
     <div className="home home-landing">
+      <CoachMarks />
+
       {/* ——— Cinematic hero ——— */}
       <section className="landing-hero" aria-label="Welcome">
         <div className="landing-hero-canvas">

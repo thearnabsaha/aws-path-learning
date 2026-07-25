@@ -1,6 +1,13 @@
 import { expect, test } from "@playwright/test";
 
 test.describe("AWS Path smoke", () => {
+  test.beforeEach(async ({ page }) => {
+    // Skip first-run coach so it does not intercept clicks
+    await page.addInitScript(() => {
+      localStorage.setItem("aws-path-coach-v1", "done");
+    });
+  });
+
   test("home → lesson → accordion → quiz submit", async ({ page }) => {
     await page.goto("/");
 

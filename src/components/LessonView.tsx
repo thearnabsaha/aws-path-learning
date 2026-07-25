@@ -5,8 +5,9 @@ import { Suspense, useEffect } from "react";
 import type { Lesson, LessonSummary } from "@/types/lesson";
 import { LessonAccordion } from "./LessonAccordion";
 import { Quiz } from "./Quiz";
-import { CodeCopyRoot } from "./CodeCopy";
+import { CodeEnhance } from "./CodeEnhance";
 import { LabChecklist } from "./LabChecklist";
+import { LessonStickyNav } from "./LessonStickyNav";
 import { useProgress } from "@/context/ProgressContext";
 import { trackEvent } from "@/lib/analytics";
 
@@ -36,8 +37,8 @@ export function LessonView({
     : undefined;
 
   return (
-    <article className="lesson">
-      <CodeCopyRoot />
+    <article className="lesson lesson-with-sticky-nav">
+      <CodeEnhance />
       <LabChecklist lessonId={lesson.id} />
 
       <header className="lesson-header">
@@ -108,7 +109,7 @@ export function LessonView({
             {done ? "Undo complete" : "Mark complete"}
           </button>
         </div>
-        <div className="nav-row">
+        <div className="nav-row desktop-nav-row">
           {prev ? (
             <Link className="btn btn-secondary" href={`/lesson/${prev.id}`}>
               ← {prev.number}
@@ -129,6 +130,13 @@ export function LessonView({
           )}
         </div>
       </footer>
+
+      <LessonStickyNav
+        prev={prev}
+        next={next}
+        title={lesson.title}
+        number={lesson.number}
+      />
     </article>
   );
 }
