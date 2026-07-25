@@ -2669,3 +2669,433 @@ tbody tr:hover td {
   color: var(--text-dim);
   min-width: 1.5rem;
 }
+
+/* =========================================================
+   Landing — Three.js hero + glass polish
+   ========================================================= */
+
+.home-landing {
+  margin: 0;
+  padding: 0;
+  max-width: none;
+}
+
+.landing-hero {
+  position: relative;
+  margin: -0.25rem calc(-1 * var(--page-pad-x)) 1.75rem;
+  min-height: min(78vh, 640px);
+  overflow: hidden;
+  border-radius: 0 0 28px 28px;
+  isolation: isolate;
+}
+
+.landing-hero-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-scene {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-scene-fallback {
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 40%, color-mix(in srgb, var(--accent) 18%, transparent), transparent 60%),
+    radial-gradient(ellipse 50% 40% at 20% 80%, color-mix(in srgb, var(--yellow) 12%, transparent), transparent 55%),
+    var(--bg);
+}
+
+.landing-hero-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 55% 45% at 75% 35%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 70%),
+    radial-gradient(ellipse 40% 35% at 15% 75%, color-mix(in srgb, var(--yellow) 14%, transparent), transparent 65%);
+  mix-blend-mode: soft-light;
+  z-index: 1;
+}
+
+.landing-hero-fade {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--bg) 18%, transparent) 0%,
+    transparent 28%,
+    transparent 55%,
+    color-mix(in srgb, var(--bg) 88%, transparent) 88%,
+    var(--bg) 100%
+  );
+}
+
+.landing-hero-inner {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  gap: 1.5rem;
+  align-items: end;
+  min-height: min(78vh, 640px);
+  padding: 2.25rem var(--page-pad-x) 2rem;
+  box-sizing: border-box;
+}
+
+.landing-hero-copy {
+  max-width: 38rem;
+  animation: landing-rise 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.landing-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 1rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 650;
+  letter-spacing: 0.02em;
+  color: var(--text);
+  background: color-mix(in srgb, var(--bg-elevated) 72%, transparent);
+  border: 1px solid color-mix(in srgb, var(--border-strong) 80%, transparent);
+  backdrop-filter: blur(14px) saturate(1.2);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  box-shadow: var(--shadow-md);
+}
+
+.landing-badge-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--green) 28%, transparent);
+  animation: landing-pulse 2.2s ease-in-out infinite;
+}
+
+.landing-title {
+  margin: 0 0 0.9rem;
+  font-size: clamp(2.35rem, 7vw, 3.75rem);
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+  font-weight: 800;
+  color: var(--text);
+  text-shadow:
+    0 1px 0 color-mix(in srgb, var(--bg-elevated) 60%, transparent),
+    0 18px 40px color-mix(in srgb, var(--mocha-deep) 12%, transparent);
+}
+
+.landing-title-accent {
+  display: block;
+  background: linear-gradient(
+    120deg,
+    var(--accent) 0%,
+    color-mix(in srgb, var(--accent) 55%, var(--yellow)) 55%,
+    var(--mocha) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.landing-lead {
+  margin: 0 0 1.25rem;
+  font-size: clamp(1rem, 2.2vw, 1.12rem);
+  line-height: 1.65;
+  color: var(--text-muted);
+  max-width: 34rem;
+  font-weight: 450;
+}
+
+.landing-search {
+  max-width: 28rem;
+  margin-bottom: 1.15rem;
+}
+
+.landing-search .search-input {
+  background: color-mix(in srgb, var(--bg-elevated) 82%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-color: color-mix(in srgb, var(--border-strong) 70%, transparent);
+  box-shadow: var(--shadow-md);
+}
+
+.landing-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-bottom: 1.15rem;
+}
+
+.btn-lg {
+  padding: 0.88rem 1.45rem;
+  font-size: 0.98rem;
+}
+
+.landing-cta-primary {
+  box-shadow:
+    0 12px 32px color-mix(in srgb, var(--accent) 32%, transparent),
+    var(--shadow-soft);
+}
+
+.landing-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.landing-pills li {
+  font-size: 0.75rem;
+  font-weight: 650;
+  letter-spacing: 0.02em;
+  color: var(--text-dim);
+  padding: 0.32rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--bg-elevated) 70%, transparent);
+  backdrop-filter: blur(8px);
+}
+
+/* Glass progress card */
+.landing-glass {
+  justify-self: stretch;
+  padding: 1.25rem 1.2rem 1.15rem;
+  border-radius: 22px;
+  border: 1px solid color-mix(in srgb, var(--border-strong) 75%, transparent);
+  background: color-mix(in srgb, var(--bg-elevated) 68%, transparent);
+  backdrop-filter: blur(18px) saturate(1.25);
+  -webkit-backdrop-filter: blur(18px) saturate(1.25);
+  box-shadow:
+    var(--shadow),
+    0 1px 0 rgba(255, 255, 255, 0.35) inset;
+  animation: landing-rise 0.95s 0.08s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+html[data-theme="dark"] .landing-glass {
+  box-shadow:
+    var(--shadow),
+    0 1px 0 rgba(255, 255, 255, 0.06) inset;
+}
+
+.landing-glass-ring {
+  position: relative;
+  width: 7.5rem;
+  height: 7.5rem;
+  margin: 0 auto 1rem;
+}
+
+.landing-glass-ring svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.landing-glass-ring .ring-track {
+  fill: none;
+  stroke: var(--track);
+  stroke-width: 8;
+}
+
+.landing-glass-ring .ring-progress {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 8;
+  stroke-linecap: round;
+  stroke-dasharray: 326.7;
+  stroke-dashoffset: calc(326.7 - (326.7 * var(--p, 0) / 100));
+  transition: stroke-dashoffset 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.landing-glass-pct {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  text-align: center;
+}
+
+.landing-glass-pct strong {
+  font-size: 1.55rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: var(--text);
+  line-height: 1;
+}
+
+.landing-glass-pct span {
+  font-size: 0.72rem;
+  font-weight: 650;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.landing-glass-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.45rem;
+  margin-bottom: 1rem;
+}
+
+.landing-glass-stats div {
+  text-align: center;
+  padding: 0.55rem 0.25rem;
+  border-radius: var(--radius-xs);
+  background: color-mix(in srgb, var(--bg) 55%, transparent);
+  border: 1px solid var(--border);
+}
+
+.landing-glass-stats strong {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 750;
+  letter-spacing: -0.02em;
+  color: var(--accent);
+  line-height: 1.2;
+}
+
+.landing-glass-stats span {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.landing-loop {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.landing-loop li {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.landing-loop span {
+  display: inline-grid;
+  place-items: center;
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 8px;
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid color-mix(in srgb, var(--accent) 18%, transparent);
+}
+
+.landing-body {
+  position: relative;
+  z-index: 1;
+  padding-bottom: 1rem;
+}
+
+.landing-panel {
+  backdrop-filter: blur(8px);
+}
+
+.landing-card {
+  animation: landing-rise 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(min(var(--i, 0), 12) * 0.035s);
+  transition:
+    border-color var(--ease),
+    background var(--ease),
+    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.landing-card:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    var(--shadow),
+    0 0 0 1px color-mix(in srgb, var(--accent) 18%, transparent);
+}
+
+.path-picker {
+  border-radius: 20px;
+  background: color-mix(in srgb, var(--bg-elevated) 92%, transparent);
+  backdrop-filter: blur(10px);
+}
+
+@keyframes landing-rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes landing-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--green) 22%, transparent);
+  }
+  50% {
+    box-shadow: 0 0 0 6px color-mix(in srgb, var(--green) 8%, transparent);
+  }
+}
+
+@media (min-width: 900px) {
+  .landing-hero {
+    margin-left: calc(-1 * var(--page-pad-x));
+    margin-right: calc(-1 * var(--page-pad-x));
+    min-height: min(72vh, 620px);
+    border-radius: 0 0 32px 32px;
+  }
+
+  .landing-hero-inner {
+    grid-template-columns: 1.35fr minmax(240px, 300px);
+    align-items: center;
+    gap: 2rem;
+    min-height: min(72vh, 620px);
+    padding-top: 2.75rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .landing-glass {
+    justify-self: end;
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .landing-hero {
+    /* align with content area (sidebar already offset by shell) */
+    margin-left: calc(-1 * var(--page-pad-x));
+    margin-right: calc(-1 * var(--page-pad-x));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .landing-hero-copy,
+  .landing-glass,
+  .landing-card,
+  .landing-badge-dot {
+    animation: none !important;
+  }
+
+  .landing-card:hover {
+    transform: none;
+  }
+}
