@@ -10,9 +10,12 @@ const FOCUSABLE =
 export function AppShell({
   children,
   activeLessonId,
+  hideSidebar = false,
 }: {
   children: React.ReactNode;
   activeLessonId?: string | null;
+  /** Landing / marketing pages: no curriculum drawer */
+  hideSidebar?: boolean;
 }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const shellRef = useRef<HTMLDivElement>(null);
@@ -22,13 +25,17 @@ export function AppShell({
   const toggle = useCallback(() => setMenuOpen((v) => !v), []);
 
   useEffect(() => {
-    document.body.classList.toggle("menu-open", menuOpen);
-    return () => document.body.classList.remove("menu-open");
-  }, [menuOpen]);
+    document.body.classList.toggle("menu-open", menuOpen && !hideSidebar);
+    document.body.classList.toggle("landing-shell", hideSidebar);
+    return () => {
+      document.body.classList.remove("menu-open");
+      document.body.classList.remove("landing-shell");
+    };
+  }, [menuOpen, hideSidebar]);
 
-  // Focus trap + restore when mobile drawer opens/closes
+  // Focus trap only when sidebar is shown
   useEffect(() => {
-    if (!menuOpen) {
+    if (hideSidebar || !menuOpen) {
       if (previouslyFocused.current) {
         previouslyFocused.current.focus();
         previouslyFocused.current = null;
@@ -76,7 +83,7 @@ export function AppShell({
 
     document.addEventListener("keydown", onKeyDown);
     return () => document.removeEventListener("keydown", onKeyDown);
-  }, [menuOpen, close]);
+  }, [menuOpen, close, hideSidebar]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -86,12 +93,10 @@ export function AppShell({
     return () => document.removeEventListener("keydown", onKey);
   }, [close, menuOpen]);
 
-  // Close mobile drawer on navigation
   useEffect(() => {
     close();
   }, [activeLessonId, close]);
 
-  // Close drawer when resizing to desktop
   useEffect(() => {
     const mq = window.matchMedia("(min-width: 1024px)");
     const onChange = () => {
@@ -103,24 +108,35 @@ export function AppShell({
   }, [close]);
 
   return (
-    <div className="app-frame" ref={shellRef}>
+    <div
+      className={`app-frame${hideSidebar ? " no-sidebar" : ""}`}
+      ref={shellRef}
+    >
       <a className="skip-link" href="#main">
         Skip to content
       </a>
-      <Topbar menuOpen={menuOpen} onMenuToggle={toggle} />
+      <Topbar
+        menuOpen={menuOpen}
+        onMenuToggle={toggle}
+        hideMenu={hideSidebar}
+      />
       <div className="shell">
-        <Sidebar
-          open={menuOpen}
-          onClose={close}
-          activeLessonId={activeLessonId}
-        />
-        <button
-          type="button"
-          className="overlay"
-          aria-label="Close menu"
-          hidden={!menuOpen}
-          onClick={close}
-        />
+        {!hideSidebar && (
+          <>
+            <Sidebar
+              open={menuOpen}
+              onClose={close}
+              activeLessonId={activeLessonId}
+            />
+            <button
+              type="button"
+              className="overlay"
+              aria-label="Close menu"
+              hidden={!menuOpen}
+              onClick={close}
+            />
+          </>
+        )}
         <div className="content-area">
           <main className="main" id="main" tabIndex={-1}>
             {children}

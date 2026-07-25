@@ -5,7 +5,6 @@ import Link from "next/link";
 import { useProgress } from "@/context/ProgressContext";
 import type { LessonSummary } from "@/types/lesson";
 import { SearchBox } from "./SearchBox";
-import { ArchitectureMap } from "./ArchitectureMap";
 import { ProgressTools } from "./ProgressTools";
 import { ReviewPractice } from "./ReviewPractice";
 import { PathPicker } from "./PathPicker";
@@ -18,6 +17,22 @@ const HeroScene = dynamic(
   {
     ssr: false,
     loading: () => <div className="hero-scene hero-scene-fallback" aria-hidden="true" />,
+  }
+);
+
+const ArchitectureMap3D = dynamic(
+  () => import("./ArchitectureMap3D").then((m) => m.ArchitectureMap3D),
+  {
+    ssr: false,
+    loading: () => (
+      <section className="arch-map arch-map-3d" aria-label="Architecture so far">
+        <div className="arch-map-head">
+          <h2>Architecture so far</h2>
+          <p>Loading 3D map…</p>
+        </div>
+        <div className="arch-3d-stage arch-3d-loading" />
+      </section>
+    ),
   }
 );
 
@@ -180,7 +195,7 @@ export function HomeView({ lessons }: { lessons: LessonSummary[] }) {
 
         <ReviewPractice embedded />
 
-        <ArchitectureMap />
+        <ArchitectureMap3D />
 
         <div className="curriculum-head">
           <h2 className="section-title">

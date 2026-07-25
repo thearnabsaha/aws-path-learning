@@ -15,9 +15,12 @@ test.describe("AWS Path smoke", () => {
       page.getByRole("heading", { name: /Learn AWS/i })
     ).toBeVisible();
 
-    // Prefer curriculum card (not sidebar) to avoid strict-mode double match
-    await page.locator("a.lesson-card[href='/lesson/cloud-fundamentals']").click();
-    await expect(page).toHaveURL(/\/lesson\/cloud-fundamentals/);
+    // Prefer curriculum card; scroll past 3D hero/arch so the link is clickable
+    const card = page.locator("a.lesson-card[href='/lesson/cloud-fundamentals']").first();
+    await expect(card).toBeVisible();
+    await card.scrollIntoViewIfNeeded();
+    await card.click({ force: true });
+    await expect(page).toHaveURL(/\/lesson\/cloud-fundamentals/, { timeout: 10000 });
     await expect(
       page.getByRole("heading", { name: /What is Cloud Computing/i })
     ).toBeVisible();

@@ -9,26 +9,30 @@ import { dueReviews } from "@/lib/quizUtils";
 export function Topbar({
   menuOpen,
   onMenuToggle,
+  hideMenu = false,
 }: {
   menuOpen: boolean;
   onMenuToggle: () => void;
+  hideMenu?: boolean;
 }) {
   const { percent, completedCount, total, reviewQueue } = useProgress();
   const due = dueReviews(reviewQueue).length;
 
   return (
     <header className="topbar">
-      <div className="topbar-inner">
-        <button
-          type="button"
-          className="icon-btn menu-toggle"
-          aria-label={menuOpen ? "Close menu" : "Open menu"}
-          aria-expanded={menuOpen}
-          aria-controls="sidebar"
-          onClick={onMenuToggle}
-        >
-          <span className="hamburger" aria-hidden="true" />
-        </button>
+      <div className={`topbar-inner${hideMenu ? " topbar-inner-full" : ""}`}>
+        {!hideMenu && (
+          <button
+            type="button"
+            className="icon-btn menu-toggle"
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={menuOpen}
+            aria-controls="sidebar"
+            onClick={onMenuToggle}
+          >
+            <span className="hamburger" aria-hidden="true" />
+          </button>
+        )}
 
         <Link href="/" className="brand">
           <span className="brand-mark" aria-hidden="true">

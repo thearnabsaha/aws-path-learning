@@ -30,7 +30,7 @@ export default function HomePage() {
   };
 
   return (
-    <AppShell>
+    <AppShell hideSidebar>
       <JsonLd data={courseLd} />
       <HomeView lessons={lessonSummaries} />
     </AppShell>

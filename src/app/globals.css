@@ -2709,11 +2709,14 @@ tbody tr:hover td {
 
 .landing-hero {
   position: relative;
-  margin: -0.25rem calc(-1 * var(--page-pad-x)) 1.75rem;
-  min-height: min(78vh, 640px);
+  margin: 0 0 1.75rem;
+  width: 100%;
+  max-width: 100%;
+  min-height: min(70vh, 560px);
   overflow: hidden;
-  border-radius: 0 0 28px 28px;
+  border-radius: 0 0 24px 24px;
   isolation: isolate;
+  box-sizing: border-box;
 }
 
 .landing-hero-canvas {
@@ -3084,19 +3087,19 @@ html[data-theme="dark"] .landing-glass {
 
 @media (min-width: 900px) {
   .landing-hero {
-    margin-left: calc(-1 * var(--page-pad-x));
-    margin-right: calc(-1 * var(--page-pad-x));
-    min-height: min(72vh, 620px);
-    border-radius: 0 0 32px 32px;
+    margin-left: 0;
+    margin-right: 0;
+    min-height: min(68vh, 600px);
+    border-radius: 0 0 28px 28px;
   }
 
   .landing-hero-inner {
-    grid-template-columns: 1.35fr minmax(240px, 300px);
+    grid-template-columns: 1.35fr minmax(220px, 280px);
     align-items: center;
-    gap: 2rem;
-    min-height: min(72vh, 620px);
-    padding-top: 2.75rem;
-    padding-bottom: 2.5rem;
+    gap: 1.75rem;
+    min-height: min(68vh, 600px);
+    padding-top: 2.25rem;
+    padding-bottom: 2rem;
   }
 
   .landing-glass {
@@ -3108,9 +3111,8 @@ html[data-theme="dark"] .landing-glass {
 
 @media (min-width: 1024px) {
   .landing-hero {
-    /* align with content area (sidebar already offset by shell) */
-    margin-left: calc(-1 * var(--page-pad-x));
-    margin-right: calc(-1 * var(--page-pad-x));
+    margin-left: 0;
+    margin-right: 0;
   }
 }
 
@@ -3415,5 +3417,244 @@ html[data-theme="light"] .code-block .code-label {
 
   html {
     scroll-behavior: auto;
+  }
+}
+
+/* =========================================================
+   Landing shell — no sidebar, no horizontal scroll
+   ========================================================= */
+
+.app-frame.no-sidebar .content-area {
+  margin-left: 0 !important;
+  width: 100%;
+  max-width: 100%;
+}
+
+.app-frame.no-sidebar .topbar-inner,
+.app-frame.no-sidebar .topbar-inner-full {
+  padding-left: var(--page-pad-x) !important;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.app-frame.no-sidebar .main {
+  margin-left: 0;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-left: var(--page-pad-x);
+  padding-right: var(--page-pad-x);
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+body.landing-shell {
+  overflow-x: hidden;
+}
+
+/* Kill full-bleed negative margins that caused horizontal scroll */
+.home-landing {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+.landing-hero {
+  position: relative;
+  /* no negative side margins */
+  margin: 0 0 1.75rem;
+  width: 100%;
+  max-width: 100%;
+  min-height: min(70vh, 560px);
+  overflow: hidden;
+  border-radius: 0 0 24px 24px;
+  isolation: isolate;
+  box-sizing: border-box;
+}
+
+.landing-hero-canvas,
+.hero-scene {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.hero-scene canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+  max-width: 100%;
+}
+
+.landing-hero-inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  min-width: 0;
+  padding: 1.75rem 0 1.5rem;
+  min-height: min(70vh, 560px);
+  display: grid;
+  gap: 1.25rem;
+  align-items: end;
+}
+
+.landing-hero-copy,
+.landing-glass {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.landing-body {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+.landing-search,
+.landing-search .search-box,
+.landing-cta,
+.path-picker,
+.lesson-grid,
+.arch-map {
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+/* 3D architecture stage */
+.arch-map-3d {
+  overflow: hidden;
+}
+
+.arch-3d-stage {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  height: min(52vh, 420px);
+  min-height: 260px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--bg-soft);
+  box-sizing: border-box;
+}
+
+.arch-3d-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.arch-3d-canvas canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+.arch-3d-loading {
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 40%, color-mix(in srgb, var(--accent) 14%, transparent), transparent 65%),
+    var(--bg-soft);
+  animation: arch-pulse 1.6s ease-in-out infinite;
+}
+
+.arch-3d-fallback {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 1.25rem;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+@keyframes arch-pulse {
+  0%, 100% { opacity: 0.85; }
+  50% { opacity: 1; }
+}
+
+@media (min-width: 900px) {
+  .landing-hero {
+    margin-left: 0;
+    margin-right: 0;
+    min-height: min(68vh, 600px);
+    border-radius: 0 0 28px 28px;
+  }
+
+  .landing-hero-inner {
+    grid-template-columns: 1.35fr minmax(220px, 280px);
+    align-items: center;
+    gap: 1.75rem;
+    min-height: min(68vh, 600px);
+    padding-top: 2.25rem;
+    padding-bottom: 2rem;
+  }
+
+  .arch-3d-stage {
+    height: min(48vh, 440px);
+  }
+}
+
+/* Override older negative-margin landing rules */
+@media (min-width: 1024px) {
+  .app-frame.no-sidebar .landing-hero {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .app-frame.no-sidebar .topbar-inner {
+    padding-left: var(--page-pad-x) !important;
+  }
+
+  .lesson-sticky-nav {
+    left: 0;
+  }
+
+  .app-frame:not(.no-sidebar) .lesson-sticky-nav {
+    left: var(--sidebar-w);
+  }
+}
+
+@media (max-width: 640px) {
+  .landing-hero {
+    min-height: min(78dvh, 520px);
+    border-radius: 0 0 20px 20px;
+  }
+
+  .landing-hero-inner {
+    min-height: min(78dvh, 520px);
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+  }
+
+  .landing-title {
+    font-size: clamp(1.85rem, 9vw, 2.4rem);
+  }
+
+  .landing-glass {
+    width: 100%;
+  }
+
+  .arch-3d-stage {
+    height: 280px;
+    min-height: 240px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arch-3d-loading {
+    animation: none;
   }
 }
