@@ -1,0 +1,3180 @@
+import type { QuizQuestion } from "@/types/lesson";
+
+export const quizzesByLessonId: Record<string, QuizQuestion[]> = {
+  "cloud-fundamentals": [
+    {
+      "q": "According to the chat, cloud computing is best compared to:",
+      "options": [
+        "Buying a taxi for every trip",
+        "Renting computers over the internet (like Uber for servers)",
+        "Owning only hard drives",
+        "Never using the internet"
+      ],
+      "answer": 1,
+      "explain": "The lesson says you rent computers over the internet—like Uber: pay when you ride."
+    },
+    {
+      "q": "In Traditional vs Cloud, scaling is described as:",
+      "options": [
+        "Difficult traditionally, instant in the cloud",
+        "Identical in both",
+        "Impossible in AWS",
+        "Only possible with root user"
+      ],
+      "answer": 0,
+      "explain": "The comparison table: traditional is hard to scale; cloud scales instantly."
+    },
+    {
+      "q": "AWS stands for:",
+      "options": [
+        "Amazon Web Sites",
+        "Amazon Web Services",
+        "Automatic Wide Storage",
+        "Azure Working System"
+      ],
+      "answer": 1,
+      "explain": "AWS = Amazon Web Services."
+    },
+    {
+      "q": "Which companies does the chat mention as AWS users?",
+      "options": [
+        "Only local shops",
+        "Netflix, Airbnb, Samsung, Adobe, NASA and many startups",
+        "Only Amazon retail stores offline",
+        "Nobody uses AWS"
+      ],
+      "answer": 1,
+      "explain": "The lesson lists Netflix, Airbnb, Samsung, Adobe, NASA, startups."
+    },
+    {
+      "q": "A Region in AWS is best described as:",
+      "options": [
+        "A single hard disk",
+        "A geographic area with multiple data centers",
+        "An IAM password",
+        "A Docker image"
+      ],
+      "answer": 1,
+      "explain": "Regions are geographic locations with AWS infrastructure."
+    },
+    {
+      "q": "Why does the chat say multiple Availability Zones matter?",
+      "options": [
+        "They make billing free",
+        "High availability—if one AZ fails, others can continue",
+        "They replace IAM",
+        "They disable S3"
+      ],
+      "answer": 1,
+      "explain": "Multiple AZs protect against a single data-center failure."
+    },
+    {
+      "q": "Pay-as-you-go means:",
+      "options": [
+        "You must pay 10 years upfront always",
+        "You pay mainly for what you use",
+        "AWS is always free forever for everything",
+        "Only root can be billed"
+      ],
+      "answer": 1,
+      "explain": "Cloud billing is usage-based."
+    },
+    {
+      "q": "Free Tier is mentioned so beginners can:",
+      "options": [
+        "Hack other accounts",
+        "Practice with limited free usage on eligible services",
+        "Skip MFA forever",
+        "Avoid learning IAM"
+      ],
+      "answer": 1,
+      "explain": "Free Tier helps practice without large cost (within limits)."
+    },
+    {
+      "q": "In the roadmap table, Phase 1 is:",
+      "options": [
+        "Interview only",
+        "Cloud Fundamentals (2–3 days)",
+        "Only Terraform",
+        "Only Kubernetes"
+      ],
+      "answer": 1,
+      "explain": "Phase 1 = Cloud Fundamentals, 2–3 days."
+    },
+    {
+      "q": "DevOps & Containers appear in which roadmap phase?",
+      "options": [
+        "Phase 1",
+        "Phase 5 (~2 weeks)",
+        "Phase 8 only",
+        "Not listed"
+      ],
+      "answer": 1,
+      "explain": "Phase 5 is DevOps & Containers."
+    },
+    {
+      "q": "Infrastructure as Code is roadmap phase:",
+      "options": [
+        "Phase 2",
+        "Phase 6 (~1 week)",
+        "Phase 1",
+        "Never"
+      ],
+      "answer": 1,
+      "explain": "Phase 6 = Infrastructure as Code."
+    },
+    {
+      "q": "The chat teaches AWS primarily to:",
+      "options": [
+        "Only pass trivia night",
+        "Build real industry skills for career growth—not only certification",
+        "Avoid all labs",
+        "Use root daily"
+      ],
+      "answer": 1,
+      "explain": "Industry-style teaching, not cert-only."
+    },
+    {
+      "q": "An Availability Zone is typically:",
+      "options": [
+        "A single isolated data center (or tightly coupled facilities) inside a Region",
+        "A global CDN only",
+        "An S3 bucket name",
+        "A billing unit only"
+      ],
+      "answer": 0,
+      "explain": "AZs are isolated locations within a Region."
+    },
+    {
+      "q": "Basic architecture thinking in the chat starts with understanding:",
+      "options": [
+        "Only Photoshop",
+        "Core services + Regions/AZs + how apps are hosted",
+        "Only Excel",
+        "Printer drivers"
+      ],
+      "answer": 1,
+      "explain": "Fundamentals: services, regions, AZs, architecture basics."
+    },
+    {
+      "q": "Compared to buying a ₹10 lakh server, the cloud approach is:",
+      "options": [
+        "Always more expensive no matter what",
+        "Pay AWS for what you use instead of huge upfront hardware",
+        "Illegal",
+        "Only for Netflix"
+      ],
+      "answer": 1,
+      "explain": "Rent/pay-per-use instead of large capital purchase."
+    },
+    {
+      "q": "Maintenance in the Traditional vs Cloud table is done by:",
+      "options": [
+        "You traditionally; largely AWS for the underlying cloud infrastructure",
+        "Nobody ever",
+        "Only ICANN",
+        "Only the root user person"
+      ],
+      "answer": 0,
+      "explain": "You maintain on-prem; AWS maintains much of the cloud platform."
+    },
+    {
+      "q": "Provisioning speed: cloud vs traditional (from the table):",
+      "options": [
+        "Cloud takes weeks; traditional minutes",
+        "Traditional weeks; cloud minutes",
+        "Both always years",
+        "Neither can provision"
+      ],
+      "answer": 1,
+      "explain": "Cloud: minutes; traditional: weeks."
+    },
+    {
+      "q": "Important terminology in Lesson 1 is meant to prepare you for:",
+      "options": [
+        "Ignoring all later lessons",
+        "Speaking clearly about Regions, AZs, services, and billing",
+        "Only gaming",
+        "Only mobile UI design"
+      ],
+      "answer": 1,
+      "explain": "Terms underpin later lessons."
+    },
+    {
+      "q": "Real projects appear in the roadmap as:",
+      "options": [
+        "Phase 7 (~3 weeks)",
+        "Phase 1 only",
+        "Not important",
+        "Phase 2 only"
+      ],
+      "answer": 0,
+      "explain": "Phase 7 = Real Projects, ~3 weeks."
+    },
+    {
+      "q": "Interview preparation is roadmap phase:",
+      "options": [
+        "Phase 8 (~1 week)",
+        "Phase 3 only",
+        "Phase 0",
+        "Removed from plan"
+      ],
+      "answer": 0,
+      "explain": "Phase 8 = Interview Preparation."
+    },
+    {
+      "q": "Cloud computing removes the need for the startup to own (as listed):",
+      "options": [
+        "Only domain names",
+        "Servers, drives, cables, cooling, security systems, electricity infrastructure as a first step",
+        "Only keyboards",
+        "Only mice"
+      ],
+      "answer": 1,
+      "explain": "Lesson lists servers, drives, networking, cooling, security, power—you rent instead."
+    },
+    {
+      "q": "AWS has servers:",
+      "options": [
+        "Only in one city worldwide",
+        "Around the world (global infrastructure)",
+        "Only underwater",
+        "Only on the moon"
+      ],
+      "answer": 1,
+      "explain": "Amazon operates massive global infrastructure."
+    }
+  ],
+  "iam": [
+    {
+      "q": "The Root User is compared to:",
+      "options": [
+        "A guest Wi-Fi password",
+        "A master key to the whole building/account",
+        "A read-only S3 key only",
+        "A Docker volume"
+      ],
+      "answer": 1,
+      "explain": "Master key: full power over the account."
+    },
+    {
+      "q": "You should use the Root User:",
+      "options": [
+        "For daily app deploys",
+        "Only for rare account-level tasks (billing, close account, etc.)",
+        "To store passwords in git",
+        "To disable MFA"
+      ],
+      "answer": 1,
+      "explain": "Daily work → IAM / Identity Center; root is rare."
+    },
+    {
+      "q": "The AWS Management Console is:",
+      "options": [
+        "A physical keyboard",
+        "AWS’s web dashboard/control panel",
+        "Only the CLI",
+        "A type of EC2 instance"
+      ],
+      "answer": 1,
+      "explain": "Web dashboard to manage services."
+    },
+    {
+      "q": "IAM stands for:",
+      "options": [
+        "Internet Access Module",
+        "Identity and Access Management",
+        "Internal AMI Manager",
+        "Inline Auto Mapping"
+      ],
+      "answer": 1,
+      "explain": "Identity and Access Management."
+    },
+    {
+      "q": "An IAM User is:",
+      "options": [
+        "A temporary service identity only",
+        "An identity for a person (or sometimes app) with long-lived credentials option",
+        "A VPC subnet",
+        "A load balancer"
+      ],
+      "answer": 1,
+      "explain": "Users represent people (or apps) with credentials."
+    },
+    {
+      "q": "IAM Groups help you:",
+      "options": [
+        "Encrypt EBS automatically",
+        "Attach the same policies to many users at once",
+        "Create Regions",
+        "Delete CloudTrail"
+      ],
+      "answer": 1,
+      "explain": "Groups bundle users sharing permissions."
+    },
+    {
+      "q": "IAM Policies are:",
+      "options": [
+        "JSON (or managed) permission documents of Allow/Deny",
+        "Only EC2 instance types",
+        "Only invoices",
+        "Dockerfiles"
+      ],
+      "answer": 0,
+      "explain": "Policies define permissions."
+    },
+    {
+      "q": "IAM Roles are best for:",
+      "options": [
+        "Sharing one root password",
+        "Temporary assumed access (services/people/federation)",
+        "Public anonymous admin",
+        "Disabling logging"
+      ],
+      "answer": 1,
+      "explain": "Roles = temporary credentials via assume-role."
+    },
+    {
+      "q": "Authentication answers:",
+      "options": [
+        "What can you do?",
+        "Who are you?",
+        "Which AZ?",
+        "What is latency?"
+      ],
+      "answer": 1,
+      "explain": "AuthN = identity; AuthZ = permissions."
+    },
+    {
+      "q": "Authorization answers:",
+      "options": [
+        "Who are you?",
+        "What are you allowed to do?",
+        "What is your email font?",
+        "Which city has rain?"
+      ],
+      "answer": 1,
+      "explain": "AuthZ = permissions."
+    },
+    {
+      "q": "Principle of Least Privilege means:",
+      "options": [
+        "Give Admin to everyone",
+        "Grant only the permissions needed for the job",
+        "Disable MFA",
+        "Use only root"
+      ],
+      "answer": 1,
+      "explain": "Minimal necessary access."
+    },
+    {
+      "q": "MFA adds:",
+      "options": [
+        "A second factor beyond password",
+        "Unlimited free credits",
+        "Public S3 by default",
+        "Auto Scaling"
+      ],
+      "answer": 0,
+      "explain": "Multi-factor authentication."
+    },
+    {
+      "q": "Access keys are dangerous if:",
+      "options": [
+        "Stored only in IAM role temporary sessions",
+        "Leaked in GitHub or chat—long-lived secrets",
+        "Never created",
+        "Rotated often with least privilege"
+      ],
+      "answer": 1,
+      "explain": "Leaked static keys are a common breach path."
+    },
+    {
+      "q": "AWS CLI lets you:",
+      "options": [
+        "Only draw diagrams",
+        "Manage AWS from the command line using credentials/roles",
+        "Replace the internet",
+        "Boot Windows on phones only"
+      ],
+      "answer": 1,
+      "explain": "CLI = programmatic/console alternative."
+    },
+    {
+      "q": "Console vs CLI in the lesson spirit:",
+      "options": [
+        "CLI is useless",
+        "Console is GUI; CLI is scriptable automation",
+        "They are the same binary",
+        "CLI deletes Regions"
+      ],
+      "answer": 1,
+      "explain": "GUI vs automation."
+    },
+    {
+      "q": "Typical secure login flow uses:",
+      "options": [
+        "Root without MFA for everyone",
+        "IAM user/Identity Center + MFA, not daily root",
+        "Anonymous admin",
+        "Shared one password in Slack"
+      ],
+      "answer": 1,
+      "explain": "Identity + MFA; avoid daily root."
+    },
+    {
+      "q": "In the office-building analogy, creating employees maps to:",
+      "options": [
+        "Creating IAM users/identities",
+        "Deleting VPCs",
+        "Buying laptops only",
+        "Closing Netflix"
+      ],
+      "answer": 0,
+      "explain": "Identities under the account."
+    },
+    {
+      "q": "Password policies help by:",
+      "options": [
+        "Forcing stronger/safer passwords for users",
+        "Making S3 public",
+        "Disabling CloudWatch",
+        "Removing roles"
+      ],
+      "answer": 0,
+      "explain": "Account password requirements."
+    },
+    {
+      "q": "Services in the console are grouped into areas like:",
+      "options": [
+        "Only printers",
+        "Compute, storage, database, networking, etc.",
+        "Only games",
+        "Only email clients"
+      ],
+      "answer": 1,
+      "explain": "Hundreds of services; start with a handful."
+    },
+    {
+      "q": "Best security practice emphasized:",
+      "options": [
+        "Enable MFA, avoid root daily, least privilege, careful with access keys",
+        "Post keys publicly",
+        "Share root with interns",
+        "Turn off all logging"
+      ],
+      "answer": 0,
+      "explain": "Core IAM hygiene from the lesson."
+    },
+    {
+      "q": "If a CI pipeline needs AWS access, prefer:",
+      "options": [
+        "Hard-coded root keys",
+        "A role assumed via OIDC/federation (or short-lived creds)",
+        "No authentication",
+        "Emailing passwords"
+      ],
+      "answer": 1,
+      "explain": "Roles over long-lived keys."
+    },
+    {
+      "q": "IAM is required because without it:",
+      "options": [
+        "You cannot control who can do what on which resources",
+        "S3 stops storing objects forever automatically",
+        "Regions disappear",
+        "AZs merge"
+      ],
+      "answer": 0,
+      "explain": "IAM is the permission system for AWS APIs."
+    }
+  ],
+  "ec2": [
+    {
+      "q": "EC2 provides:",
+      "options": [
+        "Only DNS",
+        "Virtual servers (instances) in AWS data centers",
+        "Only object storage",
+        "Only audit logs"
+      ],
+      "answer": 1,
+      "explain": "Elastic Compute Cloud = virtual machines."
+    },
+    {
+      "q": "AMI is:",
+      "options": [
+        "A billing alarm",
+        "Amazon Machine Image—template to launch instances",
+        "A load balancer rule",
+        "A DynamoDB key"
+      ],
+      "answer": 1,
+      "explain": "Boot image for instances."
+    },
+    {
+      "q": "EBS is:",
+      "options": [
+        "Elastic Block Store—network disk for instances",
+        "Email Backup Service",
+        "Edge Browser Store",
+        "EventBridge Schema"
+      ],
+      "answer": 0,
+      "explain": "Block storage attached to EC2."
+    },
+    {
+      "q": "Security Groups act as:",
+      "options": [
+        "Object versioning",
+        "A virtual firewall for instance traffic",
+        "A CDN",
+        "A Terraform backend"
+      ],
+      "answer": 1,
+      "explain": "Control allowed ports/protocols/sources."
+    },
+    {
+      "q": "A common SSH port is:",
+      "options": [
+        "80",
+        "22",
+        "443 only for SSH",
+        "3306 for SSH"
+      ],
+      "answer": 1,
+      "explain": "SSH typically port 22."
+    },
+    {
+      "q": "HTTP commonly uses port:",
+      "options": [
+        "22",
+        "80",
+        "5432",
+        "25 only"
+      ],
+      "answer": 1,
+      "explain": "HTTP = 80."
+    },
+    {
+      "q": "HTTPS commonly uses port:",
+      "options": [
+        "443",
+        "22",
+        "3389 only",
+        "53 only"
+      ],
+      "answer": 0,
+      "explain": "HTTPS = 443."
+    },
+    {
+      "q": "Key pairs are used to:",
+      "options": [
+        "Bill the account",
+        "Securely authenticate (e.g. SSH) to Linux instances",
+        "Create VPCs",
+        "Encrypt only Glacier"
+      ],
+      "answer": 1,
+      "explain": "Public key on instance; private key with you."
+    },
+    {
+      "q": "Stopping an instance vs terminating:",
+      "options": [
+        "Identical always",
+        "Stop can be restarted; terminate deletes the instance (careful with data)",
+        "Terminate is free always forever",
+        "Stop deletes the AMI"
+      ],
+      "answer": 1,
+      "explain": "Lifecycle: stop ≠ terminate."
+    },
+    {
+      "q": "Public IP means:",
+      "options": [
+        "Only reachable inside VPC",
+        "Addressable from the internet (with routes/SG allow)",
+        "Always free Elastic IP",
+        "Same as private IP"
+      ],
+      "answer": 1,
+      "explain": "Public addressing + proper networking."
+    },
+    {
+      "q": "Private IP is for:",
+      "options": [
+        "Only CloudFront",
+        "Communication inside the VPC/private network",
+        "Global anycast only",
+        "Root login only"
+      ],
+      "answer": 1,
+      "explain": "Internal addressing."
+    },
+    {
+      "q": "Instance types choose:",
+      "options": [
+        "CPU/RAM/network profile (and more) for the VM",
+        "Only the IAM user name",
+        "Only the Region flag emoji",
+        "S3 storage class"
+      ],
+      "answer": 0,
+      "explain": "Size/family of the virtual machine."
+    },
+    {
+      "q": "After SSH login you typically:",
+      "options": [
+        "Cannot install anything",
+        "Use Linux commands, install software, run services",
+        "Must use only PowerPoint",
+        "Disable the network forever"
+      ],
+      "answer": 1,
+      "explain": "Lab: install web server etc."
+    },
+    {
+      "q": "Hosting a simple website on EC2 requires roughly:",
+      "options": [
+        "Instance + OS + web server + open ports in SG",
+        "Only an S3 bucket policy",
+        "Only CloudTrail",
+        "Only MFA on root"
+      ],
+      "answer": 0,
+      "explain": "Compute + software + network allow."
+    },
+    {
+      "q": "Visitors reach your site when:",
+      "options": [
+        "Laptop must stay on always",
+        "App is deployed on EC2 reachable via network",
+        "Only localhost",
+        "Only offline mode"
+      ],
+      "answer": 1,
+      "explain": "Server stays available in the cloud."
+    },
+    {
+      "q": "CPU on EC2 is for:",
+      "options": [
+        "Processing instructions",
+        "Only storing objects forever",
+        "Only DNS",
+        "Only billing"
+      ],
+      "answer": 0,
+      "explain": "Anatomy table: CPU processes."
+    },
+    {
+      "q": "RAM is:",
+      "options": [
+        "Long-term archive only",
+        "Temporary working memory",
+        "A Region name",
+        "A policy language"
+      ],
+      "answer": 1,
+      "explain": "Working memory."
+    },
+    {
+      "q": "Interview-style: security group default posture is about:",
+      "options": [
+        "Allowing all traffic by default always",
+        "You define allow rules; be careful opening 0.0.0.0/0",
+        "They replace NACLs completely always",
+        "They store AMIs"
+      ],
+      "answer": 1,
+      "explain": "Know allow-list behavior and least exposure."
+    },
+    {
+      "q": "Elastic in EC2 hints at:",
+      "options": [
+        "You can resize/scale compute relatively flexibly",
+        "Disks never attach",
+        "No APIs exist",
+        "Only one instance type forever"
+      ],
+      "answer": 0,
+      "explain": "Elastic capacity."
+    },
+    {
+      "q": "A complete simple architecture in the lesson includes:",
+      "options": [
+        "Users → internet → EC2 (with SG) and storage components",
+        "Only IAM without compute",
+        "Only Terraform state",
+        "Only CloudWatch without servers"
+      ],
+      "answer": 0,
+      "explain": "End-to-end path to the instance."
+    },
+    {
+      "q": "Amazon Linux / Ubuntu examples are:",
+      "options": [
+        "AMIs / OS choices",
+        "Load balancer types",
+        "S3 classes",
+        "RDS engines only"
+      ],
+      "answer": 0,
+      "explain": "OS images via AMI."
+    },
+    {
+      "q": "Leaving SSH open to the whole internet is:",
+      "options": [
+        "Best practice always",
+        "Risky—prefer restricted CIDR or SSM instead",
+        "Required by AWS",
+        "The only way to use EC2"
+      ],
+      "answer": 1,
+      "explain": "Common mistake called out in good teaching."
+    }
+  ],
+  "s3": [
+    {
+      "q": "S3 is:",
+      "options": [
+        "A relational database",
+        "Object storage service",
+        "A VPC router",
+        "An EC2 instance family"
+      ],
+      "answer": 1,
+      "explain": "Simple Storage Service = objects."
+    },
+    {
+      "q": "Files live in:",
+      "options": [
+        "Buckets",
+        "Subnets only",
+        "Security groups",
+        "Auto Scaling groups"
+      ],
+      "answer": 0,
+      "explain": "Bucket holds objects."
+    },
+    {
+      "q": "An object key is:",
+      "options": [
+        "The object’s path/name in the bucket",
+        "An IAM password",
+        "An AZ ID",
+        "A Docker tag only"
+      ],
+      "answer": 0,
+      "explain": "Key identifies the object."
+    },
+    {
+      "q": "Bucket names must be:",
+      "options": [
+        "Globally unique (and follow naming rules)",
+        "The same for every account",
+        "Only numbers length 2",
+        "Equal to Region name only"
+      ],
+      "answer": 0,
+      "explain": "Globally unique names."
+    },
+    {
+      "q": "Object storage differs from a laptop filesystem by:",
+      "options": [
+        "Storing objects via API/keys rather than local disk hierarchy as primary model",
+        "Requiring always-on EC2",
+        "Disallowing any files",
+        "Only supporting music"
+      ],
+      "answer": 0,
+      "explain": "Objects in the cloud, not your laptop disk."
+    },
+    {
+      "q": "Static website hosting on S3 is for:",
+      "options": [
+        "HTML/CSS/JS static sites",
+        "Always multiplayer game servers with GPUs",
+        "Only RDS SQL",
+        "Only VPN concentrators"
+      ],
+      "answer": 0,
+      "explain": "Static content hosting feature."
+    },
+    {
+      "q": "Versioning helps when:",
+      "options": [
+        "You overwrite/delete and need prior versions",
+        "You want to disable encryption forever",
+        "You remove all AZs",
+        "You delete the Region"
+      ],
+      "answer": 0,
+      "explain": "Recover from mistakes."
+    },
+    {
+      "q": "Storage classes exist to:",
+      "options": [
+        "Trade cost/access patterns (Standard, IA, Glacier, etc.)",
+        "Change VPC CIDR",
+        "Rename IAM users",
+        "Create load balancers"
+      ],
+      "answer": 0,
+      "explain": "Different durability/access/cost profiles."
+    },
+    {
+      "q": "Lifecycle rules can:",
+      "options": [
+        "Transition/expire objects automatically",
+        "Create EC2 key pairs",
+        "Open security groups",
+        "Disable CloudTrail globally"
+      ],
+      "answer": 0,
+      "explain": "Automate transitions/expiry."
+    },
+    {
+      "q": "Encryption protects:",
+      "options": [
+        "Object data at rest (and options in transit patterns)",
+        "Only DNS names",
+        "Only instance types",
+        "Only Terraform state locks always"
+      ],
+      "answer": 0,
+      "explain": "SSE options etc."
+    },
+    {
+      "q": "Durability vs availability (lesson theme):",
+      "options": [
+        "Related but different properties of storage",
+        "Exactly the same number always",
+        "Irrelevant for S3",
+        "Only for EC2 RAM"
+      ],
+      "answer": 0,
+      "explain": "S3 is famous for high durability; availability is separate concept."
+    },
+    {
+      "q": "EC2 vs S3: S3 is better for:",
+      "options": [
+        "Running a custom kernel module",
+        "Durable object/file storage at scale",
+        "Installing apt packages on a VM",
+        "SSH login"
+      ],
+      "answer": 1,
+      "explain": "Storage service vs compute."
+    },
+    {
+      "q": "Permissions on S3 involve:",
+      "options": [
+        "IAM + bucket policies/public access settings (carefully)",
+        "Only security groups",
+        "Only NACLs",
+        "Only ASG policies"
+      ],
+      "answer": 0,
+      "explain": "Identity + resource policies."
+    },
+    {
+      "q": "Uploading files uses:",
+      "options": [
+        "Put/upload APIs or console/CLI",
+        "Only Route 53",
+        "Only CloudWatch Alarms",
+        "Only NAT Gateways"
+      ],
+      "answer": 0,
+      "explain": "Upload objects to keys."
+    },
+    {
+      "q": "A real-world use from the lesson spirit:",
+      "options": [
+        "Images, backups, logs, static assets",
+        "Replacing IAM entirely",
+        "Being a load balancer",
+        "Being a VPC"
+      ],
+      "answer": 0,
+      "explain": "Common S3 workloads."
+    },
+    {
+      "q": "Making a bucket public by accident is:",
+      "options": [
+        "A serious security risk",
+        "Required for all private apps",
+        "Impossible",
+        "Only a CLI bug"
+      ],
+      "answer": 0,
+      "explain": "Public access is a classic footgun."
+    },
+    {
+      "q": "Static vs dynamic sites: S3 alone fits best with:",
+      "options": [
+        "Static content",
+        "Always server-side session apps needing EC2/Lambda backends",
+        "Only Oracle RAC",
+        "Only VPN"
+      ],
+      "answer": 0,
+      "explain": "Dynamic often needs compute."
+    },
+    {
+      "q": "Architecture example often pairs S3 with:",
+      "options": [
+        "Apps on EC2/CloudFront patterns for content",
+        "Only on-prem tape forever",
+        "Only root MFA",
+        "Only NAT deletion"
+      ],
+      "answer": 0,
+      "explain": "Common designs."
+    },
+    {
+      "q": "Downloading objects requires:",
+      "options": [
+        "Permission + GetObject (or website endpoint if public hosting)",
+        "Always root user",
+        "Always terminating EC2",
+        "Always Multi-AZ RDS"
+      ],
+      "answer": 0,
+      "explain": "Authz to read objects."
+    },
+    {
+      "q": "Interview: why not put a database primary storage only on S3?",
+      "options": [
+        "S3 is object storage—not a relational DB engine for transactional queries the same way",
+        "S3 cannot store any bytes",
+        "S3 is only for IAM",
+        "S3 is only IPv6"
+      ],
+      "answer": 0,
+      "explain": "Use RDS/DynamoDB for DB workloads; S3 for objects."
+    },
+    {
+      "q": "Object storage scales because:",
+      "options": [
+        "AWS manages a massive durable store; you don’t manage disks on servers yourself for each file",
+        "You must buy a server per file",
+        "Keys must be sequential only",
+        "Buckets cannot hold many objects"
+      ],
+      "answer": 0,
+      "explain": "Managed scale."
+    },
+    {
+      "q": "Free-tier/practice caution still applies because:",
+      "options": [
+        "Usage outside free limits or public traffic can cost money",
+        "S3 is always free unlimited",
+        "Bucket names cost $1000 each",
+        "Encryption is illegal"
+      ],
+      "answer": 0,
+      "explain": "Cost awareness."
+    }
+  ],
+  "vpc": [
+    {
+      "q": "A VPC is:",
+      "options": [
+        "Your private network in AWS",
+        "A Docker image",
+        "An S3 class",
+        "A billing invoice"
+      ],
+      "answer": 0,
+      "explain": "Virtual Private Cloud."
+    },
+    {
+      "q": "CIDR block defines:",
+      "options": [
+        "IP address range for the VPC/subnets",
+        "IAM password length only",
+        "EBS volume type only",
+        "Lambda timeout only"
+      ],
+      "answer": 0,
+      "explain": "e.g. 10.0.0.0/16 style ranges."
+    },
+    {
+      "q": "A public subnet typically:",
+      "options": [
+        "Has a route to an Internet Gateway for internet access patterns",
+        "Can never have any route table",
+        "Is only for DynamoDB",
+        "Blocks all ENIs"
+      ],
+      "answer": 0,
+      "explain": "IGW route + public addressing patterns."
+    },
+    {
+      "q": "A private subnet typically:",
+      "options": [
+        "Keeps resources off direct internet inbound; egress via NAT if needed",
+        "Must always have public IPs",
+        "Cannot host EC2",
+        "Replaces IAM"
+      ],
+      "answer": 0,
+      "explain": "Private apps/DBs."
+    },
+    {
+      "q": "Internet Gateway provides:",
+      "options": [
+        "VPC ↔ internet connectivity for public resources",
+        "Only S3 inventory",
+        "Only MFA",
+        "Only CloudFormation drift"
+      ],
+      "answer": 0,
+      "explain": "IGW."
+    },
+    {
+      "q": "Route tables decide:",
+      "options": [
+        "Where network traffic is directed",
+        "Which AMI to use",
+        "S3 storage class",
+        "Lambda memory only"
+      ],
+      "answer": 0,
+      "explain": "Routing."
+    },
+    {
+      "q": "NAT Gateway is used so private instances can:",
+      "options": [
+        "Reach the internet outbound (updates) without being publicly inbound",
+        "Become public ALBs",
+        "Disable encryption",
+        "Skip security groups"
+      ],
+      "answer": 0,
+      "explain": "Egress for private subnets."
+    },
+    {
+      "q": "Security Groups are:",
+      "options": [
+        "Stateful firewall rules on ENIs/resources",
+        "Stateless only always",
+        "Only for S3 buckets",
+        "Only for billing"
+      ],
+      "answer": 0,
+      "explain": "SG = stateful allow rules."
+    },
+    {
+      "q": "Network ACLs are:",
+      "options": [
+        "Stateless subnet-level allow/deny rules",
+        "IAM policies",
+        "Docker networks only",
+        "ASG policies"
+      ],
+      "answer": 0,
+      "explain": "NACL vs SG."
+    },
+    {
+      "q": "Why put databases in private subnets?",
+      "options": [
+        "Reduce internet exposure—only app tier reaches them",
+        "Because public subnets cannot have IPs",
+        "Because RDS forbids private subnets",
+        "To avoid backups"
+      ],
+      "answer": 0,
+      "explain": "Security isolation."
+    },
+    {
+      "q": "Public route table often has:",
+      "options": [
+        "0.0.0.0/0 → IGW",
+        "0.0.0.0/0 → DynamoDB only",
+        "No local route ever",
+        "Only IPv6 to S3"
+      ],
+      "answer": 0,
+      "explain": "Internet path."
+    },
+    {
+      "q": "Private route table often has:",
+      "options": [
+        "0.0.0.0/0 → NAT Gateway (if egress needed)",
+        "0.0.0.0/0 → IGW on every private host necessarily",
+        "No VPC local route",
+        "Only CloudTrail"
+      ],
+      "answer": 0,
+      "explain": "NAT for egress."
+    },
+    {
+      "q": "Data flow for a web app often is:",
+      "options": [
+        "Internet → public tier (e.g. LB/web) → private app/db tiers",
+        "DB first on the public internet always",
+        "Only S3 without network",
+        "Only IAM without packets"
+      ],
+      "answer": 0,
+      "explain": "Layered tiers."
+    },
+    {
+      "q": "Security Group vs NACL: SGs are:",
+      "options": [
+        "Stateful and resource-associated",
+        "Only subnet and stateless",
+        "Only global",
+        "Only for DNS"
+      ],
+      "answer": 0,
+      "explain": "Key interview distinction."
+    },
+    {
+      "q": "Without a VPC understanding, the chat says:",
+      "options": [
+        "AWS architecture is hard to understand",
+        "You cannot create accounts",
+        "S3 stops working",
+        "Billing is free"
+      ],
+      "answer": 0,
+      "explain": "Networking is where AWS “clicks.”"
+    },
+    {
+      "q": "Subnets live:",
+      "options": [
+        "Inside a VPC, typically mapped to AZs",
+        "Inside IAM policies only",
+        "Inside AMIs only",
+        "Inside CloudWatch metrics only"
+      ],
+      "answer": 0,
+      "explain": "Subnet per AZ patterns."
+    },
+    {
+      "q": "Real company example theme:",
+      "options": [
+        "Web in public/accessible tier; data private",
+        "Everything public including DB 0.0.0.0/0",
+        "No security groups",
+        "Single flat open network only"
+      ],
+      "answer": 0,
+      "explain": "Least exposure."
+    },
+    {
+      "q": "Overlapping CIDRs later cause:",
+      "options": [
+        "Peering/connectivity pain",
+        "Faster S3",
+        "Free NAT",
+        "Automatic MFA"
+      ],
+      "answer": 0,
+      "explain": "Plan CIDRs carefully."
+    },
+    {
+      "q": "Hands-on lab goal spirit:",
+      "options": [
+        "Build public/private subnets with proper routes",
+        "Delete all Regions",
+        "Disable CloudTrail",
+        "Use only root keys in git"
+      ],
+      "answer": 0,
+      "explain": "Practice the architecture."
+    },
+    {
+      "q": "Interview: traffic from private subnet to internet for yum/apt needs:",
+      "options": [
+        "NAT (or private package mirrors/endpoints strategy)",
+        "Always a public IP on DB",
+        "Disabling route tables",
+        "Turning off SGs entirely"
+      ],
+      "answer": 0,
+      "explain": "Egress pattern."
+    },
+    {
+      "q": "NACLs evaluate:",
+      "options": [
+        "At subnet boundary (stateless rules)",
+        "Only inside Lambda memory",
+        "Only S3 keys",
+        "Only ASG desired count"
+      ],
+      "answer": 0,
+      "explain": "Subnet-level."
+    },
+    {
+      "q": "Complete architecture in the lesson ties together:",
+      "options": [
+        "IGW, public/private subnets, NAT, routes, SGs",
+        "Only EBS snapshots",
+        "Only DynamoDB Streams",
+        "Only Terraform modules"
+      ],
+      "answer": 0,
+      "explain": "Core VPC building blocks."
+    }
+  ],
+  "rds": [
+    {
+      "q": "RDS provides:",
+      "options": [
+        "Managed relational databases",
+        "Only object storage",
+        "Only containers",
+        "Only DNS"
+      ],
+      "answer": 0,
+      "explain": "Relational Database Service."
+    },
+    {
+      "q": "Why not store everything only in S3 for app data?",
+      "options": [
+        "Apps often need queryable structured relational data/transactions",
+        "S3 cannot store files",
+        "S3 is only for IAM",
+        "S3 is offline only"
+      ],
+      "answer": 0,
+      "explain": "DB vs object store."
+    },
+    {
+      "q": "Supported engines include (examples):",
+      "options": [
+        "PostgreSQL, MySQL, etc.",
+        "Only Excel",
+        "Only Mongo on-prem forced",
+        "Only PowerPoint"
+      ],
+      "answer": 0,
+      "explain": "Multiple SQL engines."
+    },
+    {
+      "q": "Primary database handles:",
+      "options": [
+        "Main read/write endpoint typically",
+        "Only CloudTrail events",
+        "Only S3 inventory",
+        "Only NAT"
+      ],
+      "answer": 0,
+      "explain": "Primary instance."
+    },
+    {
+      "q": "Multi-AZ is mainly for:",
+      "options": [
+        "High availability / failover",
+        "Cheaper than free tier always",
+        "Replacing SQL",
+        "Public internet exposure"
+      ],
+      "answer": 0,
+      "explain": "HA."
+    },
+    {
+      "q": "Read Replicas are mainly for:",
+      "options": [
+        "Scaling reads",
+        "Replacing Multi-AZ completely for HA always",
+        "Storing AMIs",
+        "Billing only"
+      ],
+      "answer": 0,
+      "explain": "Read scale."
+    },
+    {
+      "q": "Multi-AZ vs Read Replica:",
+      "options": [
+        "HA vs read scaling—different goals",
+        "Identical features always",
+        "Both are S3 classes",
+        "Both are IAM roles"
+      ],
+      "answer": 0,
+      "explain": "Interview table theme."
+    },
+    {
+      "q": "Automated backups help you:",
+      "options": [
+        "Recover to a point in time (per config)",
+        "Delete VPCs",
+        "Create Regions",
+        "Disable encryption"
+      ],
+      "answer": 0,
+      "explain": "Backup feature."
+    },
+    {
+      "q": "Snapshots are:",
+      "options": [
+        "Point-in-time storage backups of DB",
+        "EC2 key pairs",
+        "ALB rules",
+        "Docker tags"
+      ],
+      "answer": 0,
+      "explain": "Manual/auto snapshots concepts."
+    },
+    {
+      "q": "Security for RDS includes:",
+      "options": [
+        "Private subnets + SG + encryption + credentials hygiene",
+        "Public 0.0.0.0/0 on DB always best",
+        "No passwords ever",
+        "Root user in app code"
+      ],
+      "answer": 0,
+      "explain": "Defense in depth."
+    },
+    {
+      "q": "Common MySQL port:",
+      "options": [
+        "3306",
+        "22",
+        "80",
+        "443 only"
+      ],
+      "answer": 0,
+      "explain": "3306."
+    },
+    {
+      "q": "Common PostgreSQL port:",
+      "options": [
+        "5432",
+        "22",
+        "25",
+        "53"
+      ],
+      "answer": 0,
+      "explain": "5432."
+    },
+    {
+      "q": "Monitoring RDS often uses:",
+      "options": [
+        "CloudWatch metrics",
+        "Only paint apps",
+        "Only bucket versioning",
+        "Only NACLs"
+      ],
+      "answer": 0,
+      "explain": "Ops visibility."
+    },
+    {
+      "q": "RDS vs database on EC2:",
+      "options": [
+        "RDS manages more undifferentiated heavy lifting (patches/backups options)",
+        "EC2 managed DB always has zero ops",
+        "RDS cannot run SQL",
+        "EC2 cannot run software"
+      ],
+      "answer": 0,
+      "explain": "Managed vs self-managed."
+    },
+    {
+      "q": "Shopping website example stores:",
+      "options": [
+        "Orders/users in DB; maybe images in S3",
+        "Everything only in Security Groups",
+        "Only in Route tables",
+        "Only in AMIs"
+      ],
+      "answer": 0,
+      "explain": "Layered storage."
+    },
+    {
+      "q": "Scaling storage on RDS refers to:",
+      "options": [
+        "Growing disk capacity (and related options)",
+        "Adding random public IPs",
+        "Deleting Multi-AZ",
+        "Removing backups"
+      ],
+      "answer": 0,
+      "explain": "Storage scaling."
+    },
+    {
+      "q": "SQL is used to:",
+      "options": [
+        "Query/manipulate relational tables",
+        "Create VPCs only",
+        "Build Docker images only",
+        "Configure IGW only"
+      ],
+      "answer": 0,
+      "explain": "Structured query language."
+    },
+    {
+      "q": "Tables hold:",
+      "options": [
+        "Rows/columns of structured data",
+        "Only EC2 instances",
+        "Only subnets",
+        "Only policies"
+      ],
+      "answer": 0,
+      "explain": "Relational model."
+    },
+    {
+      "q": "Putting RDS in a public subnet with open SG is:",
+      "options": [
+        "Generally a bad idea for production",
+        "Required by AWS always",
+        "The only Multi-AZ mode",
+        "Faster than private always"
+      ],
+      "answer": 0,
+      "explain": "Keep DB private."
+    },
+    {
+      "q": "Failover in Multi-AZ aims to:",
+      "options": [
+        "Promote standby and keep the app connecting via endpoint",
+        "Delete the VPC",
+        "Disable CloudWatch",
+        "Remove read replicas only"
+      ],
+      "answer": 0,
+      "explain": "HA behavior."
+    },
+    {
+      "q": "Credentials should be:",
+      "options": [
+        "Protected (e.g. secrets), not hardcoded in public repos",
+        "Committed to GitHub in plain text",
+        "The root password shared",
+        "Empty always"
+      ],
+      "answer": 0,
+      "explain": "Secret hygiene."
+    },
+    {
+      "q": "Hands-on spirit: connect app tier to RDS using:",
+      "options": [
+        "Security group references + private networking",
+        "Opening DB to world",
+        "Disabling authentication",
+        "Using only public anonymous access"
+      ],
+      "answer": 0,
+      "explain": "Least privilege network path."
+    }
+  ],
+  "elb-asg": [
+    {
+      "q": "One server is a problem because:",
+      "options": [
+        "It is a single point of failure and capacity limit",
+        "AWS forbids one server",
+        "It cannot have an OS",
+        "It cannot have a security group"
+      ],
+      "answer": 0,
+      "explain": "Lesson opening problem."
+    },
+    {
+      "q": "A load balancer:",
+      "options": [
+        "Distributes traffic across multiple targets",
+        "Stores S3 objects only",
+        "Replaces IAM",
+        "Creates Regions"
+      ],
+      "answer": 0,
+      "explain": "Traffic distribution."
+    },
+    {
+      "q": "Health checks allow the LB to:",
+      "options": [
+        "Send traffic only to healthy targets",
+        "Encrypt EBS automatically",
+        "Delete NACLs",
+        "Rotate root passwords"
+      ],
+      "answer": 0,
+      "explain": "Unhealthy targets taken out of rotation."
+    },
+    {
+      "q": "ALB operates primarily at:",
+      "options": [
+        "HTTP/HTTPS application layer (L7)",
+        "Only physical cables",
+        "Only S3 inventory",
+        "Only Glacier"
+      ],
+      "answer": 0,
+      "explain": "Application Load Balancer."
+    },
+    {
+      "q": "Types of ELB in AWS include:",
+      "options": [
+        "ALB, NLB, (and others like GWLB)",
+        "Only Classic FTP balancers on-prem",
+        "Only IAM loaders",
+        "Only S3 multiparts"
+      ],
+      "answer": 0,
+      "explain": "Multiple LB types."
+    },
+    {
+      "q": "Auto Scaling Group maintains:",
+      "options": [
+        "A fleet of instances between min/desired/max",
+        "A single frozen AMI forever without replace",
+        "Only DynamoDB items",
+        "Only Route 53 records"
+      ],
+      "answer": 0,
+      "explain": "ASG capacity."
+    },
+    {
+      "q": "Scaling out means:",
+      "options": [
+        "Adding more instances",
+        "Only adding RAM to one box always",
+        "Deleting the VPC",
+        "Turning off the ALB"
+      ],
+      "answer": 0,
+      "explain": "Horizontal scale."
+    },
+    {
+      "q": "Scaling up means:",
+      "options": [
+        "Making an instance bigger (vertical)",
+        "Always adding more instances only",
+        "Only adding subnets",
+        "Only adding bucket versions"
+      ],
+      "answer": 0,
+      "explain": "Vertical scale."
+    },
+    {
+      "q": "Desired capacity is:",
+      "options": [
+        "The target number of instances ASG tries to keep",
+        "The max S3 object size",
+        "The IAM policy version date",
+        "The number of Regions"
+      ],
+      "answer": 0,
+      "explain": "Desired/min/max trio."
+    },
+    {
+      "q": "Launch template defines:",
+      "options": [
+        "How new instances are configured (AMI, type, etc.)",
+        "Only CloudTrail home Region",
+        "Only S3 lifecycle",
+        "Only DNS TTL"
+      ],
+      "answer": 0,
+      "explain": "Launch configuration/template idea."
+    },
+    {
+      "q": "High Availability means:",
+      "options": [
+        "System keeps working despite component failures (multi-AZ patterns)",
+        "One server always enough",
+        "No health checks",
+        "No backups"
+      ],
+      "answer": 0,
+      "explain": "HA."
+    },
+    {
+      "q": "Fault tolerance emphasizes:",
+      "options": [
+        "Continuing operation through failures",
+        "Failing permanently on first error always",
+        "No redundancy",
+        "Single AZ only always"
+      ],
+      "answer": 0,
+      "explain": "Related reliability concept."
+    },
+    {
+      "q": "Black Friday example shows:",
+      "options": [
+        "Scale out under traffic spikes",
+        "Delete the load balancer under load",
+        "Use only one t2.micro forever",
+        "Turn off monitoring"
+      ],
+      "answer": 0,
+      "explain": "Elastic capacity."
+    },
+    {
+      "q": "ELB vs Auto Scaling:",
+      "options": [
+        "LB distributes traffic; ASG changes capacity—they work together",
+        "They are identical services",
+        "ASG replaces HTTPS",
+        "ELB stores databases"
+      ],
+      "answer": 0,
+      "explain": "Complementary."
+    },
+    {
+      "q": "Production architecture often is:",
+      "options": [
+        "Users → LB → ASG instances across AZs",
+        "Users → single laptop",
+        "Users → root user only",
+        "Users → only CloudFormation UI"
+      ],
+      "answer": 0,
+      "explain": "Standard web tier."
+    },
+    {
+      "q": "If min=max=2:",
+      "options": [
+        "No elastic scale, but can still replace unhealthy",
+        "Infinite scale",
+        "Zero instances always",
+        "Only Lambda"
+      ],
+      "answer": 0,
+      "explain": "Fixed size fleet."
+    },
+    {
+      "q": "Scaling policies can be driven by:",
+      "options": [
+        "Metrics (e.g. CPU) and schedules",
+        "Only coin flips",
+        "Only S3 bucket names",
+        "Only AMI IDs"
+      ],
+      "answer": 0,
+      "explain": "Policy types."
+    },
+    {
+      "q": "Without health checks:",
+      "options": [
+        "LB may send traffic to dead instances",
+        "ASG becomes free",
+        "VPC disappears",
+        "S3 versioning enables"
+      ],
+      "answer": 0,
+      "explain": "Health checks matter."
+    },
+    {
+      "q": "Interview: sticky sessions:",
+      "options": [
+        "Can be a design tradeoff; better to design stateless when possible",
+        "Always required",
+        "Disable ALB forever",
+        "Replace Multi-AZ"
+      ],
+      "answer": 0,
+      "explain": "Design awareness."
+    },
+    {
+      "q": "Hands-on lab spirit:",
+      "options": [
+        "Put instances behind LB and attach ASG policies",
+        "Open DB to 0.0.0.0/0",
+        "Use only root keys in git",
+        "Disable all logs"
+      ],
+      "answer": 0,
+      "explain": "Practice HA web tier."
+    },
+    {
+      "q": "Fault of one AZ with multi-AZ ASG+LB:",
+      "options": [
+        "Traffic can shift to healthy AZ capacity",
+        "Entire internet stops",
+        "S3 deletes all buckets",
+        "IAM deletes users"
+      ],
+      "answer": 0,
+      "explain": "Multi-AZ resilience."
+    },
+    {
+      "q": "Before/after diagrams in the lesson show:",
+      "options": [
+        "From single server risk to LB+multiple servers",
+        "From multi-AZ to single server as best practice",
+        "From ALB to no internet",
+        "From ASG to root-only"
+      ],
+      "answer": 0,
+      "explain": "Core teaching arc."
+    }
+  ],
+  "lambda": [
+    {
+      "q": "Serverless means:",
+      "options": [
+        "You don’t manage servers; you run code on managed compute",
+        "There are literally zero computers in AWS",
+        "No IAM is needed",
+        "No networking exists"
+      ],
+      "answer": 0,
+      "explain": "Mindset shift."
+    },
+    {
+      "q": "Lambda runs code in response to:",
+      "options": [
+        "Events/triggers",
+        "Only monthly cron on your laptop",
+        "Only manual SSH",
+        "Only AMI launches"
+      ],
+      "answer": 0,
+      "explain": "Event-driven."
+    },
+    {
+      "q": "Common triggers include:",
+      "options": [
+        "S3 events, API Gateway, schedules, streams, etc.",
+        "Only mechanical keyboards",
+        "Only IGW attachments",
+        "Only bucket renames by DNS"
+      ],
+      "answer": 0,
+      "explain": "Many event sources."
+    },
+    {
+      "q": "Image processing example:",
+      "options": [
+        "S3 upload triggers Lambda to process",
+        "EC2 must always poll S3 forever only",
+        "NAT deletes images",
+        "ALB stores images in IAM"
+      ],
+      "answer": 0,
+      "explain": "Classic pattern."
+    },
+    {
+      "q": "Lambda execution is billed roughly by:",
+      "options": [
+        "Invocations and duration/memory (GB-seconds)",
+        "Number of VPCs only",
+        "Number of root users only",
+        "Number of AZs only"
+      ],
+      "answer": 0,
+      "explain": "Pricing model theme."
+    },
+    {
+      "q": "Cold start is:",
+      "options": [
+        "Extra latency when environment starts cold",
+        "When S3 freezes permanently",
+        "When VPC freezes",
+        "When MFA expires only"
+      ],
+      "answer": 0,
+      "explain": "Cold start concept."
+    },
+    {
+      "q": "Lambda functions should be treated as:",
+      "options": [
+        "Stateless between invocations (persist elsewhere)",
+        "Always storing forever on local disk only",
+        "A replacement for CloudTrail",
+        "A type of NACL"
+      ],
+      "answer": 0,
+      "explain": "Stateless."
+    },
+    {
+      "q": "IAM role for Lambda grants:",
+      "options": [
+        "Permissions the function needs to call AWS APIs",
+        "Public internet admin by default",
+        "Root privileges always",
+        "No logging ever"
+      ],
+      "answer": 0,
+      "explain": "Execution role."
+    },
+    {
+      "q": "API Gateway often:",
+      "options": [
+        "Exposes HTTP APIs that invoke Lambda",
+        "Replaces EC2 hypervisors",
+        "Stores EBS snapshots",
+        "Creates CIDR blocks"
+      ],
+      "answer": 0,
+      "explain": "Serverless API."
+    },
+    {
+      "q": "Timeouts matter because:",
+      "options": [
+        "Functions can run too long/fail; set realistic limits",
+        "Lambda never stops",
+        "Timeouts disable Regions",
+        "Timeouts create AZs"
+      ],
+      "answer": 0,
+      "explain": "Execution time limits."
+    },
+    {
+      "q": "Memory setting also affects:",
+      "options": [
+        "CPU power available (and cost/performance)",
+        "Only the font size in console",
+        "Only S3 class",
+        "Only ALB idle timeout always"
+      ],
+      "answer": 0,
+      "explain": "Memory/CPU relationship."
+    },
+    {
+      "q": "Lambda vs EC2: Lambda is better when:",
+      "options": [
+        "Short event-driven tasks without server management",
+        "You need custom kernels/GPUs long-running always",
+        "You need permanent SSH hosts only",
+        "You refuse all managed services"
+      ],
+      "answer": 0,
+      "explain": "Tradeoffs."
+    },
+    {
+      "q": "Concurrency refers to:",
+      "options": [
+        "How many executions can run in parallel",
+        "How many VPCs you own",
+        "How many root users",
+        "How many AMIs"
+      ],
+      "answer": 0,
+      "explain": "Scaling executions."
+    },
+    {
+      "q": "Supported languages include (examples):",
+      "options": [
+        "Python, Node.js, and others supported by Lambda",
+        "Only assembly on mainframes required",
+        "Only abacus",
+        "Only SQL in RDS"
+      ],
+      "answer": 0,
+      "explain": "Multiple runtimes."
+    },
+    {
+      "q": "Handler is:",
+      "options": [
+        "Entry function Lambda invokes",
+        "A type of NAT",
+        "A security group only",
+        "An S3 bucket ACL only"
+      ],
+      "answer": 0,
+      "explain": "Function handler."
+    },
+    {
+      "q": "Sending emails example shows:",
+      "options": [
+        "Event triggers function to perform a task",
+        "EC2 must send all emails always",
+        "S3 cannot trigger anything",
+        "CloudWatch cannot metric"
+      ],
+      "answer": 0,
+      "explain": "Event → work."
+    },
+    {
+      "q": "Traditional always-on servers vs Lambda:",
+      "options": [
+        "Pay for idle servers vs pay per use for many workloads",
+        "Lambda always costs more when idle 24/7 identically",
+        "EC2 cannot run code",
+        "Lambda cannot use IAM"
+      ],
+      "answer": 0,
+      "explain": "Economics/ops."
+    },
+    {
+      "q": "When NOT to use Lambda (spirit):",
+      "options": [
+        "Long specialized server workloads needing custom environments",
+        "Short glue code",
+        "S3 event transforms",
+        "Cron microtasks"
+      ],
+      "answer": 0,
+      "explain": "Know limits."
+    },
+    {
+      "q": "Idempotency matters because:",
+      "options": [
+        "Events can retry; handlers should tolerate duplicates",
+        "AWS never retries",
+        "Lambda runs exactly once cosmically guaranteed always",
+        "S3 forbids overwrites"
+      ],
+      "answer": 0,
+      "explain": "At-least-once patterns."
+    },
+    {
+      "q": "Architecture so far adds Lambda as:",
+      "options": [
+        "Event-driven compute alongside EC2 patterns",
+        "A replacement for all networking",
+        "A type of subnet",
+        "A billing currency"
+      ],
+      "answer": 0,
+      "explain": "Service mix."
+    },
+    {
+      "q": "Logs for Lambda typically go to:",
+      "options": [
+        "CloudWatch Logs",
+        "Only EBS",
+        "Only physical printers",
+        "Only IAM access keys"
+      ],
+      "answer": 0,
+      "explain": "Ops integration."
+    },
+    {
+      "q": "Hands-on lab spirit:",
+      "options": [
+        "Create a function, trigger it, inspect logs",
+        "Delete the organization",
+        "Disable MFA",
+        "Commit root keys"
+      ],
+      "answer": 0,
+      "explain": "Practice."
+    }
+  ],
+  "dynamodb": [
+    {
+      "q": "DynamoDB is:",
+      "options": [
+        "Managed NoSQL database",
+        "Only a SQL warehouse",
+        "An EC2 hypervisor",
+        "A VPC peering feature"
+      ],
+      "answer": 0,
+      "explain": "NoSQL service."
+    },
+    {
+      "q": "NoSQL is useful when:",
+      "options": [
+        "Flexible high-scale key-value/document access patterns fit",
+        "You only ever need Excel",
+        "You refuse all databases",
+        "You only use DNS"
+      ],
+      "answer": 0,
+      "explain": "Why another DB."
+    },
+    {
+      "q": "SQL vs NoSQL in the lesson:",
+      "options": [
+        "Different models/tradeoffs—not always identical replacements",
+        "Always identical",
+        "SQL cannot store text",
+        "NoSQL cannot store numbers"
+      ],
+      "answer": 0,
+      "explain": "Tradeoffs."
+    },
+    {
+      "q": "A table contains:",
+      "options": [
+        "Items",
+        "Subnets",
+        "AMIs",
+        "Load balancers"
+      ],
+      "answer": 0,
+      "explain": "Terminology."
+    },
+    {
+      "q": "An item is like:",
+      "options": [
+        "A row/document of attributes",
+        "A Region",
+        "A NAT Gateway",
+        "A Dockerfile"
+      ],
+      "answer": 0,
+      "explain": "Item."
+    },
+    {
+      "q": "Attributes are:",
+      "options": [
+        "Fields on an item",
+        "Only AZ names",
+        "Only CIDRs",
+        "Only ports"
+      ],
+      "answer": 0,
+      "explain": "Attributes."
+    },
+    {
+      "q": "Primary key uniquely identifies:",
+      "options": [
+        "An item",
+        "A VPC",
+        "An alarm",
+        "A stack"
+      ],
+      "answer": 0,
+      "explain": "Primary key."
+    },
+    {
+      "q": "Partition key is used to:",
+      "options": [
+        "Distribute and locate data partitions",
+        "Create IGWs",
+        "Name S3 classes",
+        "Set ALB idle timeout"
+      ],
+      "answer": 0,
+      "explain": "PK."
+    },
+    {
+      "q": "Sort key allows:",
+      "options": [
+        "Ordering/range queries within a partition",
+        "Deleting CloudTrail",
+        "Creating IAM users",
+        "Opening SSH"
+      ],
+      "answer": 0,
+      "explain": "SK."
+    },
+    {
+      "q": "Query is preferred over Scan because:",
+      "options": [
+        "Query is efficient with keys; Scan reads large portions",
+        "Scan is always free and faster for one item by key",
+        "Query deletes data",
+        "Scan creates GSIs automatically"
+      ],
+      "answer": 0,
+      "explain": "Scan vs Query."
+    },
+    {
+      "q": "GSI is:",
+      "options": [
+        "Global Secondary Index—alternate query pattern",
+        "Gateway Security Interface",
+        "Green Storage Instance",
+        "Group Scaling Interval"
+      ],
+      "answer": 0,
+      "explain": "GSI."
+    },
+    {
+      "q": "LSI is:",
+      "options": [
+        "Local Secondary Index",
+        "Linux System Image",
+        "Load Status Indicator",
+        "Lambda Start Index"
+      ],
+      "answer": 0,
+      "explain": "LSI."
+    },
+    {
+      "q": "On-demand capacity mode:",
+      "options": [
+        "Pay per request; flexible for spiky traffic",
+        "Requires fixed huge provision always with no option",
+        "Disables encryption",
+        "Removes primary keys"
+      ],
+      "answer": 0,
+      "explain": "Capacity modes."
+    },
+    {
+      "q": "Provisioned mode:",
+      "options": [
+        "You set capacity (can autoscale) for steadier workloads",
+        "Only for S3",
+        "Only for DNS",
+        "Forbids all reads"
+      ],
+      "answer": 0,
+      "explain": "Provisioned."
+    },
+    {
+      "q": "DynamoDB Streams provide:",
+      "options": [
+        "Change data capture of item changes",
+        "Internet gateways",
+        "EBS snapshots",
+        "AMI copies only"
+      ],
+      "answer": 0,
+      "explain": "Streams."
+    },
+    {
+      "q": "TTL is used to:",
+      "options": [
+        "Expire items automatically after a time",
+        "Terminate EC2 only",
+        "Rotate MFA only",
+        "Rename buckets only"
+      ],
+      "answer": 0,
+      "explain": "Time to Live."
+    },
+    {
+      "q": "Global Tables help with:",
+      "options": [
+        "Multi-region replication patterns",
+        "Single AZ only forced",
+        "Removing primary keys",
+        "Disabling IAM"
+      ],
+      "answer": 0,
+      "explain": "Global tables theme."
+    },
+    {
+      "q": "RDS vs DynamoDB choose DynamoDB when:",
+      "options": [
+        "Key-value/document scale & access patterns fit NoSQL",
+        "You need complex multi-table SQL joins as primary model always",
+        "You need only FTP",
+        "You need only email"
+      ],
+      "answer": 0,
+      "explain": "Selection guidance."
+    },
+    {
+      "q": "Security includes:",
+      "options": [
+        "IAM permissions and encryption options",
+        "Making table public without auth always",
+        "No keys ever",
+        "Root password in items"
+      ],
+      "answer": 0,
+      "explain": "Secure access."
+    },
+    {
+      "q": "Backup options exist so you can:",
+      "options": [
+        "Recover from data loss scenarios",
+        "Delete Regions",
+        "Disable Streams forever mandatorily",
+        "Remove GSIs only"
+      ],
+      "answer": 0,
+      "explain": "Backup."
+    },
+    {
+      "q": "Hot partitions happen when:",
+      "options": [
+        "One partition key gets disproportionate traffic",
+        "You use too many GSIs correctly always",
+        "You only use on-demand",
+        "You enable TTL"
+      ],
+      "answer": 0,
+      "explain": "Design risk."
+    },
+    {
+      "q": "Hands-on: design keys from:",
+      "options": [
+        "Access patterns first",
+        "Random UUIDs only without queries",
+        "Only Scan forever",
+        "Copying RDS schemas blindly always"
+      ],
+      "answer": 0,
+      "explain": "Access-pattern-first."
+    }
+  ],
+  "observability": [
+    {
+      "q": "Juniors ask how to deploy; seniors also ask:",
+      "options": [
+        "How do I know it’s healthy and debug at 2 AM?",
+        "How do I delete CloudWatch?",
+        "How do I avoid all logs?",
+        "How do I share root?"
+      ],
+      "answer": 0,
+      "explain": "Lesson framing."
+    },
+    {
+      "q": "Monitoring is about:",
+      "options": [
+        "Is the system healthy now? (metrics/alarms)",
+        "Who called which API only",
+        "Only bucket names",
+        "Only AMI IDs"
+      ],
+      "answer": 0,
+      "explain": "Monitoring vs audit."
+    },
+    {
+      "q": "Logging is about:",
+      "options": [
+        "Detailed event/text records for debugging",
+        "Only CPU average without text",
+        "Only billing",
+        "Only CIDR"
+      ],
+      "answer": 0,
+      "explain": "Logs."
+    },
+    {
+      "q": "Auditing is about:",
+      "options": [
+        "Who did what (control plane) — CloudTrail theme",
+        "Only ALB latency",
+        "Only Docker tags",
+        "Only EBS type"
+      ],
+      "answer": 0,
+      "explain": "Audit."
+    },
+    {
+      "q": "CloudWatch primary role:",
+      "options": [
+        "Metrics, logs, alarms, dashboards",
+        "Only container registry",
+        "Only IaC state",
+        "Only DNS"
+      ],
+      "answer": 0,
+      "explain": "CloudWatch."
+    },
+    {
+      "q": "Common EC2 metrics include:",
+      "options": [
+        "CPU utilization (and more)",
+        "Only S3 object count on the instance metric always",
+        "Only number of IAM users",
+        "Only Terraform plan lines"
+      ],
+      "answer": 0,
+      "explain": "EC2 metrics."
+    },
+    {
+      "q": "Dashboards help you:",
+      "options": [
+        "Visualize operational health",
+        "Create VPCs automatically",
+        "Rotate access keys automatically always",
+        "Disable MFA"
+      ],
+      "answer": 0,
+      "explain": "Dashboards."
+    },
+    {
+      "q": "CloudWatch Logs store:",
+      "options": [
+        "Application/system log data",
+        "Only AMIs",
+        "Only route tables",
+        "Only security group rules as metrics only"
+      ],
+      "answer": 0,
+      "explain": "Logs."
+    },
+    {
+      "q": "Lambda logs commonly appear in:",
+      "options": [
+        "CloudWatch Logs",
+        "EBS only",
+        "S3 Glacier Instant only always",
+        "NACL entries"
+      ],
+      "answer": 0,
+      "explain": "Lambda logging."
+    },
+    {
+      "q": "Alarms trigger when:",
+      "options": [
+        "A metric crosses a threshold (or anomaly model)",
+        "A bucket is named",
+        "A Region is spelled wrong",
+        "A user smiles"
+      ],
+      "answer": 0,
+      "explain": "Alarms."
+    },
+    {
+      "q": "Alarm actions can:",
+      "options": [
+        "Notify (SNS) or automate responses",
+        "Only rename the account",
+        "Only delete CloudTrail",
+        "Only create root users"
+      ],
+      "answer": 0,
+      "explain": "Actions."
+    },
+    {
+      "q": "EventBridge/CloudWatch Events help with:",
+      "options": [
+        "Event routing/scheduling patterns",
+        "Storing Docker layers",
+        "Replacing S3",
+        "Replacing IAM entirely"
+      ],
+      "answer": 0,
+      "explain": "Events."
+    },
+    {
+      "q": "CloudTrail records:",
+      "options": [
+        "API activity / who did what",
+        "Only CPU",
+        "Only disk free space",
+        "Only container CPU"
+      ],
+      "answer": 0,
+      "explain": "CloudTrail."
+    },
+    {
+      "q": "CloudTrail vs CloudWatch:",
+      "options": [
+        "Trail = API audit; Watch = ops monitoring",
+        "Identical services",
+        "Trail only for Docker",
+        "Watch only for DNS"
+      ],
+      "answer": 0,
+      "explain": "Distinction table."
+    },
+    {
+      "q": "Production troubleshooting uses both because:",
+      "options": [
+        "Metrics show symptoms; trail can show control-plane causes",
+        "Logs are illegal",
+        "APIs never fail",
+        "Alarms never notify"
+      ],
+      "answer": 0,
+      "explain": "Together."
+    },
+    {
+      "q": "Searching logs helps you:",
+      "options": [
+        "Find error patterns and debug",
+        "Create AZs",
+        "Rename Regions",
+        "Disable HTTPS"
+      ],
+      "answer": 0,
+      "explain": "Log search."
+    },
+    {
+      "q": "Example: spike in errors → you check:",
+      "options": [
+        "Metrics/alarms/logs and recent changes via trail as needed",
+        "Only the office plant",
+        "Only bucket version IDs",
+        "Only AMI architecture"
+      ],
+      "answer": 0,
+      "explain": "Ops workflow."
+    },
+    {
+      "q": "Final architecture so far includes:",
+      "options": [
+        "App tiers plus monitoring and auditing services",
+        "Only IAM without apps",
+        "Only free tier without learning",
+        "Only one metric ever"
+      ],
+      "answer": 0,
+      "explain": "Complete picture."
+    },
+    {
+      "q": "Hands-on lab spirit:",
+      "options": [
+        "Create an alarm and explore logs/trail basics",
+        "Delete the org",
+        "Share root",
+        "Disable all observability"
+      ],
+      "answer": 0,
+      "explain": "Practice."
+    },
+    {
+      "q": "Without CloudTrail after a suspicious RunInstances:",
+      "options": [
+        "Harder to see who called the API",
+        "CPU metrics vanish forever",
+        "S3 stops",
+        "VPC deletes itself"
+      ],
+      "answer": 0,
+      "explain": "Audit necessity."
+    },
+    {
+      "q": "Dashboards are not a substitute for:",
+      "options": [
+        "Actionable alarms and runbooks",
+        "Having any UI",
+        "Using a mouse",
+        "Reading docs ever"
+      ],
+      "answer": 0,
+      "explain": "Alarms that page matter."
+    },
+    {
+      "q": "EC2 logs may need agents/config to ship to CloudWatch—theme is:",
+      "options": [
+        "Centralize logs for search/ops",
+        "Never log anything",
+        "Only log to the instance screen forever",
+        "Only print on paper"
+      ],
+      "answer": 0,
+      "explain": "Central logging."
+    }
+  ],
+  "containers": [
+    {
+      "q": "Containers package:",
+      "options": [
+        "App + dependencies into a portable unit",
+        "Only the VPC",
+        "Only IAM users",
+        "Only Route 53 zones"
+      ],
+      "answer": 0,
+      "explain": "Docker way."
+    },
+    {
+      "q": "VM vs container: containers are typically:",
+      "options": [
+        "Lighter-weight process isolation sharing host kernel",
+        "Heavier than VMs always with full hardware each",
+        "Identical to bare metal always",
+        "Unable to run Linux apps"
+      ],
+      "answer": 0,
+      "explain": "Comparison."
+    },
+    {
+      "q": "A Docker image is:",
+      "options": [
+        "A packaged template/filesystem layers for containers",
+        "A running process only",
+        "An AWS Region",
+        "A security group"
+      ],
+      "answer": 0,
+      "explain": "Image."
+    },
+    {
+      "q": "A container is:",
+      "options": [
+        "A running instance of an image",
+        "Only a Dockerfile comment",
+        "Only an ECR account setting",
+        "Only a load balancer"
+      ],
+      "answer": 0,
+      "explain": "Container."
+    },
+    {
+      "q": "Dockerfile defines:",
+      "options": [
+        "How to build an image",
+        "How to create a VPC CIDR only",
+        "How to bill root",
+        "How to disable MFA"
+      ],
+      "answer": 0,
+      "explain": "Dockerfile."
+    },
+    {
+      "q": "docker build creates:",
+      "options": [
+        "An image",
+        "A NAT Gateway",
+        "An ASG",
+        "A CloudTrail trail"
+      ],
+      "answer": 0,
+      "explain": "Build."
+    },
+    {
+      "q": "docker run starts:",
+      "options": [
+        "A container",
+        "A Multi-AZ RDS standby only",
+        "A new AWS Organization",
+        "A Route table"
+      ],
+      "answer": 0,
+      "explain": "Run."
+    },
+    {
+      "q": "ECR is:",
+      "options": [
+        "Elastic Container Registry for images",
+        "Elastic Compute Router",
+        "Event Cache Replica",
+        "Edge Certificate Root"
+      ],
+      "answer": 0,
+      "explain": "ECR."
+    },
+    {
+      "q": "Deployment flow often is:",
+      "options": [
+        "Build image → push ECR → run on ECS",
+        "Push random zip to IAM",
+        "Store images only in Security Groups",
+        "Run containers inside CloudTrail events only"
+      ],
+      "answer": 0,
+      "explain": "Flow."
+    },
+    {
+      "q": "ECS is:",
+      "options": [
+        "Elastic Container Service—orchestrates containers on AWS",
+        "Only a database",
+        "Only S3 hosting",
+        "Only MFA"
+      ],
+      "answer": 0,
+      "explain": "ECS."
+    },
+    {
+      "q": "Cluster is:",
+      "options": [
+        "Logical grouping of capacity for ECS",
+        "A single S3 object",
+        "An IAM password policy",
+        "A billing currency"
+      ],
+      "answer": 0,
+      "explain": "Cluster."
+    },
+    {
+      "q": "Task definition describes:",
+      "options": [
+        "Container image, resources, networking, roles, etc.",
+        "Only the account email",
+        "Only the AZ letter",
+        "Only the bucket ACL"
+      ],
+      "answer": 0,
+      "explain": "Task definition."
+    },
+    {
+      "q": "A task is:",
+      "options": [
+        "Running instantiation of a task definition",
+        "A stopped AMI",
+        "A deleted VPC",
+        "A frozen alarm"
+      ],
+      "answer": 0,
+      "explain": "Task."
+    },
+    {
+      "q": "A service keeps:",
+      "options": [
+        "Desired number of tasks running and can attach to LB",
+        "Only one ECR image tag forever without deploys",
+        "Root keys",
+        "Only CloudFormation parameters"
+      ],
+      "answer": 0,
+      "explain": "Service."
+    },
+    {
+      "q": "Fargate means:",
+      "options": [
+        "Serverless containers—less EC2 management",
+        "You must manage every EC2 host always",
+        "No Docker allowed",
+        "No IAM roles"
+      ],
+      "answer": 0,
+      "explain": "Fargate."
+    },
+    {
+      "q": "EC2 launch type means:",
+      "options": [
+        "You manage container instances capacity more directly",
+        "AWS forbids EC2",
+        "No networking",
+        "No images"
+      ],
+      "answer": 0,
+      "explain": "EC2 vs Fargate."
+    },
+    {
+      "q": "Ports mapping allows:",
+      "options": [
+        "Traffic to reach container processes",
+        "Disabling all networking always",
+        "Creating GSIs",
+        "Creating Multi-AZ automatically"
+      ],
+      "answer": 0,
+      "explain": "Ports."
+    },
+    {
+      "q": "Volumes help with:",
+      "options": [
+        "Persisting/sharing data beyond container writable layer patterns",
+        "Deleting images only",
+        "Renaming clusters only",
+        "Disabling ECR"
+      ],
+      "answer": 0,
+      "explain": "Volumes."
+    },
+    {
+      "q": "Real-world microservices benefit from:",
+      "options": [
+        "Consistent packaging and orchestration on ECS/EKS/etc.",
+        "Installing uniquely by hand on each laptop only",
+        "No registries",
+        "No definitions"
+      ],
+      "answer": 0,
+      "explain": "Why containers."
+    },
+    {
+      "q": "Interview: image vs container:",
+      "options": [
+        "Image is template; container is running instance",
+        "They are the same always",
+        "Container builds the Dockerfile only",
+        "Image is only a running process"
+      ],
+      "answer": 0,
+      "explain": "Core terms."
+    },
+    {
+      "q": "Task execution role vs task role:",
+      "options": [
+        "Execution pulls images/logs; task role is app AWS perms",
+        "They are always identical and unused",
+        "Neither relates to IAM",
+        "Both replace security groups"
+      ],
+      "answer": 0,
+      "explain": "Important distinction in AWS containers."
+    },
+    {
+      "q": "Complete architecture with containers often includes:",
+      "options": [
+        "ALB → ECS service tasks from ECR images in private subnets",
+        "Public root SSH to host every container always",
+        "No load balancer ever for HTTP APIs always",
+        "Storing images only in /tmp on laptops"
+      ],
+      "answer": 0,
+      "explain": "Prod shape."
+    }
+  ],
+  "iac": [
+    {
+      "q": "Manual console clicking at scale is a problem because:",
+      "options": [
+        "Not repeatable/reviewable; easy to drift and make mistakes",
+        "AWS forbids the console entirely",
+        "Console cannot create S3",
+        "Terraform is illegal"
+      ],
+      "answer": 0,
+      "explain": "Problem statement."
+    },
+    {
+      "q": "Infrastructure as Code means:",
+      "options": [
+        "Define infrastructure in files and apply repeatedly",
+        "Only writing JavaScript frontends",
+        "Never using git",
+        "Only drawing whiteboards"
+      ],
+      "answer": 0,
+      "explain": "IaC definition."
+    },
+    {
+      "q": "CloudFormation is:",
+      "options": [
+        "AWS-native IaC service (templates/stacks)",
+        "Only a container runtime",
+        "Only a DNS host",
+        "Only an AMI"
+      ],
+      "answer": 0,
+      "explain": "CloudFormation."
+    },
+    {
+      "q": "A stack is:",
+      "options": [
+        "A deployed collection of resources from a template",
+        "A Docker swarm only",
+        "An S3 storage class",
+        "An AZ"
+      ],
+      "answer": 0,
+      "explain": "Stack."
+    },
+    {
+      "q": "Terraform is:",
+      "options": [
+        "Popular multi-cloud IaC tool using HCL",
+        "Only an AWS console skin",
+        "Only CloudWatch",
+        "Only ECR"
+      ],
+      "answer": 0,
+      "explain": "Terraform."
+    },
+    {
+      "q": "terraform init:",
+      "options": [
+        "Initializes providers/backend/modules",
+        "Destroys all accounts",
+        "Creates root users",
+        "Disables state"
+      ],
+      "answer": 0,
+      "explain": "init."
+    },
+    {
+      "q": "terraform plan:",
+      "options": [
+        "Shows the execution plan/diff before apply",
+        "Always applies immediately without review",
+        "Deletes state only",
+        "Creates only IAM users"
+      ],
+      "answer": 0,
+      "explain": "plan."
+    },
+    {
+      "q": "terraform apply:",
+      "options": [
+        "Applies changes to reach desired state",
+        "Only formats code",
+        "Only logs in to console",
+        "Only opens SSH"
+      ],
+      "answer": 0,
+      "explain": "apply."
+    },
+    {
+      "q": "terraform destroy:",
+      "options": [
+        "Tears down managed resources",
+        "Creates a Region",
+        "Enables MFA",
+        "Uploads Docker only"
+      ],
+      "answer": 0,
+      "explain": "destroy."
+    },
+    {
+      "q": "State file maps:",
+      "options": [
+        "Config addresses to real resource IDs",
+        "Only Docker layers",
+        "Only password hashes in browser",
+        "Only CSS"
+      ],
+      "answer": 0,
+      "explain": "State importance."
+    },
+    {
+      "q": "Variables allow:",
+      "options": [
+        "Parameterizing configurations",
+        "Deleting providers",
+        "Skipping plan forever safely",
+        "Avoiding providers"
+      ],
+      "answer": 0,
+      "explain": "Variables."
+    },
+    {
+      "q": "Outputs expose:",
+      "options": [
+        "Useful values after apply (IDs, endpoints)",
+        "Only errors",
+        "Only plan JSON always private",
+        "Only destroy logs"
+      ],
+      "answer": 0,
+      "explain": "Outputs."
+    },
+    {
+      "q": "Modules help you:",
+      "options": [
+        "Reuse and organize infrastructure code",
+        "Avoid all version control",
+        "Disable drift detection",
+        "Hide state in chat apps"
+      ],
+      "answer": 0,
+      "explain": "Modules."
+    },
+    {
+      "q": "Drift means:",
+      "options": [
+        "Real infra changed outside code",
+        "Terraform is offline",
+        "S3 is full",
+        "DNS is down"
+      ],
+      "answer": 0,
+      "explain": "Drift."
+    },
+    {
+      "q": "Idempotency means:",
+      "options": [
+        "Re-applying desired state safely converges",
+        "Every apply randomly rebuilds everything differently always",
+        "State is optional",
+        "Plan is forbidden"
+      ],
+      "answer": 0,
+      "explain": "Idempotent applies."
+    },
+    {
+      "q": "CloudFormation vs Terraform (high level):",
+      "options": [
+        "CFN AWS-native; Terraform multi-cloud ecosystem—pick by context",
+        "Terraform cannot manage AWS",
+        "CFN cannot create S3",
+        "They cannot version"
+      ],
+      "answer": 0,
+      "explain": "Comparison."
+    },
+    {
+      "q": "CI/CD integration means:",
+      "options": [
+        "Plan/apply in pipelines with reviews—not long-lived keys ideally",
+        "Apply only from root laptop with no review",
+        "Never automate",
+        "Commit state secrets publicly"
+      ],
+      "answer": 0,
+      "explain": "Prod workflow."
+    },
+    {
+      "q": "Production workflow emphasizes:",
+      "options": [
+        "PR → plan → review → apply gated",
+        "Click prod randomly",
+        "Skip plan",
+        "Share state on Twitter"
+      ],
+      "answer": 0,
+      "explain": "Safe delivery."
+    },
+    {
+      "q": "Hands-on lab spirit:",
+      "options": [
+        "Create a small stack/config and apply it",
+        "Delete org trail",
+        "Disable MFA",
+        "Email access keys"
+      ],
+      "answer": 0,
+      "explain": "Practice."
+    },
+    {
+      "q": "Complete architecture as code means:",
+      "options": [
+        "VPC/compute/data/etc. defined and repeatable",
+        "Only screenshots of console",
+        "Only oral tradition",
+        "Only sticky notes"
+      ],
+      "answer": 0,
+      "explain": "End state of course."
+    },
+    {
+      "q": "Protecting state includes:",
+      "options": [
+        "Remote state, locking, encryption, least privilege",
+        "Commit secrets to public git",
+        "Email state to everyone",
+        "Disable all backends"
+      ],
+      "answer": 0,
+      "explain": "State security."
+    },
+    {
+      "q": "Why companies love Terraform (chat theme):",
+      "options": [
+        "Consistent workflow, ecosystem, multi-cloud option, modules",
+        "It deletes AWS accounts randomly",
+        "It replaces application code",
+        "It removes need for IAM"
+      ],
+      "answer": 0,
+      "explain": "Adoption reasons."
+    }
+  ],
+  "capstone": [
+    {
+      "q": "A capstone project should:",
+      "options": [
+        "Combine multiple services end-to-end",
+        "Only memorize logos",
+        "Avoid diagrams",
+        "Use root daily in prod"
+      ],
+      "answer": 0,
+      "explain": "Integration."
+    },
+    {
+      "q": "Static website project often uses:",
+      "options": [
+        "S3 (+ optional CloudFront)",
+        "Only Multi-AZ RDS required",
+        "Only ECS Fargate always",
+        "Only CloudTrail"
+      ],
+      "answer": 0,
+      "explain": "Simple hosting."
+    },
+    {
+      "q": "VPC project should include:",
+      "options": [
+        "Public/private subnets and secure DB placement",
+        "Public DB wide open",
+        "No route tables",
+        "No SGs"
+      ],
+      "answer": 0,
+      "explain": "Networking skills."
+    },
+    {
+      "q": "ALB + ASG proves you understand:",
+      "options": [
+        "Scale and high availability",
+        "Only S3 versioning",
+        "Only IAM passwords",
+        "Only Docker volumes"
+      ],
+      "answer": 0,
+      "explain": "Scale tier."
+    },
+    {
+      "q": "Serverless API project uses:",
+      "options": [
+        "API Gateway + Lambda + DynamoDB patterns",
+        "Only EC2 with Oracle always",
+        "Only NAT",
+        "Only NACL deny all"
+      ],
+      "answer": 0,
+      "explain": "Serverless path."
+    },
+    {
+      "q": "Container project path:",
+      "options": [
+        "Docker → ECR → ECS/Fargate",
+        "AMI → only CloudWatch → IAM",
+        "S3 → NACL → IGW only",
+        "RDS → only SSH"
+      ],
+      "answer": 0,
+      "explain": "Containers path."
+    },
+    {
+      "q": "IaC capstone means:",
+      "options": [
+        "Rebuild a design with Terraform or CloudFormation",
+        "Only console forever",
+        "No version control",
+        "No plan"
+      ],
+      "answer": 0,
+      "explain": "IaC practice."
+    },
+    {
+      "q": "Interview answers should include:",
+      "options": [
+        "Architecture + tradeoffs + security/ops/cost",
+        "Only one service name",
+        "Only jokes",
+        "Only silence"
+      ],
+      "answer": 0,
+      "explain": "Interview habits."
+    },
+    {
+      "q": "Always mention in designs:",
+      "options": [
+        "IAM least privilege",
+        "No authentication",
+        "Public root keys",
+        "Disabled logging"
+      ],
+      "answer": 0,
+      "explain": "Security."
+    },
+    {
+      "q": "Multi-AZ is about:",
+      "options": [
+        "Availability across failures",
+        "Cheaper S3 always",
+        "Faster DNS only",
+        "Disabling replicas"
+      ],
+      "answer": 0,
+      "explain": "Reliability."
+    },
+    {
+      "q": "Monitoring belongs in designs because:",
+      "options": [
+        "You must operate what you deploy",
+        "Metrics are illegal",
+        "Alarms delete data",
+        "Logs replace IAM"
+      ],
+      "answer": 0,
+      "explain": "Ops."
+    },
+    {
+      "q": "Cost awareness means:",
+      "options": [
+        "Right-size, turn off idle, watch data transfer",
+        "Ignore Free Tier limits always",
+        "Leave NAT forever unused without care",
+        "Public data transfer free always"
+      ],
+      "answer": 0,
+      "explain": "Cost."
+    },
+    {
+      "q": "Tradeoff EC2 vs Lambda depends on:",
+      "options": [
+        "Workload shape, runtime needs, ops model",
+        "Coin flip only",
+        "Logo colors",
+        "Region name length"
+      ],
+      "answer": 0,
+      "explain": "Tradeoffs."
+    },
+    {
+      "q": "RDS vs DynamoDB depends on:",
+      "options": [
+        "Data model and access patterns",
+        "Only price of coffee",
+        "Only number of AZs in name",
+        "Only CLI version"
+      ],
+      "answer": 0,
+      "explain": "Data choice."
+    },
+    {
+      "q": "ALB vs NLB depends on:",
+      "options": [
+        "L7 features vs L4 performance needs",
+        "Only S3",
+        "Only IAM",
+        "Only ECR"
+      ],
+      "answer": 0,
+      "explain": "LB choice."
+    },
+    {
+      "q": "Drawing architecture before naming services helps because:",
+      "options": [
+        "Forces clear data flow and failure domains",
+        "Is banned in interviews",
+        "Replaces all study",
+        "Removes need for IAM"
+      ],
+      "answer": 0,
+      "explain": "Method."
+    },
+    {
+      "q": "Optional cert path mentioned as:",
+      "options": [
+        "CLF then SAA-style progression optional",
+        "No certs ever useful for anyone",
+        "Only CCIE required for AWS",
+        "Only Kubernetes CKA forced first"
+      ],
+      "answer": 0,
+      "explain": "Certs optional."
+    },
+    {
+      "q": "After the chat curriculum, best next step:",
+      "options": [
+        "Build small projects",
+        "Never touch AWS again",
+        "Delete CloudTrail",
+        "Share root"
+      ],
+      "answer": 0,
+      "explain": "Projects glue learning."
+    },
+    {
+      "q": "A production-minded design includes:",
+      "options": [
+        "Private data, backups, monitoring, least privilege",
+        "Single public DB",
+        "No backups",
+        "No alarms"
+      ],
+      "answer": 0,
+      "explain": "Production bar."
+    },
+    {
+      "q": "Idempotent deploys and IaC reduce:",
+      "options": [
+        "Snowflake environments and human error",
+        "Need for any skills",
+        "Need for HTTPS",
+        "Need for AZs"
+      ],
+      "answer": 0,
+      "explain": "Why automation."
+    },
+    {
+      "q": "Capstone success looks like:",
+      "options": [
+        "Working system you can explain end-to-end",
+        "Only screenshots of unused consoles",
+        "Only quiz scores without labs",
+        "Only memorized port numbers"
+      ],
+      "answer": 0,
+      "explain": "Explain + build."
+    },
+    {
+      "q": "When stuck debugging, use:",
+      "options": [
+        "CloudWatch + CloudTrail + architecture reasoning",
+        "Only restart laptop forever",
+        "Disable all logs",
+        "Delete the VPC first always"
+      ],
+      "answer": 0,
+      "explain": "Ops skills from lesson 10."
+    }
+  ]
+};
+
+export function getQuiz(lessonId: string): QuizQuestion[] {
+  return quizzesByLessonId[lessonId] ?? [];
+}

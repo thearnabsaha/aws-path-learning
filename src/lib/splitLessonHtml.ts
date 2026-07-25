@@ -1,0 +1,69 @@
+export type LessonPart = {
+  id: string;
+  title: string;
+  html: string;
+};
+
+/**
+ * Split lesson HTML into accordion parts on each <h2>.
+ * Leading content before the first h2 becomes "Introduction".
+ */
+export function splitLessonHtml(html: string): LessonPart[] {
+  const trimmed = html.trim();
+  if (!trimmed) return [];
+
+  const parts: LessonPart[] = [];
+  const re = /<h2\b[^>]*>([\s\S]*?)<\/h2>/gi;
+  const matches = [...trimmed.matchAll(re)];
+
+  if (!matches.length) {
+    return [
+      {
+        id: "content",
+        title: "Lesson content",
+        html: trimmed,
+      },
+    ];
+  }
+
+  const firstIdx = matches[0].index ?? 0;
+  if (firstIdx > 0) {
+    const intro = trimmed.slice(0, firstIdx).trim();
+    if (intro && stripTags(intro).length > 0) {
+      parts.push({
+        id: "intro",
+        title: "Introduction",
+        html: intro,
+      });
+    }
+  }
+
+  matches.forEach((match, i) => {
+    const title = stripTags(match[1]).trim() || `Part ${i + 1}`;
+    const start = (match.index ?? 0) + match[0].length;
+    const end =
+      i + 1 < matches.length
+        ? (matches[i + 1].index ?? trimmed.length)
+        : trimmed.length;
+    const body = trimmed.slice(start, end).trim();
+    parts.push({
+      id: `part-${i + 1}`,
+      title,
+      html: body || "<p><em>No content in this section.</em></p>",
+    });
+  });
+
+  return parts;
+}
+
+function stripTags(s: string): string {
+  return s
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/\s+/g, " ")
+    .trim();
+}

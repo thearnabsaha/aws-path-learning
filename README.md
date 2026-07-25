@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AWS Path (Next.js)
 
-## Getting Started
+Mobile-first AWS learning course — dark developer-docs theme, quizzes, and local progress tracking.
 
-First, run the development server:
+## Run
 
 ```bash
+cd "/Users/thearnabsaha/Desktop/grok things/aws-learning-site"
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Dev server (Turbopack) |
+| `npm run build` | Production build |
+| `npm start` | Serve production build |
+| `npm run lint` | ESLint |
 
-## Learn More
+## Stack
 
-To learn more about Next.js, take a look at the following resources:
+- **Next.js 15** (App Router)
+- **React 19** + TypeScript
+- Progress in `localStorage` (no backend / no login)
+- **PWA** (`@ducanh2912/next-pwa`) — installable, offline fallback for cached routes
+- **Responsive** — phone, tablet, desktop, wide desktop shell with permanent sidebar
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## PWA
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Manifest: `public/manifest.webmanifest`
+- Icons: `public/icons/`
+- Service worker is generated on **production** build (`npm run build` + `npm start`)
+- Dev mode keeps SW disabled for clean HMR
 
-## Deploy on Vercel
+## Structure
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+src/
+  app/                 # routes (/, /lesson/[id])
+  components/          # UI shell, quiz, home, lesson
+  context/             # ProgressProvider
+  data/lessons/        # curriculum content
+  lib/                 # localStorage helpers
+  types/               # Lesson types
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Curriculum
+
+**Source:** ChatGPT shared conversation *AWS Learning Roadmap*  
+(`https://chatgpt.com/share/6a64cda4-bfb4-83ee-94da-093bddf60d45`)
+
+Raw markdown extract: `content/from-chatgpt/lesson-1.md` … `lesson-12.md`
+
+| # | Topic |
+|---|--------|
+| 01 | What is Cloud Computing? + roadmap |
+| 02 | AWS Account, Console & IAM |
+| 03 | Amazon EC2 |
+| 04 | Amazon S3 |
+| 05 | Amazon VPC |
+| 06 | Amazon RDS |
+| 07 | ELB & Auto Scaling |
+| 08 | AWS Lambda |
+| 09 | Amazon DynamoDB |
+| 10 | CloudWatch & CloudTrail |
+| 11 | Docker, ECR & ECS |
+| 12 | CloudFormation & Terraform |
+| 13 | Capstone practice (extra) |
+
+Quizzes + local progress are site extras on top of the chat text.
