@@ -69,6 +69,5 @@ Raw markdown extract: `content/from-chatgpt/lesson-1.md` … `lesson-12.md`
 | 10 | CloudWatch & CloudTrail |
 | 11 | Docker, ECR & ECS |
 | 12 | CloudFormation & Terraform |
-| 13 | Capstone practice (extra) |
 
 Quizzes + local progress are site extras on top of the chat text.

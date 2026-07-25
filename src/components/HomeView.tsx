@@ -17,9 +17,8 @@ export function HomeView() {
             Learn AWS <span>clearly</span>
           </h1>
           <p className="lead">
-            Lessons 1–12 taken from the shared AWS bootcamp chat—plus quizzes,
-            progress tracking, and a bonus capstone. Same teaching style, nothing
-            skipped.
+            Lessons 1–12 from the shared AWS bootcamp chat—plus quizzes and local
+            progress tracking. Same teaching style, nothing skipped.
           </p>
           <div className="hero-actions">
             <Link className="btn btn-primary" href={`/lesson/${next.id}`}>
